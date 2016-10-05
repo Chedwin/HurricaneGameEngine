@@ -1,0 +1,25 @@
+// 3rd Party Static lib list
+glew32.lib
+freeglut.lib
+lua51.lib
+tinyxmld.lib
+OpenAL32.lib
+SDL2.lib
+SDL2main.lib
+
+
+
+// OpenGL
+$(SolutionDir)dependencies\OpenGL\lib
+
+// Lua51
+$(SolutionDir)dependencies\Lua51\lib
+
+// tinyxml
+$(SolutionDir)dependencies\tinyxml\lib
+
+// OpenAL
+$(SolutionDir)dependencies\OpenAL-1.1\libs\Win32
+
+// SDL
+$(SolutionDir)dependencies\SDL\lib\x86
