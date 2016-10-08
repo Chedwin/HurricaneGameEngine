@@ -1,10 +1,28 @@
-#version 130
+#version 430 core
+layout(location = 0) in vec4 vertexPosition;
+layout(location = 1) in vec4 vertexColor;
 
-in Vec2 vertexPosition;
+// TRANSFORMATION MATRIX
+uniform mat4 model_matrix;
+
+// CAMERA
+//uniform mat4 view_matrix;
+
+// PROJECTION MATRIX
+//uniform mat4 projection_matrix;
+
+out vec4 myColor;
 
 void main()
 {
-	gl_Position.xy = vertexPosition;
-	gl_Position.z = 0.0;
-	gl_Position.w = 1.0;
+	myColor = vertexColor;
+
+	// REMEMBER: Matrix multiplication order DOES matter!!
+	//			 i.e. A*B != B*A
+	//gl_Position = projection_matrix * view_matrix * model_matrix * vPosition;
+	gl_Position = model_matrix * vertexPosition;
+
+	// ALSO:
+	// B/c of the projection matrix (frustum) above,
+	//		objects ONLY in the frustum are being draw = OCCLUSION CULLING
 }

@@ -88,9 +88,9 @@ hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 
 	GLfloat colorData[4][3] = {
 		{ 1, 0, 0 },
-		{ 1, 1, 0 },
 		{ 0, 1, 0 },
-		{ 1, 1, 1 }
+		{ 0, 0, 1 },
+		{ 0, 1, 1 }
 	};
 
 
@@ -108,6 +108,9 @@ hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(1);
 
+
+	_shaderLocation = glGetUniformLocation(shaderProgram.GetProgramID(), "model_matrix");
+
 	return true;
 }
 
@@ -115,10 +118,14 @@ void OpenGLRenderer::Render()
 {
 	glClearDepth(1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glMatrixMode(GL_MODELVIEW);     // To operate on model-view matrix
 
 	shaderProgram.UseShader();
 
+	glm::mat4 model_view;
+	glUniformMatrix4fv(_shaderLocation, 1, GL_FALSE, &model_view[0][0]);
 	glDrawArrays(GL_QUADS, 0, 4);
+
 	shaderProgram.UnuseShader();
 }
 

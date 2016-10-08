@@ -17,7 +17,7 @@
 #include <glew.h>
 #include "Macro.h"
 #include "AbstractRenderer.h"
-
+#include "HMath.h"
 
 class OpenGLRenderer : public AbstractRenderer {
 public:
@@ -31,6 +31,7 @@ public:
 private:
 	SDL_Window* _gameWindow;
 	SDL_Renderer* _gameRenderer;
+	GLuint _shaderLocation;
 };
 
 #endif
