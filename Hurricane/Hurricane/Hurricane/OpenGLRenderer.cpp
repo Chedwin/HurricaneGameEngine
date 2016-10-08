@@ -12,6 +12,8 @@ OpenGLRenderer::~OpenGLRenderer()
 	SDL_Quit();
 }
 
+GLuint Buffers[2];
+
 hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -48,6 +50,16 @@ hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 
 	//Check the OpenGL version
 	PRINTF("***   OpenGL Version: %s   ***\n", glGetString(GL_VERSION));
+	////////////
+	// TODO: INITIALIZE OPENGL STUFF HERE
+	////////////
+
+	GLsizei _width, _height;
+	_width = width;
+	_height = height;
+
+	// Change the NDC viewport screen ratio accordingly based on window width & height
+	glViewport(0, 0, _width, _height);
 
 
 	glEnable(GL_CULL_FACE | GL_DEPTH_TEST | GL_BLEND);
@@ -67,6 +79,35 @@ hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 	shaderProgram.CompileShaders("colourShading.vert", "colourShading.frag");
 	shaderProgram.LinkShaders();
 
+	GLfloat vertices[4][3] = {
+		{ -0.5f, -0.5f, 0.0f },
+		{ -0.5f, 0.5f, 0.0f },
+		{ 0.5f, 0.5f, 0.0f },
+		{ 0.5f, -0.5f, 0.0f }
+	};
+
+	GLfloat colorData[4][3] = {
+		{ 1, 0, 0 },
+		{ 1, 1, 0 },
+		{ 0, 1, 0 },
+		{ 1, 1, 1 }
+	};
+
+
+	glGenBuffers(2, Buffers);
+
+	glBindBuffer(GL_ARRAY_BUFFER, Buffers[0]);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBindAttribLocation(shaderProgram.GetProgramID(), 0, "vertexPosition");
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glEnableVertexAttribArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, Buffers[1]);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(colorData), colorData, GL_STATIC_DRAW);
+	glBindAttribLocation(shaderProgram.GetProgramID(), 1, "vertexColor");
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glEnableVertexAttribArray(1);
+
 	return true;
 }
 
@@ -75,30 +116,9 @@ void OpenGLRenderer::Render()
 	glClearDepth(1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	GLfloat vertices[4][3] = {
-		{ -0.5f, -0.5f, 0.0f },
-		{ -0.5f, 0.5f, 0.0f },
-		{ 0.5f, 0.5f, 0.0f },
-		{ 0.5f, -0.5f, 0.0f }
-	};
-
-	//glGenBuffers(2, Buffers);
-	//glBindBuffer(GL_ARRAY_BUFFER, Buffers[0]);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	//glBindAttribLocation(shaderProgram, 0, "vertexPosition");
-	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
-	//glEnableVertexAttribArray(0);
-
 	shaderProgram.UseShader();
 
-	glBegin(GL_TRIANGLES);
-	glVertex3f(0.0f, 0.6f, 0.0f);
-	glColor3f(1.0f, 1.0f, 0.0f);
-	glVertex3f(0.6f, -0.3f, 0.0f);
-	glVertex3f(-0.6f, -0.3f, 0.0f);
-
-	glEnd();
-
+	glDrawArrays(GL_QUADS, 0, 4);
 	shaderProgram.UnuseShader();
 }
 

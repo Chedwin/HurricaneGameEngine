@@ -14,7 +14,6 @@ ShaderProgram::~ShaderProgram()
 
 hBOOL ShaderProgram::CompileShader(const STRING & filePath, GLuint id)
 {
-	id = glCreateShader(GL_VERTEX_SHADER);
 	if (id == 0) {
 		LOG->Error("SHADER " + filePath + " FAILED TO COMPILE", __LINE__, __FILE__);
 		return false;
@@ -36,20 +35,22 @@ hBOOL ShaderProgram::CompileShader(const STRING & filePath, GLuint id)
 	shaderFile.close();
 
 	const hCHAR* contentsPtr = fileContents.c_str();
-	glShaderSource(id, 1, &contentsPtr, nullptr);
+	glShaderSource(id, 1, &contentsPtr, NULL);
 	glCompileShader(id);
 
 	GLint success = 0;
 	glGetShaderiv(id, GL_COMPILE_STATUS, &success);
 
-	if (success == GL_FALSE) {
+	if (success == GL_FALSE) 
+	{
 		GLint maxLength = 0;
 		glGetShaderiv(id, GL_INFO_LOG_LENGTH, &maxLength);
 
+		glDeleteShader(id);
 		VECTOR(hCHAR) errorLog(maxLength);
 		glGetShaderInfoLog(id, maxLength, &maxLength, &errorLog[0]);
 
-		glDeleteShader(id);
+		RemoveFromGPU(id);
 		PRINTF("%s\n", &(errorLog[0]));
 		LOG->Error("SHADER " + filePath + " FAILED TO COMPILE", __LINE__, __FILE__);
 		return false;
@@ -75,9 +76,9 @@ hBOOL ShaderProgram::CompileShaders(const STRING & verPath, const STRING & fragP
 		return false;
 	}
 
-	hBOOL test = CompileShader(verPath, _vertexShaderID) && CompileShader(fragPath, _fragmentShaderID);
-
-	return test;
+	hBOOL test = CompileShader(verPath, _vertexShaderID);
+	hBOOL test2 = CompileShader(fragPath, _fragmentShaderID);
+	return test && test2;
 }
 
 void ShaderProgram::LinkShaders()
@@ -100,8 +101,8 @@ void ShaderProgram::LinkShaders()
 
 		glDeleteProgram(_programID);
 
-		glDeleteShader(_vertexShaderID);
-		glDeleteShader(_fragmentShaderID);
+		RemoveFromGPU(_vertexShaderID);
+		RemoveFromGPU(_fragmentShaderID);
 
 		PRINTF("%s\n", &(errorLog[0]));
 		LOG->Error("SHADERS FAILED TO LINK", __LINE__, __FILE__);
@@ -132,5 +133,12 @@ void ShaderProgram::UnuseShader()
 	glUseProgram(0);
 	for (int i = 0; i < _numAttributes; i++) {
 		glDisableVertexAttribArray(i);
+	}
+}
+
+void ShaderProgram::RemoveFromGPU(GLuint id)
+{
+	if (id) {
+		glDeleteShader(id);	
 	}
 }

@@ -7,12 +7,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{5063DF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{5A9103C6-62D7-4364-AB84-9CE6F1F6232E}"
 	ProjectSection(SolutionItems) = preProject
-		Dep_Include.txt = Dep_Include.txt
-		Dep_Lib.txt = Dep_Lib.txt
-		Header_Template.txt = Header_Template.txt
-		Hurricane_ReadMe.txt = Hurricane_ReadMe.txt
-		Properties_XML_Template.xml = Properties_XML_Template.xml
-		Singleton_Template.txt = Singleton_Template.txt
+		HeaderTemplate.txt = HeaderTemplate.txt
+		HurricaneReadMe.txt = HurricaneReadMe.txt
+		Include.txt = Include.txt
+		Lib.txt = Lib.txt
+		propertiesTemplate.xml = propertiesTemplate.xml
+		SingletonTemplate.txt = SingletonTemplate.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Game", "Game", "{682EE976-2182-4B04-A614-574FAB490A43}"

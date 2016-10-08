@@ -157,6 +157,7 @@
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Macro.h" />
+    <ClInclude Include="HMath.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelManager.h" />
     <ClInclude Include="OpenGLRenderer.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="tinyxml2.h" />
+    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AudioEngine.cpp" />

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Root>
+
+  <GeneralProperty>
+    <name></name>
+    <author></author>
+  </GeneralProperty>
+
+  <AudioProperty>
+    <master>1.0</master>
+    <music>1.0</music>
+    <sound>1.0</sound>
+  </AudioProperty>
+
+  <VideoProperty>
+    <width></width>
+    <height></height>
+    <fullscreen></fullscreen>
+  </VideoProperty>
+
+</Root>
