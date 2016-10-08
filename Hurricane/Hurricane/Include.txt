@@ -1,0 +1,14 @@
+// OpenGL
+$(SolutionDir)dependencies\OpenGL\include 
+
+// Lua51
+$(SolutionDir)dependencies\Lua51\include
+
+// OpenAL
+$(SolutionDir)dependencies\OpenAL-1.1\include
+
+// SDL
+$(SolutionDir)dependencies\SDL\include
+
+// glm
+$(SolutionDir)\dependencies\glm

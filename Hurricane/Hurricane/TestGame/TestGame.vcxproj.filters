@@ -30,8 +30,4 @@
   <ItemGroup>
     <Xml Include="properties.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Shaders\colourShading.frag" />
-    <None Include="Shaders\colourShading.vert" />
-  </ItemGroup>
 </Project>

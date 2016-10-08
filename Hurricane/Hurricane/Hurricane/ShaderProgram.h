@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Sep 30, 2016
-// Last updated:	Sep 30, 2016
+// Last updated:	Oct 08, 2016
 //
 //*******************************//
 
@@ -32,6 +32,11 @@ public:
 	void UseShader();
 	void UnuseShader();
 
+	void RemoveFromGPU(GLuint id);
+
+	inline GLuint GetProgramID() const {
+		return _programID;
+	}
 private:
 	hINT _numAttributes;
 	GLuint _programID, _vertexShaderID, _fragmentShaderID;

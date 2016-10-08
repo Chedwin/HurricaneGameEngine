@@ -1,11 +1,4 @@
-﻿  ModelManager.cpp
-  Game.cpp
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(49): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(50): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(51): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(113): warning C4244: '=': conversion from 'hUINT' to 'hFLOAT', possible loss of data
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(146): warning C4244: '=': conversion from 'hUINT' to 'hFLOAT', possible loss of data
-  Generating Code...
+﻿  OpenGLRenderer.cpp
 opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
 opengl32.lib(OPENGL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
 freeglut.lib(freeglut.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored

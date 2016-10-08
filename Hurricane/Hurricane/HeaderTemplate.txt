@@ -1,0 +1,20 @@
+//*******************************//
+//
+// Name:			.h
+// Description:		A basic description of the header goes here.
+//
+// Author:			Author Name
+// Created:			Jan 01, 2016
+// Last updated:	Jan 01, 2016
+//
+//*******************************//
+
+#pragma once
+
+#include "Macro.h"
+
+#ifndef CLASS_NAME_H
+#define CLASS_NAME_H
+ 
+
+#endif
