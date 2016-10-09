@@ -39,6 +39,8 @@
 #include <fstream>
 #include <string>
 
+#include <cstddef>
+
 #include <list>
 #include <vector>
 #include <stack>

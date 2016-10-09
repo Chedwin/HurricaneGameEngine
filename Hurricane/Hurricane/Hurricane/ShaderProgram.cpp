@@ -11,7 +11,6 @@ ShaderProgram::~ShaderProgram()
 {
 }
 
-
 hBOOL ShaderProgram::CompileShader(const STRING & filePath, GLuint id)
 {
 	if (id == 0) {
@@ -117,6 +116,16 @@ void ShaderProgram::AddAttribute(const STRING & attrName)
 {
 	glBindAttribLocation(_programID, _numAttributes, attrName.c_str());
 	_numAttributes++;
+}
+
+GLuint ShaderProgram::GetUniformLocation(const STRING& uniformName)
+{
+	GLuint loc = glGetUniformLocation(_programID, uniformName.c_str());
+	if (loc == GL_INVALID_INDEX) 
+	{
+		LOG->ConsoleError("Uniform: " + uniformName + ", was not found in shader");
+	}
+	return loc;
 }
 
 void ShaderProgram::UseShader()

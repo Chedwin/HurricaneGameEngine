@@ -28,6 +28,8 @@ public:
 
 	void LinkShaders();
 	void AddAttribute(const STRING& attrName);
+	
+	GLuint GetUniformLocation(const STRING& uniformName);
 
 	void UseShader();
 	void UnuseShader();

@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Sep 20, 2016
-// Last updated:	Sep 27, 2016
+// Last updated:	Oct 08, 2016
 //
 //*******************************//
 
@@ -19,12 +19,14 @@
 #include "AbstractRenderer.h"
 #include "HMath.h"
 
-class OpenGLRenderer : public AbstractRenderer {
+class OpenGLRenderer : public AbstractRenderer 
+{
 public:
 	OpenGLRenderer();
 	~OpenGLRenderer();
 
 	hBOOL Init(STRING winName, hINT width, hINT height, hUINT flags);
+	void CreateShaders();
 	void Render();
 	void SwapBuffers();
 

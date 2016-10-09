@@ -1,5 +1,4 @@
 #include <Macro.h>
-#include <Timer.h>
 #include "TestGame.h"
 
 hINT main(hINT argc, hCHAR** argv) {

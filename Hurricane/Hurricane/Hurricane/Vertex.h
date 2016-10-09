@@ -25,7 +25,7 @@ struct Vertex
 
 	struct Colour 
 	{
-		hCHAR red, blue, green, alpha;
+		GLubyte red, blue, green, alpha;
 	};
 
 	Position pos;
