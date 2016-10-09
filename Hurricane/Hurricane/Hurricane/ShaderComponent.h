@@ -1,11 +1,11 @@
 //*******************************//
 //
-// Name:			.h
+// Name:			ShaderComponent.h
 // Description:		A basic description of the header goes here.
 //
-// Author:			Author Name
-// Created:			Jan 01, 2016
-// Last updated:	Jan 01, 2016
+// Author:			Edwin Chen
+// Created:			Oct 08, 2016
+// Last updated:	Oct 08, 2016
 //
 //*******************************//
 
@@ -17,6 +17,9 @@
 
 #include "Macro.h"
 
+class ShaderComponent 
+{
 
+};
 
 #endif

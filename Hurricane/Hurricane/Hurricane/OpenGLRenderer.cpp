@@ -1,18 +1,19 @@
 #include "OpenGLRenderer.h"
 #include "DebugLog.h"
-
+#include "Vertex.h"
 OpenGLRenderer::OpenGLRenderer() : _gameWindow(nullptr), _gameRenderer(nullptr)
 {
 }
+GLuint Buffers[2];
 
 OpenGLRenderer::~OpenGLRenderer()
 {
+	glDeleteBuffers(1, Buffers);
 	SDL_DestroyRenderer(_gameRenderer); _gameRenderer = nullptr;
 	SDL_DestroyWindow(_gameWindow);		_gameWindow = nullptr;
 	SDL_Quit();
 }
 
-GLuint Buffers[2];
 
 hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 {
@@ -76,42 +77,44 @@ hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-	shaderProgram.CompileShaders("colourShading.vert", "colourShading.frag");
-	shaderProgram.LinkShaders();
 
-	GLfloat vertices[4][3] = {
-		{ -0.5f, -0.5f, 0.0f },
-		{ -0.5f, 0.5f, 0.0f },
-		{ 0.5f, 0.5f, 0.0f },
-		{ 0.5f, -0.5f, 0.0f }
-	};
+	// CREATE THE SHADERS
+	CreateShaders();
 
-	GLfloat colorData[4][3] = {
-		{ 1, 0, 0 },
-		{ 0, 1, 0 },
-		{ 0, 0, 1 },
-		{ 0, 1, 1 }
-	};
+	Vertex v[4];
+	v[0].pos = { -0.5f, -0.5f, 0.0f };
+	v[1].pos = { -0.5f, 0.5f, 0.0f };
+	v[2].pos = { 0.5f, 0.5f, 0.0f };
+	v[3].pos = { 0.5f, -0.5f, 0.0f };
 
+	for (int i = 0; i < 4; i++) {
+		v[i].col = { 0, 0, 255, 1 };
+	}
+	
 
 	glGenBuffers(2, Buffers);
-
 	glBindBuffer(GL_ARRAY_BUFFER, Buffers[0]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	glBindAttribLocation(shaderProgram.GetProgramID(), 0, "vertexPosition");
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(v), v, GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, pos));
 	glEnableVertexAttribArray(0);
 
 	glBindBuffer(GL_ARRAY_BUFFER, Buffers[1]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(colorData), colorData, GL_STATIC_DRAW);
-	glBindAttribLocation(shaderProgram.GetProgramID(), 1, "vertexColor");
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(v), v, GL_STATIC_DRAW);
+	glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)offsetof(Vertex, col));
 	glEnableVertexAttribArray(1);
 
 
-	_shaderLocation = glGetUniformLocation(shaderProgram.GetProgramID(), "model_matrix");
+	_shaderLocation = shaderProgram.GetUniformLocation("model_matrix");
 
 	return true;
+}
+
+void OpenGLRenderer::CreateShaders() 
+{
+	shaderProgram.CompileShaders("colourShading.vert", "colourShading.frag");
+	shaderProgram.AddAttribute("vertexPosition");
+	shaderProgram.AddAttribute("vertexColor");
+	shaderProgram.LinkShaders();
 }
 
 void OpenGLRenderer::Render()

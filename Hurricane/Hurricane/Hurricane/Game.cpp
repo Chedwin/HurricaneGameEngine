@@ -114,7 +114,7 @@ void Game::GameLoop()
 
 		while (SDL_PollEvent(&evnt)) 
 		{
-			input->TakeEvent(evnt);
+			input->ProcessInput(evnt);
 
 			switch (evnt.type) 
 			{
@@ -126,7 +126,7 @@ void Game::GameLoop()
 		SDL_PumpEvents();
 
 
-		EngineUpdate(2.0f);
+		EngineUpdate(timeSinceLastUpdate);
 
 		PreRender();
 		EngineRender();
@@ -164,5 +164,4 @@ void Game::PostRender()
 
 void Game::EngineUpdate(const hFLOAT _timeStep)
 {
-
 }

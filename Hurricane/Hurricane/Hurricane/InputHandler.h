@@ -6,7 +6,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Jul 17, 2016
-// Last updated:	Sep 22, 2016
+// Last updated:	Oct 08, 2016
 //
 //*******************************//
 
@@ -16,6 +16,7 @@
 #define INPUTHANDLER_H
 
 #include "Macro.h"
+#include "HMath.h"
 
 #define INPUT InputHandler::GetInputHandler()
 
@@ -28,7 +29,9 @@ public:
 	static InputHandler* GetInputHandler();
 
 	void Update();
-	void TakeEvent(SDL_Event& _evnt);
+	void ProcessInput(SDL_Event& _evnt);
+
+	VECTOR2 mousePos;
 
 private:
 	static UNIQUE_PTR(InputHandler) _inputHandler;
