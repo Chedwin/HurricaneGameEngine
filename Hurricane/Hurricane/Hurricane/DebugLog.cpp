@@ -46,8 +46,8 @@ void DebugLog::Close()
 	{
 		_outStream->close();
 		delete _outStream;
-		_outStream = NULL;
 	}
+	_outStream = nullptr;
 }
 
 void DebugLog::Log(LOG_LEVEL severity, STRING& msg)

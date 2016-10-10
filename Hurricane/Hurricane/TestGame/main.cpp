@@ -10,6 +10,9 @@ hINT main(hINT argc, hCHAR** argv) {
 	/// Debug mode stuff
 #if defined(DEBUG) | defined(_DEBUG)
 
+
+#define _CRTDBG_MAP_ALLOC
+
 	// Avoid memory leaks by catching them
 	// Won't catch all of them (but you gotta catch 'em all right? lol)
 	HeapSetInformation(NULL, HeapEnableTerminationOnCorruption, NULL, 0);
@@ -24,6 +27,11 @@ hINT main(hINT argc, hCHAR** argv) {
 		LOG->Error("MEMORY LEAK DETECTED");
 		_CrtDbgBreak();
 	}
+
+#ifndef DBG_NEW
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#define new DBG_NEW
+#endif
 
 #endif
 

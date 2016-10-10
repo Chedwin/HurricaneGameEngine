@@ -155,6 +155,7 @@
     <ClInclude Include="Hurricane.h" />
     <ClInclude Include="HurricaneProperties.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="IOManager.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="HMath.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HurricaneProperties.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="ModelManager.cpp" />
     <ClCompile Include="OpenGLRenderer.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />

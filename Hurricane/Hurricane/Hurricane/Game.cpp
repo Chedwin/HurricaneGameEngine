@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "OpenGLRenderer.h"
 #include "ModelManager.h"
+
 /// See the header file regarding unique_ptr
 UNIQUE_PTR(Game) Game::_gameInstance(nullptr);
 
@@ -101,16 +102,28 @@ void Game::GameLoop()
 
 	while (_isRunning) 
 	{
+		//// FPS CALCULATION ////
+		hFLOAT startTicks = gameTimer->GetTimerTicks();
 		gameTimer->UpdateTimer();
-		totalTime = gameTimer->SecondsPassed();
 
-		timeSinceLastUpdate = gameTimer->GetTimerTicks() - lastUpdateTime;
+		CalculateFPS();
+		static hINT frameCounter = 0;
 
-		if (timeSinceLastUpdate > 300.0f) {
-			timeSinceLastUpdate = 300.0f;
+		frameCounter++;
+		if (frameCounter == 10) 
+		{
+			COUT << fps << ENDL;
+			frameCounter = 0;
 		}
 
-		lastUpdateTime = gameTimer->GetTimerTicks();
+		hFLOAT frameTicks = gameTimer->GetTimerTicks() - startTicks;
+
+		if (1000.0f / MAX_FPS > frameTicks) 
+		{
+			SDL_Delay(1000.0f / MAX_FPS - frameTicks);
+		}
+		///////////////////////////
+
 
 		while (SDL_PollEvent(&evnt)) 
 		{
@@ -141,18 +154,6 @@ void Game::PreRender()
 
 void Game::EngineRender() 
 {
-	hUINT updateTime = gameTimer->GetTimerTicks();
-
-	timeSinceLastUpdate = updateTime;
-	frames++;
-
-	if (frames >= 10) 
-	{
-		fps = frames / (hFLOAT)(updateTime - timeSinceLastFPSUpdate) * 1000.0f;
-		frames = 0;
-		timeSinceLastFPSUpdate = updateTime;
-	}
-
 	GameRender();
 	PostRender();
 }
@@ -164,4 +165,47 @@ void Game::PostRender()
 
 void Game::EngineUpdate(const hFLOAT _timeStep)
 {
+}
+
+void Game::CalculateFPS() 
+{
+	static const hINT NUM_SAMPLES = 100;
+	static hFLOAT frameTimes[NUM_SAMPLES];
+	static hINT currentFrame = 0;
+
+	static hFLOAT prevTicks = gameTimer->GetTimerTicks();
+	hFLOAT currTicks = gameTimer->GetTimerTicks();
+
+	frameTime = currTicks - prevTicks;
+	frameTimes[currentFrame % NUM_SAMPLES] = frameTime;
+
+	prevTicks = currTicks;
+
+	hINT count;
+
+	currentFrame++;
+	if (currentFrame < NUM_SAMPLES) 
+	{
+		count = currentFrame;
+	}
+	else 
+	{
+		count = NUM_SAMPLES;
+	}
+
+	hFLOAT frameTimeAverage = 0;
+	for (int i = 0; i < count; i++) 
+	{
+		frameTimeAverage += frameTimes[i];
+	}
+	frameTimeAverage /= count;
+
+	if (frameTimeAverage > 0) 
+	{
+		fps = 1000.0f / frameTimeAverage;
+	}
+	else 
+	{
+		fps = MAX_FPS;
+	}
 }

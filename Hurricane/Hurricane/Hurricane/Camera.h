@@ -12,7 +12,7 @@
 #pragma once
 
 #include "Macro.h"
-#include "HurricaneMath.h"
+#include "HMath.h"
 
 #ifndef CAMERA_H
 #define CAMERA_H

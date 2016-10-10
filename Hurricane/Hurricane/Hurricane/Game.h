@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Jul 05, 2016
-// Last updated:	Sept 30, 2016
+// Last updated:	Oct 09, 2016
 //
 //*******************************//
 #pragma once
@@ -43,6 +43,7 @@ public:
 	virtual void GameUpdate(const hFLOAT _timeStep) {}
 	virtual void GameRender() {}  
 
+	void CalculateFPS();
 
 	// INLINE FUNCTIONS
 	inline hBOOL IsGameRunning() const {
@@ -68,14 +69,14 @@ protected:
 	Level* levelToLoad;
 
 	hFLOAT fps;
+	hFLOAT frameTime;
+
 	hFLOAT totalTime, timeBetweenLastFrame, lastUpdateTime, timeSinceLastUpdate;
 	hINT frames, timeSinceLastFPSUpdate;
 
 	hBOOL _isRunning;
 
 public:
-
-
 	Timer* gameTimer;
 	
 	DebugLog* gameDebugLogger;
