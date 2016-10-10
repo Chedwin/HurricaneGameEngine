@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 01, 2016
-// Last updated:	Oct 01, 2016
+// Last updated:	Oct 09, 2016
 //
 //*******************************//
 
@@ -118,7 +118,7 @@ public:
 		{
 			if (iter->first == name)
 			{
-				iter = resourceMap->find(name);
+				//iter = resourceMap->find(name);
 
 				ResourceHandle<ResourceType> rm = iter->second;
 				hINT t = rm.GetIndex();

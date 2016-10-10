@@ -8,7 +8,7 @@ HurricaneProperties::GeneralProperties*		HurricaneProperties::_genProp;   // Gen
 HurricaneProperties::AudioProperties*		HurricaneProperties::_audioProp; // Audio properties
 HurricaneProperties::VideoProperties*		HurricaneProperties::_videoProp; // Video properties
 
-tinyxml2::XMLDocument HurricaneProperties::_xml_doc; // static tinyxml doc
+tinyxml2::XMLDocument HurricaneProperties::_xml_doc = NULL; // static tinyxml doc
 
 
 

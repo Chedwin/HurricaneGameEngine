@@ -1,15 +1,18 @@
 #include "ShaderProgram.h"
+#include "IOManager.h"
 #include "DebugLog.h"
 
 
 
-ShaderProgram::ShaderProgram() : _programID(0), _vertexShaderID(0), _fragmentShaderID(0), _numAttributes(0)
+ShaderProgram::ShaderProgram() : _vertexShaderID(0), _fragmentShaderID(0), _numAttributes(0), _programID(0)
 {
+
 }
 
 ShaderProgram::~ShaderProgram()
 {
 }
+
 
 hBOOL ShaderProgram::CompileShader(const STRING & filePath, GLuint id)
 {
@@ -32,6 +35,11 @@ hBOOL ShaderProgram::CompileShader(const STRING & filePath, GLuint id)
 	}
 
 	shaderFile.close();
+
+	//VECTOR(hCHAR) buffer;
+	//IOManager::ReadFileToBuffer(filePath, buffer);
+	
+	//const hCHAR* contentsPtr = &(buffer[0]);
 
 	const hCHAR* contentsPtr = fileContents.c_str();
 	glShaderSource(id, 1, &contentsPtr, NULL);
@@ -59,10 +67,12 @@ hBOOL ShaderProgram::CompileShader(const STRING & filePath, GLuint id)
 }
 
 
+
 hBOOL ShaderProgram::CompileShaders(const STRING & verPath, const STRING & fragPath)
 {
-	_programID = glCreateProgram();
-
+	if (_programID == 0) {
+		_programID = glCreateProgram();
+	}
 	_vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	if (_vertexShaderID == 0) {
 		LOG->Error("VERTEX SHADER FAILED TO COMPILE", __LINE__, __FILE__);
@@ -118,9 +128,9 @@ void ShaderProgram::AddAttribute(const STRING & attrName)
 	_numAttributes++;
 }
 
-GLuint ShaderProgram::GetUniformLocation(const STRING& uniformName)
+GLint ShaderProgram::GetUniformLocation(const STRING& uniformName)
 {
-	GLuint loc = glGetUniformLocation(_programID, uniformName.c_str());
+	GLint loc = glGetUniformLocation(_programID, uniformName.c_str());
 	if (loc == GL_INVALID_INDEX) 
 	{
 		LOG->ConsoleError("Uniform: " + uniformName + ", was not found in shader");

@@ -33,7 +33,9 @@ public:
 private:
 	SDL_Window* _gameWindow;
 	SDL_Renderer* _gameRenderer;
+
 	GLuint _shaderLocation;
+	ShaderProgram shaderProgram;
 };
 
 #endif

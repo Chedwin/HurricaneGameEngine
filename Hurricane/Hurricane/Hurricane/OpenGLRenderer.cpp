@@ -8,7 +8,7 @@ GLuint Buffers[2];
 
 OpenGLRenderer::~OpenGLRenderer()
 {
-	glDeleteBuffers(1, Buffers);
+	glDeleteBuffers(2, Buffers);
 	SDL_DestroyRenderer(_gameRenderer); _gameRenderer = nullptr;
 	SDL_DestroyWindow(_gameWindow);		_gameWindow = nullptr;
 	SDL_Quit();
@@ -73,7 +73,6 @@ hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 	SDL_GL_SetSwapInterval(1);
 
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 

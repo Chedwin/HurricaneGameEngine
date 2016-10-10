@@ -6,7 +6,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Sep 12, 2016
-// Last updated:	Sep 27, 2016
+// Last updated:	Oct 09, 2016
 //
 //*******************************//
 
@@ -27,8 +27,6 @@ public:
 	virtual hBOOL Init(STRING winName, hINT width, hINT height, hUINT flags=0) = 0;
 	virtual void Render() = 0;
 	virtual void SwapBuffers() = 0;
-
-	ShaderProgram shaderProgram;
 };
 
 #endif
