@@ -29,5 +29,6 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="properties.xml" />
+    <Xml Include="PongGame.xml" />
   </ItemGroup>
 </Project>

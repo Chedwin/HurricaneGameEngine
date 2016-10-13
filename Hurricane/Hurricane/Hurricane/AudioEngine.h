@@ -15,6 +15,7 @@
 #define AUDIO_ENGINE_H
 
 #include "Macro.h"
+#include "ResourceManager.h"
 
 // ABSTRACT AUDIO CLASS
 class Audio {
@@ -36,11 +37,11 @@ public:
 // CONCRETE MUSIC AND SOUNDFX CLASSES DERIVING FROM AUDIO
 class Music : public Audio {
 protected:
+public:
 	Music() {}
 	~Music() {
 		Destroy();
 	}
-public:
 	friend class AudioEngine;
 
 	bool Init();
@@ -55,11 +56,11 @@ public:
 
 class SoundFX : public Audio {
 protected:
+public:
 	SoundFX() {}
 	~SoundFX() {
 		Destroy();
 	}
-public:
 	friend class AudioEngine;
 
 	bool Init();
@@ -95,8 +96,9 @@ private:
 	static UNIQUE_PTR(AudioEngine) _audioEngine;
 	friend DEFAULT_DELETE(AudioEngine);
 
-	MAP(STRING, SoundFX*) _soundFX_List;
-	MAP(STRING, Music*) _music_List;
+	ResourceManager<SoundFX>	sfxList;
+	ResourceManager<Music>		musicList;
+
 public:
 	hINT masterVol, musicVol, sfxVol;
 };

@@ -6,11 +6,12 @@
 
 ShaderProgram::ShaderProgram() : _vertexShaderID(0), _fragmentShaderID(0), _numAttributes(0), _programID(0)
 {
-
+	// EMPTY
 }
 
 ShaderProgram::~ShaderProgram()
 {
+	// EMPTY
 }
 
 

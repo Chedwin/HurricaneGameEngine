@@ -23,6 +23,7 @@ HurricaneProperties* HurricaneProperties::GetHurricaneProperties() {
 
 HurricaneProperties::HurricaneProperties()
 {
+	_HurricaneProperties.reset(_HurricaneProperties.release());
 	_genProp = new GeneralProperties();
 	_audioProp = new AudioProperties();
 	_videoProp = new VideoProperties();

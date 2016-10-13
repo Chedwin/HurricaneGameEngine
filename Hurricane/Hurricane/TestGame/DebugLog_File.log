@@ -1,8 +1,4 @@
-DATE: Sun Oct  9 13:32:38 2016
+DATE: Sun Oct  9 23:54:30 2016
 FILE: d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\shaderprogram.cpp
-LINE: 61
+LINE: 63
 MESSAGE: SHADER colourShading.vert FAILED TO COMPILE
-DATE: Sun Oct  9 13:32:38 2016
-FILE: d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\shaderprogram.cpp
-LINE: 61
-MESSAGE: SHADER colourShading.frag FAILED TO COMPILE

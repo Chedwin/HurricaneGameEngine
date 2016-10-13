@@ -6,10 +6,12 @@ layout(location = 1) in vec4 vertexColor;
 uniform mat4 model_matrix;
 
 // CAMERA
-//uniform mat4 view_matrix;
+uniform mat4 view_matrix;
 
 // PROJECTION MATRIX
-//uniform mat4 projection_matrix;
+uniform mat4 projection_matrix;
+
+
 
 out vec4 myColor;
 
@@ -19,8 +21,8 @@ void main()
 
 	// REMEMBER: Matrix multiplication order DOES matter!!
 	//			 i.e. A*B != B*A
-	//gl_Position = projection_matrix * view_matrix * model_matrix * vPosition;
-	gl_Position = model_matrix * vertexPosition;
+	gl_Position = projection_matrix * view_matrix * model_matrix * vertexPosition;
+	//gl_Position = view_matrix * model_matrix * vertexPosition;
 
 	// ALSO:
 	// B/c of the projection matrix (frustum) above,
