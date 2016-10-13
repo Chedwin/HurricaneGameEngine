@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Jul 05, 2016
-// Last updated:	Oct 09, 2016
+// Last updated:	Oct 12, 2016
 //
 //*******************************//
 #pragma once
@@ -14,9 +14,9 @@
 #define GAME_H
 
 #include "Hurricane.h"
+#include "Camera.h"
 
-
-#define GAME GAME::GetGameInstance()
+#define GAME Game::GetGameInstance()
 #define MAX_FPS 60.0f
 
 class Game {
@@ -26,9 +26,11 @@ public:
 	explicit Game();
 	virtual ~Game();
 	
-	bool InitSystems();
+	hBOOL InitSystems();
 	void DestroySystems();
 
+	hBOOL LoadLevel(Level* _level);
+	
 	void PreRender();
 	void PostRender();
 
@@ -41,7 +43,7 @@ public:
 
 	// TO BE OVERLOADED BY THE DERIVED GAME
 	virtual void GameUpdate(const hFLOAT _timeStep) {}
-	virtual void GameRender() {}  
+	virtual void GameRender() {}
 
 	void CalculateFPS();
 
@@ -63,8 +65,10 @@ public:
 	}
 
 protected:
-	static UNIQUE_PTR(Game) _gameInstance;
-	friend DEFAULT_DELETE(Game);
+	//static UNIQUE_PTR(Game) _gameInstance;
+	//friend DEFAULT_DELETE(Game);
+
+	static Game* _gameInstance;
 
 	Level* levelToLoad;
 
@@ -77,9 +81,11 @@ protected:
 	hBOOL _isRunning;
 
 public:
+	
+	Camera* cam3D;
+
 	Timer* gameTimer;
 	
-	DebugLog* gameDebugLogger;
 	HurricaneProperties* properties;
 	AbstractRenderer* renderer;
 	InputHandler* input;

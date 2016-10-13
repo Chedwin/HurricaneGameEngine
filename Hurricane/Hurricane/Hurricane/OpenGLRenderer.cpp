@@ -1,13 +1,15 @@
 #include "OpenGLRenderer.h"
 #include "DebugLog.h"
 #include "Vertex.h"
+
 OpenGLRenderer::OpenGLRenderer() : _gameWindow(nullptr), _gameRenderer(nullptr)
 {
 }
-GLuint Buffers[2];
+
 
 OpenGLRenderer::~OpenGLRenderer()
 {
+	shaderProgram.UnuseShader();
 	glDeleteBuffers(2, Buffers);
 	SDL_DestroyRenderer(_gameRenderer); _gameRenderer = nullptr;
 	SDL_DestroyWindow(_gameWindow);		_gameWindow = nullptr;
@@ -90,6 +92,7 @@ hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 		v[i].col = { 0, 0, 255, 1 };
 	}
 	
+	shaderProgram.UseShader();
 
 	glGenBuffers(2, Buffers);
 	glBindBuffer(GL_ARRAY_BUFFER, Buffers[0]);
@@ -104,6 +107,8 @@ hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 
 
 	_shaderLocation = shaderProgram.GetUniformLocation("model_matrix");
+	_viewMatLocation = shaderProgram.GetUniformLocation("view_matrix");
+	_projMatLocation = shaderProgram.GetUniformLocation("projection_matrix");
 
 	return true;
 }
@@ -116,19 +121,32 @@ void OpenGLRenderer::CreateShaders()
 	shaderProgram.LinkShaders();
 }
 
+
 void OpenGLRenderer::Render()
 {
 	glClearDepth(1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glMatrixMode(GL_MODELVIEW);     // To operate on model-view matrix
+	glMatrixMode(GL_PROJECTION_MATRIX);     // To operate on model-view matrix
+	glLoadIdentity();
 
-	shaderProgram.UseShader();
+	//shaderProgram.UseShader();
 
-	glm::mat4 model_view;
+	//static float i = 10.0f;
+	VECTOR3 loc = VECTOR3(0.0f, 0.0f, 0.5f);
+	VECTOR3 dir = VECTOR3(0.0f, 0.0f, -1.0f);
+	VECTOR3 up = VECTOR3(0.0f, 1.0f, 0.0f);
+
+	MATRIX4 cam_mat = glm::lookAt(loc, dir, up);
+	glUniformMatrix4fv(_viewMatLocation, 1, GL_FALSE, &cam_mat[0][0]);
+
+	MATRIX4 proj_matrix = glm::frustum(-0.5f, +0.5f, -0.5f, +0.5f, 0.1f, 10.0f);
+	glUniformMatrix4fv(_projMatLocation, 1, GL_FALSE, &proj_matrix[0][0]);
+
+	MATRIX4 model_view;
 	glUniformMatrix4fv(_shaderLocation, 1, GL_FALSE, &model_view[0][0]);
 	glDrawArrays(GL_QUADS, 0, 4);
 
-	shaderProgram.UnuseShader();
+	//shaderProgram.UnuseShader();
 }
 
 void OpenGLRenderer::SwapBuffers()

@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Sep 18, 2016
-// Last updated:	Sep 29, 2016
+// Last updated:	Oct 11, 2016
 //
 //*******************************//
 
@@ -15,16 +15,19 @@
 #include <DebugLog.h>
 #include <Game.h>
 
+
 #ifndef TEST_GAME_H
 #define TEST_GAME_H
 
-class TestGame : public Game {
+
+class TestGame : public Game 
+{
 public:
 	TestGame();
 	~TestGame();
 
-	void GameRender();
-	void GameUpdate(const hFLOAT _deltatime);
+	void GameRender() override;
+	void GameUpdate(const hFLOAT _deltatime) override;
 };
 
 #endif

@@ -39,10 +39,11 @@ hINT main(hINT argc, hCHAR** argv) {
 	static_assert(sizeof(void*) == 4, "64-bit code generation not supported!\n");
 
 
-	TestGame test;
-	test.Run();
+	TestGame* test = new TestGame();
+	test->Run();
 
-
+	delete test;
+	test = nullptr;
 
 	return 0;
 }

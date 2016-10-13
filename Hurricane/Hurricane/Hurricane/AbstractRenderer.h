@@ -25,8 +25,10 @@ public:
 	virtual ~AbstractRenderer() {}
 
 	virtual hBOOL Init(STRING winName, hINT width, hINT height, hUINT flags=0) = 0;
+
 	virtual void Render() = 0;
 	virtual void SwapBuffers() = 0;
+	virtual SDL_Window* GetWindow() const = 0;
 };
 
 #endif

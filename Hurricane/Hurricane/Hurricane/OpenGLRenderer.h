@@ -16,6 +16,7 @@
 
 #include <glew.h>
 #include "Macro.h"
+#include "Game.h"
 #include "AbstractRenderer.h"
 #include "HMath.h"
 
@@ -27,15 +28,25 @@ public:
 
 	hBOOL Init(STRING winName, hINT width, hINT height, hUINT flags);
 	void CreateShaders();
+
 	void Render();
 	void SwapBuffers();
 
+	inline SDL_Window* GetWindow() const {
+		return _gameWindow;
+	}
+
 private:
+
 	SDL_Window* _gameWindow;
 	SDL_Renderer* _gameRenderer;
 
+	GLuint _viewMatLocation;
+	GLuint _projMatLocation;
 	GLuint _shaderLocation;
 	ShaderProgram shaderProgram;
+	GLuint Buffers[2];
+
 };
 
 #endif

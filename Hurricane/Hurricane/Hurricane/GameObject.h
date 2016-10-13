@@ -19,23 +19,25 @@ typedef std::string tag;
 #ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H
 
+class Level;
+
 class GameObject {
 public:
-	GameObject();
+	GameObject(Level* _level);
 	virtual ~GameObject();
 
 	VECTOR(tag) tags;
 	VECTOR(Component*) components;
 
-	virtual void PreRender();
-	virtual void Render();
-	virtual void Update(const hFLOAT _deltaTime);
+	virtual void PreRender() {}
+	virtual void Render() {}
+	virtual void Update(const hFLOAT _deltaTime) {}
 
-	void AddChild(GameObject*);
-	void RemoveChild(GameObject*);
+	void AddChild(GameObject*) {}
+	void RemoveChild(GameObject*) {}
 
 	void AddComponent(Component* c);
-	void RemoveComponent(Component* c);
+	void RemoveComponent(Component* c) {}
 	
 
 	inline void SetEnabled(hBOOL _b) {
@@ -43,6 +45,7 @@ public:
 	}
 public:
 	hBOOL isEnabled;
+	Level* level;
 };
 
 

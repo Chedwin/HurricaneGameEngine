@@ -39,6 +39,7 @@
 #include <fstream>
 #include <string>
 
+#include <sstream>
 #include <cstddef>
 
 #include <list>
@@ -82,7 +83,8 @@
 #define PRINTF std::printf
 #define GETCHAR std::getchar
 
-
+// sstream
+#define STRINGSTREAM std::stringstream 
 
 // list
 #define LIST(T) std::list<T>

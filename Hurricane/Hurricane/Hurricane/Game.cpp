@@ -3,21 +3,27 @@
 #include "ModelManager.h"
 
 /// See the header file regarding unique_ptr
-UNIQUE_PTR(Game) Game::_gameInstance(nullptr);
+//UNIQUE_PTR(Game) Game::_gameInstance(nullptr);
+Game* Game::_gameInstance(nullptr);
 
 Game* Game::GetGameInstance() 
 {
-	if (_gameInstance.get() == nullptr) 
+	//if (_gameInstance.get() == nullptr) 
+	//{
+	//	_gameInstance.reset(new Game());
+	//}
+	//return _gameInstance.get();
+	if (!_gameInstance) 
 	{
-		_gameInstance.reset(new Game());
+		_gameInstance = new Game();
 	}
-	return _gameInstance.get();
+	return _gameInstance;
 }
 
 Game::Game() :
-	_isRunning(true), properties(nullptr), gameDebugLogger(nullptr), input(nullptr), renderer(nullptr), modelManager(nullptr),
+	_isRunning(true), properties(nullptr), input(nullptr), renderer(nullptr), modelManager(nullptr),
 	currentLevel(nullptr), levelToLoad(nullptr),
-	fps(0.0f), frames(0), timeBetweenLastFrame(0.0f), timeSinceLastUpdate(0.0f)
+	fps(0.0f), frames(0), timeBetweenLastFrame(0.0f), timeSinceLastUpdate(0.0f), cam3D(nullptr)
 {
 	// EMPTY
 }
@@ -30,7 +36,7 @@ Game::~Game()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-bool Game::InitSystems()
+hBOOL Game::InitSystems()
 {
 	// GAME TIME
 	Clock::init(); // Start the global game clock
@@ -53,7 +59,8 @@ bool Game::InitSystems()
 
 	// RENEDERER
 	renderer = new OpenGLRenderer();
-	if (!renderer->Init(name, width, height, fullscreen)) {
+	if (!renderer->Init(name, width, height, fullscreen)) 
+	{
 		LOG->Error("RENDERER CANNOT BE INITIALIZED", __LINE__, __FILE__);
 		return false;
 	}
@@ -69,6 +76,16 @@ bool Game::InitSystems()
 
 	//Model* myMo = new SimpleModel();
 
+
+
+	// GAME CAMERA
+	cam3D = new Camera(levelToLoad);
+	cam3D->Init(width, height);
+
+
+
+	LoadLevel(levelToLoad);
+
 	return true;
 }
 
@@ -76,11 +93,19 @@ void Game::DestroySystems()
 {
 	// REMEMBER: Don't have to delete singletons! (that are created w/ unique pointer)
 
+	delete cam3D;
+	cam3D = nullptr;
+
 	delete gameTimer;
 	gameTimer = nullptr;
 
 	delete renderer;
 	renderer = nullptr;
+}
+
+hBOOL Game::LoadLevel(Level* _level)
+{
+	return true;
 }
 
 
@@ -102,6 +127,9 @@ void Game::GameLoop()
 
 	while (_isRunning) 
 	{
+		// UPDATE CAMERA
+		cam3D->Update();
+
 		//// FPS CALCULATION ////
 		hFLOAT startTicks = gameTimer->GetTimerTicks();
 		gameTimer->UpdateTimer();
@@ -110,9 +138,7 @@ void Game::GameLoop()
 		static hINT frameCounter = 0;
 
 		frameCounter++;
-		if (frameCounter == 10) 
-		{
-			COUT << fps << ENDL;
+		if (frameCounter >= 10) {
 			frameCounter = 0;
 		}
 
@@ -165,6 +191,7 @@ void Game::PostRender()
 
 void Game::EngineUpdate(const hFLOAT _timeStep)
 {
+	GameUpdate(_timeStep);
 }
 
 void Game::CalculateFPS() 
