@@ -2,14 +2,16 @@
 #include "DebugLog.h"
 #include "Vertex.h"
 
-OpenGLRenderer::OpenGLRenderer() : _gameWindow(nullptr), _gameRenderer(nullptr)
+OpenGLRenderer::OpenGLRenderer() : _gameWindow(nullptr), _gameRenderer(nullptr), _shaderManager(nullptr)
 {
+	// EMPTY
 }
 
 
 OpenGLRenderer::~OpenGLRenderer()
 {
-	shaderProgram.UnuseShader();
+	_shaderProgram->UnuseShader();
+
 	glDeleteBuffers(2, Buffers);
 	SDL_DestroyRenderer(_gameRenderer); _gameRenderer = nullptr;
 	SDL_DestroyWindow(_gameWindow);		_gameWindow = nullptr;
@@ -78,21 +80,22 @@ hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
+	_shaderManager = SHADER_MANAGER;
 
 	// CREATE THE SHADERS
 	CreateShaders();
 
 	Vertex v[4];
-	v[0].pos = { -0.5f, -0.5f, 0.0f };
-	v[1].pos = { -0.5f, 0.5f, 0.0f };
-	v[2].pos = { 0.5f, 0.5f, 0.0f };
-	v[3].pos = { 0.5f, -0.5f, 0.0f };
+	v[0].pos = { 0.0f, 0.0f, 0.0f };
+	v[1].pos = { 0.0f, 2.0f, 0.0f };
+	v[2].pos = { 0.0f, 0.0f, 0.0f };
+	v[3].pos = { 2.0f, 0.0f, 0.0f };
 
 	for (int i = 0; i < 4; i++) {
 		v[i].col = { 0, 0, 255, 1 };
 	}
 	
-	shaderProgram.UseShader();
+	_shaderProgram->UseShader();
 
 	glGenBuffers(2, Buffers);
 	glBindBuffer(GL_ARRAY_BUFFER, Buffers[0]);
@@ -106,19 +109,25 @@ hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 	glEnableVertexAttribArray(1);
 
 
-	_shaderLocation = shaderProgram.GetUniformLocation("model_matrix");
-	_viewMatLocation = shaderProgram.GetUniformLocation("view_matrix");
-	_projMatLocation = shaderProgram.GetUniformLocation("projection_matrix");
+	_shaderLocation = _shaderProgram->GetUniformLocation("model_matrix");
+	_viewMatLocation = _shaderProgram->GetUniformLocation("view_matrix");
+	_projMatLocation = _shaderProgram->GetUniformLocation("projection_matrix");
 
 	return true;
 }
 
 void OpenGLRenderer::CreateShaders() 
 {
-	shaderProgram.CompileShaders("colourShading.vert", "colourShading.frag");
-	shaderProgram.AddAttribute("vertexPosition");
-	shaderProgram.AddAttribute("vertexColor");
-	shaderProgram.LinkShaders();
+	_shaderProgram = new ShaderProgram();
+	_shaderProgram->CompileShaders("colourShading.vert", "colourShading.frag");
+	_shaderProgram->AddAttribute("vertexPosition");
+	_shaderProgram->AddAttribute("vertexColor");
+	_shaderProgram->LinkShaders();
+
+	STRING name = "myShaderProgram";
+	_shaderManager->StoreShaderProg(name, _shaderProgram);
+
+	//_shaderManager->DeleteShaderProgram((STRING)"myShaderProgram");
 }
 
 
@@ -129,9 +138,6 @@ void OpenGLRenderer::Render()
 	glMatrixMode(GL_PROJECTION_MATRIX);     // To operate on model-view matrix
 	glLoadIdentity();
 
-	//shaderProgram.UseShader();
-
-	//static float i = 10.0f;
 	VECTOR3 loc = VECTOR3(0.0f, 0.0f, 0.5f);
 	VECTOR3 dir = VECTOR3(0.0f, 0.0f, -1.0f);
 	VECTOR3 up = VECTOR3(0.0f, 1.0f, 0.0f);
@@ -144,9 +150,9 @@ void OpenGLRenderer::Render()
 
 	MATRIX4 model_view;
 	glUniformMatrix4fv(_shaderLocation, 1, GL_FALSE, &model_view[0][0]);
-	glDrawArrays(GL_QUADS, 0, 4);
+	glDrawArrays(GL_LINE_STRIP, 0, 4);
 
-	//shaderProgram.UnuseShader();
+	//_shaderProgram->UnuseShader();
 }
 
 void OpenGLRenderer::SwapBuffers()

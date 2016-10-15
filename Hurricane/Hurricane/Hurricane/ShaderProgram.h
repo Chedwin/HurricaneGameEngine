@@ -5,14 +5,16 @@
 //
 // Author:			Edwin Chen
 // Created:			Sep 30, 2016
-// Last updated:	Oct 08, 2016
+// Last updated:	Oct 14, 2016
 //
 //*******************************//
 
 #pragma once
 
-#include "Macro.h"
 #include <glew.h>
+#include "Macro.h"
+#include "ResourceManager.h"
+#include "ShaderComponent.h"
 
 #ifndef SHADER_PROGRAM_H
 #define SHADER_PROGRAM_H
@@ -39,9 +41,19 @@ public:
 	inline GLuint GetProgramID() const {
 		return _programID;
 	}
+
+	inline STRING GetProgramName() const {
+		return _programName;
+	}
+
 private:
 	hINT _numAttributes;
 	GLuint _programID, _vertexShaderID, _fragmentShaderID;
+
+	STRING _programName;
+
+	ResourceManager<ShaderVariable> _vertexVariables;
+	ResourceManager<ShaderVariable> _fragmentVariables;
 };
 
 #endif

@@ -18,6 +18,7 @@
 #include "Macro.h"
 #include "Game.h"
 #include "AbstractRenderer.h"
+#include "ShaderProgramManager.h"
 #include "HMath.h"
 
 class OpenGLRenderer : public AbstractRenderer 
@@ -41,10 +42,12 @@ private:
 	SDL_Window* _gameWindow;
 	SDL_Renderer* _gameRenderer;
 
+	ShaderProgramManager* _shaderManager;
+
 	GLuint _viewMatLocation;
 	GLuint _projMatLocation;
 	GLuint _shaderLocation;
-	ShaderProgram shaderProgram;
+	ShaderProgram* _shaderProgram;
 	GLuint Buffers[2];
 
 };

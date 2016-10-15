@@ -167,6 +167,7 @@
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="ShaderComponent.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="ShaderProgramManager.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Vertex.h" />
@@ -186,6 +187,7 @@
     <ClCompile Include="OpenGLRenderer.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="ShaderProgramManager.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
   </ItemGroup>
