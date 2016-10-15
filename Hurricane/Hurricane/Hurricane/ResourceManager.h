@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 01, 2016
-// Last updated:	Oct 09, 2016
+// Last updated:	Oct 14, 2016
 //
 //*******************************//
 
@@ -16,6 +16,7 @@
 #define RESOURCE_MANAGER_H
 
 #include "Macro.h"
+#include "DebugLog.h"
 
 template <class ResourceType> 
 class ResourceHandle
@@ -87,7 +88,7 @@ public:
 	}
 
 	// ADD A RESOURCE
-	void Add(STRING& name, ResourceType* res)
+	ResourceHandle<ResourceType> Add(STRING& name, ResourceType* res)
 	{
 		MAP(STRING, ResourceHandle<ResourceType>)::iterator iter = resourceMap->begin();
 
@@ -97,8 +98,8 @@ public:
 			{
 				if (iter->first == name)
 				{
-					LOG->ConsoleLog("\"" + name + "\" resource already exists");
-					return;
+					LOG->ConsoleError("\"" + name + "\" resource already exists");
+					return iter->second;
 				}
 			}
 		}
@@ -107,6 +108,8 @@ public:
 		resourceVector.push_back(res);
 		ResourceHandle<ResourceType> handle(rListSize);
 		resourceMap->insert(iter, PAIR(STRING, hINT)(name, handle.index) );
+
+		return handle.index;
 	}
 
 	// REMOVE A RESOURCE BY NAME
@@ -118,8 +121,6 @@ public:
 		{
 			if (iter->first == name)
 			{
-				//iter = resourceMap->find(name);
-
 				ResourceHandle<ResourceType> rm = iter->second;
 				hINT t = rm.GetIndex();
 
@@ -129,21 +130,25 @@ public:
 				return;
 			}
 		}
-		LOG->ConsoleLog("Resource failed to be removed: \n\"" + name + "\" resource does not exist");
+		LOG->ConsoleError("Resource failed to be removed: \n\"" + name + "\" resource does not exist");
 	}
 
+	// GET (overload 1)
+	// Return generic type pointer
 	ResourceType* Get(ResourceHandle<ResourceType> &handle) const
 	{
 		hINT idx = handle.GetIndex();
 		ResourceType *result = NULL;
 
-		if (idx >= 0 && idx < hINT(resourceList.size()))
+		if (idx >= 0 && idx < hINT(resourceVector.size()))
 		{
-			result = resourceList[idx];
+			result = resourceVector[idx];
 		}
 		return result;
 	}
 
+	// GET (overload 2)
+	// Return resource handle (index of handle)
 	ResourceHandle<ResourceType> Get(const STRING &name) const
 	{
 		MAP(STRING, ResourceHandle<ResourceType>)::iterator iter = resourceMap->begin();
