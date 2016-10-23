@@ -37,10 +37,10 @@ hBOOL ShaderProgram::CompileShader(const STRING & filePath, GLuint id)
 
 	shaderFile.close();
 
-	//VECTOR(hCHAR) buffer;
-	//IOManager::ReadFileToBuffer(filePath, buffer);
+	VECTOR(hCHAR) buffer;
+	IOManager::ReadFileToBuffer(filePath, buffer);
 	
-	//const hCHAR* contentsPtr = &(buffer[0]);
+	//const hCHAR* contentsPtr2 = &(buffer[0]);
 
 	const hCHAR* contentsPtr = fileContents.c_str();
 	glShaderSource(id, 1, &contentsPtr, NULL);

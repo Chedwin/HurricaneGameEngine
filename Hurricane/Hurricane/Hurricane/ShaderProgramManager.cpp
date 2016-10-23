@@ -20,7 +20,7 @@ ShaderProgramManager::~ShaderProgramManager()
 
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ResourceHandle<ShaderProgram> ShaderProgramManager::StoreShaderProg(STRING& _name, ShaderProgram* _sp)
 {
@@ -30,8 +30,6 @@ ResourceHandle<ShaderProgram> ShaderProgramManager::StoreShaderProg(STRING& _nam
 	if (!result.IsNull()) {
 		// throw exception
 	}
-
-	
 
 	result = _shaderResources.Add(_name, _sp);
 	return result;

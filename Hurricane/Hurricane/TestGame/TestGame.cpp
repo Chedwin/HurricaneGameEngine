@@ -6,8 +6,9 @@ TestGame::TestGame()
 	_gameInstance = this;
 }
 
-TestGame::~TestGame() {
-
+TestGame::~TestGame() 
+{
+	// EMPTY
 }
 
 void TestGame::GameRender()

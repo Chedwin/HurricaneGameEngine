@@ -19,6 +19,7 @@
 #include "Game.h"
 #include "AbstractRenderer.h"
 #include "ShaderProgramManager.h"
+#include "ImageManager.h"
 #include "HMath.h"
 
 class OpenGLRenderer : public AbstractRenderer 
@@ -48,6 +49,7 @@ private:
 	GLuint _projMatLocation;
 	GLuint _shaderLocation;
 	ShaderProgram* _shaderProgram;
+	ImageManager* _imageManager;
 	GLuint Buffers[2];
 
 };

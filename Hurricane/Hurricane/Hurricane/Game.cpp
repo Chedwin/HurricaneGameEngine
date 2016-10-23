@@ -3,16 +3,10 @@
 #include "ModelManager.h"
 
 /// See the header file regarding unique_ptr
-//UNIQUE_PTR(Game) Game::_gameInstance(nullptr);
 Game* Game::_gameInstance(nullptr);
 
 Game* Game::GetGameInstance() 
 {
-	//if (_gameInstance.get() == nullptr) 
-	//{
-	//	_gameInstance.reset(new Game());
-	//}
-	//return _gameInstance.get();
 	if (!_gameInstance) 
 	{
 		_gameInstance = new Game();
@@ -114,6 +108,12 @@ hBOOL Game::LoadLevel(Level* _level)
 void Game::Run() 
 {
 	hBOOL init = InitSystems();
+
+	if (!init) 
+	{
+		LOG->ConsoleError("GAME COULD NOT BE INITIALIZED");
+		GETCHAR();
+	}
 
 	if (init) 
 	{

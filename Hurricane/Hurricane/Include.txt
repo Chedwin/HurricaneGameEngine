@@ -12,3 +12,6 @@ $(SolutionDir)dependencies\SDL\include
 
 // glm
 $(SolutionDir)\dependencies\glm
+
+// SDL2 image
+$(SolutionDir)\dependencies\SDL2_image\include

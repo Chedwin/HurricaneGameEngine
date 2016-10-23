@@ -1,8 +1,9 @@
 #include "OpenGLRenderer.h"
 #include "DebugLog.h"
 #include "Vertex.h"
+#include <SDL_image.h>
 
-OpenGLRenderer::OpenGLRenderer() : _gameWindow(nullptr), _gameRenderer(nullptr), _shaderManager(nullptr)
+OpenGLRenderer::OpenGLRenderer() : _gameWindow(nullptr), _gameRenderer(nullptr), _shaderManager(nullptr), _imageManager(nullptr)
 {
 	// EMPTY
 }
@@ -15,6 +16,11 @@ OpenGLRenderer::~OpenGLRenderer()
 	glDeleteBuffers(2, Buffers);
 	SDL_DestroyRenderer(_gameRenderer); _gameRenderer = nullptr;
 	SDL_DestroyWindow(_gameWindow);		_gameWindow = nullptr;
+
+	_shaderManager = nullptr;
+	_imageManager = nullptr;
+
+	IMG_Quit();
 	SDL_Quit();
 }
 
@@ -25,7 +31,7 @@ hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
 	//Open an SDL window
-	_gameWindow = SDL_CreateWindow(winName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags | SDL_WINDOW_OPENGL);
+	_gameWindow = SDL_CreateWindow(winName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags | SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 
 	if (_gameWindow == nullptr) {
 		LOG->Error("SDL WINDOW CANNOT BE INITIALIZED", __LINE__, __FILE__);
@@ -53,12 +59,23 @@ hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 		return false;
 	}
 
+	_imageManager = IMAGE_MANAGER;
+
+	// Init PNG image usage
+	hINT imgFlags = IMG_INIT_PNG | IMG_INIT_JPG;
+	hINT status = IMG_Init(imgFlags);
+
+	if (!(status & imgFlags)) {
+		LOG->Error("SDL IMAGE PNG CANNOT BE INITIALIZED", __LINE__, __FILE__);
+		return false;
+	}
+
 	//Check the OpenGL version
 	PRINTF("***   OpenGL Version: %s   ***\n", glGetString(GL_VERSION));
+
 	////////////
 	// TODO: INITIALIZE OPENGL STUFF HERE
 	////////////
-
 	GLsizei _width, _height;
 	_width = width;
 	_height = height;

@@ -1,21 +1,16 @@
-﻿  ShaderProgram.cpp
+﻿  SdlImage.cpp
+  OpenGLRenderer.cpp
   Generating Code...
   Compiling...
-  ShaderProgramManager.cpp
-  OpenGLRenderer.cpp
-  ModelManager.cpp
-  InputHandler.cpp
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\inputhandler.cpp(39): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\inputhandler.cpp(40): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
+  ImageManager.cpp
   Game.cpp
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(56): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(57): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(58): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(50): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(51): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(52): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
 d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(134): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
 d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(149): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
 d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(203): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
 d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(204): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
-  AudioEngine.cpp
   Generating Code...
 opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
 opengl32.lib(OPENGL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
@@ -27,4 +22,6 @@ OpenAL32.lib(OpenAL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already d
 OpenAL32.lib(OpenAL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
 SDL2.lib(SDL2.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
 SDL2.lib(SDL2.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+SDL2_image.lib(SDL2_image.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+SDL2_image.lib(SDL2_image.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
   Hurricane.vcxproj -> D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Debug\Hurricane.lib
