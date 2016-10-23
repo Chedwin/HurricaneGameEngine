@@ -88,13 +88,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Hurricane;$(SolutionDir)dependencies\SDL\include;$(SolutionDir)dependencies\OpenAL-1.1\include;$(SolutionDir)dependencies\Lua51\include;$(SolutionDir)dependencies\OpenGL\include;$(SolutionDir)\dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\SDL2_image\include;$(SolutionDir)Hurricane;$(SolutionDir)dependencies\SDL\include;$(SolutionDir)dependencies\OpenAL-1.1\include;$(SolutionDir)dependencies\Lua51\include;$(SolutionDir)dependencies\OpenGL\include;$(SolutionDir)\dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration);$(SolutionDir)dependencies\OpenAL-1.1\libs\Win32;$(SolutionDir)dependencies\Lua51\lib;$(SolutionDir)dependencies\OpenGL\lib;$(SolutionDir)dependencies\SDL\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Hurricane.lib;glew32.lib;opengl32.lib;freeglut.lib;lua51.lib;OpenAL32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2_image\lib\x86;$(SolutionDir)$(Configuration);$(SolutionDir)dependencies\OpenAL-1.1\libs\Win32;$(SolutionDir)dependencies\Lua51\lib;$(SolutionDir)dependencies\OpenGL\lib;$(SolutionDir)dependencies\SDL\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Hurricane.lib;glew32.lib;opengl32.lib;freeglut.lib;lua51.lib;OpenAL32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -122,15 +122,15 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Hurricane;$(SolutionDir)dependencies\SDL\include;$(SolutionDir)dependencies\OpenAL-1.1\include;$(SolutionDir)dependencies\Lua51\include;$(SolutionDir)dependencies\OpenGL\include;$(SolutionDir)\dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\SDL2_image\include;$(SolutionDir)Hurricane;$(SolutionDir)dependencies\SDL\include;$(SolutionDir)dependencies\OpenAL-1.1\include;$(SolutionDir)dependencies\Lua51\include;$(SolutionDir)dependencies\OpenGL\include;$(SolutionDir)\dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration);$(SolutionDir)dependencies\OpenAL-1.1\libs\Win32;$(SolutionDir)dependencies\Lua51\lib;$(SolutionDir)dependencies\OpenGL\lib;$(SolutionDir)dependencies\SDL\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Hurricane.lib;glew32.lib;opengl32.lib;freeglut.lib;lua51.lib;OpenAL32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2_image\lib\x86;$(SolutionDir)$(Configuration);$(SolutionDir)dependencies\OpenAL-1.1\libs\Win32;$(SolutionDir)dependencies\Lua51\lib;$(SolutionDir)dependencies\OpenGL\lib;$(SolutionDir)dependencies\SDL\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Hurricane.lib;glew32.lib;opengl32.lib;freeglut.lib;lua51.lib;OpenAL32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

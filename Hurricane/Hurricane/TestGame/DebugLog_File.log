@@ -1,4 +1,8 @@
 DATE: Sun Oct  9 23:54:30 2016
-FILE: d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\shaderprogram.cpp
-LINE: 63
-MESSAGE: SHADER colourShading.vert FAILED TO COMPILE
+FILE: d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\openglrenderer.cpp
+LINE: 62
+MESSAGE: SDL IMAGE PNG CANNOT BE INITIALIZED
+DATE: Sun Oct  9 23:54:30 2016
+FILE: d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp
+LINE: 58
+MESSAGE: RENDERER CANNOT BE INITIALIZED

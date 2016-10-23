@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 03, 2016
-// Last updated:	Oct 03, 2016
+// Last updated:	Oct 17, 2016
 //
 //*******************************//
 
@@ -23,19 +23,24 @@
 class ModelManager 
 {
 public:
-	typedef ResourceHandle<Model> HandleType;
-
 	ModelManager();
 	~ModelManager();
 
 	static ModelManager* GetModelManager();
 
+	ResourceHandle<Model> LoadModel(STRING& _name, Model* _model);
+	void DeleteModel(STRING& _model);
+
+	ResourceHandle<Model> GetModelHandle(STRING& _name);
+	Model* GetModel(ResourceHandle<Model>& _handle);
+
 private:
 	static UNIQUE_PTR(ModelManager) _modelManager;
 	friend DEFAULT_DELETE(ModelManager);
 
-public:
-	ResourceManager<Model> modelResources;
+protected:
+	ResourceManager<Model> _modelResources;
+
 };
 
 #endif

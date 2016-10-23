@@ -65,8 +65,6 @@ public:
 	}
 
 protected:
-	//static UNIQUE_PTR(Game) _gameInstance;
-	//friend DEFAULT_DELETE(Game);
 
 	static Game* _gameInstance;
 
@@ -79,7 +77,6 @@ protected:
 	hINT frames, timeSinceLastFPSUpdate;
 
 	hBOOL _isRunning;
-
 public:
 	
 	Camera* cam3D;

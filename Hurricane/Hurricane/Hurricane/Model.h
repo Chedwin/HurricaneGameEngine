@@ -5,26 +5,51 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 03, 2016
-// Last updated:	Oct 03, 2016
+// Last updated:	Oct 17, 2016
 //
 //*******************************//
-
-#pragma once
 
 
 #ifndef MODEL_H
 #define MODEL_H
 
+#pragma once
+
+#include <glew.h>
 #include "Macro.h"
+#include "Vertex.h"
 
 class Model 
 {
+public:
+	Model() : vertex(nullptr) {}
+	virtual ~Model() {}
+
 	virtual void Render() = 0;
+
+	Vertex* vertex;
+
+	void AddVertices();
+
+	inline STRING GetName() const {
+		return name;
+	}
+
+protected:
+	STRING name;
 };
 
+// Simple model represents a mesh
 class SimpleModel : public Model 
 {
-	void Render() {}
+public:
+	SimpleModel();
+	~SimpleModel();
+
+	void Render();
+
+
+
 };
 
 #endif

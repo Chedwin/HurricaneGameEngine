@@ -76,7 +76,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\tinyxml\include;$(SolutionDir)\dependencies\Lua51\include;$(SolutionDir)\dependencies\OpenGL\include;$(SolutionDir)\dependencies\SDL\include;$(SolutionDir)\dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\tinyxml\include;$(SolutionDir)\dependencies\Lua51\include;$(SolutionDir)\dependencies\OpenGL\include;$(SolutionDir)\dependencies\SDL\include;$(SolutionDir)\dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -84,10 +84,10 @@
       <AdditionalDependencies>freeglut.lib;glew32.lib;opengl.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;freeglut.lib;lua51.lib;OpenAL32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;freeglut.lib;lua51.lib;OpenAL32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)\dependencies\OpenAL-1.1\libs\Win32;$(SolutionDir)\dependencies\Lua51\lib;$(SolutionDir)\dependencies\OpenGL\lib;$(SolutionDir)\dependencies\SDL\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2_image\lib\x86;$(SolutionDir)\dependencies\OpenAL-1.1\libs\Win32;$(SolutionDir)\dependencies\Lua51\lib;$(SolutionDir)\dependencies\OpenGL\lib;$(SolutionDir)\dependencies\SDL\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -111,7 +111,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\tinyxml\include;$(SolutionDir)\dependencies\Lua51\include;$(SolutionDir)\dependencies\OpenGL\include;$(SolutionDir)\dependencies\SDL\include;$(SolutionDir)\dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\tinyxml\include;$(SolutionDir)\dependencies\Lua51\include;$(SolutionDir)\dependencies\OpenGL\include;$(SolutionDir)\dependencies\SDL\include;$(SolutionDir)\dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -121,10 +121,10 @@
       <AdditionalDependencies>freeglut.lib;glew32.lib;opengl.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;freeglut.lib;lua51.lib;OpenAL32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;freeglut.lib;lua51.lib;OpenAL32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)\dependencies\OpenAL-1.1\libs\Win32;$(SolutionDir)\dependencies\Lua51\lib;$(SolutionDir)\dependencies\OpenGL\lib;$(SolutionDir)\dependencies\SDL\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2_image\lib\x86;$(SolutionDir)\dependencies\OpenAL-1.1\libs\Win32;$(SolutionDir)\dependencies\Lua51\lib;$(SolutionDir)\dependencies\OpenGL\lib;$(SolutionDir)\dependencies\SDL\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -150,10 +150,13 @@
     <ClInclude Include="Clock.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="DebugLog.h" />
+    <ClInclude Include="Event.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Hurricane.h" />
     <ClInclude Include="HurricaneProperties.h" />
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="ImageManager.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="IOManager.h" />
     <ClInclude Include="Level.h" />
@@ -165,6 +168,7 @@
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="PrimitiveTypes.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="SdlImage.h" />
     <ClInclude Include="ShaderComponent.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="ShaderProgramManager.h" />
@@ -181,11 +185,14 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HurricaneProperties.cpp" />
+    <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="IOManager.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelManager.cpp" />
     <ClCompile Include="OpenGLRenderer.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
+    <ClCompile Include="SdlImage.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="ShaderProgramManager.cpp" />
     <ClCompile Include="Timer.cpp" />
