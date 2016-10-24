@@ -28,8 +28,8 @@ public:
 
 	static ImageManager* GetImageManager();
 
-	ResourceHandle<Image> LoadImage(STRING& _name, Image* _image);
-	ResourceHandle<Image> LoadFile(STRING& _filePath, STRING& _name);
+	ResourceHandle<Image> UploadImage(STRING& _name, Image* _image);
+	ResourceHandle<Image> UploadFile(STRING& _filePath, STRING& _name);
 
 	void DeleteImage(STRING& _name);
 	void ClearAllImages();

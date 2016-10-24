@@ -29,7 +29,7 @@ public:
 
 	inline hBOOL IsNull() 
 	{
-		return index < -1;
+		return index == -1;
 	}
 
 	inline void Nullify() 

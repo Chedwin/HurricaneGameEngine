@@ -18,38 +18,41 @@ ImageManager::ImageManager()
 
 ImageManager::~ImageManager()
 {
-	// EMPTY
+	ClearAllImages(); // clean up 
 }
 
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-ResourceHandle<Image> ImageManager::LoadImage(STRING & _name, Image * _image)
+ResourceHandle<Image> ImageManager::UploadImage(STRING & _name, Image * _image)
 {
 	ResourceHandle<Image> result(-1);
 
 	// Check if the resource name is already in use
 	result = _imageResources.Get(_name);
 	if (!result.IsNull()) {
-		// throw exception
+		LOG->ConsoleError("ERROR: Image named '" + _name + "' is already in use");
+		return result;
 	}
 
 	result = _imageResources.Add(_name, _image);
 	return result;
 }
 
-ResourceHandle<Image> ImageManager::LoadFile(STRING& _filePath, STRING& _name) 
+ResourceHandle<Image> ImageManager::UploadFile(STRING& _filePath, STRING& _name) 
 {
 	ResourceHandle<Image> result(-1);
 
 	// Check if the resource name is already in use
 	result = _imageResources.Get(_name);
 	if (!result.IsNull()) {
+		LOG->ConsoleError("ERROR: Image named '" + _name + "' is already in use");
 		return result;
 	}
 
 	Image* img = new SdlImage(_filePath);
+	img->SetName(_name);
 	result = _imageResources.Add(_name, img);
 	return result;
 }
@@ -80,6 +83,7 @@ Image* ImageManager::GetImage(STRING & _name)
 	ResourceHandle<Image> handle = _imageResources.Get(_name);
 
 	if (handle.IsNull()) {
+		LOG->ConsoleError("ERROR: Image named '" + _name + "' does not exist in ImageManager");
 		return result;
 	}
 	result = ImageManager::GetImage(handle);

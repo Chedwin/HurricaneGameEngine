@@ -70,7 +70,7 @@ hBOOL Game::InitSystems()
 
 	//Model* myMo = new SimpleModel();
 
-
+	
 
 	// GAME CAMERA
 	cam3D = new Camera(levelToLoad);

@@ -27,16 +27,22 @@ public:
 
 	~SdlImage();
 
+	void SetPixel(hINT x, hINT y, hFLOAT r, hFLOAT g, hFLOAT b);
+
+	inline SDL_Surface* GetImageSurface() const {
+		return _surface;
+	}
+
 	inline hINT GetBitsPerPixels() const {
-		return surface->format->BitsPerPixel;
+		return _bitsPerPixel;
 	}
 
 	inline hINT GetWidth() const {
-		return surface->w;
+		return _width;
 	}
 
 	inline hINT GetHeight() const {
-		return surface->h;
+		return _height;
 	}
 
 	inline GLenum GetPixelType() {
@@ -61,9 +67,10 @@ typedef struct SDL_Surface {
 	int refcount;                           
 } SDL_Surface;
 */
-	SDL_Surface* surface;
-	//hINT width, height, bitsPerPixel;
-	GLenum colourFormat;
+	SDL_Surface* _surface;
+	hINT _width, _height, _bitsPerPixel;
+	GLenum _colourFormat;
+	//hCHAR* _imageBytes;
 protected:
 	hBOOL Init(hINT width, hINT height);
 	hBOOL Init(STRING& filePath);

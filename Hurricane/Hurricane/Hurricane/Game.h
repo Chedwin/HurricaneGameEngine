@@ -15,6 +15,7 @@
 
 #include "Hurricane.h"
 #include "Camera.h"
+#include "ImageManager.h"
 
 #define GAME Game::GetGameInstance()
 #define MAX_FPS 60.0f

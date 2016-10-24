@@ -17,7 +17,7 @@ ModelManager::ModelManager()
 
 ModelManager::~ModelManager()
 {
-	// EMPTY
+	_modelResources.EmptyResourceMap();
 }
 
 
@@ -31,7 +31,7 @@ ResourceHandle<Model> ModelManager::LoadModel(STRING& _name, Model* _model)
 	// Check if the resource name is already in use
 	result = _modelResources.Get(_name);
 	if (!result.IsNull()) {
-		// throw exception
+		return result;
 	}
 
 	result = _modelResources.Add(_name, _model);

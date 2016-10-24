@@ -2,6 +2,7 @@
 #include "DebugLog.h"
 #include "Vertex.h"
 #include <SDL_image.h>
+#include "SdlImage.h"
 
 OpenGLRenderer::OpenGLRenderer() : _gameWindow(nullptr), _gameRenderer(nullptr), _shaderManager(nullptr), _imageManager(nullptr)
 {
@@ -13,7 +14,7 @@ OpenGLRenderer::~OpenGLRenderer()
 {
 	_shaderProgram->UnuseShader();
 
-	glDeleteBuffers(2, Buffers);
+	//glDeleteBuffers(2, Buffers);
 	SDL_DestroyRenderer(_gameRenderer); _gameRenderer = nullptr;
 	SDL_DestroyWindow(_gameWindow);		_gameWindow = nullptr;
 
@@ -23,7 +24,6 @@ OpenGLRenderer::~OpenGLRenderer()
 	IMG_Quit();
 	SDL_Quit();
 }
-
 
 hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 {
@@ -59,7 +59,8 @@ hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 		return false;
 	}
 
-	_imageManager = IMAGE_MANAGER;
+
+
 
 	// Init PNG image usage
 	hINT imgFlags = IMG_INIT_PNG | IMG_INIT_JPG;
@@ -69,6 +70,28 @@ hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 		LOG->Error("SDL IMAGE PNG CANNOT BE INITIALIZED", __LINE__, __FILE__);
 		return false;
 	}
+
+	// Image Manager Initialization
+	_imageManager = IMAGE_MANAGER;
+	_imageManager->UploadFile((STRING)"res/hurricane.jpg", (STRING)"HurricaneSplash");
+	
+	SdlImage* sImg = new SdlImage(100, 100); // can I add in an empty SDL image?
+	IMAGE_MANAGER->UploadImage((STRING)"mySDLimage", sImg);
+
+	SdlImage* sImg2 = new SdlImage(100, 100); // can I add in an empty SDL image?
+	IMAGE_MANAGER->UploadImage((STRING)"Hockey Image", sImg2);
+
+	_imageManager->UploadFile((STRING)"res/hurricane.jpg", (STRING)"HurricaneSplash");
+	Image* temp = _imageManager->GetImage((STRING)"mySDLimage");
+
+	IMAGE_MANAGER->DeleteImage((STRING)"mySDLimage");
+
+	IMAGE_MANAGER->DeleteImage((STRING)"HurricaneSplash");
+	Image* temp2 = _imageManager->GetImage((STRING)"mySDLimage");
+	Image* temp3 = _imageManager->GetImage((STRING)"Hockey Image");
+
+
+
 
 	//Check the OpenGL version
 	PRINTF("***   OpenGL Version: %s   ***\n", glGetString(GL_VERSION));
@@ -114,6 +137,7 @@ hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 	
 	_shaderProgram->UseShader();
 
+
 	glGenBuffers(2, Buffers);
 	glBindBuffer(GL_ARRAY_BUFFER, Buffers[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(v), v, GL_STATIC_DRAW);
@@ -143,8 +167,6 @@ void OpenGLRenderer::CreateShaders()
 
 	STRING name = "myShaderProgram";
 	_shaderManager->StoreShaderProg(name, _shaderProgram);
-
-	//_shaderManager->DeleteShaderProgram((STRING)"myShaderProgram");
 }
 
 
