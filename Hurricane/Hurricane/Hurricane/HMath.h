@@ -19,13 +19,16 @@
 
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
+#include <gtc/quaternion.hpp>
 
 // LET'S MACRO DEFINE SOME GLM TERMS
-#define VECTOR2 glm::vec2
-#define VECTOR3 glm::vec3
-#define VECTOR4 glm::vec4
+#define VEC2 glm::vec2
+#define VEC3 glm::vec3
+#define VEC4 glm::vec4
 
 #define MATRIX3 glm::mat3
 #define MATRIX4 glm::mat4
+
+#define QUATERNION glm::quat
 
 #endif

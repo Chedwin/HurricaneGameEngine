@@ -5,12 +5,13 @@
 //
 // Author:			Edwin Chen
 // Created:			Sep 28, 2016
-// Last updated:	Oct 12, 2016
+// Last updated:	Oct 24, 2016
 //
 //*******************************//
 
 #pragma once
 
+#include <glew.h>
 #include "Macro.h"
 #include "HMath.h"
 #include "GameObject.h"
@@ -24,42 +25,42 @@ class Camera : public GameObject
 {
 public:
 	Camera(Level* _level);
+	//Camera(const VEC3& _start);
 	~Camera();
 
 	void Init(hINT scrWidth, hINT scrHeight);
-	void Update();
+	void Update(const hFLOAT _deltaTime);
+	void ResetCamera();
 
-	inline void SetPosition(const VECTOR3& newPos) {
-		_pos = newPos;
-		_needsMatrixUpdate = true;
+
+	inline void SetPosition(const VEC3& newPos) {
+		pos = newPos;
 	}
 	inline void SetScale(hFLOAT newScale) {
 		_scale = newScale;
-		_needsMatrixUpdate = true;
 	}
 
-	inline VECTOR3 GetCameraPos() const {
-		return _pos;
+	inline VEC3 GetCameraPos() const {
+		return pos;
 	}
 	inline hFLOAT GetScale() const {
 		return _scale;
 	}
-	inline MATRIX4 GetCameraMatrix() const {
-		return _cameraMatrix;
-	}
 
 private:
-	VECTOR3 _pos;
-	VECTOR3 _dir;
-	VECTOR3 _up;
+	VEC3 _dir;
+	VEC3 _up;
 
-	MATRIX4 _cameraMatrix;
-	MATRIX4 _orthoMatrix;
+	MATRIX4 _viewMatrix;
+	MATRIX4 _projectionMatrix;
 
 	hINT _screenWidth, _screenHeight;
 
 	hFLOAT _scale;
 	hBOOL _needsMatrixUpdate;
+
+	GLuint _viewMatLocation;
+	GLuint _projMatLocation;
 };
 
 #endif

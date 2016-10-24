@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Jul 05, 2016
-// Last updated:	Oct 12, 2016
+// Last updated:	Oct 24, 2016
 //
 //*******************************//
 #pragma once
@@ -27,7 +27,10 @@ public:
 	explicit Game();
 	virtual ~Game();
 	
-	hBOOL InitSystems();
+	hBOOL InitEngine();
+	virtual hBOOL InitGame() {
+		return true;
+	}
 	void DestroySystems();
 
 	hBOOL LoadLevel(Level* _level);
@@ -80,15 +83,13 @@ protected:
 	hBOOL _isRunning;
 public:
 	
-	Camera* cam3D;
+	
 
 	Timer* gameTimer;
 	
 	HurricaneProperties* properties;
 	AbstractRenderer* renderer;
 	InputHandler* input;
-
-	ModelManager*  modelManager;
 
 	PhysicsEngine* physicsEngine;
 	Level* currentLevel;

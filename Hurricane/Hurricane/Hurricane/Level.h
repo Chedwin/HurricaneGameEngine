@@ -23,12 +23,21 @@ public:
 	Level();
 	~Level();
 
-	void Init();
-	void Render();
+	virtual hBOOL InitLevel() { return true; }
+	void RenderLevel();
 
 	GLuint cameraLocation;
 
 	VECTOR(GameObject*) levelGameObjects;
+
+	void LevelRender();
+	virtual void LevelUpdate(const hFLOAT _timeStep);
+
+	//Sets the current camera
+	void SetCamera(Camera * _c);
+
+	//Will delete all gameObjects that have been flagged for deletion
+	void LevelCleanUp();
 
 public:
 	Camera* camera;

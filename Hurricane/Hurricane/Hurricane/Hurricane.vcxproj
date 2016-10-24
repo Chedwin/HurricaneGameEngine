@@ -151,6 +151,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="DebugLog.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="Frustum.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Hurricane.h" />
@@ -182,12 +183,14 @@
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DebugLog.cpp" />
+    <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HurricaneProperties.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="IOManager.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelManager.cpp" />
     <ClCompile Include="OpenGLRenderer.cpp" />

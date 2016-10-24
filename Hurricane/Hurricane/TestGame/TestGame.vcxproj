@@ -152,9 +152,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PongLevel.cpp" />
     <ClCompile Include="TestGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PongLevel.h" />
     <ClInclude Include="TestGame.h" />
   </ItemGroup>
   <ItemGroup>

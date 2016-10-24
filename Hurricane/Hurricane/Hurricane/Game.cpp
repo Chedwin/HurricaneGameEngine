@@ -15,9 +15,9 @@ Game* Game::GetGameInstance()
 }
 
 Game::Game() :
-	_isRunning(true), properties(nullptr), input(nullptr), renderer(nullptr), modelManager(nullptr),
+	_isRunning(true), properties(nullptr), input(nullptr), renderer(nullptr),
 	currentLevel(nullptr), levelToLoad(nullptr),
-	fps(0.0f), frames(0), timeBetweenLastFrame(0.0f), timeSinceLastUpdate(0.0f), cam3D(nullptr)
+	fps(0.0f), frames(0), timeBetweenLastFrame(0.0f), timeSinceLastUpdate(0.0f)
 {
 	// EMPTY
 }
@@ -30,13 +30,14 @@ Game::~Game()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-hBOOL Game::InitSystems()
+hBOOL Game::InitEngine()
 {
 	// GAME TIME
 	Clock::init(); // Start the global game clock
 	gameTimer = new Timer();
 	gameTimer->Start();
 
+	timeSinceLastUpdate = SDL_GetTicks();
 
 	// PROPERTIES
 	properties = H_PROPERTIES;
@@ -62,33 +63,19 @@ hBOOL Game::InitSystems()
 	// OTHER
 	input = INPUT;
 	physicsEngine = PHYSICS;
-	modelManager = MODEL_MANAGER;
-
-	//Model* myModel = new SimpleModel();
-	//modelManager->modelResources.Add((STRING)"myModel", myModel);
-	//modelManager->modelResources.Add((STRING)"myModel", myModel);
-
-	//Model* myMo = new SimpleModel();
-
-	
-
-	// GAME CAMERA
-	cam3D = new Camera(levelToLoad);
-	cam3D->Init(width, height);
-
-
 
 	LoadLevel(levelToLoad);
 
 	return true;
 }
 
+// Clean up after ourselves
+// REMEMBER: Don't have to delete singletons! (that are created w/ unique pointer)
 void Game::DestroySystems()
 {
-	// REMEMBER: Don't have to delete singletons! (that are created w/ unique pointer)
-
-	delete cam3D;
-	cam3D = nullptr;
+	if (currentLevel) {
+		delete currentLevel;
+	}
 
 	delete gameTimer;
 	gameTimer = nullptr;
@@ -99,6 +86,8 @@ void Game::DestroySystems()
 
 hBOOL Game::LoadLevel(Level* _level)
 {
+	currentLevel = _level;
+	//currentLevel->InitLevel();
 	return true;
 }
 
@@ -107,7 +96,7 @@ hBOOL Game::LoadLevel(Level* _level)
 
 void Game::Run() 
 {
-	hBOOL init = InitSystems();
+	hBOOL init = InitEngine();
 
 	if (!init) 
 	{
@@ -117,6 +106,10 @@ void Game::Run()
 
 	if (init) 
 	{
+		// Allow the game to initialize its own special options
+		InitGame(); 
+
+		// Start the game loop
 		GameLoop();
 	}
 }
@@ -127,8 +120,6 @@ void Game::GameLoop()
 
 	while (_isRunning) 
 	{
-		// UPDATE CAMERA
-		cam3D->Update();
 
 		//// FPS CALCULATION ////
 		hFLOAT startTicks = gameTimer->GetTimerTicks();
@@ -151,6 +142,18 @@ void Game::GameLoop()
 		///////////////////////////
 
 
+		// CALCULATE DELTA-TIME
+		timeSinceLastUpdate = SDL_GetTicks() - lastUpdateTime;
+
+		// This is the timestep variable we'll use to 
+		hFLOAT deltaTime = timeSinceLastUpdate / 1000.0f;
+
+		// Set the last update time w/ ticks from "this" iteration of the game loop
+		lastUpdateTime = SDL_GetTicks();
+
+
+
+		// INPUT HANDLING LOOP w/ SDL EVENT
 		while (SDL_PollEvent(&evnt)) 
 		{
 			input->ProcessInput(evnt);
@@ -165,8 +168,10 @@ void Game::GameLoop()
 		SDL_PumpEvents();
 
 
-		EngineUpdate(timeSinceLastUpdate);
+		// UPDATE THE GAME
+		EngineUpdate(deltaTime);
 
+		// RENDER THE GAME
 		PreRender();
 		EngineRender();
 	}
@@ -175,7 +180,7 @@ void Game::GameLoop()
 
 void Game::PreRender()
 {
-	
+	renderer->Render();
 }
 
 void Game::EngineRender() 
@@ -191,9 +196,14 @@ void Game::PostRender()
 
 void Game::EngineUpdate(const hFLOAT _timeStep)
 {
+	// TODO:
+	// Update engine stuff before game-specific stuff
+
+	// Now we can update the game
 	GameUpdate(_timeStep);
 }
 
+// Calculate Frame rate based on ticks
 void Game::CalculateFPS() 
 {
 	static const hINT NUM_SAMPLES = 100;

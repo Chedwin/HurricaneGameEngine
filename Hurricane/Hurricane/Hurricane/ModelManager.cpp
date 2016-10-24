@@ -43,6 +43,11 @@ void ModelManager::DeleteModel(const STRING & _name)
 	_modelResources.Remove(_name); 
 }
 
+void ModelManager::ClearAllModels()
+{
+	_modelResources.EmptyResourceMap();
+}
+
 ResourceHandle<Model> ModelManager::GetModelHandle(const STRING & _name)
 {
 	return _modelResources.Get(_name);
