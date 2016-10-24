@@ -24,7 +24,7 @@ ModelManager::~ModelManager()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-ResourceHandle<Model> ModelManager::LoadModel(STRING& _name, Model* _model)
+ResourceHandle<Model> ModelManager::LoadModel(const STRING& _name, Model* _model)
 {
 	ResourceHandle<Model> result(-1);
 
@@ -38,12 +38,12 @@ ResourceHandle<Model> ModelManager::LoadModel(STRING& _name, Model* _model)
 	return result;
 }
 
-void ModelManager::DeleteModel(STRING & _name)
+void ModelManager::DeleteModel(const STRING & _name)
 {
 	_modelResources.Remove(_name); 
 }
 
-ResourceHandle<Model> ModelManager::GetModelHandle(STRING & _name)
+ResourceHandle<Model> ModelManager::GetModelHandle(const STRING & _name)
 {
 	return _modelResources.Get(_name);
 }

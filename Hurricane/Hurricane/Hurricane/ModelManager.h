@@ -28,10 +28,10 @@ public:
 
 	static ModelManager* GetModelManager();
 
-	ResourceHandle<Model> LoadModel(STRING& _name, Model* _model);
-	void DeleteModel(STRING& _model);
+	ResourceHandle<Model> LoadModel(const STRING& _name, Model* _model);
+	void DeleteModel(const STRING& _model);
 
-	ResourceHandle<Model> GetModelHandle(STRING& _name);
+	ResourceHandle<Model> GetModelHandle(const STRING& _name);
 	Model* GetModel(ResourceHandle<Model>& _handle);
 
 private:

@@ -73,22 +73,22 @@ hBOOL OpenGLRenderer::Init(STRING winName, hINT width, hINT height, hUINT flags)
 
 	// Image Manager Initialization
 	_imageManager = IMAGE_MANAGER;
-	_imageManager->UploadFile((STRING)"res/hurricane.jpg", (STRING)"HurricaneSplash");
+	_imageManager->UploadFile("res/hurricane.jpg", "HurricaneSplash");
 	
 	SdlImage* sImg = new SdlImage(100, 100); // can I add in an empty SDL image?
-	IMAGE_MANAGER->UploadImage((STRING)"mySDLimage", sImg);
+	IMAGE_MANAGER->UploadImage("mySDLimage", sImg);
 
 	SdlImage* sImg2 = new SdlImage(100, 100); // can I add in an empty SDL image?
-	IMAGE_MANAGER->UploadImage((STRING)"Hockey Image", sImg2);
+	IMAGE_MANAGER->UploadImage("Hockey Image", sImg2);
 
-	_imageManager->UploadFile((STRING)"res/hurricane.jpg", (STRING)"HurricaneSplash");
-	Image* temp = _imageManager->GetImage((STRING)"mySDLimage");
+	_imageManager->UploadFile("res/hurricane.jpg", "HurricaneSplash");
+	Image* temp = _imageManager->GetImage("mySDLimage");
 
-	IMAGE_MANAGER->DeleteImage((STRING)"mySDLimage");
+	IMAGE_MANAGER->DeleteImage("mySDLimage");
 
-	IMAGE_MANAGER->DeleteImage((STRING)"HurricaneSplash");
-	Image* temp2 = _imageManager->GetImage((STRING)"mySDLimage");
-	Image* temp3 = _imageManager->GetImage((STRING)"Hockey Image");
+	IMAGE_MANAGER->DeleteImage("HurricaneSplash");
+	Image* temp2 = _imageManager->GetImage("mySDLimage");
+	Image* temp3 = _imageManager->GetImage("Hockey Image");
 
 
 

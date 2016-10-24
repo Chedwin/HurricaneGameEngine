@@ -28,15 +28,15 @@ public:
 
 	static ImageManager* GetImageManager();
 
-	ResourceHandle<Image> UploadImage(STRING& _name, Image* _image);
-	ResourceHandle<Image> UploadFile(STRING& _filePath, STRING& _name);
+	ResourceHandle<Image> UploadImage(const STRING& _name, Image* _image);
+	ResourceHandle<Image> UploadFile(const STRING& _filePath, const STRING& _name);
 
-	void DeleteImage(STRING& _name);
+	void DeleteImage(const STRING& _name);
 	void ClearAllImages();
 
-	ResourceHandle<Image> GetImageHandle(STRING& _name);
+	ResourceHandle<Image> GetImageHandle(const STRING& _name);
 	Image* GetImage(ResourceHandle<Image>& _handle);
-	Image* GetImage(STRING& _name);
+	Image* GetImage(const STRING& _name);
 
 private:
 	static UNIQUE_PTR(ImageManager) _imgManager;
