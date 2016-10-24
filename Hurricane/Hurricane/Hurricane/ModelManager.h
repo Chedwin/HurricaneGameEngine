@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 03, 2016
-// Last updated:	Oct 17, 2016
+// Last updated:	Oct 24, 2016
 //
 //*******************************//
 
@@ -30,6 +30,8 @@ public:
 
 	ResourceHandle<Model> LoadModel(const STRING& _name, Model* _model);
 	void DeleteModel(const STRING& _model);
+
+	void ClearAllModels();
 
 	ResourceHandle<Model> GetModelHandle(const STRING& _name);
 	Model* GetModel(ResourceHandle<Model>& _handle);

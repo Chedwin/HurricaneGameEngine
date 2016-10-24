@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Sep 20, 2016
-// Last updated:	Oct 08, 2016
+// Last updated:	Oct 24, 2016
 //
 //*******************************//
 
@@ -29,7 +29,6 @@ public:
 	~OpenGLRenderer();
 
 	hBOOL Init(STRING winName, hINT width, hINT height, hUINT flags);
-	void CreateShaders();
 
 	void Render();
 	void SwapBuffers();
@@ -38,22 +37,16 @@ public:
 		return _gameWindow;
 	}
 
+	hFLOAT GetAspectRatio() {
+		return (hFLOAT)_winWidth / (hFLOAT)_winHeight;
+	}
+
 private:
 
 	SDL_Window* _gameWindow;
 	SDL_Renderer* _gameRenderer;
 
-	ShaderProgramManager* _shaderManager;
-
-	GLuint _viewMatLocation;
-	GLuint _projMatLocation;
-	GLuint _shaderLocation;
-	ShaderProgram* _shaderProgram;
-	ImageManager* _imageManager;
-	GLuint Buffers[2];
-
-	SDL_Surface* s;
-
+	hINT _winWidth, _winHeight;
 };
 
 #endif

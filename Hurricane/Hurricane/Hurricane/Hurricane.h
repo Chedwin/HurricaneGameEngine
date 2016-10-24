@@ -6,7 +6,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Sep 30, 2016
-// Last updated:	Sep 30, 2016
+// Last updated:	Oct 24, 2016
 //
 //*******************************//
 
@@ -24,6 +24,8 @@
 #include "InputHandler.h"
 
 #include "ModelManager.h"
+#include "ShaderProgramManager.h"
+#include "ImageManager.h"
 
 #include "PhysicsEngine.h"
 #include "Level.h"

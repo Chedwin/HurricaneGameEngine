@@ -14,7 +14,7 @@ InputHandler* InputHandler::GetInputHandler()
 	return _inputHandler.get();
 }
 
-InputHandler::InputHandler() : mousePos(VECTOR2(0.0f, 0.0f))
+InputHandler::InputHandler() : mousePos(VEC2(0.0f, 0.0f))
 {
 	// EMPTY for now
 }
@@ -61,10 +61,10 @@ void InputHandler::ProcessInput(SDL_Event& _evnt)
 	case SDL_KEYDOWN:
 		switch (_evnt.key.keysym.sym) {
 		case SDLK_w:
-			GAME->cam3D->SetPosition(GAME->cam3D->GetCameraPos() + VECTOR3(0.0f, 1.0f, 0.0f));
+			//GAME->cam3D->SetPosition(GAME->cam3D->GetCameraPos() + VECTOR3(0.0f, 1.0f, 0.0f));
 			break;
 		case SDLK_s:
-			GAME->cam3D->SetPosition(GAME->cam3D->GetCameraPos() + VECTOR3(0.0f, -1.0f, 0.0f));
+			//GAME->cam3D->SetPosition(GAME->cam3D->GetCameraPos() + VECTOR3(0.0f, -1.0f, 0.0f));
 			break;
 		}
 	case SDL_KEYUP:

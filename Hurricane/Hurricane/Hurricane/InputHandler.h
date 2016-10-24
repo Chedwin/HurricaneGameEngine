@@ -31,7 +31,7 @@ public:
 	void Update();
 	void ProcessInput(SDL_Event& _evnt);
 
-	VECTOR2 mousePos;
+	VEC2 mousePos;
 
 private:
 	static UNIQUE_PTR(InputHandler) _inputHandler;

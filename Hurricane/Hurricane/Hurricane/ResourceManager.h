@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 01, 2016
-// Last updated:	Oct 14, 2016
+// Last updated:	Oct 24, 2016
 //
 //*******************************//
 
@@ -18,7 +18,7 @@
 #include "Macro.h"
 #include "DebugLog.h"
 
-template <class ResourceType> 
+template <class Type> 
 class ResourceHandle
 {
 public:
@@ -47,16 +47,16 @@ public:
 
 
 
-template <class ResourceType>
+template <class Type>
 class ResourceManager 
 {
 public:
-	VECTOR(ResourceType*) resourceVector;
-	MAP(STRING, ResourceHandle<ResourceType>)* resourceMap;
+	VECTOR(Type*) resourceVector;
+	MAP(STRING, ResourceHandle<Type>)* resourceMap;
 
 	ResourceManager()
 	{
-		resourceMap = new MAP(STRING, ResourceHandle<ResourceType>);
+		resourceMap = new MAP(STRING, ResourceHandle<Type>);
 	}
 
 	~ResourceManager()
@@ -69,13 +69,13 @@ public:
 	// CLEAR EVERYTHING
 	void EmptyResourceMap() 
 	{
-		MAP(STRING, ResourceHandle<ResourceType>)::iterator iter = resourceMap->begin();
+		MAP(STRING, ResourceHandle<Type>)::iterator iter = resourceMap->begin();
 
 		if (resourceMap->size() > 0)
 		{
 			for (iter = resourceMap->begin(); iter != resourceMap->end(); iter++)
 			{
-				ResourceHandle<ResourceType> rm = iter->second;
+				ResourceHandle<Type> rm = iter->second;
 				hINT t = rm.GetIndex();
 
 				delete resourceVector[t];
@@ -88,9 +88,9 @@ public:
 	}
 
 	// ADD A RESOURCE
-	ResourceHandle<ResourceType> Add(const STRING& name, ResourceType* res)
+	ResourceHandle<Type> Add(const STRING& name, Type* res)
 	{
-		MAP(STRING, ResourceHandle<ResourceType>)::iterator iter = resourceMap->begin();
+		MAP(STRING, ResourceHandle<Type>)::iterator iter = resourceMap->begin();
 
 		if (resourceMap->size() > 0) 
 		{
@@ -106,7 +106,7 @@ public:
 
 		hINT rListSize = resourceVector.size(); // should start at 0
 		resourceVector.push_back(res);
-		ResourceHandle<ResourceType> handle(rListSize);
+		ResourceHandle<Type> handle(rListSize);
 		resourceMap->insert(iter, PAIR(STRING, hINT)(name, handle.index) );
 
 		return handle.index;
@@ -115,13 +115,13 @@ public:
 	// REMOVE A RESOURCE BY NAME
 	void Remove(const STRING& name) 
 	{
-		MAP(STRING, ResourceHandle<ResourceType>)::iterator iter = resourceMap->begin();
+		MAP(STRING, ResourceHandle<Type>)::iterator iter = resourceMap->begin();
 
 		for (iter = resourceMap->begin(); iter != resourceMap->end(); iter++)
 		{
 			if (iter->first == name)
 			{
-				ResourceHandle<ResourceType> rm = iter->second;
+				ResourceHandle<Type> rm = iter->second;
 				hINT t = rm.GetIndex();
 
 				delete resourceVector[t];
@@ -135,10 +135,10 @@ public:
 
 	// GET (overload 1)
 	// Return generic type pointer
-	ResourceType* Get(ResourceHandle<ResourceType> &handle) const
+	Type* Get(ResourceHandle<Type> &handle) const
 	{
 		hINT idx = handle.GetIndex();
-		ResourceType *result = NULL;
+		Type *result = NULL;
 
 		if (idx >= 0 && idx < hINT(resourceVector.size()))
 		{
@@ -149,21 +149,22 @@ public:
 
 	// GET (overload 2)
 	// Return resource handle (index of handle)
-	ResourceHandle<ResourceType> Get(const STRING &name) const
+	ResourceHandle<Type> Get(const STRING &name) const
 	{
-		MAP(STRING, ResourceHandle<ResourceType>)::iterator iter = resourceMap->begin();
+		MAP(STRING, ResourceHandle<Type>)::iterator iter = resourceMap->begin();
 
-		hBOOL b = false;
+		ResourceHandle<Type> result(-1);
 
 		for (iter = resourceMap->begin(); iter != resourceMap->end(); iter++)
 		{
 			if (iter->first == name)
 			{
+				result = iter->second;
 				return iter->second;
 			}
 
 		}
-		return ResourceHandle<ResourceType>();
+		return result;
 	}
 };
 
