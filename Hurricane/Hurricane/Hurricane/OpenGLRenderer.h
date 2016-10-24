@@ -52,6 +52,8 @@ private:
 	ImageManager* _imageManager;
 	GLuint Buffers[2];
 
+	SDL_Surface* s;
+
 };
 
 #endif

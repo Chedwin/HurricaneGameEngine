@@ -4,7 +4,7 @@
 
 SdlImage::SdlImage(hINT _width, hINT _height) 
 	: Image(_width, _height), 
-	surface(nullptr)
+	_surface(nullptr)
 {
 	Init(_width, _height);
 }
@@ -12,18 +12,19 @@ SdlImage::SdlImage(hINT _width, hINT _height)
 
 SdlImage::SdlImage(STRING& _filePath)
 	: Image(_filePath),
-	surface(nullptr)
+	_surface(nullptr)
 {
 	Init(_filePath);
 }
 
 SdlImage::~SdlImage()
 {
-	if (surface) {
-		SDL_FreeSurface(surface);	
+	if (_surface) {
+		SDL_FreeSurface(_surface);	
 	}
-	surface = nullptr;
+	_surface = nullptr;
 }
+
 
 
 
@@ -32,8 +33,8 @@ SdlImage::~SdlImage()
 
 hBOOL SdlImage::Init(hINT width, hINT height)
 {
-	surface->w = width;
-	surface->h = height;
+	_width = width;
+	_height = height;
 	return true;
 }
 
@@ -45,30 +46,33 @@ hBOOL SdlImage::Init(STRING & filePath)
 	//If the image loaded
 	if (!temp)
 	{
-		PRINTF("IMG_Load FAILED: %s\n", IMG_GetError());
+		PRINTF("IMG_Load() FAILED: %s\n", IMG_GetError());
 		//Free the old image
 		SDL_FreeSurface(temp);
 		return false;
 	}
 
-	surface = temp;
+	_surface = temp;
 
+	// set the width and height
+	_width = _surface->w;
+	_height = _surface->h;
 
-	Uint8 bits = surface->format->BytesPerPixel;
+	Uint8 bits = _surface->format->BytesPerPixel;
 
-	if (bits == 4) // contains an alpha channel
+	if (bits == 4) // does it contain an alpha channel?
 	{
-		if (surface->format->Rshift == 24 && surface->format->Aloss == 0) {
-			colourFormat = GL_ABGR_EXT;
+		if (_surface->format->Rshift == 24 && _surface->format->Aloss == 0) {
+			_colourFormat = GL_ABGR_EXT;
 		}
-		else if (surface->format->Rshift == 16 && surface->format->Aloss == 8) {
-			colourFormat = GL_BGRA;
+		else if (_surface->format->Rshift == 16 && _surface->format->Aloss == 8) {
+			_colourFormat = GL_BGRA;
 		}
-		else if (surface->format->Rshift == 16 && surface->format->Ashift == 24) {
-			colourFormat = GL_BGRA;
+		else if (_surface->format->Rshift == 16 && _surface->format->Ashift == 24) {
+			_colourFormat = GL_BGRA;
 		}
-		else if (surface->format->Rshift == 0 && surface->format->Ashift == 24) {
-			colourFormat = GL_RGBA;
+		else if (_surface->format->Rshift == 0 && _surface->format->Ashift == 24) {
+			_colourFormat = GL_RGBA;
 		}
 		else {
 			LOG->ConsoleError("Pixel Format not recognized for GL display");
@@ -78,22 +82,53 @@ hBOOL SdlImage::Init(STRING & filePath)
 	}
 	else if (bits == 3) // no alpha channel
 	{
-		if (surface->format->Rshift == 16) {
-			colourFormat = GL_BGR;
+		if (_surface->format->Rshift == 16) {
+			_colourFormat = GL_BGR;
 		}
-		else if (surface->format->Rshift == 0) {
-			colourFormat = GL_RGB;
+		else if (_surface->format->Rshift == 0) {
+			_colourFormat = GL_RGB;
 		}
 		else {
 			LOG->ConsoleError("Pixel Format not recognized for GL display");
 			throw std::logic_error("Pixel Format not recognized for GL display");
+			return false;
 		}
 	}
 	else 
 	{
 		LOG->ConsoleError("Pixel Format not recognized for GL display");
 		throw std::logic_error("Pixel Format not recognized for GL display");
+		return false;
 	}
 
+	// Set the bits per pixel
+	_bitsPerPixel = bits;
+
 	return true;
+}
+
+
+
+void SdlImage::SetPixel(hINT x, hINT y, hFLOAT r, hFLOAT g, hFLOAT b)
+{
+	if (x < 0 || x >= GetWidth()) {
+		STRING err = "EXCEPTION: X COORDINATE OUT OF RANGE";
+		throw std::out_of_range(err.c_str());
+	}
+	if (y < 0 || y >= GetHeight()) {
+		STRING err = "EXCEPTION: Y COORDINATE OUT OF RANGE";
+		throw std::out_of_range(err.c_str());
+	}
+
+	// Convert the pixels to 32 bit
+	Uint32* pixels = (Uint32 *)_surface->pixels;
+
+	//Set the pixel
+	hINT rowStart = GetWidth() * 3 * x;
+	hINT colStart = y * 3;
+	hINT startpos = rowStart + colStart;
+
+	pixels[startpos]	 = (Uint32)r * 255; // red
+	pixels[startpos + 1] = (Uint32)g * 255; // green
+	pixels[startpos + 2] = (Uint32)b * 255; // blue
 }
