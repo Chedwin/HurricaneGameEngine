@@ -88,7 +88,7 @@ public:
 	}
 
 	// ADD A RESOURCE
-	ResourceHandle<ResourceType> Add(STRING& name, ResourceType* res)
+	ResourceHandle<ResourceType> Add(const STRING& name, ResourceType* res)
 	{
 		MAP(STRING, ResourceHandle<ResourceType>)::iterator iter = resourceMap->begin();
 
@@ -113,7 +113,7 @@ public:
 	}
 
 	// REMOVE A RESOURCE BY NAME
-	void Remove(STRING& name) 
+	void Remove(const STRING& name) 
 	{
 		MAP(STRING, ResourceHandle<ResourceType>)::iterator iter = resourceMap->begin();
 

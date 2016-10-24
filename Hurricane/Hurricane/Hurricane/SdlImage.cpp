@@ -10,7 +10,7 @@ SdlImage::SdlImage(hINT _width, hINT _height)
 }
 
 
-SdlImage::SdlImage(STRING& _filePath)
+SdlImage::SdlImage(const STRING& _filePath)
 	: Image(_filePath),
 	_surface(nullptr)
 {
@@ -38,7 +38,7 @@ hBOOL SdlImage::Init(hINT width, hINT height)
 	return true;
 }
 
-hBOOL SdlImage::Init(STRING & filePath)
+hBOOL SdlImage::Init(const STRING & filePath)
 {
 	SDL_Surface* temp = nullptr;
 	temp = IMG_Load(filePath.c_str());

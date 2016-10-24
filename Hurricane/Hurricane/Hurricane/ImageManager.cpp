@@ -25,7 +25,7 @@ ImageManager::~ImageManager()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-ResourceHandle<Image> ImageManager::UploadImage(STRING & _name, Image * _image)
+ResourceHandle<Image> ImageManager::UploadImage(const STRING & _name, Image * _image)
 {
 	ResourceHandle<Image> result(-1);
 
@@ -40,7 +40,7 @@ ResourceHandle<Image> ImageManager::UploadImage(STRING & _name, Image * _image)
 	return result;
 }
 
-ResourceHandle<Image> ImageManager::UploadFile(STRING& _filePath, STRING& _name) 
+ResourceHandle<Image> ImageManager::UploadFile(const STRING& _filePath, const STRING& _name) 
 {
 	ResourceHandle<Image> result(-1);
 
@@ -57,7 +57,7 @@ ResourceHandle<Image> ImageManager::UploadFile(STRING& _filePath, STRING& _name)
 	return result;
 }
 
-void ImageManager::DeleteImage(STRING & _name)
+void ImageManager::DeleteImage(const STRING & _name)
 {
 	_imageResources.Remove(_name);
 }
@@ -67,7 +67,7 @@ void ImageManager::ClearAllImages()
 	_imageResources.EmptyResourceMap();
 }
 
-ResourceHandle<Image> ImageManager::GetImageHandle(STRING & _name)
+ResourceHandle<Image> ImageManager::GetImageHandle(const STRING & _name)
 {
 	return _imageResources.Get(_name);
 }
@@ -77,7 +77,7 @@ Image* ImageManager::GetImage(ResourceHandle<Image>& _handle)
 	return _imageResources.Get(_handle);
 }
 
-Image* ImageManager::GetImage(STRING & _name)
+Image* ImageManager::GetImage(const STRING & _name)
 {
 	Image* result = nullptr;
 	ResourceHandle<Image> handle = _imageResources.Get(_name);

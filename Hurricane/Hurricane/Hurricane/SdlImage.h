@@ -23,7 +23,7 @@ class SdlImage : public Image
 {
 public:
 	SdlImage(hINT _width, hINT _height);
-	SdlImage(STRING& _filePath);
+	SdlImage(const STRING& _filePath);
 
 	~SdlImage();
 
@@ -73,7 +73,7 @@ typedef struct SDL_Surface {
 	//hCHAR* _imageBytes;
 protected:
 	hBOOL Init(hINT width, hINT height);
-	hBOOL Init(STRING& filePath);
+	hBOOL Init(const STRING& filePath);
 
 public:
 
