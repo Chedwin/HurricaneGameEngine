@@ -31,7 +31,7 @@ public:
 		return ticksToMiliseconds(getCurrentTicks());
 	}
 
-	static inline hLARGE_INT getHardwareTickSpeed() {
+	static inline LARGE_INTEGER getHardwareTickSpeed() {
 		hLARGE_INT speed;
 		QueryPerformanceCounter(&speed);
 		return speed;

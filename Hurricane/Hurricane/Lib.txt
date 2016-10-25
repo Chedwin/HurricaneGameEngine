@@ -8,6 +8,10 @@ SDL2.lib
 SDL2main.lib
 SDL2_image.lib
 
+BulletDynamics.lib 
+BulletCollision.lib 
+LinearMath.lib
+
 
 
 // OpenGL
@@ -24,3 +28,6 @@ $(SolutionDir)dependencies\SDL\lib\x86
 
 // SDL2 Image
 $(SolutionDir)dependencies\SDL2_image\lib\x86
+
+// Bullet physics
+$(SolutionDir)\dependencies\bullet\lib

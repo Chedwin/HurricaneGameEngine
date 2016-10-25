@@ -1,23 +1,97 @@
-﻿  Game.cpp
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(40): warning C4244: '=': conversion from 'Uint32' to 'hFLOAT', possible loss of data
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(51): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(52): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(53): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(125): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(140): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(152): warning C4244: '=': conversion from 'Uint32' to 'hFLOAT', possible loss of data
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(213): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(214): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
-opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-opengl32.lib(OPENGL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-freeglut.lib(freeglut.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-freeglut.lib(freeglut.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-lua51.lib(lua51.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-lua51.lib(lua51.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-OpenAL32.lib(OpenAL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-OpenAL32.lib(OpenAL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-SDL2.lib(SDL2.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-SDL2.lib(SDL2.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-SDL2_image.lib(SDL2_image.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-SDL2_image.lib(SDL2_image.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-  Hurricane.vcxproj -> D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Debug\Hurricane.lib
+﻿Build started 2016-10-24 11:38:44 PM.
+     1>Project "D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Hurricane\Hurricane.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ID:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\\dependencies\SDL2_image\include /I"D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\\dependencies\OpenAL-1.1\include" /ID:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\\dependencies\tinyxml\include /ID:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\\dependencies\Lua51\include /ID:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\\dependencies\OpenGL\include /ID:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\\dependencies\SDL\include /ID:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\\dependencies\glm /ID:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\\dependencies\bullet\src /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AudioEngine.cpp Camera.cpp Clock.cpp Component.cpp DebugLog.cpp Frustum.cpp Game.cpp GameObject.cpp HurricaneProperties.cpp IOManager.cpp ImageManager.cpp InputHandler.cpp Level.cpp Model.cpp ModelManager.cpp OpenGLRenderer.cpp PhysicsEngine.cpp SdlImage.cpp ShaderProgram.cpp ShaderProgramManager.cpp Timer.cpp
+         OpenGLRenderer.cpp
+         InputHandler.cpp
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\inputhandler.cpp(39): warning C4244: '=' : conversion from 'Sint32' to 'float', possible loss of data
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\inputhandler.cpp(40): warning C4244: '=' : conversion from 'Sint32' to 'float', possible loss of data
+         Game.cpp
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(40): warning C4244: '=' : conversion from 'Uint32' to 'hFLOAT', possible loss of data
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(51): warning C4244: 'initializing' : conversion from 'hFLOAT' to 'hINT', possible loss of data
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(52): warning C4244: 'initializing' : conversion from 'hFLOAT' to 'hINT', possible loss of data
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(53): warning C4244: 'initializing' : conversion from 'hFLOAT' to 'hINT', possible loss of data
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(125): warning C4244: 'initializing' : conversion from 'Uint32' to 'hFLOAT', possible loss of data
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(140): warning C4244: 'argument' : conversion from 'float' to 'Uint32', possible loss of data
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(183): warning C4244: '=' : conversion from 'Uint32' to 'hFLOAT', possible loss of data
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(220): warning C4244: 'initializing' : conversion from 'Uint32' to 'hFLOAT', possible loss of data
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(221): warning C4244: 'initializing' : conversion from 'Uint32' to 'hFLOAT', possible loss of data
+         Generating Code...
+         Compiling...
+         Timer.cpp
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\timer.cpp(14): warning C4244: '=' : conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\timer.cpp(19): warning C4244: '=' : conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\timer.cpp(29): warning C4244: '=' : conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\timer.cpp(37): warning C4244: '=' : conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
+         ShaderProgramManager.cpp
+         ShaderProgram.cpp
+         SdlImage.cpp
+         PhysicsEngine.cpp
+         ModelManager.cpp
+         Model.cpp
+         Level.cpp
+         ImageManager.cpp
+         IOManager.cpp
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\iomanager.cpp(18): warning C4244: 'initializing' : conversion from 'std::streamoff' to 'hINT', possible loss of data
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\iomanager.cpp(24): warning C4244: '-=' : conversion from 'std::streamoff' to 'hINT', possible loss of data
+         HurricaneProperties.cpp
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\hurricaneproperties.cpp(70): warning C4244: '=' : conversion from 'int' to 'hFLOAT', possible loss of data
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\hurricaneproperties.cpp(72): warning C4244: '=' : conversion from 'int' to 'hFLOAT', possible loss of data
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\hurricaneproperties.cpp(74): warning C4244: '=' : conversion from 'int' to 'hFLOAT', possible loss of data
+         GameObject.cpp
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\gameobject.cpp(42): warning C4018: '<=' : signed/unsigned mismatch
+         Frustum.cpp
+         DebugLog.cpp
+         Component.cpp
+         Clock.cpp
+         Camera.cpp
+         AudioEngine.cpp
+         Generating Code...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Debug\Hurricane.lib" glew32.lib opengl32.lib freeglut.lib lua51.lib OpenAL32.lib SDL2.lib SDL2main.lib SDL2_image.lib BulletDynamics.lib BulletCollision.lib LinearMath.lib /LIBPATH:D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\dependencies\SDL2_image\lib\x86 /LIBPATH:"D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\\dependencies\OpenAL-1.1\libs\Win32" /LIBPATH:D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\\dependencies\Lua51\lib /LIBPATH:D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\\dependencies\OpenGL\lib /LIBPATH:D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\\dependencies\SDL\lib\x86 /LIBPATH:D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\\dependencies\bullet\lib /NOLOGO Debug\AudioEngine.obj
+         Debug\Camera.obj
+         Debug\Clock.obj
+         Debug\Component.obj
+         Debug\DebugLog.obj
+         Debug\Frustum.obj
+         Debug\Game.obj
+         Debug\GameObject.obj
+         Debug\HurricaneProperties.obj
+         Debug\ImageManager.obj
+         Debug\InputHandler.obj
+         Debug\IOManager.obj
+         Debug\Level.obj
+         Debug\Model.obj
+         Debug\ModelManager.obj
+         Debug\OpenGLRenderer.obj
+         Debug\PhysicsEngine.obj
+         Debug\SdlImage.obj
+         Debug\ShaderProgram.obj
+         Debug\ShaderProgramManager.obj
+         Debug\Timer.obj
+         Debug\tinyxml2.obj
+     1>opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+     1>opengl32.lib(OPENGL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>freeglut.lib(freeglut.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+     1>freeglut.lib(freeglut.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>lua51.lib(lua51.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+     1>lua51.lib(lua51.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>OpenAL32.lib(OpenAL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+     1>OpenAL32.lib(OpenAL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>SDL2.lib(SDL2.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+     1>SDL2.lib(SDL2.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>SDL2_image.lib(SDL2_image.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+     1>SDL2_image.lib(SDL2_image.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+         BulletDynamics.lib(btKinematicCharacterController.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
+     1>opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+     1>freeglut.lib(freeglut.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+     1>lua51.lib(lua51.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+     1>OpenAL32.lib(OpenAL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+     1>SDL2.lib(SDL2.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+     1>SDL2_image.lib(SDL2_image.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+         Hurricane.vcxproj -> D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Debug\Hurricane.lib
+     1>Done Building Project "D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Hurricane\Hurricane.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:24.80

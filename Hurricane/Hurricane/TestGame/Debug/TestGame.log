@@ -1,2 +1,29 @@
-﻿  TestGame.vcxproj -> D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Debug\TestGame.exe
-  TestGame.vcxproj -> D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Debug\TestGame.pdb (Full PDB)
+﻿Build started 2016-10-24 11:38:34 PM.
+     1>Project "D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\TestGame\TestGame.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ID:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Hurricane /ID:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\dependencies\SDL2_image\include /ID:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\dependencies\SDL\include /I"D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\dependencies\OpenAL-1.1\include" /ID:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\dependencies\Lua51\include /ID:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\dependencies\OpenGL\include /ID:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\\dependencies\bullet\src /ID:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\\dependencies\glm /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt PongLevel.cpp TestGame.cpp main.cpp
+         PongLevel.cpp
+         Generating Code...
+         Compiling...
+         main.cpp
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\abstractrenderer.h(31): error C2143: syntax error : missing ';' before '*'
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\abstractrenderer.h(31): error C2433: 'AbstractRenderer::SDL_Window' : 'virtual' not permitted on data declarations
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\abstractrenderer.h(31): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\abstractrenderer.h(31): warning C4183: 'GetWindow': missing return type; assumed to be a member function returning 'int'
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\abstractrenderer.h(31): error C2253: 'AbstractRenderer::GetWindow' : pure specifier or abstract override specifier only allowed on virtual function
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\inputhandler.h(32): error C2061: syntax error : identifier 'SDL_Event'
+         TestGame.cpp
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\abstractrenderer.h(31): error C2143: syntax error : missing ';' before '*'
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\abstractrenderer.h(31): error C2433: 'AbstractRenderer::SDL_Window' : 'virtual' not permitted on data declarations
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\abstractrenderer.h(31): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\abstractrenderer.h(31): warning C4183: 'GetWindow': missing return type; assumed to be a member function returning 'int'
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\abstractrenderer.h(31): error C2253: 'AbstractRenderer::GetWindow' : pure specifier or abstract override specifier only allowed on virtual function
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\inputhandler.h(32): error C2061: syntax error : identifier 'SDL_Event'
+     1>d:\users\edwin\github\hackey\hurricane\hurricane\testgame\testgame.cpp(106): error C2664: 'void SDL_SetWindowTitle(SDL_Window *,const char *)' : cannot convert argument 1 from 'int *' to 'SDL_Window *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+         Generating Code...
+     1>Done Building Project "D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\TestGame\TestGame.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:04.05
