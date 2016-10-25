@@ -122,7 +122,7 @@ void Game::GameLoop()
 	{
 
 		//// FPS CALCULATION ////
-		hFLOAT startTicks = SDL_GetTicks();
+		hFLOAT startTicks = gameTimer->GetTimerTicks();
 		gameTimer->UpdateTimer();
 
 		CalculateFPS();
@@ -133,7 +133,7 @@ void Game::GameLoop()
 			frameCounter = 0;
 		}
 
-		hFLOAT frameTicks = SDL_GetTicks() - startTicks;
+		hFLOAT frameTicks = gameTimer->GetTimerTicks() - startTicks;
 
 		if (1000.0f / MAX_FPS > frameTicks) 
 		{
@@ -147,8 +147,9 @@ void Game::GameLoop()
 
 		// This is the timestep variable we'll use to 
 		hFLOAT deltaTime = timeSinceLastUpdate / 1000.0f;
-		COUT << deltaTime << ENDL;
-		
+
+		// Set the last update time w/ ticks from "this" iteration of the game loop
+		lastUpdateTime = SDL_GetTicks();
 
 
 
@@ -170,17 +171,9 @@ void Game::GameLoop()
 		// UPDATE THE GAME
 		EngineUpdate(deltaTime);
 
-		// PASS OUR DELTA TIME TO OUR PHYSICS ENGINE
-		physicsEngine->FixedUpdate(deltaTime);
-
-
 		// RENDER THE GAME
 		PreRender();
 		EngineRender();
-
-
-		// Set the last update time w/ ticks from "this" iteration of the game loop
-		lastUpdateTime = SDL_GetTicks();
 	}
 }
 
@@ -217,8 +210,8 @@ void Game::CalculateFPS()
 	static hFLOAT frameTimes[NUM_SAMPLES];
 	static hINT currentFrame = 0;
 
-	static hFLOAT prevTicks = SDL_GetTicks();
-	hFLOAT currTicks = SDL_GetTicks();
+	static hFLOAT prevTicks = gameTimer->GetTimerTicks();
+	hFLOAT currTicks = gameTimer->GetTimerTicks();
 
 	frameTime = currTicks - prevTicks;
 	frameTimes[currentFrame % NUM_SAMPLES] = frameTime;

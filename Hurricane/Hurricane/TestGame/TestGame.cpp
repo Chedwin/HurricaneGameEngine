@@ -104,6 +104,6 @@ void TestGame::GameUpdate(const hFLOAT _deltatime)
 	STRING _fps = ss.str();
 
 	SDL_SetWindowTitle(renderer->GetWindow(), _fps.c_str());
-
+	COUT << _deltatime << ENDL;
 	cam3D->Update(_deltatime);
 }
