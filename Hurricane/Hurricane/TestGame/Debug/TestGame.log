@@ -1,2 +1,12 @@
-﻿  TestGame.vcxproj -> D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Debug\TestGame.exe
-  TestGame.vcxproj -> D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Debug\TestGame.pdb (Full PDB)
+﻿Build started 2016-10-25 1:15:38 AM.
+     1>Project "D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\TestGame\TestGame.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Debug\TestGame.exe" /INCREMENTAL /NOLOGO /LIBPATH:D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Debug /LIBPATH:D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\dependencies\SDL2_image\lib\x86 /LIBPATH:"D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\dependencies\OpenAL-1.1\libs\Win32" /LIBPATH:D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\dependencies\Lua51\lib /LIBPATH:D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\dependencies\OpenGL\lib /LIBPATH:D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\dependencies\SDL\lib\x86 /LIBPATH:D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\\dependencies\bullet\lib Hurricane.lib glew32.lib opengl32.lib freeglut.lib lua51.lib OpenAL32.lib SDL2.lib SDL2main.lib SDL2_image.lib BulletDynamics.lib BulletCollision.lib LinearMath.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Debug\TestGame.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Debug\TestGame.lib" /MACHINE:X86 Debug\main.obj
+         Debug\PongLevel.obj
+         Debug\TestGame.obj
+         TestGame.vcxproj -> D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Debug\TestGame.exe
+     1>Done Building Project "D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\TestGame\TestGame.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.65

@@ -12,11 +12,16 @@ PhysicsEngine * PhysicsEngine::GetPhysicsEngine()
 
 
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////
 PhysicsEngine::PhysicsEngine()
 {
 }
 
 PhysicsEngine::~PhysicsEngine()
 {
+}
+
+void PhysicsEngine::FixedUpdate(const hFLOAT _timeStep) 
+{
+	//COUT << _timeStep << ENDL;
 }
