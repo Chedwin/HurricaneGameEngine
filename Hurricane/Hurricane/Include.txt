@@ -15,3 +15,6 @@ $(SolutionDir)\dependencies\glm
 
 // SDL2 image
 $(SolutionDir)\dependencies\SDL2_image\include
+
+// Bullet physics
+$(SolutionDir)\dependencies\bullet\src

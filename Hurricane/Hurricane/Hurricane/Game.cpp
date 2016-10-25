@@ -37,7 +37,7 @@ hBOOL Game::InitEngine()
 	gameTimer = new Timer();
 	gameTimer->Start();
 
-	timeSinceLastUpdate = SDL_GetTicks();
+	/*timeSinceLastUpdate = SDL_GetTicks();*/
 
 	// PROPERTIES
 	properties = H_PROPERTIES;
@@ -152,7 +152,6 @@ void Game::GameLoop()
 		lastUpdateTime = SDL_GetTicks();
 
 
-
 		// INPUT HANDLING LOOP w/ SDL EVENT
 		while (SDL_PollEvent(&evnt)) 
 		{
@@ -168,8 +167,10 @@ void Game::GameLoop()
 		SDL_PumpEvents();
 
 
-		// UPDATE THE GAME
-		EngineUpdate(deltaTime);
+		// PASS OUR DELTA TIME TO OUR PHYSICS ENGINE
+		physicsEngine->FixedUpdate(deltaTime);
+		COUT << deltaTime << ENDL;
+
 
 		// RENDER THE GAME
 		PreRender();

@@ -26,6 +26,8 @@ public:
 
 	static PhysicsEngine* GetPhysicsEngine();
 
+	void FixedUpdate(const hFLOAT _timeStep);
+
 protected:
 	static UNIQUE_PTR(PhysicsEngine) _physicsEngine;
 	friend DEFAULT_DELETE(PhysicsEngine);
