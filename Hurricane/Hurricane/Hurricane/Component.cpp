@@ -10,3 +10,8 @@ Component::Component(GameObject * g, COMPONENT_TYPE ct) : compType(ct)
 	}
 	SetEnabled(true);
 }
+
+void RenderableComponent::Render() 
+{
+
+}

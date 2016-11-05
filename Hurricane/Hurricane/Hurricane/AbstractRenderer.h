@@ -6,7 +6,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Sep 12, 2016
-// Last updated:	Oct 09, 2016
+// Last updated:	Nov 04, 2016
 //
 //*******************************//
 
@@ -17,18 +17,23 @@
 #define ABSTRACT_RENDERER_H
 
 #include "Macro.h"
-#include "ShaderProgram.h"
+#include "Window.h"
+
+enum PrimitiveType {
+	NONE,
+	QUADS,
+	TRIANGLES
+};
 
 class AbstractRenderer {
 public:
 	AbstractRenderer() {}
 	virtual ~AbstractRenderer() {}
 
-	virtual hBOOL Init(STRING winName, hINT width, hINT height, hUINT flags=0) = 0;
+	virtual void RenderPrimitive(PrimitiveType prim) = 0;
 
-	virtual void Render() = 0;
-	virtual void SwapBuffers() = 0;
-	virtual SDL_Window* GetWindow() const = 0;
+protected:
+	Window* winRef; // reference the game window
 };
 
 #endif

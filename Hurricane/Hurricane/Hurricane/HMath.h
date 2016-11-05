@@ -6,17 +6,17 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 08, 2016
-// Last updated:	Oct 08, 2016
+// Last updated:	Nov 02, 2016
 //
 //*******************************//
 
 #pragma once
 
-#include "Macro.h"
 
 #ifndef HMATH_H
 #define HMATH_H
 
+#include "Macro.h"
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 #include <gtc/quaternion.hpp>

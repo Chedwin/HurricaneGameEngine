@@ -1,5 +1,4 @@
 #include "HurricaneProperties.h"
-#include "DebugLog.h"
 
 /// STATIC DECLARATIONS
 UNIQUE_PTR(HurricaneProperties) HurricaneProperties::_HurricaneProperties(nullptr);

@@ -1,5 +1,5 @@
 #include "InputHandler.h"
-#include "DebugLog.h"
+#include "Debug.h"
 #include "Game.h"
 
 UNIQUE_PTR(InputHandler) InputHandler::_inputHandler(nullptr);
@@ -46,29 +46,32 @@ void InputHandler::ProcessInput(SDL_Event& _evnt)
 	case SDL_MOUSEBUTTONDOWN:
 		if (_evnt.button.button == SDL_BUTTON_LEFT) 
 		{
-			LOG->ConsoleLog("Mouse left");		
+				
 		}
 		else if (_evnt.button.button == SDL_BUTTON_RIGHT)
 		{
-			LOG->ConsoleLog("Mouse right");
+			
 		}
 		break;
 	case SDL_MOUSEBUTTONUP:
-		LOG->ConsoleLog("Mouse up");
+		
 		break;
 
 	// keyboard
 	case SDL_KEYDOWN:
 		switch (_evnt.key.keysym.sym) {
 		case SDLK_w:
-			//GAME->cam3D->SetPosition(GAME->cam3D->GetCameraPos() + VECTOR3(0.0f, 1.0f, 0.0f));
 			break;
 		case SDLK_s:
-			//GAME->cam3D->SetPosition(GAME->cam3D->GetCameraPos() + VECTOR3(0.0f, -1.0f, 0.0f));
 			break;
 		}
 	case SDL_KEYUP:
 		COUT << "UpKey" << ENDL;
 		break;
 	}
+}
+
+hBOOL InputHandler::IsKeyDown(hINT key) 
+{
+	return false;
 }

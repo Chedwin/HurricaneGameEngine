@@ -2,7 +2,7 @@
 
 Level::Level()
 {
-	camera = new Camera(this);
+	//camera = new Camera(this);
 }
 
 Level::~Level()

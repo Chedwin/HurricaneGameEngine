@@ -28,7 +28,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -76,7 +76,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\tinyxml\include;$(SolutionDir)\dependencies\Lua51\include;$(SolutionDir)\dependencies\OpenGL\include;$(SolutionDir)\dependencies\SDL\include;$(SolutionDir)\dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\Lua51\include;$(SolutionDir)\dependencies\OpenGL\include;$(SolutionDir)\dependencies\SDL\include;$(SolutionDir)\dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -84,7 +84,7 @@
       <AdditionalDependencies>freeglut.lib;glew32.lib;opengl.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;freeglut.lib;lua51.lib;OpenAL32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;lua51.lib;OpenAL32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2_image\lib\x86;$(SolutionDir)\dependencies\OpenAL-1.1\libs\Win32;$(SolutionDir)\dependencies\Lua51\lib;$(SolutionDir)\dependencies\OpenGL\lib;$(SolutionDir)\dependencies\SDL\lib\x86;$(SolutionDir)\dependencies\bullet\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -149,47 +149,49 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Clock.h" />
     <ClInclude Include="Component.h" />
-    <ClInclude Include="DebugLog.h" />
+    <ClInclude Include="Debug.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="Hurricane.h" />
     <ClInclude Include="HurricaneProperties.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="InputHandler.h" />
-    <ClInclude Include="IOManager.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="HMath.h" />
+    <ClInclude Include="Material.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelManager.h" />
     <ClInclude Include="OpenGLRenderer.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="PrimitiveTypes.h" />
+    <ClInclude Include="Renderable.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="SceneGraph.h" />
     <ClInclude Include="SdlImage.h" />
     <ClInclude Include="ShaderComponent.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="ShaderProgramManager.h" />
+    <ClInclude Include="SimpleModel.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Vertex.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AudioEngine.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Component.cpp" />
-    <ClCompile Include="DebugLog.cpp" />
+    <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HurricaneProperties.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="InputHandler.cpp" />
-    <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelManager.cpp" />
@@ -200,6 +202,8 @@
     <ClCompile Include="ShaderProgramManager.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
+    <ClCompile Include="Vertex.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -11,10 +11,12 @@
 
 #pragma once
 
-#include "Macro.h"
 
 #ifndef CLASS_NAME_H
 #define CLASS_NAME_H
  
+#include "Macro.h"
+
+
 
 #endif

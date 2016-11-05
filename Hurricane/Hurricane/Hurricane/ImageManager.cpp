@@ -1,4 +1,5 @@
 #include "ImageManager.h"
+#include "Debug.h"
 #include "SdlImage.h"
 
 UNIQUE_PTR(ImageManager) ImageManager::_imgManager(nullptr); // Declare static unique pointer
@@ -32,7 +33,8 @@ ResourceHandle<Image> ImageManager::UploadImage(const STRING & _name, Image * _i
 	// Check if the resource name is already in use
 	result = _imageResources.Get(_name);
 	if (!result.IsNull()) {
-		LOG->ConsoleError("ERROR: Image named '" + _name + "' is already in use");
+		Debug::ConsoleError("ERROR: Image named '" + _name + "' is already in use");
+
 		return result;
 	}
 
@@ -47,7 +49,7 @@ ResourceHandle<Image> ImageManager::UploadFile(const STRING& _filePath, const ST
 	// Check if the resource name is already in use
 	result = _imageResources.Get(_name);
 	if (!result.IsNull()) {
-		LOG->ConsoleError("ERROR: Image named '" + _name + "' is already in use");
+		Debug::ConsoleError("ERROR: Image named '" + _name + "' is already in use");
 		return result;
 	}
 
@@ -83,7 +85,7 @@ Image* ImageManager::GetImage(const STRING & _name)
 	ResourceHandle<Image> handle = _imageResources.Get(_name);
 
 	if (handle.IsNull()) {
-		LOG->ConsoleError("ERROR: Image named '" + _name + "' does not exist in ImageManager");
+		Debug::ConsoleError("ERROR: Image named '" + _name + "' does not exist in ImageManager");
 		return result;
 	}
 	result = ImageManager::GetImage(handle);

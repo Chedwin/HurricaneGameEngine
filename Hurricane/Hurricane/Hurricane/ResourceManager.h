@@ -16,7 +16,7 @@
 #define RESOURCE_MANAGER_H
 
 #include "Macro.h"
-#include "DebugLog.h"
+#include "Debug.h"
 
 template <class Type> 
 class ResourceHandle
@@ -98,7 +98,7 @@ public:
 			{
 				if (iter->first == name)
 				{
-					LOG->ConsoleError("\"" + name + "\" resource already exists");
+					Debug::ConsoleError("\"" + name + "\" resource already exists");
 					return iter->second;
 				}
 			}
@@ -130,7 +130,7 @@ public:
 				return;
 			}
 		}
-		LOG->ConsoleError("Resource failed to be removed: \n\"" + name + "\" resource does not exist");
+		Debug::ConsoleError("Resource failed to be removed: \n\"" + name + "\" resource does not exist");
 	}
 
 	// GET (overload 1)

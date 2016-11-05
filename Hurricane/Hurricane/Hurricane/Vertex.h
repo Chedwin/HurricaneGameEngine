@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 08, 2016
-// Last updated:	Oct 17, 2016
+// Last updated:	Oct 30, 2016
 //
 //*******************************//
 
@@ -14,10 +14,11 @@
 #ifndef VERTEX_H
 #define VERTEX_H
 
+#include <glew.h>
 #include "Macro.h"
 
-struct Vertex 
-{
+class VertexComponentDescriptor {
+public:
 	enum VertexComponentType 
 	{
 		VERTEX_COMP_TYPE_NULL = 0,
@@ -38,6 +39,33 @@ struct Vertex
 		VERTEX_COMP_TYPE_TEX8_2F
 	};
 
+	VertexComponentType type;
+	hINT offset;
+
+	VertexComponentDescriptor() : type(VERTEX_COMP_TYPE_NULL), offset(0) {}
+
+	hINT GetNumFloats();
+	hINT GetSize();
+};
+
+class VertexDescriptor
+{
+private:
+	VECTOR(VertexComponentDescriptor) componentList;
+	hINT componentIndex[12];
+	hINT stride;
+
+public:
+	VertexDescriptor();
+
+	inline hINT GetStride() const {
+		return stride;
+	}
+};
+
+struct Vertex 
+{
+
 	struct Position 
 	{
 		hFLOAT x, y, z;
@@ -50,7 +78,6 @@ struct Vertex
 
 	Position pos;
 	Colour col;
-	VertexComponentType type;
 };
 
 #endif

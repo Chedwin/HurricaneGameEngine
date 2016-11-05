@@ -5,49 +5,75 @@
 //
 // Author:			Edwin Chen
 // Created:			Jul 05, 2016
-// Last updated:	Oct 24, 2016
+// Last updated:	Nov 04, 2016
 //
 //*******************************//
-#pragma once
 
 #ifndef GAME_H
 #define GAME_H
 
-#include "Hurricane.h"
+#include <SDL.h>
+#undef main
+
+
+#include "Macro.h"
+#include "Debug.h"
+#include "Clock.h"
+#include "Timer.h"
+
+#include "Window.h"
+#include "AbstractRenderer.h"
+
+#include "HurricaneProperties.h"
+
+#include "InputHandler.h"
+#include "AudioEngine.h"
+
+#include "ModelManager.h"
+#include "ShaderProgramManager.h"
+#include "ImageManager.h"
+
+#include "PhysicsEngine.h"
+#include "Level.h"
+
 #include "Camera.h"
 #include "ImageManager.h"
+
+
 
 #define GAME Game::GetGameInstance()
 #define MAX_FPS 60.0f
 
 class Game {
+private:
+	void EngineUpdate(const hFLOAT _timeStep);
+	void EngineRender();
 public:
-	static Game* GetGameInstance();
 
+protected:
 	explicit Game();
 	virtual ~Game();
-	
+
 	hBOOL InitEngine();
 	virtual hBOOL InitGame() {
 		return true;
 	}
 	void DestroySystems();
 
-	hBOOL LoadLevel(Level* _level);
-	
+	//hBOOL LoadLevel(Level* _level);
+
 	void PreRender();
 	void PostRender();
 
+public:
+	static Game* GetGameInstance();
+
+	// TO BE OVERLOADED BY THE DERIVED GAME
+	virtual void GameUpdate(const hFLOAT _deltaTime) {}
+	virtual void GameRender() {}
 
 	void Run();
 	void GameLoop();
-
-	void EngineUpdate(const hFLOAT _timeStep);
-	void EngineRender();
-
-	// TO BE OVERLOADED BY THE DERIVED GAME
-	virtual void GameUpdate(const hFLOAT _timeStep) {}
-	virtual void GameRender() {}
 
 	void CalculateFPS();
 
@@ -68,31 +94,30 @@ public:
 		return totalTime;
 	}
 
-protected:
 
+protected:
 	static Game* _gameInstance;
 
-	Level* levelToLoad;
+	//Level* levelToLoad;
 
 	hFLOAT fps;
 	hFLOAT frameTime;
 
-	hFLOAT totalTime, timeBetweenLastFrame, lastUpdateTime, timeSinceLastUpdate;
-	hINT frames, timeSinceLastFPSUpdate;
+	hFLOAT totalTime, lastUpdateTime, timeSinceLastUpdate;
 
 	hBOOL _isRunning;
 public:
-	
-	
 
 	Timer* gameTimer;
-	
-	HurricaneProperties* properties;
+	Window* gameWindow;
 	AbstractRenderer* renderer;
+
+	HurricaneProperties* properties;
 	InputHandler* input;
+	AudioEngine* audio;
 
 	PhysicsEngine* physicsEngine;
-	Level* currentLevel;
+	//Level* currentLevel;
 };
 
 #endif

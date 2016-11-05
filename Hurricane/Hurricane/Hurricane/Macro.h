@@ -4,11 +4,11 @@
 // Description:		Macro defines all the types and keys in Hurricane
 //					Most of them are std macros
 //					Include this header to access any external dependencies provided by the system
-//					A general goal of this header file to avoid some dependencies being multiply loaded into the compiler
+//					A general goal of this header file to avoid some dependencies being repeadily loaded into the compiler
 //
 // Author:			Edwin Chen
 // Created:			Apr 05, 2016
-// Last updated:	Sep 22, 2016
+// Last updated:	Nov 04, 2016
 //
 //*******************************//
 #pragma once
@@ -25,12 +25,6 @@
 #include <tchar.h>
 #endif
 
-////// SDL STUFF /////
-#ifndef SDL
-#define SDL
-#include <SDL.h> // Avoid the stupid LNK2019 _ShowError linker error....
-#undef main
-#endif
 
 
 /////// Include files ///////

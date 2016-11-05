@@ -5,16 +5,17 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 22, 2016
-// Last updated:	Oct 23, 2016
+// Last updated:	Nov 01, 2016
 //
 //*******************************//
 
 #pragma once
 
+#include <glew.h>
+#include <SDL.h>
+#include <SDL_image.h>
 #include "Macro.h"
 #include "Image.h"
-#include <SDL_image.h>
-#include <glew.h>
 
 #ifndef SDL_IMAGE_H
 #define SDL_IMAGE_H
@@ -55,7 +56,7 @@ public:
 	
 private:
 /* FOR REFERENCE
-	THESE ARE THE FILEDS THAT SDL_Surface PROVIDES FOR US FOR SIMPLICITY'S SAKE:
+	THESE ARE THE FIELDS THAT SDL_Surface PROVIDES FOR US FOR SIMPLICITY'S SAKE:
 
 typedef struct SDL_Surface {
 	Uint32 flags;                          
