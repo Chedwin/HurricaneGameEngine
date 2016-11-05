@@ -1,7 +1,7 @@
 //*******************************//
 //
 // Name:			Model.h
-// Description:		A basic description of the header goes here.
+// Description:		
 //
 // Author:			Edwin Chen
 // Created:			Oct 03, 2016
@@ -31,6 +31,8 @@ public:
 
 	void AddVertices();
 
+	void LoadBuffer();
+
 	inline STRING GetName() const {
 		return name;
 	}
@@ -51,5 +53,7 @@ public:
 
 
 };
+
+
 
 #endif

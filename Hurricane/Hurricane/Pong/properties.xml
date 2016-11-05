@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root>
+
+  <GeneralProperty>
+    <name>Pong Squash</name>
+    <author>Edwin Chen</author>
+  </GeneralProperty>
+  
+  <AudioProperty>
+    <master>1.0</master>
+    <music>1.0</music>
+    <soundfx>1.0</soundfx>
+  </AudioProperty>
+  
+  <VideoProperty>
+    <width>1024</width>
+    <height>768</height>
+    <fullscreen>0</fullscreen>
+  </VideoProperty>
+  
+</Root>

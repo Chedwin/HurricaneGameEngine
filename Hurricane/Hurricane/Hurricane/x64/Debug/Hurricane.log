@@ -1,55 +1,50 @@
-﻿Build started 2016-10-24 11:54:13 PM.
-     1>Project "D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Hurricane\Hurricane.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /ID:\Users\edwin\GitHub\Hurricane\Hurricane\dependencies\SDL\include /Zi /nologo /W3 /WX- /Od /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt AudioEngine.cpp Camera.cpp Clock.cpp Component.cpp DebugLog.cpp Frustum.cpp Game.cpp GameObject.cpp HurricaneProperties.cpp ImageManager.cpp InputHandler.cpp IOManager.cpp Level.cpp Model.cpp ModelManager.cpp OpenGLRenderer.cpp PhysicsEngine.cpp SdlImage.cpp ShaderProgram.cpp ShaderProgramManager.cpp Timer.cpp tinyxml2.cpp
-         tinyxml2.cpp
-         Timer.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         ShaderProgramManager.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         ShaderProgram.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\ShaderProgram.h(14): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
-         SdlImage.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         PhysicsEngine.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         OpenGLRenderer.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\OpenGLRenderer.h(17): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
-         ModelManager.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         Model.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Model.h(18): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
-         Level.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         IOManager.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         InputHandler.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         ImageManager.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         HurricaneProperties.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         GameObject.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         Game.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         Frustum.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         DebugLog.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         Component.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         Clock.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         Generating Code...
-         Compiling...
-         Camera.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Camera.h(14): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
-         AudioEngine.cpp
-     1>d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Macro.h(31): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-         Generating Code...
-     1>Done Building Project "D:\Users\edwin\GitHub\Hackey\Hurricane\Hurricane\Hurricane\Hurricane.vcxproj" (Build target(s)) -- FAILED.
-
-Build FAILED.
-
-Time Elapsed 00:00:07.56
+﻿  Vertex.cpp
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Vertex.h(17): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  Timer.cpp
+Timer.cpp(14): warning C4244: '=' : conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
+Timer.cpp(19): warning C4244: '=' : conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
+Timer.cpp(29): warning C4244: '=' : conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
+Timer.cpp(37): warning C4244: '=' : conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
+  ShaderProgramManager.cpp
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\ShaderProgram.h(14): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  ShaderProgram.cpp
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\ShaderProgram.h(14): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  SdlImage.cpp
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\SdlImage.h(14): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  PhysicsEngine.cpp
+  OpenGLRenderer.cpp
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\OpenGLRenderer.h(17): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  ModelManager.cpp
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Model.h(18): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  Model.cpp
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Model.h(18): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  Level.cpp
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Camera.h(14): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  IOManager.cpp
+IOManager.cpp(18): warning C4244: 'initializing' : conversion from 'std::streamoff' to 'hINT', possible loss of data
+IOManager.cpp(24): warning C4244: '-=' : conversion from 'std::streamoff' to 'hINT', possible loss of data
+  InputHandler.cpp
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\InputHandler.h(18): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  ImageManager.cpp
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\SdlImage.h(14): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  HurricaneProperties.cpp
+HurricaneProperties.cpp(70): warning C4244: '=' : conversion from 'int' to 'hFLOAT', possible loss of data
+HurricaneProperties.cpp(72): warning C4244: '=' : conversion from 'int' to 'hFLOAT', possible loss of data
+HurricaneProperties.cpp(74): warning C4244: '=' : conversion from 'int' to 'hFLOAT', possible loss of data
+  GameObject.cpp
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\HMath.h(20): fatal error C1083: Cannot open include file: 'glm.hpp': No such file or directory
+  Game.cpp
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\AbstractRenderer.h(19): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Frustum.cpp
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\HMath.h(20): fatal error C1083: Cannot open include file: 'glm.hpp': No such file or directory
+  DebugLog.cpp
+  Debug.cpp
+  Component.cpp
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\ShaderProgram.h(14): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  Generating Code...
+  Compiling...
+  Clock.cpp
+  Camera.cpp
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\Camera.h(14): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  AudioEngine.cpp
+  Generating Code...

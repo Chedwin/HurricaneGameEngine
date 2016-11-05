@@ -1,13 +1,13 @@
 #include "Game.h"
 #include "OpenGLRenderer.h"
-#include "ModelManager.h"
+//#include "ModelManager.h"
 
-/// See the header file regarding unique_ptr
+
 Game* Game::_gameInstance(nullptr);
 
-Game* Game::GetGameInstance() 
+Game* Game::GetGameInstance()
 {
-	if (!_gameInstance) 
+	if (!_gameInstance)
 	{
 		_gameInstance = new Game();
 	}
@@ -15,14 +15,15 @@ Game* Game::GetGameInstance()
 }
 
 Game::Game() :
-	_isRunning(true), properties(nullptr), input(nullptr), renderer(nullptr),
-	currentLevel(nullptr), levelToLoad(nullptr),
-	fps(0.0f), frames(0), timeBetweenLastFrame(0.0f), timeSinceLastUpdate(0.0f)
+	_isRunning(true), gameWindow(nullptr),
+	//properties(nullptr), input(nullptr), renderer(nullptr),
+	//currentLevel(nullptr), levelToLoad(nullptr),
+	fps(0.0f), timeSinceLastUpdate(0.0f)
 {
 	// EMPTY
 }
 
-Game::~Game() 
+Game::~Game()
 {
 	DestroySystems(); // Clean up the game systems
 }
@@ -32,39 +33,34 @@ Game::~Game()
 
 hBOOL Game::InitEngine()
 {
+	//// INIT SDL
+	SDL_Init(SDL_INIT_EVERYTHING);
+
 	// GAME TIME
 	Clock::init(); // Start the global game clock
 	gameTimer = new Timer();
 	gameTimer->Start();
 
-	/*timeSinceLastUpdate = SDL_GetTicks();*/
-
 	// PROPERTIES
-	properties = H_PROPERTIES;
+	hINT width = H_PROPERTIES->GetVideoProperties()->screenWidth;
+	hINT height = H_PROPERTIES->GetVideoProperties()->screenHeight;
+	hUINT fullscreen = H_PROPERTIES->GetVideoProperties()->fullScreen;
 
-	STRING name = properties->GetGeneralProperties()->gameName;
+	hINT master = H_PROPERTIES->GetAudioProperties()->masterVolume;
+	hINT music = H_PROPERTIES->GetAudioProperties()->musicVolume;
+	hINT sound = H_PROPERTIES->GetAudioProperties()->soundVolume;
 
-	hINT width = properties->GetVideoProperties()->screenWidth;
-	hINT height = properties->GetVideoProperties()->screenHeight;
-	hUINT fullscreen = properties->GetVideoProperties()->fullScreen;
+	// WINDOW
+	gameWindow = new Window();
+	gameWindow->Init(width, height, fullscreen);
 
-	hINT master = properties->GetAudioProperties()->masterVolume;
-	hINT music = properties->GetAudioProperties()->musicVolume;
-	hINT sound = properties->GetAudioProperties()->soundVolume;
-
-	// RENEDERER
-	renderer = new OpenGLRenderer();
-	if (!renderer->Init(name, width, height, fullscreen)) 
-	{
-		LOG->Error("RENDERER CANNOT BE INITIALIZED", __LINE__, __FILE__);
-		return false;
+	if (fullscreen) {
+		SDL_SetWindowFullscreen(gameWindow->GetWindow(), SDL_WINDOW_FULLSCREEN);
 	}
 
-	// OTHER
-	input = INPUT;
-	physicsEngine = PHYSICS;
 
-	LoadLevel(levelToLoad);
+	// OPENGL RENDERER
+	renderer = new OpenGLRenderer();
 
 	return true;
 }
@@ -73,54 +69,54 @@ hBOOL Game::InitEngine()
 // REMEMBER: Don't have to delete singletons! (that are created w/ unique pointer)
 void Game::DestroySystems()
 {
-	if (currentLevel) {
-		delete currentLevel;
-	}
-
 	delete gameTimer;
 	gameTimer = nullptr;
 
 	delete renderer;
 	renderer = nullptr;
+
+	delete gameWindow;
+	gameWindow = nullptr;
+
+	SDL_Quit();
 }
 
-hBOOL Game::LoadLevel(Level* _level)
-{
-	currentLevel = _level;
-	//currentLevel->InitLevel();
-	return true;
-}
+//hBOOL Game::LoadLevel(Level* _level)
+//{
+//	//currentLevel = _level;
+//	//currentLevel->InitLevel();
+//	return true;
+//}
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void Game::Run() 
+void Game::Run()
 {
 	hBOOL init = InitEngine();
 
-	if (!init) 
+	if (!init)
 	{
-		LOG->ConsoleError("GAME COULD NOT BE INITIALIZED");
+		Debug::ConsoleError("ENGINE INITIALIZATION FAILED", __FILE__, __LINE__);
 		GETCHAR();
 	}
 
-	if (init) 
+	if (init)
 	{
 		// Allow the game to initialize its own special options
-		InitGame(); 
+		InitGame();
 
 		// Start the game loop
 		GameLoop();
 	}
 }
 
-void Game::GameLoop() 
+void Game::GameLoop()
 {
 	SDL_Event evnt;
 
-	while (_isRunning) 
+	while (_isRunning)
 	{
-
 		//// FPS CALCULATION ////
 		hFLOAT startTicks = gameTimer->GetTimerTicks();
 		gameTimer->UpdateTimer();
@@ -135,7 +131,7 @@ void Game::GameLoop()
 
 		hFLOAT frameTicks = gameTimer->GetTimerTicks() - startTicks;
 
-		if (1000.0f / MAX_FPS > frameTicks) 
+		if (1000.0f / MAX_FPS > frameTicks)
 		{
 			SDL_Delay(1000.0f / MAX_FPS - frameTicks);
 		}
@@ -153,48 +149,52 @@ void Game::GameLoop()
 
 
 		// INPUT HANDLING LOOP w/ SDL EVENT
-		while (SDL_PollEvent(&evnt)) 
+		while (SDL_PollEvent(&evnt))
 		{
-			input->ProcessInput(evnt);
+			INPUT->ProcessInput(evnt);
 
-			switch (evnt.type) 
-			{
+			switch (evnt.type) {
 			case SDL_QUIT:
-				_isRunning = false;
+				const SDL_MessageBoxButtonData buttons[] = {
+					{ 0, 0, "Cancel" }, // (flags, buttonid, text)
+					{ SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 1, "Yes" }
+				};
+
+				const SDL_MessageBoxData messageboxdata = {
+					SDL_MESSAGEBOX_INFORMATION, // flags
+					NULL, // window
+					"Quit", // window title
+					"Are you sure you want to quit?", // message
+					SDL_arraysize(buttons), // num of buttons
+					buttons // buttons
+				};
+
+				hINT buttonid;
+				if (SDL_ShowMessageBox(&messageboxdata, &buttonid) < 0) {
+					SDL_Log("error displaying message box");
+				}
+				if (buttonid == 1) {
+					_isRunning = false;
+				}
 				break;
-			}		
+			}
 		}
 		SDL_PumpEvents();
 
 
 		// PASS OUR DELTA TIME TO OUR PHYSICS ENGINE
-		physicsEngine->FixedUpdate(deltaTime);
-		COUT << deltaTime << ENDL;
+		//physicsEngine->FixedUpdate(deltaTime);
 
+		// UPDATE THE GAME
+		EngineUpdate(deltaTime);
 
-		// RENDER THE GAME
+		// RENDER
 		PreRender();
 		EngineRender();
 	}
 }
 
-
-void Game::PreRender()
-{
-	renderer->Render();
-}
-
-void Game::EngineRender() 
-{
-	GameRender();
-	PostRender();
-}
-
-void Game::PostRender()
-{
-	renderer->SwapBuffers();
-}
-
+// UPDATE
 void Game::EngineUpdate(const hFLOAT _timeStep)
 {
 	// TODO:
@@ -204,8 +204,29 @@ void Game::EngineUpdate(const hFLOAT _timeStep)
 	GameUpdate(_timeStep);
 }
 
+
+// RENDER
+void Game::PreRender()
+{
+	renderer->RenderPrimitive(PrimitiveType::TRIANGLES);
+}
+void Game::EngineRender()
+{
+	GameRender();
+	PostRender();
+}
+
+void Game::PostRender()
+{
+	SDL_GL_SwapWindow(gameWindow->GetWindow());
+	glFlush();
+}
+
+
+
+
 // Calculate Frame rate based on ticks
-void Game::CalculateFPS() 
+void Game::CalculateFPS()
 {
 	static const hINT NUM_SAMPLES = 100;
 	static hFLOAT frameTimes[NUM_SAMPLES];
@@ -222,27 +243,27 @@ void Game::CalculateFPS()
 	hINT count;
 
 	currentFrame++;
-	if (currentFrame < NUM_SAMPLES) 
+	if (currentFrame < NUM_SAMPLES)
 	{
 		count = currentFrame;
 	}
-	else 
+	else
 	{
 		count = NUM_SAMPLES;
 	}
 
 	hFLOAT frameTimeAverage = 0;
-	for (int i = 0; i < count; i++) 
+	for (int i = 0; i < count; i++)
 	{
 		frameTimeAverage += frameTimes[i];
 	}
 	frameTimeAverage /= count;
 
-	if (frameTimeAverage > 0) 
+	if (frameTimeAverage > 0)
 	{
 		fps = 1000.0f / frameTimeAverage;
 	}
-	else 
+	else
 	{
 		fps = MAX_FPS;
 	}

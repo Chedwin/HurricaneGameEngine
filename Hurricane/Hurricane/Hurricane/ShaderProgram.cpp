@@ -1,6 +1,5 @@
 #include "ShaderProgram.h"
-#include "IOManager.h"
-#include "DebugLog.h"
+#include "Debug.h"
 
 
 
@@ -18,13 +17,13 @@ ShaderProgram::~ShaderProgram()
 hBOOL ShaderProgram::CompileShader(const STRING & filePath, GLuint id)
 {
 	if (id == 0) {
-		LOG->Error("SHADER " + filePath + " FAILED TO COMPILE", __LINE__, __FILE__);
+		Debug::ConsoleError("SHADER " + filePath + " FAILED TO COMPILE", __FILE__, __LINE__);
 		return false;
 	}
 
 	IFSTREAM shaderFile(filePath);
 	if (shaderFile.fail()) {
-		LOG->Error("FAILED TO OPEN: " + filePath, __LINE__, __FILE__);
+		Debug::ConsoleError("FAILED TO OPEN: " + filePath, __FILE__, __LINE__);
 		return false;
 	}
 
@@ -37,10 +36,6 @@ hBOOL ShaderProgram::CompileShader(const STRING & filePath, GLuint id)
 
 	shaderFile.close();
 
-	VECTOR(hCHAR) buffer;
-	IOManager::ReadFileToBuffer(filePath, buffer);
-	
-	//const hCHAR* contentsPtr2 = &(buffer[0]);
 
 	const hCHAR* contentsPtr = fileContents.c_str();
 	glShaderSource(id, 1, &contentsPtr, NULL);
@@ -49,7 +44,7 @@ hBOOL ShaderProgram::CompileShader(const STRING & filePath, GLuint id)
 	GLint success = 0;
 	glGetShaderiv(id, GL_COMPILE_STATUS, &success);
 
-	if (success == GL_FALSE) 
+	if (success == GL_FALSE)
 	{
 		GLint maxLength = 0;
 		glGetShaderiv(id, GL_INFO_LOG_LENGTH, &maxLength);
@@ -60,7 +55,7 @@ hBOOL ShaderProgram::CompileShader(const STRING & filePath, GLuint id)
 
 		RemoveFromGPU(id);
 		PRINTF("%s\n", &(errorLog[0]));
-		LOG->Error("SHADER " + filePath + " FAILED TO COMPILE", __LINE__, __FILE__);
+		Debug::ConsoleError("SHADER " + filePath + " FAILED TO COMPILE", __FILE__, __LINE__);
 		return false;
 	}
 
@@ -76,13 +71,13 @@ hBOOL ShaderProgram::CompileShaders(const STRING & verPath, const STRING & fragP
 	}
 	_vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	if (_vertexShaderID == 0) {
-		LOG->Error("VERTEX SHADER FAILED TO COMPILE", __LINE__, __FILE__);
+		Debug::ConsoleError("VERTEX SHADER FAILED TO COMPILE", __FILE__, __LINE__);
 		return false;
 	}
 
 	_fragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
 	if (_fragmentShaderID == 0) {
-		LOG->Error("FRAGMENT SHADER FAILED TO COMPILE", __LINE__, __FILE__);
+		Debug::ConsoleError("FRAGMENT SHADER FAILED TO COMPILE", __FILE__, __LINE__);
 		return false;
 	}
 
@@ -101,7 +96,7 @@ void ShaderProgram::LinkShaders()
 	GLint isLinked = 0;
 
 	glGetProgramiv(_programID, GL_LINK_STATUS, (hINT*)&isLinked);
-	
+
 	if (isLinked = GL_FALSE) {
 		GLint maxLength = 0;
 		glGetShaderiv(_programID, GL_INFO_LOG_LENGTH, &maxLength);
@@ -115,7 +110,8 @@ void ShaderProgram::LinkShaders()
 		RemoveFromGPU(_fragmentShaderID);
 
 		PRINTF("%s\n", &(errorLog[0]));
-		LOG->Error("SHADERS FAILED TO LINK", __LINE__, __FILE__);
+		Debug::ConsoleError("SHADERS FAILED TO LINK", __FILE__, __LINE__);
+
 		return;
 	}
 
@@ -132,9 +128,9 @@ void ShaderProgram::AddAttribute(const STRING & attrName)
 GLint ShaderProgram::GetUniformLocation(const STRING& uniformName)
 {
 	GLint loc = glGetUniformLocation(_programID, uniformName.c_str());
-	if (loc == GL_INVALID_INDEX) 
+	if (loc == GL_INVALID_INDEX)
 	{
-		LOG->ConsoleError("Uniform: " + uniformName + ", was not found in shader");
+		Debug::ConsoleError("Uniform: " + uniformName + ", was not found in shader", __FILE__, __LINE__);
 	}
 	return loc;
 }
@@ -159,6 +155,6 @@ void ShaderProgram::UnuseShader()
 void ShaderProgram::RemoveFromGPU(GLuint id)
 {
 	if (id) {
-		glDeleteShader(id);	
+		glDeleteShader(id);
 	}
 }

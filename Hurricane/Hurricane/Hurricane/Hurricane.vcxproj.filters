@@ -24,9 +24,6 @@
     <ClInclude Include="PrimitiveTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DebugLog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Clock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -60,9 +57,6 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Hurricane.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -90,9 +84,6 @@
     <ClInclude Include="Vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IOManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ShaderProgramManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -111,12 +102,27 @@
     <ClInclude Include="Frustum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Renderable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGraph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DebugLog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Clock.cpp">
@@ -155,9 +161,6 @@
     <ClCompile Include="ModelManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IOManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -177,6 +180,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Frustum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -6,15 +6,16 @@
 //
 // Author:			Edwin Chen
 // Created:			Jul 17, 2016
-// Last updated:	Oct 08, 2016
+// Last updated:	Nov 01, 2016
 //
 //*******************************//
 
 #pragma once
 
-#ifndef INPUTHANDLER_H
-#define INPUTHANDLER_H
+#ifndef INPUT_HANDLER_H
+#define INPUT_HANDLER_H
 
+#include <SDL.h>
 #include "Macro.h"
 #include "HMath.h"
 
@@ -29,6 +30,10 @@ public:
 	static InputHandler* GetInputHandler();
 
 	void Update();
+	hBOOL IsKeyDown(hINT key);
+
+
+
 	void ProcessInput(SDL_Event& _evnt);
 
 	VEC2 mousePos;

@@ -28,8 +28,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -151,17 +151,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="PongLevel.cpp" />
-    <ClCompile Include="TestGame.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="PongLevel.h" />
-    <ClInclude Include="TestGame.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="PongGame.xml" />
     <Xml Include="properties.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Pong\colourShading.frag" />
+    <None Include="..\Pong\colourShading.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

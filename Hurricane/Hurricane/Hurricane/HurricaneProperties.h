@@ -6,7 +6,7 @@
 //
 // Author:			Edwin Chen, Mathieu Violette, James Sholdice, & Nathan Senter
 // Created:			Sep 18, 2016
-// Last updated:	Sep 21, 2016
+// Last updated:	Oct 31, 2016
 //
 //*******************************//
 
@@ -26,6 +26,8 @@ struct Properties {
 	virtual void ReadValues() = 0;
 	//Writes changed values to xml
 	virtual void WriteValues() = 0;
+
+	MAP(STRING, STRING) propertiesMap;
 };
 
 // Engine properties loaded and read by TinyXML

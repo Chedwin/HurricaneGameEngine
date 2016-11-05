@@ -50,6 +50,8 @@ private:
 	hINT _numAttributes;
 	GLuint _programID, _vertexShaderID, _fragmentShaderID;
 
+
+
 	STRING _programName;
 
 	ResourceManager<ShaderVariable> _vertexVariables;
