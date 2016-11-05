@@ -14,7 +14,7 @@
   </AudioProperty>
   
   <VideoProperty>
-    <width>1024</width>
+    <width>1280</width>
     <height>768</height>
     <fullscreen>0</fullscreen>
   </VideoProperty>
