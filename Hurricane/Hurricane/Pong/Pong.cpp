@@ -42,8 +42,8 @@ const GLuint numVertsPerWall = 4;
 const GLuint NumVertices = NumVerticesInCube + numVertsInPlayer + numVertsInComp + (numVertsPerWall * 3); //+ whatever other vertices you add above
 
 glm::vec3 ballTranslateValue;
-float ballXspeed = 0.0001;
-float ballYspeed = 0.00015;
+float ballXspeed = 0.005;
+float ballYspeed = 0.005;
 
 float rotate_value = 0;
 
@@ -353,7 +353,7 @@ hBOOL Pong::InitGame()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void Pong::GameUpdate(const hFLOAT _deltatime)
+void Pong::WindowTitleUpdate()
 {
 	// window title bar update
 	STRINGSTREAM ss;
@@ -362,6 +362,98 @@ void Pong::GameUpdate(const hFLOAT _deltatime)
 
 	SDL_SetWindowTitle(gameWindow->GetWindow(), _fps.c_str());
 }
+
+
+void Pong::GameInput(SDL_Event & _evnt)
+{
+	switch (_evnt.type)
+	{
+		// keyboard
+	case SDL_KEYDOWN:
+		switch (_evnt.key.keysym.sym) {
+		case SDLK_a:
+			playerTranslateValue.x += 0.1;
+			break;
+		case SDLK_d:
+			playerTranslateValue.x -= 0.1;
+			break;
+		}
+	case SDL_KEYUP:
+		break;
+	}
+}
+
+void Pong::GameUpdate(const hFLOAT _deltatime)
+{
+	WindowTitleUpdate();
+
+	rotate_value += 0.0001;
+
+	ballTranslateValue.x += ballXspeed;
+	ballTranslateValue.y += ballYspeed;
+
+	if (ballTranslateValue.x >= .5 || ballTranslateValue.x <= -.5)
+		ballXspeed *= -1;
+	if (ballTranslateValue.y >= .5) {
+		ballYspeed *= -1;
+		if (computerTurn) {
+			hitBackWall = true;
+		}
+	}
+
+	//////////////////////////////////////////////
+	///////////// COLLISION HERE /////////////////
+	//////////////////////////////////////////////
+	//  Collision with Paddles
+
+
+	if (ballTranslateValue.y <= -.45 && ballTranslateValue.x >= playerTranslateValue.x - 0.1 &&
+		ballTranslateValue.x + BallSize <= playerTranslateValue.x + playerSize + 0.1 &&
+		!computerTurn) {
+		ballYspeed *= -1;
+		computerTurn = !computerTurn;
+	}
+	if (ballTranslateValue.y <= -.45 && ballTranslateValue.x >= computerTranslateValue - 0.1 &&
+		ballTranslateValue.x + BallSize <= computerTranslateValue + computerSize + 0.1 &&
+		computerTurn) {
+
+		ballYspeed *= -1;
+		computerTurn = !computerTurn;
+		hitBackWall = false;
+	}
+
+	// Scoring
+	if (ballTranslateValue.y <= -0.5) {
+		if (computerTurn) {
+			playerScore++;
+		}
+		else {
+			computerScore++;
+		}
+		std::cout << "Score:\n";
+		std::cout << "Player: " << playerScore << " - Computer: " << computerScore << "\n";
+		ballTranslateValue.y = 0.0;
+		ballYspeed *= -1;
+	}
+
+	////////////////////////////////////////////
+	/////STOP COMP FROM CHASING ALL THE TIME////
+	////////////////////////////////////////////
+	if (computerTurn && hitBackWall) {
+		if (computerTranslateValue > ballTranslateValue.x) {
+			computerTranslateValue -= 0.008;
+		}
+		else if (computerTranslateValue < ballTranslateValue.x) {
+			computerTranslateValue += 0.008;
+		}
+		else {
+			computerTranslateValue = ballTranslateValue.x;
+		}
+	}
+}
+
+
+
 
 
 
@@ -401,6 +493,7 @@ void Pong::GameRender()
 
 	//Cam
 	glm::vec3 loc = cameratranslateVal;
+	loc = glm::vec3(0, 0, -2.0f);
 	glm::vec3 dir = glm::vec3(0.0f, 0.0f, 0.0f);
 	glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
 	glm::mat4 cam_mat = glm::lookAt(loc, dir, up);

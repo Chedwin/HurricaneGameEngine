@@ -66,7 +66,6 @@ void InputHandler::ProcessInput(SDL_Event& _evnt)
 			break;
 		}
 	case SDL_KEYUP:
-		COUT << "UpKey" << ENDL;
 		break;
 	}
 }

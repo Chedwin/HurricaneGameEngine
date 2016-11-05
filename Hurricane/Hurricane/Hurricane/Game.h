@@ -71,6 +71,7 @@ public:
 	// TO BE OVERLOADED BY THE DERIVED GAME
 	virtual void GameUpdate(const hFLOAT _deltaTime) {}
 	virtual void GameRender() {}
+	virtual void GameInput(SDL_Event& _evnt) {}
 
 	void Run();
 	void GameLoop();
@@ -106,6 +107,7 @@ protected:
 	hFLOAT totalTime, lastUpdateTime, timeSinceLastUpdate;
 
 	hBOOL _isRunning;
+
 public:
 
 	Timer* gameTimer;

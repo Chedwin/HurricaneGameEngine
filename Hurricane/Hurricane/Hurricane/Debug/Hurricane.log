@@ -1,14 +1,12 @@
-﻿  OpenGLRenderer.cpp
-  Game.cpp
+﻿  Game.cpp
 d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(49): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
 d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(50): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
 d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(51): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
 d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(121): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
 d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(136): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
 d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(148): warning C4244: '=': conversion from 'Uint32' to 'hFLOAT', possible loss of data
-d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(235): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
 d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(236): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
-  Generating Code...
+d:\users\edwin\github\hackey\hurricane\hurricane\hurricane\game.cpp(237): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
 opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
 opengl32.lib(OPENGL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
 lua51.lib(lua51.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored

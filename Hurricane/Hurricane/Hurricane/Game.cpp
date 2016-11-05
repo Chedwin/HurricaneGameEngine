@@ -151,7 +151,8 @@ void Game::GameLoop()
 		// INPUT HANDLING LOOP w/ SDL EVENT
 		while (SDL_PollEvent(&evnt))
 		{
-			INPUT->ProcessInput(evnt);
+			//INPUT->ProcessInput(evnt);
+			GameInput(evnt); // force the input to the game for now.....
 
 			switch (evnt.type) {
 			case SDL_QUIT:
@@ -183,7 +184,7 @@ void Game::GameLoop()
 
 
 		// PASS OUR DELTA TIME TO OUR PHYSICS ENGINE
-		//physicsEngine->FixedUpdate(deltaTime);
+		PHYSICS->FixedUpdate(deltaTime);
 
 		// UPDATE THE GAME
 		EngineUpdate(deltaTime);

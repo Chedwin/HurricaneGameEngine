@@ -29,8 +29,10 @@ public:
 
 	void GameRender() override;
 	void GameUpdate(const hFLOAT _deltatime) override;
+	void GameInput(SDL_Event& _evnt) override;
 
-	/*void PongInput();*/
+	void WindowTitleUpdate();
+
 
 public:
 	ShaderProgram* _shaderProgram;
