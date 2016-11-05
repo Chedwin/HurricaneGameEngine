@@ -149,6 +149,8 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Clock.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="Controller.h" />
+    <ClInclude Include="ControllerManager.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="Frustum.h" />
@@ -185,6 +187,8 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="ControllerManager.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="Game.cpp" />
