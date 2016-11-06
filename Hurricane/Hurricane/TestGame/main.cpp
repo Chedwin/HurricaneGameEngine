@@ -4,10 +4,11 @@
 #include <Macro.h>
 #include <Controller.h>
 #include <ControllerManager.h>
+#include "TestGame.h"
 
 int main(int argc, char** argv) 
 {
-	Controller* p1 = new Controller();
+	/*Controller* p1 = new Controller();
 	Controller* p2 = new Controller();
 	Controller* p3 = new Controller();
 	Controller* p4 = new Controller();
@@ -25,6 +26,11 @@ int main(int argc, char** argv)
 	delete p5;
 	p5 = nullptr;
 
-	GETCHAR();
+	GETCHAR();*/
+
+	TestGame test;
+	test.Run();
+
+
 	return 0;
 }
