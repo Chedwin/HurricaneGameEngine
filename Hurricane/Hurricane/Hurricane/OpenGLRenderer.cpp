@@ -25,6 +25,8 @@ void OpenGLRenderer::RenderPrimitive(PrimitiveType prim)
 {
 	glClearDepth(1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
 	glMatrixMode(GL_PROJECTION);     // To operate on model-view matrix
 	glLoadIdentity();
 
