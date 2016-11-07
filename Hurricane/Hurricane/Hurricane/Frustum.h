@@ -1,11 +1,11 @@
 //*******************************//
 //
 // Name:			Frustum.h
-// Description:		A basic description of the header goes here.
+// Description:		
 //
 // Author:			Edwin Chen
 // Created:			Oct 24, 2016
-// Last updated:	Oct 24, 2016
+// Last updated:	Nov 07, 2016
 //
 //*******************************//
 
@@ -18,11 +18,12 @@
 #ifndef FRUSTUM_H
 #define FRUSTUM_H
 
-class Frustum 
-{
+class Frustum {
 public:
 	Frustum();
 	~Frustum();
+
+
 };
 
 #endif

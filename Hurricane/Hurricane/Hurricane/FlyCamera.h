@@ -30,6 +30,8 @@ protected:
 	~FlyCamera();
 public:
 	void Update(const hFLOAT _deltaTime);
+	void Render();
+
 	void MoveCamera(SDL_Event& _evnt);
 
 	static FlyCamera* GetFlyCamera();
