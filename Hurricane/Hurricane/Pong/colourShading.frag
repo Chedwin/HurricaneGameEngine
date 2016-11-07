@@ -3,7 +3,7 @@
 in vec4 myColor;
 out vec4 fColor;
 
-//uniform float time;
+uniform sampler2D mySampler;
 
 void main()
 {

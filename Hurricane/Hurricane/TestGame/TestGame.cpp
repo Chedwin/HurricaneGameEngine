@@ -1,13 +1,18 @@
-#include <ShaderProgramManager.h>
+//#include <ShaderProgramManager.h>
+#include <FlyCamera.h>
 #include "TestGame.h"
 
 TestGame::TestGame()
 {
 	_gameInstance = this;
+	//fpsCam = nullptr;
 }
 
 TestGame::~TestGame()
 {
+	/*delete fpsCam;
+	fpsCam = nullptr;*/
+
 	cubeShader->UnuseShader();
 	glDeleteBuffers(2, buffers);
 	glDeleteVertexArrays(1, &VertexArrayID);
@@ -94,7 +99,7 @@ static const GLfloat g_color_buffer_data[] = {
 	0.820f,  0.883f,  0.371f,
 	0.982f,  0.099f,  0.879f
 };
-
+//static GLfloat g_color_buffer_data[12 * 3 * 3];
 /////////////////////////////////////////////////////////////////////////////////////////
 
 hBOOL TestGame::InitGame()
@@ -102,6 +107,8 @@ hBOOL TestGame::InitGame()
 	// CREATE THE SHADERS
 	cubeShader = new ShaderProgram();
 	cubeShader->CompileShaders("colourShading.vert", "colourShading.frag");
+	cubeShader->AddAttribute("vertexPosition");
+	cubeShader->AddAttribute("vertexColor");
 	cubeShader->LinkShaders();
 
 	// Store shader in manager
@@ -109,6 +116,7 @@ hBOOL TestGame::InitGame()
 	SHADER_MANAGER->StoreShaderProg(name, cubeShader);
 
 	cubeShader->UseShader();
+
 
 	// Create Vertex Array
 	glGenVertexArrays(1, &VertexArrayID);
@@ -118,13 +126,13 @@ hBOOL TestGame::InitGame()
 	glGenBuffers(2, buffers);
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
-	glBindAttribLocation(cubeShader->GetProgramID(), 0, "vertexPosition");
+	//glBindAttribLocation(cubeShader->GetProgramID(), 0, "vertexPosition");
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
 
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[1]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_color_buffer_data), g_color_buffer_data, GL_STATIC_DRAW);
-	glBindAttribLocation(cubeShader->GetProgramID(), 1, "vertexColor");
+	//glBindAttribLocation(cubeShader->GetProgramID(), 1, "vertexColor");
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(1);
 
@@ -132,6 +140,10 @@ hBOOL TestGame::InitGame()
 	location = glGetUniformLocation(cubeShader->GetProgramID(), "model_matrix");
 	view_matrix_location = glGetUniformLocation(cubeShader->GetProgramID(), "view_matrix");
 	projection_matrix_location = glGetUniformLocation(cubeShader->GetProgramID(), "projection_matrix");
+
+	//fpsCam = new FPSCamera();
+	FLY_DEBUG_CAM->SetProjLocation(projection_matrix_location);
+	FLY_DEBUG_CAM->SetViewLocation(view_matrix_location);
 
 	return true;
 }
@@ -144,6 +156,9 @@ void TestGame::GameUpdate(const hFLOAT _deltaTime)
 	STRING _fps = ss.str();
 
 	SDL_SetWindowTitle(gameWindow->GetWindow(), _fps.c_str());
+
+	//fpsCam->Update(_deltaTime);
+	FLY_DEBUG_CAM->Update(_deltaTime);
 }
 
 void TestGame::GameRender()
@@ -153,20 +168,33 @@ void TestGame::GameRender()
 	glUniformMatrix4fv(location, 1, GL_FALSE, &Model[0][0]);
 	glDrawArrays(GL_TRIANGLES, 0, 12 * 3); // 12*3 indices starting at 0 -> 12 triangles
 
-	// Camera matrix
-	glm::mat4 View = glm::lookAt(
-		glm::vec3(4, 3, -3), // Camera is at (4,3,-3), in World Space
-		glm::vec3(0, 0, 0), // and looks at the origin
-		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
-	);
-	glUniformMatrix4fv(view_matrix_location, 1, GL_FALSE, &View[0][0]);
+	//// Camera matrix
+	//glm::mat4 View = glm::lookAt(
+	//	glm::vec3(4, 3, -3), // Camera is at (4,3,-3), in World Space
+	//	glm::vec3(0, 0, 0), // and looks at the origin
+	//	glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
+	//);
+	//glUniformMatrix4fv(view_matrix_location, 1, GL_FALSE, &View[0][0]);
 
-	// Model matrix : an identity matrix (model will be at the origin)
+	//// Model matrix : an identity matrix (model will be at the origin)
 
-	glm::mat4 Projection = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
-	glUniformMatrix4fv(projection_matrix_location, 1, GL_FALSE, &Projection[0][0]);
+	//glm::mat4 Projection = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
+	//glUniformMatrix4fv(projection_matrix_location, 1, GL_FALSE, &Projection[0][0]);
+
+
+
+
+	//MATRIX4 view = fpsCam->GetViewMatrix();
+	//MATRIX4 view = FLY_DEBUG_CAM->GetViewMatrix();
+	//glUniformMatrix4fv(view_matrix_location, 1, GL_FALSE, &view[0][0]);
+
+	////MATRIX4 proj = fpsCam->GetProjectionMatrix();
+	//MATRIX4 proj = FLY_DEBUG_CAM->GetProjectionMatrix();
+	//glUniformMatrix4fv(projection_matrix_location, 1, GL_FALSE, &proj[0][0]);
 }
 
 void TestGame::GameInput(SDL_Event & _evnt)
 {
+	//fpsCam->MoveCamera(_evnt);
+	FLY_DEBUG_CAM->MoveCamera(_evnt);
 }

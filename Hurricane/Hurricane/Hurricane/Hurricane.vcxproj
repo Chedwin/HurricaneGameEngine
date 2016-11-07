@@ -153,6 +153,7 @@
     <ClInclude Include="ControllerManager.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="FlyCamera.h" />
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
@@ -177,6 +178,7 @@
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="ShaderProgramManager.h" />
     <ClInclude Include="SimpleModel.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Vertex.h" />
@@ -190,6 +192,7 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="ControllerManager.cpp" />
     <ClCompile Include="Debug.cpp" />
+    <ClCompile Include="FlyCamera.cpp" />
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />

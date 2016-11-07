@@ -34,17 +34,7 @@ public:
 		return _surface;
 	}
 
-	inline hINT GetBitsPerPixels() const {
-		return _bitsPerPixel;
-	}
 
-	inline hINT GetWidth() const {
-		return _width;
-	}
-
-	inline hINT GetHeight() const {
-		return _height;
-	}
 
 	inline GLenum GetPixelType() {
 		return GL_UNSIGNED_BYTE;
@@ -69,15 +59,11 @@ typedef struct SDL_Surface {
 } SDL_Surface;
 */
 	SDL_Surface* _surface;
-	hINT _width, _height, _bitsPerPixel;
 	GLenum _colourFormat;
-	//hCHAR* _imageBytes;
+
 protected:
 	hBOOL Init(hINT width, hINT height);
 	hBOOL Init(const STRING& filePath);
-
-public:
-
 	
 };
 

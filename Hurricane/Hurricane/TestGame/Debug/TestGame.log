@@ -1,3 +1,8 @@
-﻿  LINK : D:\Users\edwin\GitHub\HurricaneGameEngine\Hurricane\Hurricane\Debug\TestGame.exe not found or not built by the last incremental link; performing full link
+﻿  main.cpp
+  Generating Code...
+  Compiling...
+  TestGame.cpp
+  FPSCamera.cpp
+  Generating Code...
   TestGame.vcxproj -> D:\Users\edwin\GitHub\HurricaneGameEngine\Hurricane\Hurricane\Debug\TestGame.exe
   TestGame.vcxproj -> D:\Users\edwin\GitHub\HurricaneGameEngine\Hurricane\Hurricane\Debug\TestGame.pdb (Full PDB)

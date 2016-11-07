@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Sep 28, 2016
-// Last updated:	Nov 01, 2016
+// Last updated:	Nov 06, 2016
 //
 //*******************************//
 
@@ -22,23 +22,18 @@
 
 class Level;
 
-class Camera 
-	//: public GameObject
+class Camera : public GameObject
 {
 public:
 	//Camera(Level* _level);
 	Camera();
-	Camera(const VEC3& pos, hFLOAT fov, hFLOAT aspect, hFLOAT zNear, hFLOAT zFar);
 	~Camera();
 
-	void Init(hINT scrWidth, hINT scrHeight);
-	void Update(const hFLOAT _deltaTime);
-	void ResetCamera();
-	void LookAt(VEC3& pos, VEC3& dir, VEC3& up);
 
-	inline void SetPos(const VEC3& newPos) {
-		_pos = newPos;
-	}
+	virtual void Update(const hFLOAT _deltaTime);
+
+
+
 	inline void SetUp(const VEC3& newUp) {
 		_up = newUp;
 	}
@@ -46,43 +41,42 @@ public:
 		_dir = newDir;
 	}
 
-	inline void SetScale(hFLOAT newScale) {
-		_scale = newScale;
+
+	inline GLuint GetViewLocation() const {
+		return _viewLocation;
+	}
+	inline GLuint GetProjLocation() const {
+		return _projectionLocation;
 	}
 
-	inline VEC3 GetCameraPos() const {
-		return _pos;
+
+
+	inline void SetViewLocation(const GLuint _view) {
+		_viewLocation = _view;
 	}
-	inline hFLOAT GetScale() const {
-		return _scale;
-	}
-	inline MATRIX4 GetCameraMatrix() const {
-		return _cameraMatrix;
+	inline void SetProjLocation(const GLuint _proj) {
+		_projectionLocation = _proj;
 	}
 
-	inline MATRIX4 GetViewProjection() const {
-		return _projectionMatrix * glm::lookAt(_pos, _dir, _up);
+
+
+
+	inline MATRIX4 GetViewMatrix() const {
+		return _viewMatrix;
 	}
 
-private:
-	VEC3 _dir,_up, _pos;
+	inline MATRIX4 GetProjectionMatrix() const {
+		return _projectionMatrix;
+	}
+
+protected:
+	VEC3 _dir, _up;
 
 	MATRIX4 _projectionMatrix;
-	MATRIX4 _cameraMatrix;
-	MATRIX4 _modelView;
+	MATRIX4 _viewMatrix;
 
-	hINT _screenWidth, _screenHeight;
-
-	hFLOAT _scale;
-	hBOOL _needsMatrixUpdate;
-
-	GLuint _cameraLocation;
+	GLuint _viewLocation;
 	GLuint _projectionLocation;
-
-
-	// Model View Projection 
-	MATRIX4 _MVPmat;
-	GLuint _mvpLoc; 
 };
 
 #endif

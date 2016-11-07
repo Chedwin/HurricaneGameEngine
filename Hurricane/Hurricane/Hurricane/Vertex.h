@@ -1,11 +1,11 @@
 //*******************************//
 //
 // Name:			Vertex.h
-// Description:		A basic description of the header goes here.
+// Description:		
 //
 // Author:			Edwin Chen
 // Created:			Oct 08, 2016
-// Last updated:	Oct 30, 2016
+// Last updated:	Nov 06, 2016
 //
 //*******************************//
 
@@ -17,6 +17,12 @@
 #include <glew.h>
 #include "Macro.h"
 
+/*
+The VertexComponentDescriptor describes one of the components in a vertex by specifying :
+	-the type of the component
+	-the size of the component in bytes
+	-the offset of the component from the start of the vertex
+*/
 class VertexComponentDescriptor {
 public:
 	enum VertexComponentType 
@@ -46,8 +52,20 @@ public:
 
 	hINT GetNumFloats();
 	hINT GetSize();
+
+	static STRING ComponentTypeToString(VertexComponentType typ);
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+* A VertexDescriptor describes the data layout for a complete vertex.  This describes
+* how the individual components are layed out in a vertex and can include the position
+* of the vertex, color, etc.
+*
+* Each component is described by a VertexComponentDescriptor and all of the components
+* in the vertex are described by a list of VertexComponentDescriptors.
+*/
 class VertexDescriptor
 {
 private:
@@ -57,10 +75,17 @@ private:
 
 public:
 	VertexDescriptor();
+	~VertexDescriptor() {}
+
+	VertexComponentDescriptor GetComponent(hINT index) const;
 
 	inline hINT GetStride() const {
 		return stride;
 	}
+	inline hINT GetSize() const {
+		return componentList.size();
+	}
+
 };
 
 struct Vertex 

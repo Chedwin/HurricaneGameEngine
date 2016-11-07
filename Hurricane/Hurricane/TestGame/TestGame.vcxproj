@@ -158,10 +158,12 @@
     <None Include="..\Pong\colourShading.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FPSCamera.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TestGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FPSCamera.h" />
     <ClInclude Include="TestGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

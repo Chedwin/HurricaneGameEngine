@@ -1,31 +1,13 @@
-﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppClean.targets(76,5): warning : The process cannot access the file 'd:\users\edwin\github\hurricanegameengine\hurricane\hurricane\debug\hurricane.lib' because it is being used by another process.
-  Window.cpp
-  Vertex.cpp
-  tinyxml2.cpp
-  Timer.cpp
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\timer.cpp(14): warning C4244: '=': conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\timer.cpp(19): warning C4244: '=': conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\timer.cpp(29): warning C4244: '=': conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\timer.cpp(37): warning C4244: '=': conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
-  ShaderProgramManager.cpp
-  ShaderProgram.cpp
-  SdlImage.cpp
-  PhysicsEngine.cpp
+﻿  GameObject.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(45): warning C4018: '<=': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(91): warning C4018: '<=': signed/unsigned mismatch
+  Generating Code...
+  Compiling...
   OpenGLRenderer.cpp
-  ModelManager.cpp
-  Model.cpp
   Level.cpp
   InputHandler.cpp
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\inputhandler.cpp(39): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\inputhandler.cpp(40): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
-  ImageManager.cpp
-  HurricaneProperties.cpp
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\hurricaneproperties.cpp(69): warning C4244: '=': conversion from 'int' to 'hFLOAT', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\hurricaneproperties.cpp(71): warning C4244: '=': conversion from 'int' to 'hFLOAT', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\hurricaneproperties.cpp(73): warning C4244: '=': conversion from 'int' to 'hFLOAT', possible loss of data
-  GameObject.cpp
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(58): warning C4018: '<=': signed/unsigned mismatch
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(104): warning C4018: '<=': signed/unsigned mismatch
   Game.cpp
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(49): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(50): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
@@ -36,16 +18,9 @@ d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(236): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(237): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
   Frustum.cpp
-  Debug.cpp
-  ControllerManager.cpp
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\controllermanager.cpp(24): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-  Compiling...
-  Controller.cpp
+  FlyCamera.cpp
   Component.cpp
-  Clock.cpp
   Camera.cpp
-  AudioEngine.cpp
   Generating Code...
 opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
 opengl32.lib(OPENGL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
