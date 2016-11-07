@@ -13,7 +13,9 @@ FlyCamera* FlyCamera::GetFlyCamera() {
 
 FlyCamera::FlyCamera() : Camera()
 {
-	GameObject::pos = VEC3(2, 1, -1);
+	gameObject = this; // remember to set the self pointer
+
+	gameObject->transform.position = VEC3(2, 1, -1);
 	horizontalAngle = 3.14f;
 	verticalAngle = 0.0f;
 	initialFOV = 60.0f;
@@ -34,10 +36,16 @@ void FlyCamera::Update(const hFLOAT _deltaTime)
 	VEC3 up(0.0f, 0.0f, 1.0f);
 
 	_projectionMatrix = glm::perspective(initialFOV, 1.0f, 0.1f, 100.0f);
-	_viewMatrix = glm::lookAt(GameObject::pos, VEC3(0, 0, 0), up);
+	_viewMatrix = glm::lookAt(gameObject->transform.position, VEC3(0, 0, 0), up);
 
 	glUniformMatrix4fv(_projectionLocation, 1, GL_FALSE, &_projectionMatrix[0][0]);
 	glUniformMatrix4fv(_viewLocation, 1, GL_FALSE, &_viewMatrix[0][0]);
+}
+
+
+void FlyCamera::Render() 
+{
+	// EMPTY	
 }
 
 void FlyCamera::MoveCamera(SDL_Event & _evnt)
@@ -46,12 +54,10 @@ void FlyCamera::MoveCamera(SDL_Event & _evnt)
 	case SDL_KEYDOWN:
 		switch (_evnt.key.keysym.sym) {
 		case SDLK_a:
-			GameObject::pos -= VEC3(0.3f, 0.3f, 0.0f);
-			Debug::ConsoleLog("Slide to the left");
+			gameObject->transform.position -= VEC3(0.3f, 0.3f, 0.0f);
 			break;
 		case SDLK_d:
-			GameObject::pos += VEC3(0.3f, 0.3f, 0.0f);
-			Debug::ConsoleLog("Slide to the right");
+			gameObject->transform.position += VEC3(0.3f, 0.3f, 0.0f);
 			break;
 		}
 	case SDL_KEYUP:

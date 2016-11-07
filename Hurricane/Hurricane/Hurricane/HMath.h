@@ -2,11 +2,11 @@
 //
 // Name:			HMath.h
 // Description:		A simple header that includes all the necessary GLM header files.
-//					All credit goes to Silicon Graphics or whoever
+//					All credit goes to Silicon Graphics Inc.
 //
 // Author:			Edwin Chen
 // Created:			Oct 08, 2016
-// Last updated:	Nov 02, 2016
+// Last updated:	Nov 07, 2016
 //
 //*******************************//
 
@@ -16,7 +16,6 @@
 #ifndef HMATH_H
 #define HMATH_H
 
-#include "Macro.h"
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 #include <gtc/quaternion.hpp>

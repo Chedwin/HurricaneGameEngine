@@ -16,11 +16,6 @@ public:
 
 
 public:
-	//VEC3 position;
-
-	//MATRIX4 viewMatrix;
-	//MATRIX4 projectionMatrix;
-
 	hFLOAT horizontalAngle, verticalAngle;
 	hFLOAT initialFOV;
 

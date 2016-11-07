@@ -45,6 +45,9 @@
 #include <memory>
 #include <algorithm>
 
+#include <cassert>
+#include <iterator>
+
 #include "PrimitiveTypes.h"
 
 //////// Macros /////////

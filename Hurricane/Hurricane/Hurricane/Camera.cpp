@@ -2,7 +2,7 @@
 
 Camera::Camera() : GameObject()
 {
-	// EMPTY
+	gameObject = this;
 }
 
 
@@ -16,4 +16,9 @@ Camera::~Camera()
 
 void Camera::Update(const hFLOAT _deltaTime)
 {
+}
+
+void Camera::Render() 
+{
+
 }

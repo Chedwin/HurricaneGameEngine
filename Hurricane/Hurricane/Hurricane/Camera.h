@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Sep 28, 2016
-// Last updated:	Nov 06, 2016
+// Last updated:	Nov 07, 2016
 //
 //*******************************//
 
@@ -16,6 +16,8 @@
 #include "HMath.h"
 #include "GameObject.h"
 #include "ShaderProgramManager.h"
+
+#include "Frustum.h"
 
 #ifndef CAMERA_H
 #define CAMERA_H
@@ -30,9 +32,12 @@ public:
 	~Camera();
 
 
-	virtual void Update(const hFLOAT _deltaTime);
+	virtual void Update(const hFLOAT _deltaTime) override;
+	virtual void Render() override;
 
-
+	inline void SetPostion(const VEC3& newPos) {
+		gameObject->transform.position = newPos;
+	}
 
 	inline void SetUp(const VEC3& newUp) {
 		_up = newUp;
@@ -71,6 +76,8 @@ public:
 
 protected:
 	VEC3 _dir, _up;
+
+	Frustum cameraFrustum;
 
 	MATRIX4 _projectionMatrix;
 	MATRIX4 _viewMatrix;
