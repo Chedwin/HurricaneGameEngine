@@ -35,7 +35,17 @@ public:
 		_imgName = name;
 	}
 
-	
+	inline hINT GetBitsPerPixels() const {
+		return _bitsPerPixel;
+	}
+
+	inline hINT GetWidth() const {
+		return _width;
+	}
+
+	inline hINT GetHeight() const {
+		return _height;
+	}
 
 protected:
 	//Initialize an empty image to the indicated size.
@@ -48,7 +58,7 @@ protected:
 	
 protected:
 	STRING _imgName;
-	
+	hINT _width, _height, _bitsPerPixel;
 };
 
 #endif

@@ -1,11 +1,15 @@
 //*******************************//
 //
 // Name:			GameObject.h
-// Description:		
+// Description:		Basic definition and implemenetation for a base game object.
+//					Note that it is possible to have an empty game object that can still interact with the game world.
+//					Components attached to them affect their behaviour in the game.			
 //
-// Author:			Edwin Chen, Mathieu Violette, James Sholdice, Nathan Senter
+// Author:			Edwin Chen
+// Special Thanks:  Mathieu Violette, James Sholdice, Nathan Senter
+//
 // Created:			Sep 30, 2016
-// Last updated:	Oct 29, 2016
+// Last updated:	Nov 06, 2016
 //
 //*******************************//
 
@@ -30,8 +34,9 @@ public:
 	virtual ~GameObject();
 
 
-	virtual void PreRender() {}
-	virtual void Render();
+	//virtual void PreRender() {}
+	//virtual void Render();
+
 	virtual void Update(const hFLOAT _deltaTime) {}
 
 
@@ -66,7 +71,9 @@ public:
 	hBOOL isEnabled;
 	Level* level;
 
-	GameObject* gameObject; // pointer to itself
+	// pointer to itself
+	// i.e. similiar to Unity's design
+	GameObject* gameObject; 
 
 	// Transform fields
 	VEC3 pos;

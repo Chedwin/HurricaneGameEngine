@@ -16,19 +16,6 @@
 GameObject::GameObject() : gameObject(this)
 {
 	SetEnabled(true);
-	
-	//glGenBuffers(2, buffer);
-	//glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	//glBindAttribLocation(program, 0, "vPosition");
-	//glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
-	//glEnableVertexAttribArray(0);
-
-	//glBindBuffer(GL_ARRAY_BUFFER, buffer[1]);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(colorData), colorData, GL_STATIC_DRAW);
-	//glBindAttribLocation(program, 1, "vertexColor");
-	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
-	//glEnableVertexAttribArray(1);
 }
 
 GameObject::~GameObject()
@@ -114,7 +101,7 @@ hBOOL GameObject::HasTag(const STRING& _tag)
 
 // RENDERING
 
-void GameObject::Render() 
-{
-
-}
+//void GameObject::Render() 
+//{
+//
+//}

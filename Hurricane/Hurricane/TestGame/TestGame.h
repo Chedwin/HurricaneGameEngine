@@ -5,6 +5,8 @@
 #include <Game.h>
 #include <ShaderProgram.h>
 
+#include "FPSCamera.h"
+
 class TestGame : public Game {
 public:
 	TestGame();
@@ -25,4 +27,6 @@ public:
 	GLuint location;
 	GLuint view_matrix_location;
 	GLuint projection_matrix_location;
+
+	FPSCamera* fpsCam;
 };
