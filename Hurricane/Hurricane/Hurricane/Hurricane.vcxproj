@@ -76,7 +76,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\Lua51\include;$(SolutionDir)\dependencies\OpenGL\include;$(SolutionDir)\dependencies\SDL\include;$(SolutionDir)\dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\glm;$(SolutionDir)dependencies\OpenGL\include;$(SolutionDir)dependencies\SDL\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -84,10 +84,10 @@
       <AdditionalDependencies>freeglut.lib;glew32.lib;opengl.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;lua51.lib;OpenAL32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;OpenAL32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;assimp.lib</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2_image\lib\x86;$(SolutionDir)\dependencies\OpenAL-1.1\libs\Win32;$(SolutionDir)\dependencies\Lua51\lib;$(SolutionDir)\dependencies\OpenGL\lib;$(SolutionDir)\dependencies\SDL\lib\x86;$(SolutionDir)\dependencies\bullet\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2_image\lib\x86;$(SolutionDir)\dependencies\OpenAL-1.1\libs\Win32;$(SolutionDir)\dependencies\OpenGL\lib;$(SolutionDir)\dependencies\SDL\lib\x86;$(SolutionDir)\dependencies\assimp\lib\Debug</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -111,7 +111,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\tinyxml\include;$(SolutionDir)\dependencies\Lua51\include;$(SolutionDir)\dependencies\OpenGL\include;$(SolutionDir)\dependencies\SDL\include;$(SolutionDir)\dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\glm;$(SolutionDir)dependencies\OpenGL\include;$(SolutionDir)dependencies\SDL\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -121,10 +121,10 @@
       <AdditionalDependencies>freeglut.lib;glew32.lib;opengl.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;freeglut.lib;lua51.lib;OpenAL32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;OpenAL32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;assimp.lib</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2_image\lib\x86;$(SolutionDir)\dependencies\OpenAL-1.1\libs\Win32;$(SolutionDir)\dependencies\Lua51\lib;$(SolutionDir)\dependencies\OpenGL\lib;$(SolutionDir)\dependencies\SDL\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2_image\lib\x86;$(SolutionDir)\dependencies\OpenAL-1.1\libs\Win32;$(SolutionDir)\dependencies\OpenGL\lib;$(SolutionDir)\dependencies\SDL\lib\x86;$(SolutionDir)\dependencies\assimp\lib\Debug</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -148,7 +148,8 @@
     <ClInclude Include="AudioEngine.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Clock.h" />
-    <ClInclude Include="Color.h" />
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="Colour.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="ControllerManager.h" />
@@ -157,10 +158,12 @@
     <ClInclude Include="EffectedModel.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="FlyCamera.h" />
+    <ClInclude Include="FPSCounter.h" />
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="Hurricane.h" />
     <ClInclude Include="HurricaneProperties.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageManager.h" />
@@ -196,14 +199,17 @@
     <ClCompile Include="AudioEngine.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Clock.cpp" />
+    <ClCompile Include="Colour.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="ControllerManager.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="FlyCamera.cpp" />
+    <ClCompile Include="FPSCounter.cpp" />
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Hurricane.cpp" />
     <ClCompile Include="HurricaneProperties.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="InputHandler.cpp" />
@@ -218,6 +224,7 @@
     <ClCompile Include="SdlImage.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="ShaderProgramManager.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Vertex.cpp" />

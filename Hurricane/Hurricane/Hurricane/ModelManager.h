@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 03, 2016
-// Last updated:	Oct 24, 2016
+// Last updated:	Nov 11, 2016
 //
 //*******************************//
 
@@ -18,10 +18,12 @@
 #include "ResourceManager.h"
 #include "Model.h"
 
-#define MODEL_MANAGER ModelManager::GetModelManager();
 
-class ModelManager 
-{
+#define MODEL_MANAGER ModelManager::GetModelManager();
+#define NUMBER_OF_BUFFERS 2
+
+
+class ModelManager {
 public:
 	ModelManager();
 	~ModelManager();
@@ -43,6 +45,8 @@ private:
 protected:
 	ResourceManager<Model> _modelResources;
 
+public:
+	GLuint Buffers[NUMBER_OF_BUFFERS];
 };
 
 #endif

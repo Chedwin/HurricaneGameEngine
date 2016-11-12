@@ -1,18 +1,32 @@
-﻿  FlyCamera.cpp
+﻿  Game.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(44): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(45): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(46): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(116): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(131): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(143): warning C4244: '=': conversion from 'Uint32' to 'hFLOAT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(220): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(221): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
+  Generating Code...
+  Compiling...
+  Vertex.cpp
+  OpenGLRenderer.cpp
+  ModelManager.cpp
+  Model.cpp
+  MaterialEffect.cpp
+  InputHandler.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\inputhandler.cpp(39): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\inputhandler.cpp(40): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
+  Hurricane.cpp
+  Generating Code...
 opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
 opengl32.lib(OPENGL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-lua51.lib(lua51.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-lua51.lib(lua51.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
 OpenAL32.lib(OpenAL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
 OpenAL32.lib(OpenAL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
 SDL2.lib(SDL2.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
 SDL2.lib(SDL2.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
 SDL2_image.lib(SDL2_image.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
 SDL2_image.lib(SDL2_image.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-  BulletDynamics.lib(btKinematicCharacterController.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
-opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-lua51.lib(lua51.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-OpenAL32.lib(OpenAL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-SDL2.lib(SDL2.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-SDL2_image.lib(SDL2_image.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+assimp.lib(Assimp32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+assimp.lib(Assimp32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
   Hurricane.vcxproj -> D:\Users\edwin\GitHub\HurricaneGameEngine\Hurricane\Hurricane\Debug\Hurricane.lib

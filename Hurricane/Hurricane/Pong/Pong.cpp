@@ -4,8 +4,6 @@
 Pong::Pong()
 {
 	_gameInstance = this;
-	box = nullptr;
-	player = nullptr;
 	pongCam = nullptr;
 }
 
@@ -14,8 +12,6 @@ Pong::~Pong()
 	glDeleteBuffers(2, Buffers);
 
 	_shaderProgram->UnuseShader();
-	delete box;
-	box = nullptr;
 }
 
 enum VAO_IDs { Triangles, NumVAOs };
@@ -64,8 +60,8 @@ hBOOL Pong::InitGame()
 	// CREATE THE SHADERS
 	_shaderProgram = new ShaderProgram();
 	_shaderProgram->CompileShaders("colourShading.vert", "colourShading.frag");
-	//_shaderProgram->AddAttribute("vertexPosition");
-	//_shaderProgram->AddAttribute("vertexColor");
+	_shaderProgram->AddAttribute("vertexPosition");
+	_shaderProgram->AddAttribute("vertexColor");
 	_shaderProgram->LinkShaders();
 
 
@@ -330,13 +326,13 @@ hBOOL Pong::InitGame()
 	glGenBuffers(2, Buffers);
 	glBindBuffer(GL_ARRAY_BUFFER, Buffers[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	glBindAttribLocation(_shaderProgram->GetProgramID(), 0, "vertexPosition");
+	//glBindAttribLocation(_shaderProgram->GetProgramID(), 0, "vertexPosition");
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
 
 	glBindBuffer(GL_ARRAY_BUFFER, Buffers[1]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(colorData), colorData, GL_STATIC_DRAW);
-	glBindAttribLocation(_shaderProgram->GetProgramID(), 1, "vertexColor");
+	//glBindAttribLocation(_shaderProgram->GetProgramID(), 1, "vertexColor");
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(1);
 

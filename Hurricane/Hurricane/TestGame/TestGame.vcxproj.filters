@@ -18,17 +18,16 @@
     <Xml Include="properties.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Pong\colourShading.vert" />
-    <None Include="..\Pong\colourShading.frag" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TestGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FPSCamera.cpp">
+    <ClCompile Include="NewGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -36,7 +35,10 @@
     <ClInclude Include="TestGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FPSCamera.h">
+    <ClInclude Include="NewGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

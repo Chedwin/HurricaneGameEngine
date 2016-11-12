@@ -39,6 +39,11 @@ void Debug::ConsoleLog(const STRING& notes) {
 	COUT << notes << ENDL;
 }
 
+void Debug::ConsoleLog(const hFLOAT _f) {
+	COUT << _f << ENDL;
+}
+
+
 void Debug::ConsoleError(const STRING& error) {
 	CERR << "ERROR: " << error << ENDL;
 }

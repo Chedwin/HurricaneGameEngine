@@ -19,8 +19,8 @@
 #include "AbstractRenderer.h"
 #include "Window.h"
 
-//#include "ShaderProgramManager.h"
-//#include "ImageManager.h"
+#include "ShaderProgramManager.h"
+#include "ImageManager.h"
 //#include "HMath.h"
 
 class OpenGLRenderer : public AbstractRenderer {

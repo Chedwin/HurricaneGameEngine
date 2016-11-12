@@ -14,8 +14,7 @@
 #include <Macro.h>
 #include <Game.h>
 #include <InputHandler.h>
-#include "PlayerPaddle.h"
-#include "Box.h"
+
 
 #ifndef PONG_H
 #define PONG_H
@@ -44,9 +43,6 @@ public:
 
 
 	GLuint _shaderLocation;
-
-	PlayerPaddle* player;
-	Box* box;
 };
 
 #endif

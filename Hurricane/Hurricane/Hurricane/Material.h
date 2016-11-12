@@ -15,7 +15,7 @@
 
 #include "Macro.h"
 #include "HMath.h"
-#include "Color.h"
+#include "Colour.h"
 #include "Texture.h"
 
 
@@ -33,7 +33,7 @@ public:
 	}
 
 public:
-	Color ambient, diffuse, specular, emissive;
+	Colour ambient, diffuse, specular, emissive;
 	hFLOAT specCoefficient;
 
 	VECTOR(Texture) texturesList;

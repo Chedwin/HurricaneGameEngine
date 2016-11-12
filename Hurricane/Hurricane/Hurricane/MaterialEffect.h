@@ -19,7 +19,7 @@
 
 class MaterialEffect : public Effect {
 public:
-	MaterialEffect();
+	MaterialEffect(Model* _model, const STRING& _matName);
 	~MaterialEffect();
 
 	void ApplyEffect(AbstractRenderer &renderer);

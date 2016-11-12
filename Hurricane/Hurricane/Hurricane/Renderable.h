@@ -1,28 +1,37 @@
 //*******************************//
 //
 // Name:			Renderable.h
-// Description:		A basic description of the header goes here.
+// Description:		
 //
 // Author:			Edwin Chen
 // Created:			Oct 29, 2016
-// Last updated:	Oct 29, 2016
+// Last updated:	Nov 11, 2016
 //
 //*******************************//
 
-#pragma once
 
 #include "Macro.h"
-#include "Vertex.h"
+#include "HMath.h"
 
 #ifndef RENDERABLE_H
 #define RENDERABLE_H
 
-class Renderable {
-public:
+struct Renderable
+{
+	struct Mesh
+	{
+		VECTOR(VEC3) vertex;
+		VECTOR(hUINT) edge;
+		VECTOR(hUINT) face;
+		VECTOR(VEC3) normal;
+		VECTOR(VEC3) faceNormal;
+		VECTOR(VEC2) textureMap;
+
+		hUINT offsetVertex;
+	};
+
 	Renderable() {}
 	~Renderable() {}
-
-	
 };
 
 #endif

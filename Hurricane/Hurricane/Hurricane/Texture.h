@@ -5,15 +5,12 @@
 //
 // Author:			Edwin Chen
 // Created:			Nov 06, 2016
-// Last updated:	Nov 06, 2016
+// Last updated:	Nov 11, 2016
 //
 //*******************************//
 
-#pragma once
-
-
-#ifndef CLASS_NAME_H
-#define CLASS_NAME_H
+#ifndef TEXTURE_H
+#define TEXTURE_H
 
 #include <glew.h>
 #include "Macro.h"
@@ -21,8 +18,13 @@
 
 class Texture {
 public:
-	Texture() {}
-	~Texture() {}
+
+	enum TextureDataType {
+		Float, UnsignedByte, UnsignedByte_3D
+	};
+
+	Texture(SdlImage* img, const STRING& name, const STRING& id);
+	~Texture();
 
 	inline STRING GetResourceName() const {
 		return resourceName;
@@ -39,6 +41,7 @@ public:
 	hINT width, height;
 
 	SdlImage* imageTexture;
+	TextureDataType dataType;
 };
 
 #endif

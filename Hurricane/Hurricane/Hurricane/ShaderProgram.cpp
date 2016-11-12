@@ -3,14 +3,15 @@
 
 
 
-ShaderProgram::ShaderProgram() : _vertexShaderID(0), _fragmentShaderID(0), _numAttributes(0), _programID(0)
+ShaderProgram::ShaderProgram(const STRING& _progName) 
+	: _vertexShaderID(0), _fragmentShaderID(0), _numAttributes(0), _programID(0), _programName(_progName)
 {
 	// EMPTY
 }
 
 ShaderProgram::~ShaderProgram()
 {
-	// EMPTY
+	glDeleteProgram(_programID);
 }
 
 
@@ -69,6 +70,7 @@ hBOOL ShaderProgram::CompileShaders(const STRING & verPath, const STRING & fragP
 	if (_programID == 0) {
 		_programID = glCreateProgram();
 	}
+
 	_vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	if (_vertexShaderID == 0) {
 		Debug::ConsoleError("VERTEX SHADER FAILED TO COMPILE", __FILE__, __LINE__);

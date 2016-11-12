@@ -5,18 +5,20 @@
 //
 // Author:			Edwin Chen
 // Created:			Nov 07, 2016
-// Last updated:	Nov 07, 2016
+// Last updated:	Nov 11, 2016
 //
 //*******************************//
 
 #ifndef MATERIAL_MANAGER_H
 #define MATERIAL_MANAGER_H
 
+#include <glew.h>
 #include "Macro.h"
 #include "ResourceManager.h"
 #include "Material.h"
 
 #define MATERIAL_MANAGER MaterialManager::GetMaterialManager()
+
 
 class MaterialManager {
 protected:
@@ -36,6 +38,8 @@ protected:
 	friend DEFAULT_DELETE(MaterialManager);
 
 	ResourceManager<Material> _materialResources;
+
+	
 };
 
 #endif
