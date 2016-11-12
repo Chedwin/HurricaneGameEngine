@@ -1,6 +1,6 @@
 #include "Texture.h"
 
-Texture::Texture(SdlImage* img, const STRING& name, const STRING& id)
+Texture::Texture(SdlImage* img, const STRING& name)
 	: imageTexture(img), resourceName(name)
 {
 	if (imageTexture) {

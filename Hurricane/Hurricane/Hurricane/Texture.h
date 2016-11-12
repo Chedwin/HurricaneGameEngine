@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Nov 06, 2016
-// Last updated:	Nov 11, 2016
+// Last updated:	Nov 12, 2016
 //
 //*******************************//
 
@@ -23,7 +23,7 @@ public:
 		Float, UnsignedByte, UnsignedByte_3D
 	};
 
-	Texture(SdlImage* img, const STRING& name, const STRING& id);
+	Texture(SdlImage* img, const STRING& name);
 	~Texture();
 
 	inline STRING GetResourceName() const {

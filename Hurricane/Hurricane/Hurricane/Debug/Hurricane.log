@@ -1,26 +1,17 @@
-﻿  SdlImage.cpp
+﻿  Texture.cpp
+  SdlImage.cpp
+  OpenGLRenderer.cpp
   Generating Code...
   Compiling...
-  Texture.cpp
-  OpenGLRenderer.cpp
   MaterialManager.cpp
   MaterialEffect.cpp
   Material.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
   InputHandler.cpp
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\inputhandler.cpp(39): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\inputhandler.cpp(40): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
   ImageManager.cpp
   Hurricane.cpp
   Game.cpp
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(44): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(45): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(46): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(116): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(131): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(143): warning C4244: '=': conversion from 'Uint32' to 'hFLOAT', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(220): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(221): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
-  Generating Code...
 opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
 opengl32.lib(OPENGL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
 OpenAL32.lib(OpenAL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored

@@ -100,6 +100,7 @@ hBOOL SdlImage::Init(const STRING & filePath)
 	{
 		Debug::ConsoleError("Pixel Format not recognized for GL display");
 		throw std::logic_error("Pixel Format not recognized for GL display");
+
 		return false;
 	}
 
