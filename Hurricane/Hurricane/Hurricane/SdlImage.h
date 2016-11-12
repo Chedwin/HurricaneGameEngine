@@ -30,10 +30,11 @@ public:
 
 	void SetPixel(hINT x, hINT y, hFLOAT r, hFLOAT g, hFLOAT b);
 
+	void* GetPixels() const;
+
 	inline SDL_Surface* GetImageSurface() const {
 		return _surface;
 	}
-
 
 
 	inline GLenum GetPixelType() {

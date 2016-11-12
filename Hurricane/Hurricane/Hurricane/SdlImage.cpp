@@ -134,3 +134,12 @@ void SdlImage::SetPixel(hINT x, hINT y, hFLOAT r, hFLOAT g, hFLOAT b)
 	pixels[startpos + 1] = (Uint32)g * 255; // green
 	pixels[startpos + 2] = (Uint32)b * 255; // blue
 }
+
+void* SdlImage::GetPixels() const
+{
+	if (!_surface) {
+		Debug::ConsoleError("No surface is avaible for this image");
+		return nullptr;
+	}
+	return _surface->pixels;
+}

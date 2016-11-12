@@ -5,9 +5,9 @@ layout(location = 1) in vec4 vertexColor;
 layout(location = 2) in vec2 vertexUV;
 
 
-uniform mat4 model_matrix; // TRANSFORMATION MATRIX
-uniform mat4 view_matrix; // CAMERA
-uniform mat4 projection_matrix; // PROJECTION MATRIX
+uniform mat4 model_matrix; 		 // TRANSFORMATION MATRIX
+uniform mat4 view_matrix; 		 // CAMERA
+uniform mat4 projection_matrix;  // PROJECTION MATRIX
 
 
 out vec4 myColor;

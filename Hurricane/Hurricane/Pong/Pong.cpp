@@ -59,7 +59,7 @@ hBOOL Pong::InitGame()
 {
 	// CREATE THE SHADERS
 	_shaderProgram = new ShaderProgram();
-	_shaderProgram->CompileShaders("colourShading.vert", "colourShading.frag");
+	_shaderProgram->CompileShaders("../shaders/pong.vert", "../shaders/pong.frag");
 	_shaderProgram->AddAttribute("vertexPosition");
 	_shaderProgram->AddAttribute("vertexColor");
 	_shaderProgram->LinkShaders();

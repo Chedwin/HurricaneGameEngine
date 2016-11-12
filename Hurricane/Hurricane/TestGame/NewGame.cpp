@@ -48,7 +48,7 @@ hBOOL NewGame::InitGame()
 	SHADER_MANAGER->StoreShaderProg(cubeShader->GetProgramName(), cubeShader);
 
 	
-	appleImage = new SdlImage("apple.png", "ApplePicture");
+	SdlImage* appleImage = new SdlImage("textures/res_texture.png", "ApplePicture");
 
 
 	IMAGE_MANAGER->UploadImage(appleImage->GetName(), appleImage);
@@ -72,7 +72,7 @@ hBOOL NewGame::InitGame()
 	glGenTextures(1, texture);
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, appleImage->GetWidth(), appleImage->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, appleImage->GetImageSurface()->pixels);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, appleImage->GetWidth(), appleImage->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, appleImage->GetPixels());
 
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
