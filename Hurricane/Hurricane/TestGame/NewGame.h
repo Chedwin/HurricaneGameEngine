@@ -28,7 +28,6 @@ public:
 	GLuint view_matrix_location;
 	GLuint projection_matrix_location;
 
-	SdlImage* appleImage;
 	Box* box;
 	Box* box2;
 };

@@ -28,6 +28,7 @@ public:
 
 	virtual ~Image() {}
 
+	virtual void* GetPixels() const = 0;
 
 	inline STRING GetName() const {
 		return _imgName;
