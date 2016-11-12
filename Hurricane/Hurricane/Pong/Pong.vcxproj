@@ -89,11 +89,6 @@
       <SubType>Designer</SubType>
     </Xml>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="basicVertex.vert" />
-    <None Include="colourShading.frag" />
-    <None Include="colourShading.vert" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

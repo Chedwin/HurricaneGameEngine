@@ -1,12 +1,12 @@
 // 3rd Party Static lib list
 glew32.lib
 opengl32.lib
-freeglut.lib
 lua51.lib
 OpenAL32.lib
 SDL2.lib
 SDL2main.lib
 SDL2_image.lib
+assimp.lib
 
 
 
@@ -27,3 +27,6 @@ $(SolutionDir)dependencies\SDL2_image\lib\x86
 
 // Bullet physics
 $(SolutionDir)\dependencies\bullet\lib
+
+// Assimp
+$(SolutionDir)\dependencies\assimp\lib\Debug

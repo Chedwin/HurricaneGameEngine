@@ -1,6 +1,7 @@
 Welcome to Hurricane!
 
 Primary Author: Edwin Chen
+
 Special Thanks: Scott Fielder
 				Mathieu Violette
 				James Sholdice
@@ -9,6 +10,9 @@ Special Thanks: Scott Fielder
 				Raymond Micheau
 				Mark Seaman
 				Rob Spongale
+				Aiden Dearing
+				Domenic Caronzo
+				Kris Alexander
 
 Introduction:
 This is my first ever game engine. It is mainly focused on building 3rd person platformer-like games.
@@ -25,11 +29,11 @@ SDL2					- Window creation, event handling
 SDL2 Image				- Texture loading, rendering
 OpenGL (GLEW)			- Graphics
 OpenAL					- Audio
-Bullet					- Physics and collision detection
+Bullet					- Physics and collision detection (could possibly be removed)
 Lua Script				- Scripting, only to be used in game engine class at Humber College
 
 
 
 
 Date Created: Jan 20, 2016
-Last Updated: Nov 07, 2016
+Last Updated: Nov 11, 2016

@@ -2,18 +2,20 @@
 #include "Debug.h"
 
 
-SdlImage::SdlImage(hINT _width, hINT _height) 
-	: Image(_width, _height), 
+SdlImage::SdlImage(hINT _width, hINT _height, const STRING& _name)
+	: Image(_width, _height),
 	_surface(nullptr)
 {
+	Image::SetName(_name);
 	Init(_width, _height);
 }
 
 
-SdlImage::SdlImage(const STRING& _filePath)
-	: Image(_filePath),
+SdlImage::SdlImage(const STRING& _filePath, const STRING& _name)
+	: Image(_filePath), 
 	_surface(nullptr)
 {
+	Image::SetName(_name);
 	Init(_filePath);
 }
 

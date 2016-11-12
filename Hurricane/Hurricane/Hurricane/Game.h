@@ -52,6 +52,8 @@ public:
 
 protected:
 	explicit Game();
+
+	// NOTE: Derived destructors of this class will be called BEFORE this base Game destructor
 	virtual ~Game();
 
 	hBOOL InitEngine();
@@ -114,14 +116,7 @@ public:
 	Window* gameWindow;
 	AbstractRenderer* renderer;
 
-	HurricaneProperties* properties;
-	InputHandler* input;
-	AudioEngine* audio;
-
-	PhysicsEngine* physicsEngine;
-	//Level* currentLevel;
-
-	
+	//Level* currentLevel;	
 };
 
 #endif

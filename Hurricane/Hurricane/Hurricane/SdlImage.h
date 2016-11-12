@@ -23,8 +23,8 @@
 class SdlImage : public Image
 {
 public:
-	SdlImage(hINT _width, hINT _height);
-	SdlImage(const STRING& _filePath);
+	SdlImage(hINT _width, hINT _height, const STRING& _name = "");
+	SdlImage(const STRING& _filePath, const STRING& _name = "");
 
 	~SdlImage();
 
@@ -60,7 +60,7 @@ typedef struct SDL_Surface {
 */
 	SDL_Surface* _surface;
 	GLenum _colourFormat;
-
+	
 protected:
 	hBOOL Init(hINT width, hINT height);
 	hBOOL Init(const STRING& filePath);

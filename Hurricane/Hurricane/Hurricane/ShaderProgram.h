@@ -1,29 +1,37 @@
 //*******************************//
 //
 // Name:			ShaderProgram.h
-// Description:		A basic description of the header goes here.
+// Description:		
 //
 // Author:			Edwin Chen
 // Created:			Sep 30, 2016
-// Last updated:	Oct 14, 2016
+// Last updated:	Nov 11, 2016
 //
 //*******************************//
 
-#pragma once
+
+#ifndef SHADER_PROGRAM_H
+#define SHADER_PROGRAM_H
+
 
 #include <glew.h>
 #include "Macro.h"
 #include "ResourceManager.h"
 #include "ShaderComponent.h"
 
-#ifndef SHADER_PROGRAM_H
-#define SHADER_PROGRAM_H
+enum Attribute_Type
+{
+	VERTEX_ATTRIBUTE  = 0, 
+	TEXTURE_ATTRIBUTE = 1, 
+	NORMAL_ATTRIBUTE  = 2
+};
+
 
 class ShaderProgram {
 private:
 	hBOOL CompileShader(const STRING& filePath, GLuint id);
 public:
-	ShaderProgram();
+	ShaderProgram(const STRING& _progName="");
 	~ShaderProgram();
 
 	hBOOL CompileShaders(const STRING& verPath, const STRING& fragPath);
@@ -50,12 +58,7 @@ private:
 	hINT _numAttributes;
 	GLuint _programID, _vertexShaderID, _fragmentShaderID;
 
-
-
 	STRING _programName;
-
-	ResourceManager<ShaderVariable> _vertexVariables;
-	ResourceManager<ShaderVariable> _fragmentVariables;
 };
 
 #endif

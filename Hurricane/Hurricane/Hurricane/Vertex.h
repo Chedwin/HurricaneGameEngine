@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 08, 2016
-// Last updated:	Nov 06, 2016
+// Last updated:	Nov 11, 2016
 //
 //*******************************//
 
@@ -16,6 +16,7 @@
 
 #include <glew.h>
 #include "Macro.h"
+#include "HMath.h"
 
 /*
 The VertexComponentDescriptor describes one of the components in a vertex by specifying :
@@ -88,21 +89,47 @@ public:
 
 };
 
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+struct Position 
+{
+	hFLOAT x, y, z;
+};
+
+struct Color 
+{
+	GLubyte r, g, b, a;
+};
+struct UV
+{
+	hFLOAT u, v;
+};
+
+
 struct Vertex 
 {
-
-	struct Position 
-	{
-		hFLOAT x, y, z;
-	};
-
-	struct Colour 
-	{
-		GLubyte red, blue, green, alpha;
-	};
-
 	Position pos;
-	Colour col;
+	Color col;
+	UV uv;
+
+	inline void SetPosition(const hFLOAT _x, const hFLOAT _y, const hFLOAT _z) {
+		pos.x = _x;
+		pos.y = _y;
+		pos.z = _z;
+	}
+
+	inline void SetColour(const GLubyte red, const GLubyte green, const GLubyte blue, const GLubyte alpha) {
+		col.r = red;
+		col.g = green;
+		col.b = blue;
+		col.a = alpha;
+	}
+
+	inline void SetUV(const hFLOAT _u, const hFLOAT _v) {
+		uv.u = _u;
+		uv.v = _v;
+	}
 };
 
 #endif

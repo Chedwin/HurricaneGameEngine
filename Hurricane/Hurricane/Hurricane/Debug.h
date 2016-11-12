@@ -6,7 +6,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Jan 31, 2016
-// Last updated:	Nov 04, 2016
+// Last updated:	Nov 11, 2016
 //
 //*******************************//
 
@@ -37,7 +37,9 @@ public:
 
 	static void Init();
 	static void Log(const EMessageType MsgType, const STRING& Class, const STRING& Method, const STRING& timestamp, const STRING& file, const int& line, const STRING& comments);
+
 	static void ConsoleLog(const STRING& notes);
+	static void ConsoleLog(const hFLOAT _f);
 
 	static void ConsoleError(const STRING& error);
 	static void ConsoleError(const STRING& error, const STRING& file, const hINT line);

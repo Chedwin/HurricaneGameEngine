@@ -1,6 +1,10 @@
 #include "PhysicsEngine.h"
+#include "Debug.h"
 
+// Static fields
 UNIQUE_PTR(PhysicsEngine) PhysicsEngine::_physicsEngine = nullptr;
+hBOOL PhysicsEngine::isPhysicsRunning = false;
+
 
 PhysicsEngine * PhysicsEngine::GetPhysicsEngine()
 {
@@ -10,18 +14,26 @@ PhysicsEngine * PhysicsEngine::GetPhysicsEngine()
 	return _physicsEngine.get();
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////
 PhysicsEngine::PhysicsEngine()
 {
+	// Init the gravity 
+	gravity = GRAVITY;
+	isPhysicsRunning = true;
 }
 
 PhysicsEngine::~PhysicsEngine()
 {
+	// EMPTY
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////
 void PhysicsEngine::FixedUpdate(const hFLOAT _timeStep) 
 {
-	//COUT << _timeStep << ENDL;
+	lastTimeStep = _timeStep;
+
+	if (isPhysicsRunning) 
+	{
+		// TODO: Collision Response
+	}
 }

@@ -1,14 +1,11 @@
 #include "Game.h"
 #include "OpenGLRenderer.h"
-//#include "ModelManager.h"
-
+#include "Hurricane.h"
 
 Game* Game::_gameInstance(nullptr);
 
-Game* Game::GetGameInstance()
-{
-	if (!_gameInstance)
-	{
+Game* Game::GetGameInstance() {
+	if (!_gameInstance) {
 		_gameInstance = new Game();
 	}
 	return _gameInstance;
@@ -16,8 +13,6 @@ Game* Game::GetGameInstance()
 
 Game::Game() :
 	_isRunning(true), gameWindow(nullptr),
-	//properties(nullptr), input(nullptr), renderer(nullptr),
-	//currentLevel(nullptr), levelToLoad(nullptr),
 	fps(0.0f), timeSinceLastUpdate(0.0f)
 {
 	// EMPTY
@@ -154,29 +149,18 @@ void Game::GameLoop()
 			//INPUT->ProcessInput(evnt);
 			GameInput(evnt); // force the input to the game for now.....
 
+			if (evnt.type == SDL_KEYDOWN) {
+				switch (evnt.key.keysym.sym) {
+				case SDLK_ESCAPE:
+					// exit by pressing the "esc" key
+					QuitWindowPrompt();
+					break;
+				}
+			}
+
 			switch (evnt.type) {
-			case SDL_QUIT:
-				const SDL_MessageBoxButtonData buttons[] = {
-					{ 0, 0, "Cancel" }, // (flags, buttonid, text)
-					{ SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 1, "Yes" }
-				};
-
-				const SDL_MessageBoxData messageboxdata = {
-					SDL_MESSAGEBOX_INFORMATION, // flags
-					NULL, // window
-					"Quit", // window title
-					"Are you sure you want to quit?", // message
-					SDL_arraysize(buttons), // num of buttons
-					buttons // buttons
-				};
-
-				hINT buttonid;
-				if (SDL_ShowMessageBox(&messageboxdata, &buttonid) < 0) {
-					SDL_Log("error displaying message box");
-				}
-				if (buttonid == 1) {
-					_isRunning = false;
-				}
+			case SDL_EventType::SDL_QUIT:
+				QuitWindowPrompt();
 				break;
 			}
 		}

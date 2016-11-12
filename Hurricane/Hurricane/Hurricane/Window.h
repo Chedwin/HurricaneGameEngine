@@ -53,8 +53,8 @@ public:
 	}
 
 private:
-	bool isInitialized;
-	bool isFullScreen;
+	hBOOL _isInitialized;
+	hBOOL isFullScreen;
 
 private:
 	SDL_GLContext _glContext;
@@ -63,8 +63,6 @@ private:
 
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;
-
-
 };
 
 

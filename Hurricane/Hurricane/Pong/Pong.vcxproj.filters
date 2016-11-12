@@ -51,9 +51,4 @@
   <ItemGroup>
     <Xml Include="properties.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="colourShading.vert" />
-    <None Include="colourShading.frag" />
-    <None Include="basicVertex.vert" />
-  </ItemGroup>
 </Project>

@@ -16,11 +16,11 @@ Window::~Window() {
 
 hBOOL Window::Init(const hINT _w, const hINT _h, const UINT32 flags)
 {
-	isInitialized = false;
+	_isInitialized = false;
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		Debug::Log(EMessageType::FATAL_ERR, "Window", "OnCreate", __TIMESTAMP__, __FILE__, __LINE__, std::string(SDL_GetError()));
-		return isInitialized;
+		return _isInitialized;
 	}
 
 	SetWindowSize(_w, _h);
@@ -29,12 +29,12 @@ hBOOL Window::Init(const hINT _w, const hINT _h, const UINT32 flags)
 
 	if (_window == nullptr) {
 		Debug::ConsoleError("SDL WINDOW CANNOT BE INITIALIZED", __FILE__, __LINE__);
-		return isInitialized;
+		return _isInitialized;
 	}
 
 	if (!_renderer) {
 		Debug::ConsoleError("SDL RENDERER CANNOT BE INITIALIZED", __FILE__, __LINE__);
-		return isInitialized;
+		return _isInitialized;
 	}
 
 	//Set up our OpenGL context
@@ -54,10 +54,10 @@ hBOOL Window::Init(const hINT _w, const hINT _h, const UINT32 flags)
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-	//SDL_GL_SetSwapInterval(1);
+	SDL_GL_SetSwapInterval(1);
 
-	isInitialized = true;
-	return isInitialized;
+	_isInitialized = true;
+	return _isInitialized;
 }
 
 void Window::Destroy()
@@ -66,7 +66,7 @@ void Window::Destroy()
 	SDL_GL_DeleteContext(_glContext);
 	_window = nullptr;
 	_glContext = nullptr;
-	isInitialized = false;
+	_isInitialized = false;
 }
 
 void Window::SetWindowSize(const hINT wid, const hINT hgt) {

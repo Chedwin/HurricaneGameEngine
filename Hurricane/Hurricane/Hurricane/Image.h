@@ -11,21 +11,23 @@
 
 #pragma once
 
-#include "Macro.h"
 
 #ifndef IMAGE_H
 #define IMAGE_H
+
+#include "Macro.h"
 
 class Image 
 {
 public:
 	// Create empty image with specified size
-	Image(hINT _width, hINT _height) {}
+	Image(hINT _width, hINT _height, const STRING& _name="")  : _imgName(_name) {}
 
 	// Get image from filepath
-	Image(const STRING& _filePath) {}
+	Image(const STRING& _filePath, const STRING& _name = "") : _imgName(_name) {}
 
 	virtual ~Image() {}
+
 
 	inline STRING GetName() const {
 		return _imgName;
