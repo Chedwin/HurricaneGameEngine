@@ -22,7 +22,7 @@ public:
 
 public:
 	ShaderProgram* cubeShader;
-	GLuint buffers[3];
+	//GLuint buffers[3];
 
 	GLuint location;
 	GLuint view_matrix_location;

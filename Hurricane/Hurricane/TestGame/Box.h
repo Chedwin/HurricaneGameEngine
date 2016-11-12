@@ -3,6 +3,7 @@
 #include <glew.h>
 #include <Macro.h>
 #include <GameObject.h>
+#include <Texture.h>
 
 class Box : public GameObject {
 public:
@@ -11,5 +12,7 @@ public:
 
 	void Render() override;
 
-	GLuint buffers[2];
+	GLuint buffers[3];
+	Texture* myCubeTexture;
+	GLuint texture[1];
 };

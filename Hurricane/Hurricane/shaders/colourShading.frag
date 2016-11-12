@@ -13,7 +13,7 @@ void main(void)
 	vec4 textureColor = texture2D(mySampler, fragmentUV); // myColor;
 
 	fColor= textureColor * myColor;
-
+xcxcxcxcxcx
 	//fColor = myColor + vec4(1.0 * (cos(myTime)+1.0) * 0.5, 1.0 * (cos(myTime)+2.0) * 0.5, 1.0 * (sin(myTime)+1.0) * 0.5, 1.0f);
 	
 }
