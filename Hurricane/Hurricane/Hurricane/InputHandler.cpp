@@ -38,8 +38,6 @@ void InputHandler::ProcessInput(SDL_Event& _evnt)
 	case SDL_MOUSEMOTION:
 		mousePos.x = _evnt.motion.x;
 		mousePos.y = _evnt.motion.y;
-		//COUT << "x: " << mousePos.x << " ";
-		//COUT << "y: " << mousePos.y << ENDL;
 		break;
 	
 	// mouse buttons

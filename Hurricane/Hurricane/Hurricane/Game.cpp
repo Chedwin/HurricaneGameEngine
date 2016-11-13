@@ -37,13 +37,15 @@ hBOOL Game::InitEngine()
 	gameTimer->Start();
 
 	// PROPERTIES
-	hINT width = H_PROPERTIES->GetVideoProperties()->screenWidth;
-	hINT height = H_PROPERTIES->GetVideoProperties()->screenHeight;
-	hUINT fullscreen = H_PROPERTIES->GetVideoProperties()->fullScreen;
+	hProperties = H_PROPERTIES;
 
-	hINT master = H_PROPERTIES->GetAudioProperties()->masterVolume;
-	hINT music = H_PROPERTIES->GetAudioProperties()->musicVolume;
-	hINT sound = H_PROPERTIES->GetAudioProperties()->soundVolume;
+	hINT width = hProperties->GetVideoProperties()->screenWidth;
+	hINT height = hProperties->GetVideoProperties()->screenHeight;
+	hUINT fullscreen = hProperties->GetVideoProperties()->fullScreen;
+
+	hINT master = hProperties->GetAudioProperties()->masterVolume;
+	hINT music = hProperties->GetAudioProperties()->musicVolume;
+	hINT sound = hProperties->GetAudioProperties()->soundVolume;
 
 	// WINDOW
 	gameWindow = new Window();
@@ -52,6 +54,9 @@ hBOOL Game::InitEngine()
 	if (fullscreen) {
 		SDL_SetWindowFullscreen(gameWindow->GetWindow(), SDL_WINDOW_FULLSCREEN);
 	}
+
+	// AUDIO
+	audio = AUDIO;
 
 
 	// OPENGL RENDERER
@@ -80,7 +85,7 @@ void Game::DestroySystems()
 //{
 //	//currentLevel = _level;
 //	//currentLevel->InitLevel();
-//	return true;
+//	return true;s
 //}
 
 
@@ -105,6 +110,8 @@ void Game::Run()
 		GameLoop();
 	}
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Game::GameLoop()
 {
@@ -137,7 +144,7 @@ void Game::GameLoop()
 		timeSinceLastUpdate = SDL_GetTicks() - lastUpdateTime;
 
 		// This is the timestep variable we'll use to 
-		hFLOAT deltaTime = timeSinceLastUpdate / 1000.0f;
+		_deltaTime = timeSinceLastUpdate / 1000.0f;
 
 		// Set the last update time w/ ticks from "this" iteration of the game loop
 		lastUpdateTime = SDL_GetTicks();
@@ -168,16 +175,18 @@ void Game::GameLoop()
 
 
 		// PASS OUR DELTA TIME TO OUR PHYSICS ENGINE
-		PHYSICS->FixedUpdate(deltaTime);
+		PHYSICS->FixedUpdate(_deltaTime);
 
 		// UPDATE THE GAME
-		EngineUpdate(deltaTime);
+		EngineUpdate(_deltaTime);
 
 		// RENDER
 		PreRender();
 		EngineRender();
 	}
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // UPDATE
 void Game::EngineUpdate(const hFLOAT _timeStep)
@@ -189,6 +198,7 @@ void Game::EngineUpdate(const hFLOAT _timeStep)
 	GameUpdate(_timeStep);
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // RENDER
 void Game::PreRender()
@@ -207,7 +217,7 @@ void Game::PostRender()
 	glFlush();
 }
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 // Calculate Frame rate based on ticks

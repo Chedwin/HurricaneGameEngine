@@ -1,35 +1,27 @@
 #include "OpenGLRenderer.h"
 #include "Game.h"
 
-
-
 OpenGLRenderer::OpenGLRenderer() {
-	/*glEnable(GL_CULL_FACE | GL_DEPTH_TEST | GL_BLEND);
 	glCullFace(GL_FRONT);
 	glDepthFunc(GL_LESS);
 	glDepthMask(GL_TRUE);
 	glFrontFace(GL_CCW);
 	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
-	winRef = GAME->gameWindow;*/
-
 	glClearColor(0.0f, 0.0f, 0.4f, 1.0f);
+	glEnable(GL_DEPTH_TEST); // Enable depth test
 }
 
 
 OpenGLRenderer::~OpenGLRenderer()
 {
+	// EMPTY
 }
 
 void OpenGLRenderer::RenderPrimitive(PrimitiveType prim)
 {
-
 	glClearDepth(1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-
-	// Enable depth test
-	glEnable(GL_DEPTH_TEST);
 
 	// Accept fragment if it closer to the camera than the former one
 	glDepthFunc(GL_LESS);

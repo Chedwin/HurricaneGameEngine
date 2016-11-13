@@ -137,7 +137,7 @@ Box::Box() : GameObject()
 	}*/
 	/*myCubeTexture = nullptr;*/
 
-	SdlImage* cubeImg = new SdlImage("textures/download.png", "My Dice");
+	SdlImage* cubeImg = new SdlImage("textures/uvtemplate.png", "My Dice");
 	IMAGE_MANAGER->UploadImage(cubeImg->GetName(), cubeImg);
 
 	myCubeTexture = new Texture(cubeImg, cubeImg->GetName());

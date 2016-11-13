@@ -6,11 +6,10 @@
 //
 // Author:			Edwin Chen
 // Created:			Jul 17, 2016
-// Last updated:	Nov 01, 2016
+// Last updated:	Nov 12, 2016
 //
 //*******************************//
 
-#pragma once
 
 #ifndef INPUT_HANDLER_H
 #define INPUT_HANDLER_H
@@ -31,8 +30,6 @@ public:
 
 	void Update();
 	hBOOL IsKeyDown(hINT key);
-
-
 
 	void ProcessInput(SDL_Event& _evnt);
 

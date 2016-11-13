@@ -5,7 +5,8 @@
 #include <Game.h>
 #include <ShaderProgram.h>
 #include <SdlImage.h>
-
+#include <Camera.h>
+#include "Box.h"
 
 class TestGame : public Game {
 public:
@@ -21,18 +22,12 @@ public:
 
 public:
 	ShaderProgram* cubeShader;
-	GLuint buffers[2];
-	GLuint VertexArrayID;
-
-	GLuint ibo_cube_elements;
-	GLuint vbo_cube_texcoords;
-
-	GLuint texture_id;
-	GLint uniform_mytexture;
+	//GLuint buffers[3];
 
 	GLuint location;
 	GLuint view_matrix_location;
 	GLuint projection_matrix_location;
 
-	SdlImage* textureImage;
+	Box* box;
+	Box* box2;
 };

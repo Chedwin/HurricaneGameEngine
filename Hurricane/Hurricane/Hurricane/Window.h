@@ -7,7 +7,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Feb 04, 2016
-// Last updated:	Nov 04, 2016
+// Last updated:	Nov 12, 2016
 //
 //*******************************//
 

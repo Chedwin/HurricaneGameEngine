@@ -84,10 +84,12 @@
       <AdditionalDependencies>freeglut.lib;glew32.lib;opengl.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;OpenAL32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;assimp.lib</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2_image\lib\x86;$(SolutionDir)\dependencies\OpenAL-1.1\libs\Win32;$(SolutionDir)\dependencies\OpenGL\lib;$(SolutionDir)\dependencies\SDL\lib\x86;$(SolutionDir)\dependencies\assimp\lib\Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -121,10 +123,12 @@
       <AdditionalDependencies>freeglut.lib;glew32.lib;opengl.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;OpenAL32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;assimp.lib</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2_image\lib\x86;$(SolutionDir)\dependencies\OpenAL-1.1\libs\Win32;$(SolutionDir)\dependencies\OpenGL\lib;$(SolutionDir)\dependencies\SDL\lib\x86;$(SolutionDir)\dependencies\assimp\lib\Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -162,6 +166,7 @@
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameSceneManager.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Hurricane.h" />
     <ClInclude Include="HurricaneProperties.h" />
@@ -181,6 +186,7 @@
     <ClInclude Include="PrimitiveTypes.h" />
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneGraph.h" />
     <ClInclude Include="SceneNode.h" />
     <ClInclude Include="SdlImage.h" />
@@ -209,6 +215,7 @@
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameSceneManager.cpp" />
     <ClCompile Include="Hurricane.cpp" />
     <ClCompile Include="HurricaneProperties.cpp" />
     <ClCompile Include="ImageManager.cpp" />
