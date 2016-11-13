@@ -5,14 +5,15 @@
 //
 // Author:			Edwin Chen
 // Created:			Sep 20, 2016
-// Last updated:	Nov 04, 2016
+// Last updated:	Nov 12, 2016
 //
 //*******************************//
 
-#pragma once
-
 #ifndef OPENGL_RENDERER_H
 #define OPENGL_RENDERER_H
+
+
+#include <glew.h>
 
 #include "Macro.h"
 #include "Game.h"

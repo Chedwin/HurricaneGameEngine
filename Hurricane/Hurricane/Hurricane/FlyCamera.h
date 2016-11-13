@@ -6,7 +6,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Nov 06, 2016
-// Last updated:	Nov 11, 2016
+// Last updated:	Nov 12, 2016
 //
 //*******************************//
 
@@ -29,10 +29,12 @@ protected:
 	FlyCamera();
 	~FlyCamera();
 public:
+
+	// Prod
+	void MoveCamera(SDL_Event& _evnt);
 	void Update(const hFLOAT _deltaTime);
 	void Render();
 
-	void MoveCamera(SDL_Event& _evnt);
 
 	static FlyCamera* GetFlyCamera();
 
@@ -45,6 +47,9 @@ public:
 
 	hFLOAT speed; // units per second
 	hFLOAT mouseSpeed;
+
+
+	hINT winWidth, winHeight;
 };
 
 #endif

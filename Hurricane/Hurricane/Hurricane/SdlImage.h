@@ -1,24 +1,22 @@
 //*******************************//
 //
 // Name:			SdlImage.h
-// Description:		A basic description of the header goes here.
+// Description:		Creates a concrete implementation of the Image abstract class.
 //
 // Author:			Edwin Chen
 // Created:			Oct 22, 2016
-// Last updated:	Nov 01, 2016
+// Last updated:	Nov 12, 2016
 //
 //*******************************//
 
-#pragma once
+#ifndef SDL_IMAGE_H
+#define SDL_IMAGE_H
 
 #include <glew.h>
 #include <SDL.h>
 #include <SDL_image.h>
 #include "Macro.h"
 #include "Image.h"
-
-#ifndef SDL_IMAGE_H
-#define SDL_IMAGE_H
 
 class SdlImage : public Image
 {

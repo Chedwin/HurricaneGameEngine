@@ -1,25 +1,62 @@
-﻿  Texture.cpp
+﻿  Window.cpp
+  Vertex.cpp
+  tinyxml2.cpp
+  Timer.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\timer.cpp(14): warning C4244: '=': conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\timer.cpp(19): warning C4244: '=': conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\timer.cpp(29): warning C4244: '=': conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\timer.cpp(37): warning C4244: '=': conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
+  Texture.cpp
+  ShaderProgramManager.cpp
+  ShaderProgram.cpp
   SdlImage.cpp
+  PhysicsEngine.cpp
   OpenGLRenderer.cpp
-  Generating Code...
-  Compiling...
+  ModelManager.cpp
+  Model.cpp
   MaterialManager.cpp
   MaterialEffect.cpp
   Material.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
+  Level.cpp
   InputHandler.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\inputhandler.cpp(39): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\inputhandler.cpp(40): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
   ImageManager.cpp
+  HurricaneProperties.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\hurricaneproperties.cpp(69): warning C4244: '=': conversion from 'int' to 'hFLOAT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\hurricaneproperties.cpp(71): warning C4244: '=': conversion from 'int' to 'hFLOAT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\hurricaneproperties.cpp(73): warning C4244: '=': conversion from 'int' to 'hFLOAT', possible loss of data
   Hurricane.cpp
+  Generating Code...
+  Compiling...
+  GameSceneManager.cpp
+  GameObject.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(45): warning C4018: '<=': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(91): warning C4018: '<=': signed/unsigned mismatch
   Game.cpp
-opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-opengl32.lib(OPENGL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-OpenAL32.lib(OpenAL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-OpenAL32.lib(OpenAL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-SDL2.lib(SDL2.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-SDL2.lib(SDL2.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-SDL2_image.lib(SDL2_image.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-SDL2_image.lib(SDL2_image.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-assimp.lib(Assimp32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-assimp.lib(Assimp32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(46): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(47): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(48): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(123): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(138): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(150): warning C4244: '=': conversion from 'Uint32' to 'hFLOAT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(230): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(231): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
+  Frustum.cpp
+  FPSCounter.cpp
+  FlyCamera.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\flycamera.cpp(49): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\flycamera.cpp(50): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
+  Debug.cpp
+  ControllerManager.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\controllermanager.cpp(24): warning C4018: '<': signed/unsigned mismatch
+  Controller.cpp
+  Component.cpp
+  Colour.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\colour.cpp(77): warning C4838: conversion from 'hFLOAT' to 'Uint8' requires a narrowing conversion
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\colour.cpp(77): warning C4244: 'initializing': conversion from 'hFLOAT' to 'Uint8', possible loss of data
+  Clock.cpp
+  Camera.cpp
+  AudioEngine.cpp
+  Generating Code...
   Hurricane.vcxproj -> D:\Users\edwin\GitHub\HurricaneGameEngine\Hurricane\Hurricane\Debug\Hurricane.lib

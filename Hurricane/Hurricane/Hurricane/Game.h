@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Jul 05, 2016
-// Last updated:	Nov 04, 2016
+// Last updated:	Nov 12, 2016
 //
 //*******************************//
 
@@ -29,15 +29,9 @@
 #include "InputHandler.h"
 #include "AudioEngine.h"
 
-#include "ModelManager.h"
-#include "ShaderProgramManager.h"
-#include "ImageManager.h"
-
 #include "PhysicsEngine.h"
 #include "Level.h"
 
-#include "Camera.h"
-#include "ImageManager.h"
 
 
 
@@ -53,7 +47,7 @@ public:
 protected:
 	explicit Game();
 
-	// NOTE: Derived destructors of this class will be called BEFORE this base Game destructor
+	// NOTE: Derived destructors will be called BEFORE this base Game destructor
 	virtual ~Game();
 
 	hBOOL InitEngine();
@@ -70,13 +64,14 @@ protected:
 public:
 	static Game* GetGameInstance();
 
-	// TO BE OVERLOADED BY THE DERIVED GAME
-	virtual void GameUpdate(const hFLOAT _deltaTime) {}
-	virtual void GameRender() {}
-	virtual void GameInput(SDL_Event& _evnt) {}
-
 	void Run();
 	void GameLoop();
+
+	// TO BE OVERLOADED BY THE DERIVED GAME
+	virtual void GameInput(SDL_Event& _evnt) {}
+	virtual void GameUpdate(const hFLOAT _deltaTime) {}
+	virtual void GameRender() {}
+
 
 	void CalculateFPS();
 
@@ -96,7 +91,9 @@ public:
 	inline hFLOAT GetTotalTime() const {
 		return totalTime;
 	}
-
+	inline hFLOAT GetDeltaTime() const {
+		return _deltaTime;
+	}
 
 protected:
 	static Game* _gameInstance;
@@ -109,12 +106,16 @@ protected:
 	hFLOAT totalTime, lastUpdateTime, timeSinceLastUpdate;
 
 	hBOOL _isRunning;
-
+	hFLOAT _deltaTime;
 public:
 
 	Timer* gameTimer;
 	Window* gameWindow;
 	AbstractRenderer* renderer;
+
+	HurricaneProperties* hProperties;
+	InputHandler* input;
+	AudioEngine* audio;
 
 	//Level* currentLevel;	
 };

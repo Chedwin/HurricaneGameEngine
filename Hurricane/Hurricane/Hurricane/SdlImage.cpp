@@ -79,6 +79,7 @@ hBOOL SdlImage::Init(const STRING & filePath)
 		else {
 			Debug::ConsoleError("Pixel Format not recognized for GL display");
 			throw std::logic_error("Pixel Format not recognized for GL display");
+
 			return false;
 		}
 	}
@@ -93,6 +94,7 @@ hBOOL SdlImage::Init(const STRING & filePath)
 		else {
 			Debug::ConsoleError("Pixel Format not recognized for GL display");
 			throw std::logic_error("Pixel Format not recognized for GL display");
+
 			return false;
 		}
 	}
