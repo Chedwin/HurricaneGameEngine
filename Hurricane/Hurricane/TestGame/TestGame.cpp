@@ -1,5 +1,6 @@
 #include <FlyCamera.h>
 #include <ImageManager.h>
+#include <MaterialManager.h>
 #include "TestGame.h"
 
 TestGame::TestGame() : Game()
@@ -35,6 +36,10 @@ hBOOL TestGame::InitGame()
 
 	//// USE THE SHADER PROGRAM
 	cubeShader->UseShader();
+
+	Material* myMaterial = new Material("myMaterial");
+	MATERIAL_MANAGER->StoreMaterial(myMaterial->GetMaterialName(), myMaterial);
+	myMaterial->SetShaderName(cubeShader->GetProgramName());
 
 	box = new Box();
 

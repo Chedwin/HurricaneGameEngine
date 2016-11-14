@@ -48,6 +48,8 @@
 #include <cassert>
 #include <iterator>
 
+#include <time.h>
+
 #include "PrimitiveTypes.h"
 
 //////// Macros /////////

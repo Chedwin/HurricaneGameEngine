@@ -22,12 +22,10 @@ public:
 
 public:
 	ShaderProgram* cubeShader;
-	//GLuint buffers[3];
 
 	GLuint location;
 	GLuint view_matrix_location;
 	GLuint projection_matrix_location;
 
 	Box* box;
-	Box* box2;
 };

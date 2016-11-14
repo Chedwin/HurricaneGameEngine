@@ -6,11 +6,10 @@
 //
 // Author:			Edwin Chen
 // Created:			Sep 12, 2016
-// Last updated:	Sep 12, 2016
+// Last updated:	Nov 13, 2016
 //
 //*******************************//
 
-#pragma once
 
 #ifndef PRIMITIVE_TYPES_H
 #define PRIMITIVE_TYPES_H
@@ -20,6 +19,7 @@ typedef float	hFLOAT;
 typedef double	hDOUBLE;
 typedef char	hCHAR;
 typedef bool	hBOOL;
+typedef long	hLONG;
 
 typedef LARGE_INTEGER hLARGE_INT;
 typedef unsigned int hUINT;

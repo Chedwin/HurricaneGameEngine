@@ -6,11 +6,9 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 08, 2016
-// Last updated:	Nov 07, 2016
+// Last updated:	Nov 13, 2016
 //
 //*******************************//
-
-#pragma once
 
 
 #ifndef HMATH_H

@@ -10,14 +10,21 @@ d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\timer.cp
   ShaderProgramManager.cpp
   ShaderProgram.cpp
   SdlImage.cpp
+  SceneNode.cpp
+  SceneGraph.cpp
+  Random.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\random.cpp(113): warning C4244: 'return': conversion from 'hDOUBLE' to 'hFLOAT', possible loss of data
   PhysicsEngine.cpp
   OpenGLRenderer.cpp
   ModelManager.cpp
   Model.cpp
+  MatrixStack.cpp
   MaterialManager.cpp
   MaterialEffect.cpp
   Material.cpp
   Level.cpp
+  Generating Code...
+  Compiling...
   InputHandler.cpp
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\inputhandler.cpp(39): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\inputhandler.cpp(40): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
@@ -27,8 +34,6 @@ d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\hurrican
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\hurricaneproperties.cpp(71): warning C4244: '=': conversion from 'int' to 'hFLOAT', possible loss of data
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\hurricaneproperties.cpp(73): warning C4244: '=': conversion from 'int' to 'hFLOAT', possible loss of data
   Hurricane.cpp
-  Generating Code...
-  Compiling...
   GameSceneManager.cpp
   GameObject.cpp
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(45): warning C4018: '<=': signed/unsigned mismatch
@@ -37,16 +42,17 @@ d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobje
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(46): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(47): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(48): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(123): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(138): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(150): warning C4244: '=': conversion from 'Uint32' to 'hFLOAT', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(230): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(231): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(116): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(131): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(143): warning C4244: '=': conversion from 'Uint32' to 'hFLOAT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(223): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(224): warning C4244: 'initializing': conversion from 'hUINT' to 'hFLOAT', possible loss of data
   Frustum.cpp
   FPSCounter.cpp
   FlyCamera.cpp
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\flycamera.cpp(49): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\flycamera.cpp(50): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
+  EffectModel.cpp
   Debug.cpp
   ControllerManager.cpp
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\controllermanager.cpp(24): warning C4018: '<': signed/unsigned mismatch
