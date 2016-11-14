@@ -5,6 +5,8 @@
 #include <GameObject.h>
 #include <Texture.h>
 
+#include <EffectModel.h>
+
 class Box : public GameObject {
 public:
 	Box();
@@ -15,4 +17,6 @@ public:
 	GLuint buffers[3];
 	Texture* myCubeTexture;
 	GLuint texture[1];
+
+	EffectModel* model;
 };

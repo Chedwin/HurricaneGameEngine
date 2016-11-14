@@ -21,29 +21,35 @@
 
 class Material {
 public:
-	Material();
+	Material(const STRING& _name);
 	~Material() {}
 
+
 	inline void SetMaterialName(const STRING& _name) {
-		matName = _name;
+		_matName = _name;
 	}
-
+	inline void SetShaderName(const STRING& _name) {
+		_shaderName = _name;
+	}
 	inline STRING GetShaderName() const {
-		return shaderName;
+		return _shaderName;
+	}
+	inline STRING GetMaterialName() const {
+		return _shaderName;
 	}
 
-public:
+protected:
 	Colour ambient, diffuse, specular, emissive;
 	hFLOAT specCoefficient;
 
 	VECTOR(Texture) texturesList;
 
 	// Name of this material
-	STRING matName;
+	STRING _matName;
 
 	// The name of the shader used to render this material
-	STRING shaderName;
-	hBOOL isShaderAttached;
+	STRING _shaderName;
+	hBOOL _isShaderAttached;
 };
 
 #endif

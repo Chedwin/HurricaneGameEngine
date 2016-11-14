@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Nov 07, 2016
-// Last updated:	Nov 07, 2016
+// Last updated:	Nov 13, 2016
 //
 //*******************************//
 
@@ -22,8 +22,8 @@ public:
 	MaterialEffect(Model* _model, const STRING& _matName);
 	~MaterialEffect();
 
-	void ApplyEffect(AbstractRenderer &renderer);
-	void PostEffect(AbstractRenderer &renderer);
+	void ApplyEffect();
+	void PostEffect();
 
 	STRING GetMaterialName() const {
 		return _materialName;

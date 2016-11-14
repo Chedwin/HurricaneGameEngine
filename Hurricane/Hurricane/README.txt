@@ -30,7 +30,7 @@ SDL2 Image				- Texture loading, rendering
 OpenGL (GLEW)			- Graphics
 OpenAL					- Audio
 Bullet					- Physics and collision detection (could possibly be removed)
-Lua Script				- Scripting, only to be used in game engine class at Humber College
+Lua Script				- Scripting (only to be used in game engine class at Humber College)
 
 
 

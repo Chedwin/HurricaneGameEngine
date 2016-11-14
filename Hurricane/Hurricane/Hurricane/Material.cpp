@@ -1,9 +1,6 @@
 #include "Material.h"
 
-Material::Material()
-	: 
-	//ambient(Color::WHITE), diffuse(Color::WHITE), specular(Color::WHITE), emissive(Color::WHITE), 
-	isShaderAttached(false)
+Material::Material(const STRING& _name) : _isShaderAttached(false)
 {
-	// EMPTY
+	SetMaterialName(_name);
 }

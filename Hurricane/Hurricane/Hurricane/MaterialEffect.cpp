@@ -18,7 +18,7 @@ MaterialEffect::~MaterialEffect()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void MaterialEffect::ApplyEffect(AbstractRenderer & renderer)
+void MaterialEffect::ApplyEffect()
 {
 	ResourceHandle<Material> handle = MATERIAL_MANAGER->GetMaterialHandle(_materialName);
 	Material* material = MATERIAL_MANAGER->GetMaterial(handle);
@@ -51,7 +51,7 @@ void MaterialEffect::ApplyEffect(AbstractRenderer & renderer)
 	glUseProgram(shaderPgm->GetProgramID());
 }
 
-void MaterialEffect::PostEffect(AbstractRenderer & renderer)
+void MaterialEffect::PostEffect()
 {
 	// EMPTY
 }

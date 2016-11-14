@@ -28,7 +28,6 @@ class Level;
 class GameObject {
 public:
 	GameObject();
-	//explicit GameObject(Level* _level);
 	virtual ~GameObject();
 
 	// TO BE OVERRIDED BY DERIVED CLASSES

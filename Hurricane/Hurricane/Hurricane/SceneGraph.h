@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Nov 01, 2016
-// Last updated:	Nov 07, 2016
+// Last updated:	Nov 13, 2016
 //
 //*******************************//
 
@@ -15,21 +15,18 @@
 
 #include "Macro.h"
 #include "HMath.h"
-#include "Graph.h"
 #include "SceneNode.h"
 
-class SceneGraph 
-{
+class SceneGraph {
 public:
 	SceneGraph();
 	~SceneGraph();
 
 	void Initialze();
+	void RenderSceneNode(SceneNode* node);
 
 private:
 	SceneNode* rootSceneNode;
-
-	Graph<SceneNode> _sceneGraph;
 };
 
 #endif

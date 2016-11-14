@@ -159,8 +159,7 @@
     <ClInclude Include="ControllerManager.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Effect.h" />
-    <ClInclude Include="EffectedModel.h" />
-    <ClInclude Include="Event.h" />
+    <ClInclude Include="EffectModel.h" />
     <ClInclude Include="FlyCamera.h" />
     <ClInclude Include="FPSCounter.h" />
     <ClInclude Include="Frustum.h" />
@@ -179,11 +178,13 @@
     <ClInclude Include="Material.h" />
     <ClInclude Include="MaterialEffect.h" />
     <ClInclude Include="MaterialManager.h" />
+    <ClInclude Include="MatrixStack.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelManager.h" />
     <ClInclude Include="OpenGLRenderer.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="PrimitiveTypes.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
@@ -210,6 +211,7 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="ControllerManager.cpp" />
     <ClCompile Include="Debug.cpp" />
+    <ClCompile Include="EffectModel.cpp" />
     <ClCompile Include="FlyCamera.cpp" />
     <ClCompile Include="FPSCounter.cpp" />
     <ClCompile Include="Frustum.cpp" />
@@ -224,10 +226,14 @@
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="MaterialEffect.cpp" />
     <ClCompile Include="MaterialManager.cpp" />
+    <ClCompile Include="MatrixStack.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelManager.cpp" />
     <ClCompile Include="OpenGLRenderer.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
+    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="SceneGraph.cpp" />
+    <ClCompile Include="SceneNode.cpp" />
     <ClCompile Include="SdlImage.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="ShaderProgramManager.cpp" />

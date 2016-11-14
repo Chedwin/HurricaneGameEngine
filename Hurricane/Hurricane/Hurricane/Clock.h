@@ -5,16 +5,15 @@
 //
 // Author:			Edwin Chen
 // Created:			Sep 12, 2016
-// Last updated:	Sep 13, 2016
+// Last updated:	Nov 13, 2016
 //
 //*******************************//
 
-#pragma once
-
-#include "Macro.h"
 
 #ifndef CLOCK_H
 #define CLOCK_H
+
+#include "Macro.h"
 
 class Clock {
 public:
