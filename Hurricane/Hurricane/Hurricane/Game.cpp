@@ -13,7 +13,7 @@ Game* Game::GetGameInstance() {
 
 Game::Game() :
 	_isRunning(true), gameWindow(nullptr),
-	fps(0.0f), timeSinceLastUpdate(0.0f)
+	_fps(0.0f), timeSinceLastUpdate(0.0f)
 {
 	// EMPTY
 }
@@ -35,6 +35,8 @@ hBOOL Game::InitEngine()
 	Clock::init(); // Start the global game clock
 	gameTimer = new Timer();
 	gameTimer->Start();
+
+	_fpsCounter.Init(MAX_FPS);
 
 	// PROPERTIES
 	hProperties = H_PROPERTIES;
@@ -58,6 +60,8 @@ hBOOL Game::InitEngine()
 	// AUDIO
 	audio = AUDIO;
 
+	// INPUT
+	input = INPUT;
 
 	// OPENGL RENDERER
 	renderer = new OpenGLRenderer();
@@ -112,26 +116,8 @@ void Game::GameLoop()
 
 	while (_isRunning)
 	{
-		//// FPS CALCULATION ////
-		hFLOAT startTicks = gameTimer->GetTimerTicks();
-		gameTimer->UpdateTimer();
-
-		CalculateFPS();
-		static hINT frameCounter = 0;
-
-		frameCounter++;
-		if (frameCounter >= 10) {
-			frameCounter = 0;
-		}
-
-		hFLOAT frameTicks = gameTimer->GetTimerTicks() - startTicks;
-
-		if (1000.0f / MAX_FPS > frameTicks)
-		{
-			SDL_Delay(1000.0f / MAX_FPS - frameTicks);
-		}
-		///////////////////////////
-
+		// BEGIN FPS COUNT FOR THIS FRAME
+		_fpsCounter.BeginFrame();
 
 		// CALCULATE DELTA-TIME
 		timeSinceLastUpdate = SDL_GetTicks() - lastUpdateTime;
@@ -146,23 +132,20 @@ void Game::GameLoop()
 		// INPUT HANDLING LOOP w/ SDL EVENT
 		while (SDL_PollEvent(&evnt))
 		{
-			//INPUT->ProcessInput(evnt);
 			GameInput(evnt); // force the input to the game for now.....
 
-			if (evnt.type == SDL_KEYDOWN) {
-				switch (evnt.key.keysym.sym) {
-				case SDLK_ESCAPE:
-					// exit by pressing the "esc" key
-					QuitWindowPrompt();
-					break;
-				}
-			}
-
 			switch (evnt.type) {
+			case SDL_KEYDOWN:
+				input->PressKey(evnt.key.keysym.sym);
+				break;
+			case SDL_KEYUP:
+				input->ReleaseKey(evnt.key.keysym.sym);
+				break;
 			case SDL_EventType::SDL_QUIT:
 				QuitWindowPrompt();
 				break;
 			}
+			
 		}
 		SDL_PumpEvents();
 
@@ -176,6 +159,15 @@ void Game::GameLoop()
 		// RENDER
 		PreRender();
 		EngineRender();
+
+
+		// FRAME RATE UPDATE FOR THIS FRAME
+		_fps = _fpsCounter.End();
+		static hINT frameCounter = 0;
+		frameCounter++;
+		if (frameCounter >= 10) {
+			frameCounter = 0;
+		}
 	}
 }
 
@@ -211,48 +203,3 @@ void Game::PostRender()
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-// Calculate Frame rate based on ticks
-void Game::CalculateFPS()
-{
-	static const hINT NUM_SAMPLES = 100;
-	static hFLOAT frameTimes[NUM_SAMPLES];
-	static hINT currentFrame = 0;
-
-	static hFLOAT prevTicks = gameTimer->GetTimerTicks();
-	hFLOAT currTicks = gameTimer->GetTimerTicks();
-
-	frameTime = currTicks - prevTicks;
-	frameTimes[currentFrame % NUM_SAMPLES] = frameTime;
-
-	prevTicks = currTicks;
-
-	hINT count;
-
-	currentFrame++;
-	if (currentFrame < NUM_SAMPLES)
-	{
-		count = currentFrame;
-	}
-	else
-	{
-		count = NUM_SAMPLES;
-	}
-
-	hFLOAT frameTimeAverage = 0;
-	for (int i = 0; i < count; i++)
-	{
-		frameTimeAverage += frameTimes[i];
-	}
-	frameTimeAverage /= count;
-
-	if (frameTimeAverage > 0)
-	{
-		fps = 1000.0f / frameTimeAverage;
-	}
-	else
-	{
-		fps = MAX_FPS;
-	}
-}

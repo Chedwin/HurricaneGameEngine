@@ -9,7 +9,9 @@
 //
 //*******************************//
 
-#pragma once
+
+#ifndef CAMERA_H
+#define CAMERA_H
 
 #include <glew.h>
 #include "Macro.h"
@@ -18,9 +20,6 @@
 #include "ShaderProgramManager.h"
 
 #include "Frustum.h"
-
-#ifndef CAMERA_H
-#define CAMERA_H
 
 class Level;
 
@@ -35,10 +34,12 @@ public:
 	virtual void Update(const hFLOAT _deltaTime) override;
 	virtual void Render() override;
 
+	void CalculateCameraMatrix();
+
+
 	inline void SetPostion(const VEC3& newPos) {
 		gameObject->transform.position = newPos;
 	}
-
 	inline void SetUp(const VEC3& newUp) {
 		_up = newUp;
 	}
@@ -54,7 +55,7 @@ public:
 		return _projectionLocation;
 	}
 
-
+	
 
 	inline void SetViewLocation(const GLuint _view) {
 		_viewLocation = _view;
@@ -62,9 +63,6 @@ public:
 	inline void SetProjLocation(const GLuint _proj) {
 		_projectionLocation = _proj;
 	}
-
-
-
 
 	inline MATRIX4 GetViewMatrix() const {
 		return _viewMatrix;
@@ -77,13 +75,13 @@ public:
 protected:
 	VEC3 _dir, _up;
 
-	Frustum cameraFrustum;
-
 	MATRIX4 _projectionMatrix;
 	MATRIX4 _viewMatrix;
 
 	GLuint _viewLocation;
 	GLuint _projectionLocation;
+public:
+	Frustum frustum;
 };
 
 #endif

@@ -6,7 +6,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Jul 17, 2016
-// Last updated:	Nov 12, 2016
+// Last updated:	Nov 14, 2016
 //
 //*******************************//
 
@@ -29,15 +29,21 @@ public:
 	static InputHandler* GetInputHandler();
 
 	void Update();
-	hBOOL IsKeyDown(hINT key);
 
 	void ProcessInput(SDL_Event& _evnt);
+
+	void PressKey(hUINT keyid);
+	void ReleaseKey(hUINT keyid);
+
+	hBOOL IsKeyDown(hUINT key);
 
 	VEC2 mousePos;
 
 private:
 	static UNIQUE_PTR(InputHandler) _inputHandler;
 	friend DEFAULT_DELETE(InputHandler);
+
+	UNORDERED_MAP(hUINT, hBOOL) _keyMap;
 };
 
 #endif

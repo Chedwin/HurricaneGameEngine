@@ -6,7 +6,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Nov 07, 2016
-// Last updated:	Nov 07, 2016
+// Last updated:	Nov 14, 2016
 //
 //*******************************//
 
@@ -16,7 +16,8 @@
 
 #include "HMath.h"
 
-struct Transform {
+struct Transform 
+{
 	VEC3 position;
 	VEC3 scale;
 	QUATERNION rotation;

@@ -38,10 +38,6 @@ FlyCamera::~FlyCamera()
 
 void FlyCamera::MoveCamera(SDL_Event & _evnt)
 {
-	//VEC3 xMove = VEC3(0.1f, 0.0f, 0.0f);
-	//VEC3 yPan = VEC3(0.0f, 0.1f, 0.0f);
-	//VEC3 zTransf = VEC3(0.0f, 0.0f, 0.1f);
-
 	VEC2 mousePos;
 
 	switch (_evnt.type) {
@@ -105,6 +101,7 @@ void FlyCamera::MoveCamera(SDL_Event & _evnt)
 
 void FlyCamera::Update(const hFLOAT _deltaTime)
 {
+	frustum.CameraChanged(transform.position, gameObject->transform.position + _dir, _up);
 	_projectionMatrix = glm::perspective(initialFOV, 1.0f, 0.1f, 100.0f);
 	_viewMatrix = glm::lookAt(gameObject->transform.position, gameObject->transform.position + _dir, _up);
 }

@@ -25,6 +25,9 @@ InputHandler::~InputHandler()
 	// EMPTY for now
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void InputHandler::Update()
 {
 	// EMPTY for now
@@ -68,7 +71,23 @@ void InputHandler::ProcessInput(SDL_Event& _evnt)
 	}
 }
 
-hBOOL InputHandler::IsKeyDown(hINT key) 
+void InputHandler::PressKey(hUINT keyid)
 {
+	_keyMap[keyid] = true;
+}
+
+void InputHandler::ReleaseKey(hUINT keyid) 
+{
+	_keyMap[keyid] = false;
+}
+
+hBOOL InputHandler::IsKeyDown(hUINT key) 
+{
+	auto it = _keyMap.find(key);
+
+	if (it != _keyMap.end()) {
+		return it->second;
+	}
+
 	return false;
 }

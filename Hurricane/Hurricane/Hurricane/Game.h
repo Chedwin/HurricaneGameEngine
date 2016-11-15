@@ -25,6 +25,7 @@
 #include "AbstractRenderer.h"
 
 #include "HurricaneProperties.h"
+#include "FPSCounter.h"
 
 #include "InputHandler.h"
 #include "AudioEngine.h"
@@ -73,8 +74,6 @@ public:
 	virtual void GameRender() {}
 
 
-	void CalculateFPS();
-
 	// INLINE FUNCTIONS
 	inline hBOOL IsGameRunning() const {
 		return _isRunning;
@@ -85,7 +84,7 @@ public:
 	}
 
 	inline hFLOAT GetFPS() const {
-		return fps;
+		return _fps;
 	}
 
 	inline hFLOAT GetTotalTime() const {
@@ -100,13 +99,14 @@ protected:
 
 	//Level* levelToLoad;
 
-	hFLOAT fps;
-	hFLOAT frameTime;
+	hFLOAT _fps;
 
 	hFLOAT totalTime, lastUpdateTime, timeSinceLastUpdate;
 
 	hBOOL _isRunning;
 	hFLOAT _deltaTime;
+
+	FPSCounter _fpsCounter;
 public:
 
 	Timer* gameTimer;

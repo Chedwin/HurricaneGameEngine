@@ -20,7 +20,7 @@
 
 
 #define MODEL_MANAGER ModelManager::GetModelManager();
-#define NUMBER_OF_BUFFERS 2
+#define NUMBER_OF_BUFFERS 3
 
 
 class ModelManager {
