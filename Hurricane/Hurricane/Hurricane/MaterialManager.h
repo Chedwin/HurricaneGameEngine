@@ -35,11 +35,9 @@ public:
 
 protected:
 	static UNIQUE_PTR(MaterialManager) _materialManager;
-	friend DEFAULT_DELETE(MaterialManager);
+	friend DEFAULT_DELETE(MaterialManager);  
 
 	ResourceManager<Material> _materialResources;
-
-	
 };
 
 #endif

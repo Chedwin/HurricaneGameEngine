@@ -70,6 +70,7 @@ public:
 	struct VideoProperties : public Properties {
 		hINT screenWidth;
 		hINT screenHeight;
+		hFLOAT drawDistance;
 		hUINT fullScreen;
 
 		void ReadValues();

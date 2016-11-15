@@ -8,7 +8,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Apr 05, 2016
-// Last updated:	Nov 04, 2016
+// Last updated:	Nov 14, 2016
 //
 //*******************************//
 #pragma once
@@ -41,6 +41,7 @@
 #include <stack>
 #include <queue>
 #include <map>
+#include <unordered_map>
 
 #include <memory>
 #include <algorithm>
@@ -59,7 +60,9 @@
 #define CIN  std::cin
 #define ENDL std::endl
 #define CERR std::cerr
+
 #define STOI std::stoi // string to int
+#define STOF std::stof // string to float
 
 // pair
 #define PAIR(A, B) std::pair<A, B>
@@ -95,7 +98,8 @@
 #define QUEUE(L) std::queue<L>
 // map
 #define MAP(K, V) std::map<K, V>
-
+// unordered map
+#define UNORDERED_MAP(N, M) std::unordered_map<N, M>
 
 
 // memory - smart pointers

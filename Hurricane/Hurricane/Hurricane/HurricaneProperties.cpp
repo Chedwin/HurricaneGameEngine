@@ -92,6 +92,8 @@ void HurricaneProperties::VideoProperties::ReadValues()
 	screenWidth = STOI(element->GetText());
 	element = element->NextSiblingElement("height");
 	screenHeight = STOI(element->GetText());
+	element = element->NextSiblingElement("drawdistance");
+	drawDistance = STOF(element->GetText());
 	element = element->NextSiblingElement("fullscreen");
 	fullScreen = STOI(element->GetText());
 }
@@ -103,6 +105,8 @@ void HurricaneProperties::VideoProperties::WriteValues()
 	element->SetText(screenWidth);
 	element = element->NextSiblingElement("height");
 	element->SetText(screenHeight);
+	element = element->NextSiblingElement("drawdistance");
+	element->SetText(drawDistance);
 	element = element->NextSiblingElement("fullscreen");
 	element->SetText(fullScreen);
 }

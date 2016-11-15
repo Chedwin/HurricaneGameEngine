@@ -15,8 +15,6 @@ TestGame::~TestGame()
 }
 
 
-/////////////////////////////////////////////////////////////////////////////////////////
-
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -49,6 +47,8 @@ hBOOL TestGame::InitGame()
 	projection_matrix_location = cubeShader->GetUniformLocation("projection_matrix");
 
 
+	FLY_DEBUG_CAM->frustum.WindowResized(60.0f, H_PROPERTIES->GetVideoProperties()->AspectRatio(), 0.1f, 10.0f);
+
 	FLY_DEBUG_CAM->SetProjLocation(projection_matrix_location);
 	FLY_DEBUG_CAM->SetViewLocation(view_matrix_location);
 	FLY_DEBUG_CAM->SetPostion(VEC3(-1.0f, -1.0f, 1.0f));
@@ -66,11 +66,12 @@ void TestGame::GameUpdate(const hFLOAT _deltaTime)
 {
 	// window title bar update
 	STRINGSTREAM ss;
-	ss << "New Game! | FPS: " << fps;
-	STRING _fps = ss.str();
+	ss << "New Game! | FPS: " << GetFPS();
+	STRING fpsTitle = ss.str();
 
-	SDL_SetWindowTitle(gameWindow->GetWindow(), _fps.c_str());
+	SDL_SetWindowTitle(gameWindow->GetWindow(), fpsTitle.c_str());
 
+	FLY_DEBUG_CAM->frustum.IsInside(box->transform.position);
 	FLY_DEBUG_CAM->Update(_deltaTime);
 }
 
@@ -86,11 +87,6 @@ void TestGame::GameRender()
 	GLint textureLocation = cubeShader->GetUniformLocation("mySampler");
 
 	glUniform1i(textureLocation, 0);
-	box->Render();
-
-	model_view = glm::translate(MATRIX4(1.0f), VEC3(2.5f, -2.0f, -1.0f));
-	model_view = glm::rotate(model_view, glm::radians(180.0f), glm::vec3(0.0f, 0.0f, -1.0f));
-	glUniformMatrix4fv(location, 1, GL_FALSE, &model_view[0][0]);
 	box->Render();
 
 	//glBindTexture(GL_TEXTURE_2D, texture[0]);

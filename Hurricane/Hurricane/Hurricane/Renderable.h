@@ -10,11 +10,14 @@
 //*******************************//
 
 
-#include "Macro.h"
-#include "HMath.h"
 
 #ifndef RENDERABLE_H
 #define RENDERABLE_H
+
+#include "Macro.h"
+#include "HMath.h"
+#include "Component.h"
+#include "Model.h"
 
 struct Renderable
 {
@@ -34,4 +37,15 @@ struct Renderable
 	~Renderable() {}
 };
 
+
+class RenderableComponent : public Component {
+public:
+	RenderableComponent(GameObject* parent, ShaderProgram* shader);
+	~RenderableComponent();
+
+	void Render();
+
+protected:
+	Model* _model;
+};
 #endif

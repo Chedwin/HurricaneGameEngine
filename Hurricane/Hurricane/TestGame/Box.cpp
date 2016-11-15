@@ -182,6 +182,7 @@ GLint NumVertices = 36;
 
 void Box::Render() 
 {
+	
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 	glDrawArrays(GL_TRIANGLES, 0, NumVertices);
 }

@@ -41,6 +41,7 @@ public:
 	void AddComponent(Component* c);
 	hBOOL HasComponent(Component *c);
 	void RemoveComponent(Component* c) {}
+
 	template<class TYPE> TYPE* GetComponent();
 
 	
