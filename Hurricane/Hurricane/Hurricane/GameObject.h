@@ -23,7 +23,7 @@
 #include "Component.h"
 #include "Transform.h"
 
-class Level;
+
 
 class GameObject {
 public:
@@ -63,7 +63,7 @@ public:
 	VECTOR(GameObject*) childObjects;
 
 	hBOOL isEnabled;
-	Level* level;
+
 
 	// pointer to itself
 	GameObject* gameObject; 

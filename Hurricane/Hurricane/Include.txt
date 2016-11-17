@@ -1,3 +1,6 @@
+// Hurricane engine headers
+$(SolutionDir)\Hurricane
+
 // OpenGL
 $(SolutionDir)dependencies\OpenGL\include 
 

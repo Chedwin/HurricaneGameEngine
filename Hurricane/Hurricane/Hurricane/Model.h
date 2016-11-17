@@ -40,7 +40,7 @@ public:
 	VECTOR(hUINT) face;
 	VECTOR(VEC3) normal;
 	VECTOR(VEC3) faceNormal;
-	VECTOR(VEC2) textureMap;
+	VECTOR(VEC2) uvMap;
 
 	hUINT offsetVertex;
 };

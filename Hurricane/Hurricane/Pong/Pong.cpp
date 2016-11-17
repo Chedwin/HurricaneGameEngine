@@ -353,10 +353,10 @@ void Pong::WindowTitleUpdate()
 {
 	// window title bar update
 	STRINGSTREAM ss;
-	ss << "Pong | FPS: " << fps;
-	STRING _fps = ss.str();
+	ss << "Pong | FPS: " << GetFPS();
+	STRING _fpsTitle = ss.str();
 
-	SDL_SetWindowTitle(gameWindow->GetWindow(), _fps.c_str());
+	SDL_SetWindowTitle(gameWindow->GetWindow(), _fpsTitle.c_str());
 }
 
 

@@ -1,2 +1,18 @@
-﻿  Frustum.cpp
+﻿  Camera.cpp
+  Generating Code...
+  Compiling...
+  SceneNode.cpp
+  SceneGraph.cpp
+  Light.cpp
+  GameSceneManager.cpp
+  GameObject.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(45): warning C4018: '<=': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(91): warning C4018: '<=': signed/unsigned mismatch
+  FlyCamera.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\flycamera.cpp(45): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\flycamera.cpp(46): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
+  Component.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Frustum.cpp
   Hurricane.vcxproj -> D:\Users\edwin\GitHub\HurricaneGameEngine\Hurricane\Hurricane\Debug\Hurricane.lib

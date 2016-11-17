@@ -12,4 +12,5 @@ void main(void)
 	vec4 textureColor = texture2D(mySampler, fragmentUV); // myColor;
 
 	fColor= textureColor * myColor;
+	//fColor = vec4(lightColor * objectColor, 1.0f);
 }
