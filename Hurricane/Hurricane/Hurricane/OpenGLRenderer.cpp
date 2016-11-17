@@ -9,7 +9,13 @@ OpenGLRenderer::OpenGLRenderer() {
 	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
 	glClearColor(0.0f, 0.0f, 0.4f, 1.0f);
-	glEnable(GL_DEPTH_TEST); // Enable depth test
+
+	/*glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_COLOR, GL_ONE);*/
+	glEnable(GL_DEPTH_TEST);
+	GLuint vao;
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
 }
 
 
@@ -28,7 +34,7 @@ void OpenGLRenderer::RenderPrimitive(PrimitiveType prim)
 	glMatrixMode(GL_MODELVIEW | GL_PROJECTION);     // To operate on model-view matrix
 	glLoadIdentity();
 
-	switch (prim) {
+	/*switch (prim) {
 	case PrimitiveType::TRIANGLES:
 		break;
 	case PrimitiveType::QUADS:
@@ -36,5 +42,5 @@ void OpenGLRenderer::RenderPrimitive(PrimitiveType prim)
 	case PrimitiveType::NONE:
 	default:
 		break;
-	}
+	}*/
 }

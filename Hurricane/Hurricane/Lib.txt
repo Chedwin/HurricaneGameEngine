@@ -1,4 +1,5 @@
 // 3rd Party Static lib list
+Hurricane.lib
 glew32.lib
 opengl32.lib
 lua51.lib
@@ -8,7 +9,8 @@ SDL2main.lib
 SDL2_image.lib
 assimp.lib
 
-
+// Hurricane
+$(SolutionDir)$(Configuration)
 
 // OpenGL
 $(SolutionDir)dependencies\OpenGL\lib

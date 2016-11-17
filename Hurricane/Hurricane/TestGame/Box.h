@@ -14,7 +14,7 @@ public:
 
 	void Render() override;
 
-	GLuint buffers[3];
+	GLuint buffers[2];
 	Texture* myCubeTexture;
 	GLuint texture[1];
 

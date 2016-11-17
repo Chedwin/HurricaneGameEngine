@@ -38,7 +38,7 @@ hBOOL ShaderProgram::CompileShader(const STRING & filePath, GLuint id)
 	shaderFile.close();
 
 
-	const hCHAR* contentsPtr = fileContents.c_str();
+	const char* contentsPtr = fileContents.c_str();
 	glShaderSource(id, 1, &contentsPtr, NULL);
 	glCompileShader(id);
 
@@ -51,7 +51,7 @@ hBOOL ShaderProgram::CompileShader(const STRING & filePath, GLuint id)
 		glGetShaderiv(id, GL_INFO_LOG_LENGTH, &maxLength);
 
 		glDeleteShader(id);
-		VECTOR(hCHAR) errorLog(maxLength);
+		VECTOR(char) errorLog(maxLength);
 		glGetShaderInfoLog(id, maxLength, &maxLength, &errorLog[0]);
 
 		RemoveFromGPU(id);

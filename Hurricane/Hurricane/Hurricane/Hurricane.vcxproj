@@ -76,7 +76,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\glm;$(SolutionDir)dependencies\OpenGL\include;$(SolutionDir)dependencies\SDL\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\glm;$(SolutionDir)dependencies\OpenGL\include;$(SolutionDir)\dependencies\assimp\include\assimp;$(SolutionDir)dependencies\SDL\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -113,7 +113,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\glm;$(SolutionDir)dependencies\OpenGL\include;$(SolutionDir)dependencies\SDL\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\glm;$(SolutionDir)dependencies\OpenGL\include;$(SolutionDir)\dependencies\assimp\include\assimp;$(SolutionDir)dependencies\SDL\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -173,7 +173,7 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="InputHandler.h" />
-    <ClInclude Include="Level.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="HMath.h" />
     <ClInclude Include="Material.h" />
@@ -224,7 +224,7 @@
     <ClCompile Include="HurricaneProperties.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="InputHandler.cpp" />
-    <ClCompile Include="Level.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="MaterialEffect.cpp" />
     <ClCompile Include="MaterialManager.cpp" />

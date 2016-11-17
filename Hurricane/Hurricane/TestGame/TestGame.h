@@ -21,7 +21,7 @@ public:
 	void GameInput(SDL_Event& _evnt) override;
 
 public:
-	ShaderProgram* cubeShader;
+	ShaderProgram* modelShader;
 
 	GLuint location;
 	GLuint view_matrix_location;

@@ -1,11 +1,11 @@
 //*******************************//
 //
 // Name:			OpenGLRenderer.h
-// Description:		This renderer uses a SDL window w/ a GL Context to draw to the screen
+// Description:		This creates an OpenGL environment for rendering to the window.
 //
 // Author:			Edwin Chen
 // Created:			Sep 20, 2016
-// Last updated:	Nov 12, 2016
+// Last updated:	Nov 15, 2016
 //
 //*******************************//
 
@@ -16,12 +16,11 @@
 #include <glew.h>
 
 #include "Macro.h"
-#include "Game.h"
 #include "AbstractRenderer.h"
-#include "Window.h"
 
-#include "ShaderProgramManager.h"
-#include "ImageManager.h"
+//#include "Window.h"
+//#include "ShaderProgramManager.h"
+//#include "ImageManager.h"
 //#include "HMath.h"
 
 class OpenGLRenderer : public AbstractRenderer {
