@@ -9,15 +9,15 @@
 //
 //*******************************//
 
-#pragma once
-
-#include <Macro.h>
-#include <Game.h>
-#include <InputHandler.h>
 
 
 #ifndef PONG_H
 #define PONG_H
+#include <Macro.h>
+#include <Game.h>
+#include <InputHandler.h>
+#include <ShaderProgramManager.h>
+#include <Camera.h>
 
 class Pong : public Game {
 public:

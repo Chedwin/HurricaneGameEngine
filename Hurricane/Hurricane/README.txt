@@ -1,8 +1,11 @@
 Welcome to Hurricane!
 
+Date Created: Jan 20, 2016
+Last Updated: Nov 18, 2016
+
 Primary Author: Edwin Chen
 
-Special Thanks: Scott Fielder
+*Special Thanks: Scott Fielder
 				Mathieu Violette
 				James Sholdice
 				Nathan Senter
@@ -13,10 +16,12 @@ Special Thanks: Scott Fielder
 				Aiden Dearing
 				Domenic Caronzo
 				Kris Alexander
+				House Yokeswaran
 
 Introduction:
 This is my first ever game engine. It is mainly focused on building 3rd person platformer-like games.
 Hurricane is programmed purely in C++ to allow for fast memory management and efficiency.
+
 
 Dependencies:
 Hurricane makes use of many different 3rd party APIs to allow for ease of use, production time reduction, etc.
@@ -27,13 +32,13 @@ Dependency				Purpose in Engine
 TinyXML					- XML parsing, loading in properties and information for games
 SDL2					- Window creation, event handling
 SDL2 Image				- Texture loading, rendering
-OpenGL (GLEW)			- Graphics
+OpenGL (GLEW)			- 3D Graphics
 OpenAL					- Audio
 Bullet					- Physics and collision detection (could possibly be removed)
 Lua Script				- Scripting (only to be used in game engine class at Humber College)
+Assimp					- Model loading (.fbx, .obj, etc.)
+						- Skeletal animation (very important for this engine!)
 
 
-
-
-Date Created: Jan 20, 2016
-Last Updated: Nov 11, 2016
+Notes:
+*Special thanks to everybody mentioned in the list above! Without you guys, Hurricane would not be possible!

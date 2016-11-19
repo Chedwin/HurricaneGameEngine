@@ -36,7 +36,7 @@ public:
 
 	Scene* currentScene;
 
-	ResourceManager<Scene> sceneMap;
+	MAP(STRING, Scene*) sceneMap;
 };
 
 #endif

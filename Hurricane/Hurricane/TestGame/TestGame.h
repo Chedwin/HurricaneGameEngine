@@ -4,7 +4,6 @@
 #include <Macro.h>
 #include <Game.h>
 #include <ShaderProgram.h>
-#include <SdlImage.h>
 #include <Camera.h>
 #include "Box.h"
 

@@ -1,6 +1,11 @@
 #include <Debug.h>
-#include "TestGame.h"
+#include <SceneGraph.h>
+#include <RenderableComponent.h>
+#include <LightComponent.h>
+#include <RigidbodyComponent.h>
+#include <ColliderComponent.h>
 
+#include "TestGame.h"
 
 int main(int argc, char** argv) {
 
@@ -21,6 +26,7 @@ int main(int argc, char** argv) {
 
 	TestGame TestGame;
 	TestGame.Run();
+
 
 #if defined(DEBUG) || defined(_DEBUG)
 	_CrtDumpMemoryLeaks();

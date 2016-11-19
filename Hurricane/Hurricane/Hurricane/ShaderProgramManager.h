@@ -23,19 +23,21 @@
 #define SHADER_MANAGER ShaderProgramManager::GetShaderManager()
 
 
-class ShaderProgramManager 
-{
-public:
+class ShaderProgramManager {
+protected:
 	ShaderProgramManager() {}
 	~ShaderProgramManager();
 
+public:
 	static ShaderProgramManager* GetShaderManager();
 
 	ResourceHandle<ShaderProgram> StoreShaderProg(STRING& _name, ShaderProgram* _sp);
 
+	void DeleteShaderProgram(STRING& _name);
+
 	ResourceHandle<ShaderProgram> GetShaderProgHandle(const STRING& _name);
 	ShaderProgram* GetShaderProgram(ResourceHandle<ShaderProgram>& _handle);
-	void DeleteShaderProgram(STRING& _name);
+	ShaderProgram* GetShaderProgram(const STRING& _name);
 
 protected:
 	static UNIQUE_PTR(ShaderProgramManager) _shaderProgManager;

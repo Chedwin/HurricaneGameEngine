@@ -74,7 +74,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Hurricane;$(SolutionDir)\dependencies\assimp\include\assimp;$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\glm;$(SolutionDir)dependencies\SDL\include;$(SolutionDir)dependencies\OpenGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Hurricane;$(SolutionDir)\dependencies\assimp\include;$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\glm;$(SolutionDir)dependencies\SDL\include;$(SolutionDir)dependencies\OpenGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration);$(SolutionDir)\dependencies\assimp\lib\Debug;$(SolutionDir)dependencies\SDL2_image\lib\x86;$(SolutionDir)dependencies\SDL\lib\x86;$(SolutionDir)dependencies\OpenGL\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -96,7 +96,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Hurricane;$(SolutionDir)\dependencies\assimp\include\assimp;$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\glm;$(SolutionDir)dependencies\SDL\include;$(SolutionDir)dependencies\OpenGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Hurricane;$(SolutionDir)\dependencies\assimp\include;$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\glm;$(SolutionDir)dependencies\SDL\include;$(SolutionDir)dependencies\OpenGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -121,9 +121,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SolarSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="properties.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SolarSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

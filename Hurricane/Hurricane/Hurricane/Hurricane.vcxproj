@@ -76,7 +76,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\glm;$(SolutionDir)dependencies\OpenGL\include;$(SolutionDir)\dependencies\assimp\include\assimp;$(SolutionDir)dependencies\SDL\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\glm;$(SolutionDir)dependencies\OpenGL\include;$(SolutionDir)\dependencies\assimp\include;$(SolutionDir)dependencies\SDL\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -113,7 +113,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\glm;$(SolutionDir)dependencies\OpenGL\include;$(SolutionDir)\dependencies\assimp\include\assimp;$(SolutionDir)dependencies\SDL\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SDL2_image\include;$(SolutionDir)\dependencies\OpenAL-1.1\include;$(SolutionDir)\dependencies\glm;$(SolutionDir)dependencies\OpenGL\include;$(SolutionDir)\dependencies\assimp\include;$(SolutionDir)dependencies\SDL\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -153,7 +153,7 @@
     <ClInclude Include="AudioEngine.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Clock.h" />
-    <ClInclude Include="Collider.h" />
+    <ClInclude Include="ColliderComponent.h" />
     <ClInclude Include="Colour.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Controller.h" />
@@ -170,10 +170,11 @@
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Hurricane.h" />
     <ClInclude Include="HurricaneProperties.h" />
-    <ClInclude Include="Image.h" />
-    <ClInclude Include="ImageManager.h" />
+    <ClInclude Include="RenderableComponent.h" />
+    <ClInclude Include="RigidbodyComponent.h" />
+    <ClInclude Include="TextureManager.h" />
     <ClInclude Include="InputHandler.h" />
-    <ClInclude Include="Light.h" />
+    <ClInclude Include="LightComponent.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="HMath.h" />
     <ClInclude Include="Material.h" />
@@ -191,9 +192,6 @@
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneGraph.h" />
-    <ClInclude Include="SceneNode.h" />
-    <ClInclude Include="SdlImage.h" />
-    <ClInclude Include="ShaderComponent.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="ShaderProgramManager.h" />
     <ClInclude Include="SimpleModel.h" />
@@ -208,6 +206,7 @@
     <ClCompile Include="AudioEngine.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Clock.cpp" />
+    <ClCompile Include="ColliderComponent.cpp" />
     <ClCompile Include="Colour.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Controller.cpp" />
@@ -222,22 +221,22 @@
     <ClCompile Include="GameSceneManager.cpp" />
     <ClCompile Include="Hurricane.cpp" />
     <ClCompile Include="HurricaneProperties.cpp" />
-    <ClCompile Include="ImageManager.cpp" />
+    <ClCompile Include="RenderableComponent.cpp" />
+    <ClCompile Include="RigidbodyComponent.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="InputHandler.cpp" />
-    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="LightComponent.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="MaterialEffect.cpp" />
     <ClCompile Include="MaterialManager.cpp" />
     <ClCompile Include="MatrixStack.cpp" />
-    <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelManager.cpp" />
     <ClCompile Include="OpenGLRenderer.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
-    <ClCompile Include="SceneNode.cpp" />
-    <ClCompile Include="SdlImage.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="ShaderProgramManager.cpp" />
     <ClCompile Include="Texture.cpp" />

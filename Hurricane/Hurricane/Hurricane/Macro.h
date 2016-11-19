@@ -8,10 +8,9 @@
 //
 // Author:			Edwin Chen
 // Created:			Apr 05, 2016
-// Last updated:	Nov 14, 2016
+// Last updated:	Nov 18, 2016
 //
 //*******************************//
-#pragma once
 
 #ifndef _MACRO_H
 #define _MACRO_H
@@ -50,6 +49,8 @@
 #include <iterator>
 
 #include <time.h>
+
+#include <typeinfo>
 
 #include "PrimitiveTypes.h"
 

@@ -34,6 +34,6 @@ void PhysicsEngine::FixedUpdate(const hFLOAT _timeStep)
 
 	if (isPhysicsRunning) 
 	{
-		// TODO: Collision Response
+		// TODO: Collision response for all collider components
 	}
 }
