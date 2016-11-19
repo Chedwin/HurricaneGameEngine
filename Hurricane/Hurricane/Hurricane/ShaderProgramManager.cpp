@@ -45,6 +45,19 @@ ShaderProgram * ShaderProgramManager::GetShaderProgram(ResourceHandle<ShaderProg
 	return _shaderResources.Get(_handle);
 }
 
+ShaderProgram * ShaderProgramManager::GetShaderProgram(const STRING & _name)
+{
+	ShaderProgram* result = nullptr;
+	ResourceHandle<ShaderProgram> handle = _shaderResources.Get(_name);
+
+	if (handle.IsNull()) {
+		Debug::ConsoleError("Shader named '" + _name + "' does not exist in ShaderManager");
+		return result;
+	}
+	result = ShaderProgramManager::GetShaderProgram(handle);
+	return result;
+}
+
 void ShaderProgramManager::DeleteShaderProgram(STRING & _name)
 {
 	_shaderResources.Remove(_name);

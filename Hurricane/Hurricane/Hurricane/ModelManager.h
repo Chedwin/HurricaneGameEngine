@@ -5,14 +5,17 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 03, 2016
-// Last updated:	Nov 15, 2016
+// Last updated:	Nov 17, 2016
 //
 //*******************************//
 
-#pragma once
-
 #ifndef MODEL_MANAGER_H
 #define MODEL_MANAGER_H
+
+// Assimp model loading
+#include <assimp/Importer.hpp>      // C++ importer interface
+#include <assimp/scene.h>           // Output data structure
+#include <assimp/postprocess.h>     // Post processing 
 
 #include "Macro.h"
 #include "ResourceManager.h"
@@ -24,8 +27,6 @@
 
 
 class ModelManager {
-protected:
-	hBOOL LoadOBJModel(const STRING& path, VECTOR(VEC3) & out_vertices, VECTOR(VEC2) & out_uvs, VECTOR(VEC3) & out_normals);
 public:
 	ModelManager();
 	~ModelManager();

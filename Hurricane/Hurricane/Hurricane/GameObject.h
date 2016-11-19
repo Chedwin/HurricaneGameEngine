@@ -7,10 +7,10 @@
 //					i.e. Very similiar to Unity's design
 //
 // Author:			Edwin Chen
-// Special Thanks:  Mathieu Violette, James Sholdice, Nathan Senter, Unity
+// Special Thanks:  Mathieu Violette, James Sholdice, Nathan Senter, Unity, Aiden Dearing, House Yokeswaran, Mark Seaman
 //
 // Created:			Sep 30, 2016
-// Last updated:	Nov 07, 2016
+// Last updated:	Nov 18, 2016
 //
 //*******************************//
 
@@ -18,31 +18,36 @@
 #ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H
 
+
 #include "Macro.h"
 #include "HMath.h"
 #include "Component.h"
 #include "Transform.h"
 
-
-
 class GameObject {
 public:
 	GameObject();
+	explicit GameObject(const STRING& name);
 	virtual ~GameObject();
 
-	// TO BE OVERRIDED BY DERIVED CLASSES
-	virtual void Update(const hFLOAT _deltaTime) {}
-	virtual void Render() {}
+	// "CAN" BE OVERRIDEN BY DERIVED CLASSES
+	virtual void Update(const hFLOAT _deltaTime);
+	virtual void PreRender();
+	virtual void Render();
 
 
-	void AddChild(GameObject* g) {}
-	void RemoveChild(GameObject* g) {}
+	void AddChild(GameObject* g);
+	void RemoveChild(GameObject* g);
+	void RemoveAllChildren();
 
 	void AddComponent(Component* c);
-	hBOOL HasComponent(Component *c);
+	hBOOL HasComponent(Component* c);
 	void RemoveComponent(Component* c) {}
 
-	template<class TYPE> TYPE* GetComponent();
+
+	// GetComponent template function
+	// i.e. similiar to Unity;
+	template<typename TYPE> TYPE* GetComponent();
 
 	
 	void AddTag(const STRING& _tag);
@@ -55,17 +60,26 @@ public:
 		isEnabled = _b;
 	}
 
+	inline STRING GetName() const {
+		return _name;
+	}
+	inline void SetName(const STRING& n) {
+		_name = n;
+	}
 
-
+protected:
+	STRING _name;
 public:
 	VECTOR(STRING) tags;
-	VECTOR(Component*) components;
+	VECTOR(Component*) componentList;
+
+	UNORDERED_MAP(STRING, Component*) compMap;
+
 	VECTOR(GameObject*) childObjects;
 
 	hBOOL isEnabled;
 
-
-	// pointer to itself
+	// pointer to itself (Unity-like)
 	GameObject* gameObject; 
 
 	// Transform fields

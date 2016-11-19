@@ -23,4 +23,4 @@ $(SolutionDir)\dependencies\SDL2_image\include
 $(SolutionDir)\dependencies\bullet\src
 
 // Assimp
-$(SolutionDir)\dependencies\assimp\include\assimp
+$(SolutionDir)\dependencies\assimp\include

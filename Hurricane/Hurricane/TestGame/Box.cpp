@@ -1,9 +1,8 @@
 #include <Debug.h>
-#include <ImageManager.h>
+#include <TextureManager.h>
 #include <Vertex.h>
-#include <SdlImage.h>
+
 #include "Box.h"
-#include "OBJLoader.h"
 
 
 
@@ -11,15 +10,13 @@ static GLint NumVertices;
 
 Box::Box() : GameObject()
 {
-	SdlImage* cubeImg = new SdlImage("textures/leafsman.png", "Earth");
-	IMAGE_MANAGER->UploadImage(cubeImg->GetName(), cubeImg);
-
-	myCubeTexture = new Texture(cubeImg, cubeImg->GetName());
+	myCubeTexture = new Texture("textures/leafsman.png", "Leafs Man");
+	TEXTURE_MANAGER->UploadTexture(myCubeTexture->GetResourceName(), myCubeTexture);
 
 	glGenTextures(1, texture);
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, myCubeTexture->GetWidth(), myCubeTexture->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, myCubeTexture->imageTexture->GetPixels());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, myCubeTexture->GetWidth(), myCubeTexture->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, myCubeTexture->GetPixels());
 
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -44,13 +41,11 @@ Box::Box() : GameObject()
 	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
 	//glEnableVertexAttribArray(2);
 
-	OBJLoader obj;
+
 
 	VECTOR(VEC3) vertices;
 	VECTOR(VEC2) uvs;
 	VECTOR(VEC3) normals;
-	hBOOL cube = obj.LoadOBJModel("models/leafsman.obj", vertices, uvs, normals);
-	NumVertices = vertices.size();
 
 
 	glGenBuffers(2, buffers);

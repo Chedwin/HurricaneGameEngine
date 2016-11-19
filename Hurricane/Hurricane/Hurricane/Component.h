@@ -5,49 +5,41 @@
 //
 // Author:			Edwin Chen, Mathieu Violette, James Sholdice, Nathan Senter
 // Created:			Sep 30, 2016
-// Last updated:	Nov 01, 2016
+// Last updated:	Nov 18, 2016
 //
 //*******************************//
 
-#pragma once
 
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
 #include "Macro.h"
-#include "ShaderProgram.h"
 
 class GameObject;
 
 enum COMPONENT_TYPE {
-	None=0,
-	Rigidbody,
-	Light,
 	Renderable,
+	Light,
+	Rigidbody,
 	Collider
 };
 
 class Component {
 public:
 	Component(GameObject* g, COMPONENT_TYPE ct);
-	~Component() {}
+	virtual ~Component() {}
 
 	inline void SetEnabled(hBOOL _b) {
 		isEnabled = _b;
 	}
+	inline hBOOL checkEnabled() const {
+		return isEnabled;
+	}
 
+public:
 	GameObject* parentGmObj;
 	COMPONENT_TYPE compType;
 	hBOOL isEnabled;
-};
-
-class RenderableComponent : public Component 
-{
-public:
-	RenderableComponent(GameObject* g, ShaderProgram* sp);
-	~RenderableComponent();
-
-	void Render();
 };
 
 #endif

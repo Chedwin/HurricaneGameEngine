@@ -1,69 +1,153 @@
 #include "Debug.h"
 #include "GameObject.h"
+
 #include "Component.h"
+#include "RenderableComponent.h"
+#include "LightComponent.h"
+#include "RigidbodyComponent.h"
+#include "ColliderComponent.h"
 
-//GameObject::GameObject(Level* _level) : gameObject(this)
-//{
-//	SetEnabled(true);
-//
-//	level = _level;
-//
-//	if (level) {
-//		// TODO: add this gameobject to level's vector of objects
-//	}
-//} 
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
+// CONSTRUCTOR(S) / DESTRUCTOR
 GameObject::GameObject() : gameObject(this)
 {
+	SetName("MyGameObject");
 	SetEnabled(true);
+	componentList.reserve(sizeof(COMPONENT_TYPE));
+}
+
+GameObject::GameObject(const STRING& name) : gameObject(this)
+{
+	SetName(name);
+	SetEnabled(true);
+	componentList.reserve(sizeof(COMPONENT_TYPE));
 }
 
 GameObject::~GameObject()
 {
+	// TODO: Destroy and clean up components and other game objects
+	if (componentList.size() > 0)
+	{
+		for (int i = 0; i < componentList.size(); i++) 
+		{
+			//switch (componentList[i]->compType) {
+			//case COMPONENT_TYPE::Renderable:
+			//	
+			//	break;
+			//case COMPONENT_TYPE::Light:
+			//	break;
+			//case COMPONENT_TYPE::Rigidbody:
+			//	break;
+			//case COMPONENT_TYPE::Collider:
+			//	break;
+			//}
+
+			delete componentList[i];
+			componentList[i] = nullptr;
+		}
+	}
+	componentList.clear();
+
+	// TODO: Destroy all child objects
+	// The root node of a scene will signal everyone to destroy themselves
+	if (childObjects.size() > 0) 
+	{
+		for (GameObject* g : childObjects) 
+		{
+			delete g;
+			g = nullptr;
+		}
+	}
+	childObjects.clear();
 }
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-// COMPONENTS
+// CHILDREN GAME OBJECTS
+// Helpful when building scene graph
 
-void GameObject::AddComponent(Component * c)
+void GameObject::AddChild(GameObject * g)
+{
+	childObjects.push_back(g);
+}
+
+void GameObject::RemoveChild(GameObject * g)
+{
+	VECTOR(GameObject*)::iterator iter;
+	for (iter = childObjects.begin(); iter != childObjects.end(); iter++) 
+	{
+		if (*iter == g) 
+		{
+			delete *iter;
+			*iter = nullptr;
+			return;
+		}
+	}
+	Debug::ConsoleError("Game object is not a child", __FILE__, __LINE__);
+}
+
+void GameObject::RemoveAllChildren() 
+{
+	VECTOR(GameObject*)::iterator iter;
+	for (iter = childObjects.begin(); iter != childObjects.end(); iter++)
+	{
+		delete *iter;
+		*iter = nullptr;
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ATTACHABLE COMPONENTS
+
+void GameObject::AddComponent(Component* c)
 {
 	hBOOL checkComp = HasComponent(c);
 
 	if (!checkComp)
 	{
-		components.push_back(c);
+		componentList.push_back(c);
+		//compMap.insert(std::make_pair(typeid(c).name(), c));
 		return;
 	}
 }
 
-hBOOL GameObject::HasComponent(Component *c) 
+hBOOL GameObject::HasComponent(Component* c)
 {
-	if (components.size() > 0) 
-	{
-		for (int i = 0; i <= components.size(); i++) 
+	if (componentList.size() > 0) 
+	{		
+		for (int i = 0; i < componentList.size(); i++)
 		{
-			Component* temp = components[i];
-			if (temp->compType == c->compType) 
+			Component* temp = componentList[i];
+			if (temp->compType == c->compType)
 			{
 				return true;
 			}
-		}	
+		}
 	}
+	//if (compMap.size() > 0)
+	//{
+	//	auto name = typeid(c).name();
+	//	if (compMap[typeid(c).name()]) {
+	//		return true;
+	//	}
+	//}
 	return false;
 }
 
-template<class TYPE> TYPE* GameObject::GetComponent()
+// GET COMPONENT
+// see component for refernce of component types
+template<typename TYPE> TYPE* GameObject::GetComponent()
 {
-	for (int i = 0; i < components.size(); i++)
+	for (int i = 0; i < componentList.size(); i++)
 	{
-		/*if (typeid(*components[i]).name() == typeid(TYPE).name())
-			return (TYPE*)components[i];*/
-		Component* cp = components[i];
-		if (cp->compType = typeif(TYPE).name()) 
+		if (typeid(*componentList[i]).name() == typeid(TYPE).name()) 
 		{
-			return (TYPE*)components[i];
+			return dynamic_cast<TYPE*>(componentList[i]);
+			//return (TYPE*)componentList[i];	
 		}
 	}
 	return nullptr;
@@ -74,7 +158,6 @@ template<class TYPE> TYPE* GameObject::GetComponent()
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 // TAGS
-
 void GameObject::AddTag(const STRING& _tag)
 {
 	hBOOL checkTag = HasTag(_tag);
@@ -88,7 +171,7 @@ void GameObject::AddTag(const STRING& _tag)
 
 hBOOL GameObject::HasTag(const STRING& _tag)
 {
-	for (int i = 0; i <= tags.size(); i++)
+	for (int i = 0; i < tags.size(); i++)
 	{
 		if (tags[i] == _tag)
 			return true;
@@ -96,12 +179,42 @@ hBOOL GameObject::HasTag(const STRING& _tag)
 	return false;
 }
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-// RENDERING
+// UPDATE
+void GameObject::Update(const hFLOAT _deltaTime)
+{
+	RigidbodyComponent* rbc = gameObject->GetComponent<RigidbodyComponent>();
 
-//void GameObject::Render() 
-//{
-//
-//}
+	if (rbc) {
+		//TODO: 
+		//rbc-> 
+	}
+
+	ColliderComponent* cc = gameObject->GetComponent<ColliderComponent>();
+
+	if (cc) {
+		// TODO:
+		//cc-> 
+	}
+}
+
+// PRE RENDER
+void GameObject::PreRender() 
+{
+	LightComponent* lc = gameObject->GetComponent<LightComponent>();
+	if (lc) {
+		lc->PushLight();
+	}
+}
+
+// RENDERING
+void GameObject::Render()
+{
+	// Render THIS object
+	RenderableComponent* renderable = gameObject->GetComponent<RenderableComponent>();
+
+	if (renderable) {
+		renderable->Render();
+	}
+}

@@ -32,7 +32,7 @@
 
 #include "PhysicsEngine.h"
 
-
+#include "Scene.h"
 
 
 #define GAME Game::GetGameInstance()
@@ -56,7 +56,7 @@ protected:
 	}
 	void DestroySystems();
 
-	//hBOOL LoadLevel(Level* _level);
+	hBOOL LoadScene(Scene* _scene);
 
 	void PreRender();
 	void PostRender();
@@ -96,8 +96,6 @@ public:
 protected:
 	static Game* _gameInstance;
 
-	//Level* levelToLoad;
-
 	hFLOAT _fps;
 
 	hFLOAT totalTime, lastUpdateTime, timeSinceLastUpdate;
@@ -116,7 +114,7 @@ public:
 	InputHandler* input;
 	AudioEngine* audio;
 
-	//Level* currentLevel;	
+	Scene* currentScene;	
 };
 
 #endif

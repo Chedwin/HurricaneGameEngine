@@ -6,11 +6,9 @@
 //
 // Author:			Edwin Chen
 // Created:			Nov 06, 2016
-// Last updated:	Nov 12, 2016
+// Last updated:	Nov 17, 2016
 //
 //*******************************//
-
-#pragma once
 
 
 #ifndef FLY_CAMERA_H
@@ -32,8 +30,8 @@ public:
 
 	// Prod
 	void MoveCamera(SDL_Event& _evnt);
-	void Update(const hFLOAT _deltaTime);
-	void Render();
+	void Update(const hFLOAT _deltaTime) final;
+	void Render() final;
 
 
 	static FlyCamera* GetFlyCamera();

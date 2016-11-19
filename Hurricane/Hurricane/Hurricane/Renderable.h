@@ -37,15 +37,4 @@ struct Renderable
 	~Renderable() {}
 };
 
-
-class RenderableComponent : public Component {
-public:
-	RenderableComponent(GameObject* parent, ShaderProgram* shader);
-	~RenderableComponent();
-
-	void Render();
-
-protected:
-	Model* _model;
-};
 #endif

@@ -17,7 +17,6 @@
 #include <glew.h>
 #include "Macro.h"
 #include "ResourceManager.h"
-#include "ShaderComponent.h"
 
 enum Attribute_Type
 {

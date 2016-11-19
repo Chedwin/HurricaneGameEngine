@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Nov 01, 2016
-// Last updated:	Nov 13, 2016
+// Last updated:	Nov 17, 2016
 //
 //*******************************//
 
@@ -15,18 +15,22 @@
 
 #include "Macro.h"
 #include "HMath.h"
-#include "SceneNode.h"
+#include "GameObject.h"
 
 class SceneGraph {
 public:
-	SceneGraph();
+	SceneGraph(); // TODO: design and implement scene graph
 	~SceneGraph();
 
 	void Initialze();
-	void RenderSceneNode(SceneNode* node);
+	void AddSceneNode(GameObject* node);
+	void UpdateSceneNode(const hFLOAT _deltaTime);
+	void RenderSceneNode();
+	void Destroy();
 
-private:
-	SceneNode* rootSceneNode;
+public:
+	GameObject* rootNode;
+	MAP(STRING, GameObject*)* sceneMap;
 };
 
 #endif
