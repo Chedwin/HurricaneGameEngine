@@ -78,6 +78,9 @@
 
 // string
 #define STRING std::string
+// to_string conversion
+#define TO_STRING(A) std::to_string(A)
+
 // ios
 #define IOS std::ios
 

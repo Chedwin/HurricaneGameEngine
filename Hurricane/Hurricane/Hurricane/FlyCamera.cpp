@@ -109,6 +109,6 @@ void FlyCamera::Update(const hFLOAT _deltaTime)
 
 void FlyCamera::Render() 
 {
-	glUniformMatrix4fv(_projectionLocation, 1, GL_FALSE, &_projectionMatrix[0][0]);
-	glUniformMatrix4fv(_viewLocation, 1, GL_FALSE, &_viewMatrix[0][0]);
+	//glUniformMatrix4fv(_projectionLocation, 1, GL_FALSE, &_projectionMatrix[0][0]);
+	//glUniformMatrix4fv(_viewLocation, 1, GL_FALSE, &_viewMatrix[0][0]);
 }

@@ -1,6 +1,5 @@
 #include "Game.h"
 #include "OpenGLRenderer.h"
-#include "Hurricane.h"
 
 Game* Game::_gameInstance(nullptr);
 
@@ -11,11 +10,21 @@ Game* Game::GetGameInstance() {
 	return _gameInstance;
 }
 
-Game::Game() :
-	_isRunning(true), gameWindow(nullptr),
-	_fps(0.0f), timeSinceLastUpdate(0.0f)
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Game::Game()	
 {
-	// EMPTY
+	_isRunning = true;
+	_canLoadNewScene = false;
+	_fps = 0.0f; 
+	_totalTime = 0.0f;
+	_deltaTime = 0.0f;
+	_lastUpdateTime = 0.0f;
+	_timeSinceLastUpdate = 0.0f;
+	
+	gameWindow = nullptr;
+	currentScene = nullptr; 
+	sceneToLoad = nullptr;
 }
 
 Game::~Game()
@@ -69,10 +78,26 @@ hBOOL Game::InitEngine()
 	return true;
 }
 
+// Load the appropriate scene
+void Game::LoadScene(Scene * _scene)
+{
+	if (sceneToLoad != nullptr) {
+		delete sceneToLoad;
+	}
+
+	sceneToLoad = _scene;
+	_canLoadNewScene = true;
+}
+
 // Clean up after ourselves
 // REMEMBER: Don't have to delete singletons! (that are created w/ unique pointer)
 void Game::DestroySystems()
 {
+	if (currentScene) {
+		delete currentScene;
+	}
+	currentScene = nullptr;
+
 	delete gameTimer;
 	gameTimer = nullptr;
 
@@ -86,6 +111,7 @@ void Game::DestroySystems()
 }
 
 
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Game::Run()
@@ -96,14 +122,14 @@ void Game::Run()
 	{
 		Debug::ConsoleError("ENGINE INITIALIZATION FAILED", __FILE__, __LINE__);
 		GETCHAR();
+		return;
 	}
-
-	if (init)
+	else
 	{
 		// Allow the game to initialize its own special options
 		InitGame();
 
-		// Start the game loop
+		// Now start the game loop
 		GameLoop();
 	}
 }
@@ -120,35 +146,34 @@ void Game::GameLoop()
 		_fpsCounter.BeginFrame();
 
 		// CALCULATE DELTA-TIME
-		timeSinceLastUpdate = SDL_GetTicks() - lastUpdateTime;
+		_timeSinceLastUpdate = SDL_GetTicks() - _lastUpdateTime;
 
 		// This is the timestep variable we'll use to 
-		_deltaTime = timeSinceLastUpdate / 1000.0f;
+		_deltaTime = _timeSinceLastUpdate / 1000.0f;
 
 		// Set the last update time w/ ticks from "this" iteration of the game loop
-		lastUpdateTime = SDL_GetTicks();
+		_lastUpdateTime = SDL_GetTicks();
 
+		
 
 		// INPUT HANDLING LOOP w/ SDL EVENT
 		while (SDL_PollEvent(&evnt))
 		{
-			GameInput(evnt); // force the input to the game for now.....
+			// Give the polled event to the input handler
+			input->ProcessInput(evnt);
 
-			switch (evnt.type) {
-			case SDL_KEYDOWN:
-				input->PressKey(evnt.key.keysym.sym);
-				break;
-			case SDL_KEYUP:
-				input->ReleaseKey(evnt.key.keysym.sym);
-				break;
-			case SDL_EventType::SDL_QUIT:
-				QuitWindowPrompt();
-				break;
+			// Quit the game
+			if (evnt.type == SDL_QUIT || input->IsKeyDown(SDLK_ESCAPE))
+			{
+				SetRunState(false);
+				Debug::ConsoleLog("Exit Game");
 			}
 			
 		}
 		SDL_PumpEvents();
 
+		// Update our input handler
+		input->Update();
 
 		// PASS OUR DELTA TIME TO OUR PHYSICS ENGINE
 		PHYSICS->FixedUpdate(_deltaTime);
@@ -157,7 +182,6 @@ void Game::GameLoop()
 		EngineUpdate(_deltaTime);
 
 		// RENDER
-		PreRender();
 		EngineRender();
 
 
@@ -168,6 +192,8 @@ void Game::GameLoop()
 		if (frameCounter >= 10) {
 			frameCounter = 0;
 		}
+
+		_totalTime += _deltaTime;
 	}
 }
 
@@ -176,8 +202,24 @@ void Game::GameLoop()
 // UPDATE
 void Game::EngineUpdate(const hFLOAT _timeStep)
 {
-	// TODO:
+	// Load a new scene if we need to
+	if (_canLoadNewScene) {
+		_canLoadNewScene = false;
+
+		if (currentScene) {
+			delete currentScene;
+		}
+
+		currentScene = sceneToLoad;
+		sceneToLoad = nullptr;
+
+		currentScene->InitScene();
+	}
+
 	// Update engine stuff before game-specific stuff
+	if (currentScene) {
+		currentScene->Update(_timeStep);
+	}
 
 	// Now we can update the game
 	GameUpdate(_timeStep);
@@ -192,7 +234,15 @@ void Game::PreRender()
 }
 void Game::EngineRender()
 {
-	GameRender();
+	if (!_canLoadNewScene) {
+		PreRender();
+
+		if (currentScene) {
+			currentScene->Render();
+		}
+
+		GameRender();
+	}
 	PostRender();
 }
 

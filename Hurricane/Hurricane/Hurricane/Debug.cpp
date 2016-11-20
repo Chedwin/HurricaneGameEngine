@@ -6,7 +6,7 @@ void Debug::Init() {
 	// During this Init, we're going to either:
 	// 1) Create "Log.txt" if it doesn't already exist, or
 	// 2) Append to it if it exist
-	out.open("Log.txt", IOS::app | IOS::out);
+	out.open("DebugLog.txt", IOS::app | IOS::out);
 
 	out.close();
 }
@@ -41,6 +41,11 @@ void Debug::ConsoleLog(const STRING& notes) {
 
 void Debug::ConsoleLog(const hFLOAT _f) {
 	COUT << _f << ENDL;
+}
+
+void Debug::ConsoleLog(const VEC3 & _v3)
+{
+	COUT << "(" << _v3.x << ", " << _v3.y << ", " << _v3.z << ")" << ENDL;
 }
 
 

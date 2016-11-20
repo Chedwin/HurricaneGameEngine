@@ -17,7 +17,6 @@
 #include "Macro.h"
 #include "HMath.h"
 #include "GameObject.h"
-#include "ShaderProgramManager.h"
 
 #include "Frustum.h"
 
@@ -48,28 +47,9 @@ public:
 	}
 
 
-	inline GLuint GetViewLocation() const {
-		return _viewLocation;
-	}
-	inline GLuint GetProjLocation() const {
-		return _projectionLocation;
-	}
 
-	
-
-	inline void SetViewLocation(const GLuint _view) {
-		_viewLocation = _view;
-	}
-	inline void SetProjLocation(const GLuint _proj) {
-		_projectionLocation = _proj;
-	}
-
-	inline MATRIX4 GetViewMatrix() const {
-		return _viewMatrix;
-	}
-
-	inline MATRIX4 GetProjectionMatrix() const {
-		return _projectionMatrix;
+	inline MATRIX4 GetMatrix() const {
+		return _projectionMatrix * _viewMatrix;
 	}
 
 protected:
@@ -78,8 +58,6 @@ protected:
 	MATRIX4 _projectionMatrix;
 	MATRIX4 _viewMatrix;
 
-	GLuint _viewLocation;
-	GLuint _projectionLocation;
 public:
 	Frustum frustum;
 };

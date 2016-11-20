@@ -49,7 +49,14 @@ public:
 	// i.e. similiar to Unity;
 	template<typename TYPE> TYPE* GetComponent();
 
-	
+	void ResetTransform();
+
+	void Translate(const VEC3& v);
+	void Scale(const VEC3& s);
+
+	void Rotate(const VEC3& r);
+	void Rotate(const QUATERNION& q);
+
 	void AddTag(const STRING& _tag);
 	hBOOL HasTag(const STRING& _tag);
 	

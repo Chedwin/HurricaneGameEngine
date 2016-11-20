@@ -6,7 +6,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Nov 07, 2016
-// Last updated:	Nov 14, 2016
+// Last updated:	Nov 19, 2016
 //
 //*******************************//
 
@@ -21,16 +21,6 @@ struct Transform
 	VEC3 position;
 	VEC3 scale;
 	QUATERNION rotation;
-
-	inline void Translate(const VEC3& p) {
-		position = p;
-	}
-	inline void Scale(const VEC3& s) {
-		scale = s;
-	}
-	inline void Rotate(const QUATERNION& q) {
-		rotation = q;
-	}
 };
 
 
