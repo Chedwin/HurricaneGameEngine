@@ -148,7 +148,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AABB.h" />
     <ClInclude Include="AbstractRenderer.h" />
     <ClInclude Include="AudioEngine.h" />
     <ClInclude Include="Camera.h" />
@@ -166,9 +165,6 @@
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameSceneManager.h" />
-    <ClInclude Include="Graph.h" />
-    <ClInclude Include="Hurricane.h" />
     <ClInclude Include="HurricaneProperties.h" />
     <ClInclude Include="RenderableComponent.h" />
     <ClInclude Include="RigidbodyComponent.h" />
@@ -199,7 +195,6 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Transform.h" />
-    <ClInclude Include="Vertex.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -218,8 +213,6 @@
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GameSceneManager.cpp" />
-    <ClCompile Include="Hurricane.cpp" />
     <ClCompile Include="HurricaneProperties.cpp" />
     <ClCompile Include="RenderableComponent.cpp" />
     <ClCompile Include="RigidbodyComponent.cpp" />
@@ -242,7 +235,6 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
-    <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -5,11 +5,11 @@
 //					Contains a root game object that begins the start of the "scene graph"
 //
 // Author:			Edwin Chen
-// Special Thanks:  Unity, Aidan Dearing
+// Special Thanks:  Unity, Aidan Dearing, Mark Seaman
 //					
 //
 // Created:			Mar 22, 2016
-// Last updated:	Nov 17, 2016
+// Last updated:	Nov 18, 2016
 //
 //*******************************//
 
@@ -18,6 +18,7 @@
 
 #include "Macro.h"
 #include "HMath.h"
+#include "GameObject.h"
 #include "Camera.h"
 #include "SceneGraph.h"
 
@@ -27,12 +28,11 @@ class Game;
 class Scene {
 	friend class Game;
 public:
-	explicit Scene();
+	Scene();
 	virtual ~Scene();
 
-	virtual void Awake() = 0;
-	virtual void Start() = 0;
-	virtual void Update() = 0;
+	virtual void InitScene() = 0;
+	virtual void Update(const hFLOAT _timeStep) = 0;
 	virtual void Render() = 0;
 
 	inline STRING GetSceneName() const {
@@ -42,12 +42,23 @@ public:
 		_name = n;
 	}
 
+	void AddSceneNode(GameObject* g, const STRING& name="");
+	void RemoveSceneNode(const STRING& gName);
+	void RemoveAllSceneNodes();
+	GameObject* GetSceneNode(const STRING& name);
+
+	inline hINT GetNumSceneNodes() const {
+		return sceneGraph.size();
+	}
+
 protected:
 	STRING _name;
-	Camera* _mainCamera;
 public:
+	Camera* mainCamera;
+	Camera* currentCamera;
+
 	GameObject* rootNode;
-	UNORDERED_MAP(STRING, GameObject*) sceneMap;
+	UNORDERED_MAP(STRING, GameObject*) sceneGraph;
 };
 
 

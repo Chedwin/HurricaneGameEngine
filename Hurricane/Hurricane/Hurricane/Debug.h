@@ -6,7 +6,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Jan 31, 2016
-// Last updated:	Nov 11, 2016
+// Last updated:	Nov 19, 2016
 //
 //*******************************//
 
@@ -14,7 +14,7 @@
 #define _DEBUG_H 
 
 #include "Macro.h"
-
+#include "HMath.h"
 
 /// This enum is a simple 8-bit unsigned int
 enum class EMessageType : unsigned short {
@@ -40,6 +40,7 @@ public:
 
 	static void ConsoleLog(const STRING& notes);
 	static void ConsoleLog(const hFLOAT _f);
+	static void ConsoleLog(const VEC3& _v3);
 
 	static void ConsoleError(const STRING& error);
 	static void ConsoleError(const STRING& error, const STRING& file, const hINT line);

@@ -66,7 +66,7 @@ hBOOL Window::Init(const hINT _w, const hINT _h, const UINT32 flags)
 
 	// (8) Display the current version of OpenGL in the console
 #if defined(DEBUG) || defined(_DEBUG)
-	PRINTF("***     OpenGL Version: %s   ***", glGetString(GL_VERSION));
+	PRINTF("***     OpenGL Version: %s   ***\n", glGetString(GL_VERSION));
 #endif
 
 	// (9) Set the initialized to true and return it

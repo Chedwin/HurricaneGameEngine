@@ -155,11 +155,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Box.cpp" />
+    <ClCompile Include="SimulationScene.cpp" />
+    <ClCompile Include="TitleScreenScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TestGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h" />
+    <ClInclude Include="TitleScreenScene.h" />
+    <ClInclude Include="SimulationScene.h" />
     <ClInclude Include="TestGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

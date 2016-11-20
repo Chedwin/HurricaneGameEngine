@@ -4,8 +4,8 @@
 // Description:		Establishes a base application for all Hurricane games to derive from.
 //
 // Author:			Edwin Chen
-// Created:			Jul 05, 2016
-// Last updated:	Nov 13, 2016
+// Created:			May 02, 2016
+// Last updated:	Nov 18, 2016
 //
 //*******************************//
 
@@ -42,8 +42,6 @@ class Game {
 private:
 	void EngineUpdate(const hFLOAT _timeStep);
 	void EngineRender();
-public:
-
 protected:
 	explicit Game();
 
@@ -56,7 +54,6 @@ protected:
 	}
 	void DestroySystems();
 
-	hBOOL LoadScene(Scene* _scene);
 
 	void PreRender();
 	void PostRender();
@@ -66,9 +63,9 @@ public:
 
 	void Run();
 	void GameLoop();
+	void LoadScene(Scene* _scene);
 
 	// TO BE OVERLOADED BY THE DERIVED GAME
-	virtual void GameInput(SDL_Event& _evnt) {}
 	virtual void GameUpdate(const hFLOAT _deltaTime) {}
 	virtual void GameRender() {}
 
@@ -87,7 +84,7 @@ public:
 	}
 
 	inline hFLOAT GetTotalTime() const {
-		return totalTime;
+		return _totalTime;
 	}
 	inline hFLOAT GetDeltaTime() const {
 		return _deltaTime;
@@ -98,9 +95,10 @@ protected:
 
 	hFLOAT _fps;
 
-	hFLOAT totalTime, lastUpdateTime, timeSinceLastUpdate;
+	hFLOAT _totalTime, _lastUpdateTime, _timeSinceLastUpdate;
 
 	hBOOL _isRunning;
+	hBOOL _canLoadNewScene;
 	hFLOAT _deltaTime;
 
 	FPSCounter _fpsCounter;
@@ -114,7 +112,8 @@ public:
 	InputHandler* input;
 	AudioEngine* audio;
 
-	Scene* currentScene;	
+	Scene* currentScene;
+	Scene* sceneToLoad;
 };
 
 #endif

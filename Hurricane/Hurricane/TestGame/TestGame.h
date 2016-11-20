@@ -17,14 +17,5 @@ public:
 	void GameUpdate(const hFLOAT _deltaTime) override;
 	void GameRender() override;
 
-	void GameInput(SDL_Event& _evnt) override;
-
 public:
-	ShaderProgram* modelShader;
-
-	GLuint location;
-	GLuint view_matrix_location;
-	GLuint projection_matrix_location;
-
-	Box* box;
 };

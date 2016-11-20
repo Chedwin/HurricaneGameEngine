@@ -1,6 +1,8 @@
 #include "Debug.h"
 #include "GameObject.h"
 
+#include "PhysicsEngine.h"
+
 #include "Component.h"
 #include "RenderableComponent.h"
 #include "LightComponent.h"
@@ -51,15 +53,7 @@ GameObject::~GameObject()
 
 	// TODO: Destroy all child objects
 	// The root node of a scene will signal everyone to destroy themselves
-	if (childObjects.size() > 0) 
-	{
-		for (GameObject* g : childObjects) 
-		{
-			delete g;
-			g = nullptr;
-		}
-	}
-	childObjects.clear();
+	RemoveAllChildren();
 }
 
 
@@ -91,12 +85,16 @@ void GameObject::RemoveChild(GameObject * g)
 
 void GameObject::RemoveAllChildren() 
 {
-	VECTOR(GameObject*)::iterator iter;
-	for (iter = childObjects.begin(); iter != childObjects.end(); iter++)
+	if (childObjects.size() > 0) 
 	{
-		delete *iter;
-		*iter = nullptr;
+		VECTOR(GameObject*)::iterator iter;
+		for (iter = childObjects.begin(); iter != childObjects.end(); iter++)
+		{
+			delete *iter;
+			*iter = nullptr;
+		}
 	}
+	childObjects.clear();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -128,13 +126,6 @@ hBOOL GameObject::HasComponent(Component* c)
 			}
 		}
 	}
-	//if (compMap.size() > 0)
-	//{
-	//	auto name = typeid(c).name();
-	//	if (compMap[typeid(c).name()]) {
-	//		return true;
-	//	}
-	//}
 	return false;
 }
 
@@ -156,7 +147,78 @@ template<typename TYPE> TYPE* GameObject::GetComponent()
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
+// TRANSFORM
 
+// Reset its own transform
+// NOTE: children of this object don't get affected by this function
+void GameObject::ResetTransform()
+{
+	if (!PHYSICS->isPhysicsRunning) {
+		return;
+	}
+	gameObject->transform.position = VEC3(0.0f, 0.0f, 0.0f);
+	gameObject->transform.scale = VEC3(1.0f, 1.0f, 1.0f);
+	//gameObject->transform.rotation = QUATERNION();
+}
+
+// Translate
+void GameObject::Translate(const VEC3 & v)
+{
+	if (!PHYSICS->isPhysicsRunning) {
+		return;
+	}
+	gameObject->transform.position += v;
+
+	for (auto iter = childObjects.begin(); iter != childObjects.end(); iter++) {
+		(*iter)->Translate(v);
+	}
+}
+
+// Scale
+void GameObject::Scale(const VEC3& s) 
+{
+	if (!PHYSICS->isPhysicsRunning) {
+		return;
+	}
+
+	gameObject->transform.scale *= s;
+
+	for (auto iter = childObjects.begin(); iter != childObjects.end(); iter++) {
+		(*iter)->Scale(s);
+	}
+}
+
+// Rotate w/ DEGREES
+void GameObject::Rotate(const VEC3& r) 
+{
+	if (!PHYSICS->isPhysicsRunning) {
+		return;
+	}
+
+	//QUATERNION _rot = (QUATERNION(_rotation.x, Vec3::BasisX()) * QUATERNION(_rotation.y, Vec3::BasisY()) * QUATERNION(_rotation.z, Vec3::BasisZ())).NormalizeThis();
+	QUATERNION rot = glm::normalize(QUATERNION(r.x, BASIS3X) * QUATERNION(r.y, BASIS3Y) * QUATERNION(r.z, BASIS3Z));
+
+	gameObject->transform.rotation *= rot;
+
+	//for (auto it = childObjects.begin(); it != childObjects.end(); it++) {
+		////Children don't quite rotate at the right pace.
+		//(*it)->Rotate(rot);
+		//VEC3 newPos = (*it)->transform.position - position;
+		//(*it)->Translate((Quat::rotate(_rot, newPos.Normalized()) * newPos.magnitude() + position) - (*it)->position);
+	//}
+}
+
+// Rotate w/ QUATERNIONS
+void GameObject::Rotate(const QUATERNION& q) 
+{
+	if (!PHYSICS->isPhysicsRunning) {
+		return;
+	}
+
+
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 // TAGS
 void GameObject::AddTag(const STRING& _tag)
 {
@@ -181,9 +243,13 @@ hBOOL GameObject::HasTag(const STRING& _tag)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-// UPDATE
+// UPDATE (PHYSICS STUFF)
 void GameObject::Update(const hFLOAT _deltaTime)
 {
+	if (!PHYSICS->isPhysicsRunning) {
+		return;
+	}
+
 	RigidbodyComponent* rbc = gameObject->GetComponent<RigidbodyComponent>();
 
 	if (rbc) {
@@ -198,6 +264,10 @@ void GameObject::Update(const hFLOAT _deltaTime)
 		//cc-> 
 	}
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+// RENDERING
 
 // PRE RENDER
 void GameObject::PreRender() 

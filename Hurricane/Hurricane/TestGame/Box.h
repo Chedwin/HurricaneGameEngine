@@ -13,10 +13,4 @@ public:
 	~Box();
 
 	void Render() override;
-
-	GLuint buffers[2];
-	Texture* myCubeTexture;
-	GLuint texture[1];
-
-	EffectModel* model;
 };
