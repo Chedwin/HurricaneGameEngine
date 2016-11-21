@@ -52,6 +52,8 @@
 
 #include <typeinfo>
 
+#include <functional>
+
 #include "PrimitiveTypes.h"
 
 //////// Macros /////////
@@ -91,6 +93,10 @@
 
 // sstream
 #define STRINGSTREAM std::stringstream 
+
+
+// functional
+#define FUNCTION(U) std::function<U>
 
 // list
 #define LIST(T) std::list<T>

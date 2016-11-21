@@ -28,7 +28,8 @@ public:
 	void Render();
 
 	Model* GetModel(const STRING& _name);
-	Model* GetModel(ResourceHandle<Model>& _handle);
+	Model * GetModel(ResourceHandle<Model>& _handle);
+
 
 public:
 	ShaderProgram* shader;

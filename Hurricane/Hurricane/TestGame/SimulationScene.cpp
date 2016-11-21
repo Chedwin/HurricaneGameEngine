@@ -35,15 +35,24 @@ void SimulationScene::InitScene()
 	Model* cb = mm->GetModel("Cube");
 
 	ShaderProgram* shader = new ShaderProgram("shader");
-	shader->CompileShaders("../shaders/modelStandard.vert", "../shaders/modelStandard.frag");
-	shader->AddAttribute("vertexPosition");
-	shader->AddAttribute("vertexUV");
-	shader->AddAttribute("vertexNormal");
+	shader->CompileShaders("../shaders/colourShading.vert", "../shaders/colourShading.frag");
+	//shader->AddAttribute("vertexPosition");
+	//shader->AddAttribute("vertexUV");
+	//shader->AddAttribute("vertexNormal");
 
 	SHADER_MANAGER->StoreShaderProg(shader->GetProgramName(), shader);
 
 	GameObject* puck = new GameObject("MyPuck");
 	MeshComponent* puckMesh = new MeshComponent(puck, shader);
+
+
+	AddSceneNode(sun);
+	AddSceneNode(puck);
+
+	RemoveSceneNode("earth");
+
+
+	GameObject* puckClone = Scene::FindSceneNode("MyPuck");
 }
 
 void SimulationScene::Update(const hFLOAT _timeStep)

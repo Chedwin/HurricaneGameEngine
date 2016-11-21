@@ -21,7 +21,6 @@
 
 #define MODEL_MANAGER ModelManager::GetModelManager()
 #define BUFFER_OFFSET(i) ((void*)(i))
-#define NUM_BUFFERS 3
 
 class ModelManager {
 private:

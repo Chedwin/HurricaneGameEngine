@@ -165,6 +165,7 @@
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjectScript.h" />
     <ClInclude Include="HurricaneProperties.h" />
     <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="RigidbodyComponent.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjectScript.cpp" />
     <ClCompile Include="HurricaneProperties.cpp" />
     <ClCompile Include="MeshComponent.cpp" />
     <ClCompile Include="RigidbodyComponent.cpp" />

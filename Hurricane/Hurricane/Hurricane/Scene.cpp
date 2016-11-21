@@ -3,83 +3,73 @@
 Scene::Scene()
 {
 	// Set up root node
-	rootNode = nullptr;
-	rootNode = new GameObject("RootNode");
+	_rootNode.reset(nullptr);
+	//_rootNode = new GameObject("RootNode");
+
+	_rootNode.reset(new GameObject("RootNode"));
+
 	// Make sure the root node is at the origin
-	rootNode->transform.position = ORIGIN;
+	_rootNode->transform.position = ORIGIN;
 
 	// Create the default scene camera
 	mainCamera = currentCamera = nullptr;
 	mainCamera = new Camera();
 	mainCamera->SetName("MainCamera");
-	currentCamera = mainCamera;
+	SetCamera(mainCamera);
 
-
-	AddSceneNode(rootNode);
 	AddSceneNode(mainCamera);
 }
 
 Scene::~Scene()
 {
-	RemoveAllSceneNodes();
-	delete rootNode;
+	ClearAllSceneNodes();
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// CAMERA
+void Scene::SetCamera(Camera* _c) 
+{
+	currentCamera = _c;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // SCENE GRAPH
 
-void Scene::AddSceneNode(GameObject * g, const STRING& name)
+// Add node
+void Scene::AddSceneNode(GameObject * g)
 {
-	UNORDERED_MAP(STRING, GameObject*)::iterator iter = sceneGraph.begin();
-
-	// Does a game object with the same name already exist in the scene graph?
-	// Also don't let anybody delete the root node
-	for (iter = sceneGraph.begin(); iter != sceneGraph.end(); iter++) {
-		if (iter->first == g->GetName() || iter->first == name || iter->first == rootNode->GetName()) {
-			return;
-		}		
-	}
-
-	// Is your inserted game object already named? If not, we'll give it one!
-	if (g->GetName() != "") {
-		sceneGraph.insert(PAIR(STRING, GameObject*)(g->GetName(), g));	
-	}
-	else {
-		hINT size = GetNumSceneNodes();
-		STRING goName = "GameObject(" + TO_STRING(size) + ")"; // "GameObject(n)" how many objects there are already 
-		sceneGraph.insert(PAIR(STRING, GameObject*)(goName, g));
-	}
-
-	// Make sure not to add the root node to itself! 
-	if (g != rootNode) {
-		rootNode->AddChild(g);	
+	if (g != _rootNode.get()) 
+	{
+		if (g->GetName() == "") 
+		{
+			STRING newName = "GameObject(" + TO_STRING(GetSceneSize()) + ")";
+			g->SetName(newName);
+		}
+		_rootNode->AddChild(g);	
 	}
 }
 
+// Remove node
 void Scene::RemoveSceneNode(const STRING& gName)
 {
-	UNORDERED_MAP(STRING, GameObject*)::iterator iter = sceneGraph.begin();
-
-	for (iter = sceneGraph.begin(); iter != sceneGraph.end(); iter++) {
-		if (iter->first == gName) {
-			delete iter->second;
-			sceneGraph.erase(gName);
-
-			rootNode->RemoveChild(iter->second);
-			return;
-		}
-	}
+	_rootNode->RemoveChild(gName);
 }
 
-void Scene::RemoveAllSceneNodes() 
+// Clear all nodes
+void Scene::ClearAllSceneNodes() 
 {
-	sceneGraph.clear();
+	_rootNode->ClearAllChildren();
 }
 
-GameObject * Scene::GetSceneNode(const STRING& name)
+GameObject* Scene::FindSceneNode(const STRING& name)
 {
-	GameObject* temp = sceneGraph[name];
-	return temp;
+	return _rootNode->GetChild(name);
+}
+
+GameObject * Scene::FindSceneNode(GameObject * g)
+{
+	return _rootNode->GetChild(g);
 }
