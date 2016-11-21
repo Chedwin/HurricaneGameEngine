@@ -76,7 +76,7 @@ void ModelManager::LoadModel(const STRING& _name, const STRING& _filePath)
 		totalVerts += scene->mMeshes[i]->mNumVertices;
 	}
 
-	Debug::ConsoleLog("NumVertices: " + TO_STRING(totalVerts));
+	//Debug::ConsoleLog("NumVertices: " + TO_STRING(totalVerts));
 
 	Model* newModel = new Model();
 	newModel->SetModelName(_name);

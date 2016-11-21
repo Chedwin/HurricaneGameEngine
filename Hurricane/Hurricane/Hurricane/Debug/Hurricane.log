@@ -1,2 +1,11 @@
-﻿  ShaderProgram.cpp
+﻿  GameObject.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(34): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(168): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(284): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(184): warning C4018: '<': signed/unsigned mismatch
+  d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(303): note: see reference to function template instantiation 'TYPE *GameObject::GetComponent<RigidbodyComponent>(void)' being compiled
+          with
+          [
+              TYPE=RigidbodyComponent
+          ]
   Hurricane.vcxproj -> D:\Users\edwin\GitHub\HurricaneGameEngine\Hurricane\Hurricane\Debug\Hurricane.lib

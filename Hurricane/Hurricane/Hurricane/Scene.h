@@ -9,7 +9,7 @@
 //					
 //
 // Created:			Mar 22, 2016
-// Last updated:	Nov 18, 2016
+// Last updated:	Nov 21, 2016
 //
 //*******************************//
 
@@ -25,6 +25,8 @@
 // forward declare the Game Scene Manager
 class Game;
 
+//#define ROOT_NODE Scene::_rootNode.get()
+
 class Scene {
 	friend class Game;
 public:
@@ -35,30 +37,36 @@ public:
 	virtual void Update(const hFLOAT _timeStep) = 0;
 	virtual void Render() = 0;
 
+	void SetCamera(Camera* _c);
+
+
+	void AddSceneNode(GameObject* g);
+	void RemoveSceneNode(const STRING& gName);
+	void ClearAllSceneNodes();
+
+	GameObject* FindSceneNode(const STRING& name);
+	GameObject* FindSceneNode(GameObject* g);
+
+
 	inline STRING GetSceneName() const {
 		return _name;
 	}
 	inline void SetSceneName(const STRING& n) {
 		_name = n;
 	}
-
-	void AddSceneNode(GameObject* g, const STRING& name="");
-	void RemoveSceneNode(const STRING& gName);
-	void RemoveAllSceneNodes();
-	GameObject* GetSceneNode(const STRING& name);
-
-	inline hINT GetNumSceneNodes() const {
-		return sceneGraph.size();
+	inline hINT GetSceneSize() const {
+		return _rootNode->childObjects.size();
 	}
+
 
 protected:
 	STRING _name;
+	UNIQUE_PTR(GameObject) _rootNode; // NOTE: the root node IS the scene graph
+	friend DEFAULT_DELETE(GameObject);
 public:
 	Camera* mainCamera;
 	Camera* currentCamera;
 
-	GameObject* rootNode;
-	UNORDERED_MAP(STRING, GameObject*) sceneGraph;
 };
 
 

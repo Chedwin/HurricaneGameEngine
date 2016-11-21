@@ -10,7 +10,7 @@
 // Special Thanks:  Mathieu Violette, James Sholdice, Nathan Senter, Unity, Aiden Dearing, House Yokeswaran, Mark Seaman
 //
 // Created:			Sep 30, 2016
-// Last updated:	Nov 18, 2016
+// Last updated:	Nov 21, 2016
 //
 //*******************************//
 
@@ -23,6 +23,7 @@
 #include "HMath.h"
 #include "Component.h"
 #include "Transform.h"
+#include "GameObjectScript.h"
 
 class GameObject {
 public:
@@ -38,7 +39,11 @@ public:
 
 	void AddChild(GameObject* g);
 	void RemoveChild(GameObject* g);
-	void RemoveAllChildren();
+	void RemoveChild(const STRING& n);
+	void ClearAllChildren();
+
+	GameObject* GetChild(const STRING& name);
+	GameObject* GetChild(GameObject* g);
 
 	void AddComponent(Component* c);
 	hBOOL HasComponent(Component* c);
@@ -60,6 +65,11 @@ public:
 	void AddTag(const STRING& _tag);
 	hBOOL HasTag(const STRING& _tag);
 	
+	// Scripting
+	void AttachScript(GameObjectScript* s);
+	void DetachScript();
+
+
 	inline hBOOL CheckEnabled() const {
 		return isEnabled;
 	}
@@ -91,6 +101,9 @@ public:
 
 	// Transform fields
 	Transform transform;
+
+	// Scripting behaviour 
+	GameObjectScript* attachedScript;
 };
 
 

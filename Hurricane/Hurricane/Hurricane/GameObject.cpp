@@ -12,7 +12,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 // CONSTRUCTOR(S) / DESTRUCTOR
-GameObject::GameObject() : gameObject(this)
+GameObject::GameObject() : gameObject(this), attachedScript(nullptr)
 {
 	SetName("MyGameObject");
 	SetEnabled(true);
@@ -53,7 +53,7 @@ GameObject::~GameObject()
 
 	// TODO: Destroy all child objects
 	// The root node of a scene will signal everyone to destroy themselves
-	RemoveAllChildren();
+	ClearAllChildren();
 }
 
 
@@ -73,8 +73,7 @@ void GameObject::RemoveChild(GameObject * g)
 	VECTOR(GameObject*)::iterator iter;
 	for (iter = childObjects.begin(); iter != childObjects.end(); iter++) 
 	{
-		if (*iter == g) 
-		{
+		if (*iter == g) {
 			delete *iter;
 			*iter = nullptr;
 			return;
@@ -83,7 +82,23 @@ void GameObject::RemoveChild(GameObject * g)
 	Debug::ConsoleError("Game object is not a child", __FILE__, __LINE__);
 }
 
-void GameObject::RemoveAllChildren() 
+void GameObject::RemoveChild(const STRING& n) 
+{
+	VECTOR(GameObject*)::iterator iter;
+	for (iter = childObjects.begin(); iter != childObjects.end(); iter++)
+	{
+		GameObject* temp = *iter;
+		if (temp->GetName() == n)
+		{
+			delete *iter;
+			childObjects.erase(iter);
+			return;
+		}
+	}
+	childObjects.shrink_to_fit();
+}
+
+void GameObject::ClearAllChildren() 
 {
 	if (childObjects.size() > 0) 
 	{
@@ -95,6 +110,39 @@ void GameObject::RemoveAllChildren()
 		}
 	}
 	childObjects.clear();
+	childObjects.shrink_to_fit();
+}
+
+
+// GET CHILD
+// by name
+GameObject* GameObject::GetChild(const STRING& name)
+{
+	VECTOR(GameObject*)::iterator iter;
+	for (iter = childObjects.begin(); iter != childObjects.end(); iter++)
+	{
+		GameObject* temp = *iter;
+		if (temp->GetName() == name)
+		{
+			return temp;
+		}
+	}
+	return nullptr;
+}
+
+// by GameObject* pointer (I don't think this willbe used very much)
+GameObject* GameObject::GetChild(GameObject* g) 
+{
+	VECTOR(GameObject*)::iterator iter;
+	for (iter = childObjects.begin(); iter != childObjects.end(); iter++)
+	{
+		GameObject* temp = *iter;
+		if (temp == g)
+		{
+			return temp;
+		}
+	}
+	return nullptr;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -241,6 +289,8 @@ hBOOL GameObject::HasTag(const STRING& _tag)
 	return false;
 }
 
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 // UPDATE (PHYSICS STUFF)
@@ -286,5 +336,24 @@ void GameObject::Render()
 
 	if (renderable) {
 		renderable->Render();
+	}
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+// SCRIPTING
+void GameObject::AttachScript(GameObjectScript * s)
+{
+	if (!attachedScript) {
+		attachedScript = s;
+	}
+}
+
+void GameObject::DetachScript()
+{
+	if (attachedScript) {
+		delete attachedScript;
+		attachedScript = nullptr;
 	}
 }

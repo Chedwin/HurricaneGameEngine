@@ -27,10 +27,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tester", "Tester", "{50648D97-5908-442D-A383-702D08CCE7BC}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HurricaneTestBed", "HurricaneTestBed\HurricaneTestBed.vcxproj", "{51FF6555-4648-469A-AA47-4A9024AD9BBA}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC42338C-C3C5-4EDC-8884-9C9BFD07B294}"
-	ProjectSection(SolutionItems) = preProject
-		WebEssentials2015-Settings.json = WebEssentials2015-Settings.json
+	ProjectSection(ProjectDependencies) = postProject
+		{F1E9D96D-80BD-4472-96D4-74C423B2A71A} = {F1E9D96D-80BD-4472-96D4-74C423B2A71A}
 	EndProjectSection
 EndProject
 Global
