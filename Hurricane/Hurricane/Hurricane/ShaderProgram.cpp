@@ -18,7 +18,6 @@ ShaderProgram::~ShaderProgram()
 hBOOL ShaderProgram::CompileShader(const STRING & filePath, GLuint id)
 {
 	if (id == 0) {
-		Debug::ConsoleError("SHADER " + filePath + " FAILED TO COMPILE", __FILE__, __LINE__);
 		return false;
 	}
 
@@ -50,12 +49,13 @@ hBOOL ShaderProgram::CompileShader(const STRING & filePath, GLuint id)
 		GLint maxLength = 0;
 		glGetShaderiv(id, GL_INFO_LOG_LENGTH, &maxLength);
 
-		glDeleteShader(id);
-		VECTOR(char) errorLog(maxLength);
+		VECTOR(GLchar) errorLog(maxLength);
 		glGetShaderInfoLog(id, maxLength, &maxLength, &errorLog[0]);
 
 		RemoveFromGPU(id);
-		PRINTF("%s\n", &(errorLog[0]));
+		glDeleteShader(id);
+
+		PRINTF("\n%s\n\n", &(errorLog[0]));
 		Debug::ConsoleError("SHADER " + filePath + " FAILED TO COMPILE", __FILE__, __LINE__);
 		return false;
 	}

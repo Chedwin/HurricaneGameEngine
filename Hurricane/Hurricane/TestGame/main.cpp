@@ -1,10 +1,4 @@
 #include <Debug.h>
-#include <SceneGraph.h>
-#include <RenderableComponent.h>
-#include <LightComponent.h>
-#include <RigidbodyComponent.h>
-#include <ColliderComponent.h>
-
 #include "TestGame.h"
 
 int main(int argc, char** argv) {

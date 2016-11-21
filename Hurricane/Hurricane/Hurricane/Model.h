@@ -35,10 +35,19 @@ public:
 	Model() {}
 	virtual ~Model() {}
 
-	virtual void Render() = 0;
+	virtual void Render() {}
+
+	inline STRING GetModelName() {
+		return _name;
+	}
+	inline void SetModelName(const STRING& n) {
+		_name = n;
+	}
 
 protected:
 	STRING _name;
+public:
+	VECTOR(Mesh) meshes;
 };
 
 #endif

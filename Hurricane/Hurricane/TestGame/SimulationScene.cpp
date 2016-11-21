@@ -1,9 +1,15 @@
 #include "SimulationScene.h"
 #include <Debug.h>
+#include <ModelManager.h>
+#include <GameObject.h>
+#include <MeshComponent.h>
 
 SimulationScene::SimulationScene()
 {
 	SetSceneName("Solar System Simulation");
+	MODEL_MANAGER->LoadModel("Puck", "models/Puck.obj");
+	MODEL_MANAGER->LoadModel("HockeyStick", "models/HockeyStick.obj");
+	MODEL_MANAGER->LoadModel("Cube", "models/cube.obj");
 }
 
 SimulationScene::~SimulationScene()
@@ -21,16 +27,23 @@ void SimulationScene::InitScene()
 	earth->transform.position = VEC3(-10.f, -19.0f, -4.5f);
 	sun->AddChild(earth);
 
-	sun->Translate(VEC3(122.0, 1.5f, -35.0f));
-	Debug::ConsoleLog(earth->transform.position);
+	
 
-	////sceneObjects.push_back(sun);
-	//AddSceneNode(sun);
+	ModelManager* mm = MODEL_MANAGER;
+	Model* p = mm->GetModel("Puck");
+	Model* hs = mm->GetModel("HockeyStick");
+	Model* cb = mm->GetModel("Cube");
 
-	//GameObject* n = GetSceneNode("RootNode");
-	//GameObject* p = GetSceneNode("Honoka");
+	ShaderProgram* shader = new ShaderProgram("shader");
+	shader->CompileShaders("../shaders/modelStandard.vert", "../shaders/modelStandard.frag");
+	shader->AddAttribute("vertexPosition");
+	shader->AddAttribute("vertexUV");
+	shader->AddAttribute("vertexNormal");
 
-	//RemoveSceneNode("earth");
+	SHADER_MANAGER->StoreShaderProg(shader->GetProgramName(), shader);
+
+	GameObject* puck = new GameObject("MyPuck");
+	MeshComponent* puckMesh = new MeshComponent(puck, shader);
 }
 
 void SimulationScene::Update(const hFLOAT _timeStep)
