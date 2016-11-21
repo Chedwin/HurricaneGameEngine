@@ -5,15 +5,13 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 03, 2016
-// Last updated:	Oct 31, 2016
+// Last updated:	Nov 20, 2016
 //
 //*******************************//
 
 
 #ifndef SIMPLE_MODEL_H
 #define SIMPLE_MODEL_H
-
-#pragma once
 
 #include <glew.h>
 #include "Macro.h"

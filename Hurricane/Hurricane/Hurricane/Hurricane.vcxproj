@@ -166,7 +166,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="HurricaneProperties.h" />
-    <ClInclude Include="RenderableComponent.h" />
+    <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="RigidbodyComponent.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="InputHandler.h" />
@@ -214,9 +214,10 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HurricaneProperties.cpp" />
-    <ClCompile Include="RenderableComponent.cpp" />
+    <ClCompile Include="MeshComponent.cpp" />
     <ClCompile Include="RigidbodyComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SimpleModel.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="LightComponent.cpp" />

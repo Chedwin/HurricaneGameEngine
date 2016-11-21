@@ -14,10 +14,12 @@
 #include <Debug.h>
 
 ///// OTHER INCLUDES HERE ///
-#include "GameObject.h"
+
 /////////////////////////////
 
 hINT main(hINT argc, hCHAR** argv) 
 {
+	
+
 	return 0;
 }

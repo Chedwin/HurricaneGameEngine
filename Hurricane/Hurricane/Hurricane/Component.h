@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen, Mathieu Violette, James Sholdice, Nathan Senter
 // Created:			Sep 30, 2016
-// Last updated:	Nov 18, 2016
+// Last updated:	Nov 20, 2016
 //
 //*******************************//
 
@@ -18,7 +18,7 @@
 class GameObject;
 
 enum COMPONENT_TYPE {
-	Renderable,
+	Renderable, // Mesh
 	Light,
 	Rigidbody,
 	Collider

@@ -4,7 +4,7 @@
 #include "PhysicsEngine.h"
 
 #include "Component.h"
-#include "RenderableComponent.h"
+#include "MeshComponent.h"
 #include "LightComponent.h"
 #include "RigidbodyComponent.h"
 #include "ColliderComponent.h"
@@ -282,7 +282,7 @@ void GameObject::PreRender()
 void GameObject::Render()
 {
 	// Render THIS object
-	RenderableComponent* renderable = gameObject->GetComponent<RenderableComponent>();
+	MeshComponent* renderable = gameObject->GetComponent<MeshComponent>();
 
 	if (renderable) {
 		renderable->Render();
