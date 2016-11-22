@@ -1,0 +1,8 @@
+Tue Nov 22 00:05:46 2016d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp71
+ERROR: ModelManager::LoadModel()
+Notes: Model format failed to be uploaded
+
+Tue Nov 22 00:07:59 2016d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp75
+ERROR: ModelManager::LoadModel()
+Notes: Model format failed to be uploaded
+

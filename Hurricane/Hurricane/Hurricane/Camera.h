@@ -20,13 +20,13 @@
 
 #include "Frustum.h"
 
-class Level;
+class Scene;
 
 class Camera : public GameObject
 {
 public:
 	//Camera(Level* _level);
-	Camera();
+	Camera(Scene* sc);
 	~Camera();
 
 

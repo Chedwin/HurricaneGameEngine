@@ -1,3 +1,7 @@
-﻿  SimulationScene.cpp
+﻿  TestGame.cpp
+  main.cpp
+  TitleScreenScene.cpp
+  SimulationScene.cpp
+  Generating Code...
   TestGame.vcxproj -> D:\Users\edwin\GitHub\HurricaneGameEngine\Hurricane\Hurricane\Debug\TestGame.exe
   TestGame.vcxproj -> D:\Users\edwin\GitHub\HurricaneGameEngine\Hurricane\Hurricane\Debug\TestGame.pdb (Full PDB)

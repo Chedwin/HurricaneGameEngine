@@ -2,7 +2,7 @@
 #include "HurricaneProperties.h"
 
 
-Camera::Camera() : GameObject()
+Camera::Camera(Scene* sc) : GameObject(sc)
 {
 	gameObject = this;
 }

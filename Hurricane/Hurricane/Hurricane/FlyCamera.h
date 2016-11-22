@@ -22,32 +22,32 @@
 
 #define FLY_DEBUG_CAM FlyCamera::GetFlyCamera()
 
-class FlyCamera : public Camera {
-protected:
-	FlyCamera();
-	~FlyCamera();
-public:
-
-	// Prod
-	void MoveCamera(SDL_Event& _evnt);
-	void Update(const hFLOAT _deltaTime) final;
-	void Render() final;
-
-
-	static FlyCamera* GetFlyCamera();
-
-protected:
-	static UNIQUE_PTR(FlyCamera) _flyCam;
-	friend DEFAULT_DELETE(FlyCamera);
-public:
-	hFLOAT horizontalAngle, verticalAngle;
-	hFLOAT initialFOV;
-
-	hFLOAT speed; // units per second
-	hFLOAT mouseSpeed;
-
-
-	hINT winWidth, winHeight;
-};
+//class FlyCamera : public Camera {
+//protected:
+//	FlyCamera();
+//	~FlyCamera();
+//public:
+//
+//	// Prod
+//	void MoveCamera(SDL_Event& _evnt);
+//	void Update(const hFLOAT _deltaTime) final;
+//	void Render() final;
+//
+//
+//	static FlyCamera* GetFlyCamera();
+//
+//protected:
+//	static UNIQUE_PTR(FlyCamera) _flyCam;
+//	friend DEFAULT_DELETE(FlyCamera);
+//public:
+//	hFLOAT horizontalAngle, verticalAngle;
+//	hFLOAT initialFOV;
+//
+//	hFLOAT speed; // units per second
+//	hFLOAT mouseSpeed;
+//
+//
+//	hINT winWidth, winHeight;
+//};
 
 #endif

@@ -9,21 +9,29 @@
 #include "RigidbodyComponent.h"
 #include "ColliderComponent.h"
 
+#include "Scene.h"
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 // CONSTRUCTOR(S) / DESTRUCTOR
-GameObject::GameObject() : gameObject(this), attachedScript(nullptr)
+GameObject::GameObject(Scene* sc) : gameObject(this), attachedScript(nullptr)
 {
-	SetName("MyGameObject");
+	SetName("");
 	SetEnabled(true);
 	componentList.reserve(sizeof(COMPONENT_TYPE));
+
+	scene = sc;
+	sc->AddSceneNode(this);
 }
 
-GameObject::GameObject(const STRING& name) : gameObject(this)
+GameObject::GameObject(Scene* sc, const STRING& name) : gameObject(this), attachedScript(nullptr)
 {
 	SetName(name);
 	SetEnabled(true);
 	componentList.reserve(sizeof(COMPONENT_TYPE));
+
+	scene = sc;
+	sc->AddSceneNode(this);
 }
 
 GameObject::~GameObject()
@@ -53,7 +61,7 @@ GameObject::~GameObject()
 
 	// TODO: Destroy all child objects
 	// The root node of a scene will signal everyone to destroy themselves
-	ClearAllChildren();
+	//ClearAllChildren();
 }
 
 
@@ -110,7 +118,6 @@ void GameObject::ClearAllChildren()
 		}
 	}
 	childObjects.clear();
-	childObjects.shrink_to_fit();
 }
 
 

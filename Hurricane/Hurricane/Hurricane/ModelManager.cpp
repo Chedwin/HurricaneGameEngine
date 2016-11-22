@@ -8,6 +8,7 @@
 // Assimp model loading
 #include <assimp/Importer.hpp>      // C++ importer interface
 #include <assimp/scene.h>           // Output data structure
+
 #include <assimp/postprocess.h>     // Post processing 
 
 UNIQUE_PTR(ModelManager) ModelManager::_modelManager(nullptr); // Declare static unique pointer
@@ -26,7 +27,7 @@ ModelManager::ModelManager()
 	// Gen buffers here
 	glGenBuffers(NUMBER_OF_BUFFERS, Buffers);
 
-	// Vertex
+	// Verties
 	glBindBuffer(GL_ARRAY_BUFFER, Buffers[Buffer_Type::VERTEX_BUFFER]);
 	glVertexAttribPointer(Attribute_Type::VERTEX_ATTRIBUTE, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	glEnableVertexAttribArray(Attribute_Type::VERTEX_ATTRIBUTE);
@@ -45,7 +46,11 @@ ModelManager::ModelManager()
 
 ModelManager::~ModelManager()
 {
+	// Delete all models
 	_modelResources.EmptyResourceMap();
+
+	// Delete the buffers
+	glDeleteBuffers(NUMBER_OF_BUFFERS, Buffers);
 }
 
 
@@ -57,14 +62,25 @@ void ModelManager::LoadModel(const STRING& _name, const STRING& _filePath)
 {
 	// Check if model (name) exists in the model manager already
 	ResourceHandle<Model> test = GetModelHandle(_name);
-	if (!test.IsNull())
+	if (!test.IsNull()) {
 		return;
+	}
 
 	// Start using Assimp
 	Assimp::Importer importer;
 
 	// Ensure our models' polygons are triangles
-	const aiScene* scene = importer.ReadFile(_filePath, aiProcess_Triangulate | aiProcess_SortByPType);
+	const aiScene* scene = importer.ReadFile(_filePath,
+		aiProcess_CalcTangentSpace |
+		aiProcess_Triangulate |
+		aiProcess_JoinIdenticalVertices |
+		aiProcess_SortByPType);
+
+	if (!scene) {
+		Debug::ConsoleError("Model format not supported!", __FILE__, __LINE__);
+		Debug::Log(EMessageType::ERR, "ModelManager", "LoadModel", __TIMESTAMP__, __FILE__, __LINE__, "Model format failed to be uploaded");
+		return;
+	}
 
 	hUINT totalVerts = 0; 
 	hUINT currentVertex = 0;

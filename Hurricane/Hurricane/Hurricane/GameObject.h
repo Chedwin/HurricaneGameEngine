@@ -25,10 +25,12 @@
 #include "Transform.h"
 #include "GameObjectScript.h"
 
+class Scene;
+
 class GameObject {
 public:
-	GameObject();
-	explicit GameObject(const STRING& name);
+	GameObject(Scene* sc);
+	explicit GameObject(Scene* sc, const STRING& name);
 	virtual ~GameObject();
 
 	// "CAN" BE OVERRIDEN BY DERIVED CLASSES
@@ -104,6 +106,9 @@ public:
 
 	// Scripting behaviour 
 	GameObjectScript* attachedScript;
+
+	// Which scene is it in?
+	Scene* scene;
 };
 
 

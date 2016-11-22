@@ -114,6 +114,8 @@ void Game::DestroySystems()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// RUNNING THE GAME AND ENGINE
+
 void Game::Run()
 {
 	hBOOL init = InitEngine();
@@ -135,6 +137,8 @@ void Game::Run()
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// GAME LOOP LOGIC
 
 void Game::GameLoop()
 {
@@ -163,6 +167,7 @@ void Game::GameLoop()
 			input->ProcessInput(evnt);
 
 			// Quit the game
+			// by closing window or press "ESC"
 			if (evnt.type == SDL_QUIT || input->IsKeyDown(SDLK_ESCAPE))
 			{
 				SetRunState(false);
@@ -178,7 +183,7 @@ void Game::GameLoop()
 		// PASS OUR DELTA TIME TO OUR PHYSICS ENGINE
 		PHYSICS->FixedUpdate(_deltaTime);
 
-		// UPDATE THE GAME
+		// UPDATE THE ENGINE AND GAME
 		EngineUpdate(_deltaTime);
 
 		// RENDER
@@ -187,11 +192,6 @@ void Game::GameLoop()
 
 		// FRAME RATE UPDATE FOR THIS FRAME
 		_fps = _fpsCounter.End();
-		static hINT frameCounter = 0;
-		frameCounter++;
-		if (frameCounter >= 10) {
-			frameCounter = 0;
-		}
 
 		_totalTime += _deltaTime;
 	}

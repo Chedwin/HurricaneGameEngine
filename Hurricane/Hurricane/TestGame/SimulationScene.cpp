@@ -10,6 +10,7 @@ SimulationScene::SimulationScene()
 	MODEL_MANAGER->LoadModel("Puck", "models/Puck.obj");
 	MODEL_MANAGER->LoadModel("HockeyStick", "models/HockeyStick.obj");
 	MODEL_MANAGER->LoadModel("Cube", "models/cube.obj");
+	MODEL_MANAGER->LoadModel("LeafsFanCivilian", "models/LeafsFanCivilian.fbx");
 }
 
 SimulationScene::~SimulationScene()
@@ -21,9 +22,9 @@ void SimulationScene::InitScene()
 	Debug::ConsoleLog("Welcome to the Hurricane Solar System Simulatior!");
 
 
-	GameObject* sun = new GameObject("sun");
+	GameObject* sun = new GameObject(this, "sun");
 	LightComponent* lit = new LightComponent(sun);
-	GameObject* earth = new GameObject("earth");
+	GameObject* earth = new GameObject(this, "earth");
 	earth->transform.position = VEC3(-10.f, -19.0f, -4.5f);
 	sun->AddChild(earth);
 
@@ -42,21 +43,23 @@ void SimulationScene::InitScene()
 
 	SHADER_MANAGER->StoreShaderProg(shader->GetProgramName(), shader);
 
-	GameObject* puck = new GameObject("MyPuck");
+	GameObject* puck = new GameObject(this, "MyPuck");
 	MeshComponent* puckMesh = new MeshComponent(puck, shader);
+	puckMesh->GetModel("Puck");
+	GameObject* jimmy = new GameObject(this);
 
+	RemoveSceneNode("sun");
 
-	AddSceneNode(sun);
-	AddSceneNode(puck);
+	GameObject* root = _rootNode.get();
 
-	RemoveSceneNode("earth");
-
-
-	GameObject* puckClone = Scene::FindSceneNode("MyPuck");
+	GameObject* puckClone = Scene::FindGameObject("MyPuck");
 }
 
 void SimulationScene::Update(const hFLOAT _timeStep)
 {
+	// Call the base class' update first
+	Scene::Update(_timeStep);
+
 	if (INPUT->IsKeyDown(SDLK_w)) {
 		
 	}
