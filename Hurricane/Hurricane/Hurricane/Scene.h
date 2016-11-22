@@ -20,12 +20,12 @@
 #include "HMath.h"
 #include "GameObject.h"
 #include "Camera.h"
-#include "SceneGraph.h"
 
 // forward declare the Game Scene Manager
 class Game;
 
 //#define ROOT_NODE Scene::_rootNode.get()
+#define ROOT_NAME "RootNode"
 
 class Scene {
 	friend class Game;
@@ -34,8 +34,8 @@ public:
 	virtual ~Scene();
 
 	virtual void InitScene() = 0;
-	virtual void Update(const hFLOAT _timeStep) = 0;
-	virtual void Render() = 0;
+	virtual void Update(const hFLOAT _timeStep);
+	virtual void Render();
 
 	void SetCamera(Camera* _c);
 
@@ -44,8 +44,9 @@ public:
 	void RemoveSceneNode(const STRING& gName);
 	void ClearAllSceneNodes();
 
-	GameObject* FindSceneNode(const STRING& name);
-	GameObject* FindSceneNode(GameObject* g);
+	// Find objects in scene
+	GameObject* FindGameObject(const STRING& name);
+	GameObject* FindGameObject(GameObject* g);
 
 
 	inline STRING GetSceneName() const {
@@ -54,19 +55,19 @@ public:
 	inline void SetSceneName(const STRING& n) {
 		_name = n;
 	}
-	inline hINT GetSceneSize() const {
-		return _rootNode->childObjects.size();
-	}
+	hINT GetSceneSize() const;
 
 
 protected:
 	STRING _name;
-	UNIQUE_PTR(GameObject) _rootNode; // NOTE: the root node IS the scene graph
+
+	// NOTE: the root node IS the scene graph
+	// it's a unique ptr to ensure it does not accidentally get deleted
+	UNIQUE_PTR(GameObject) _rootNode; 
 	friend DEFAULT_DELETE(GameObject);
 public:
 	Camera* mainCamera;
 	Camera* currentCamera;
-
 };
 
 

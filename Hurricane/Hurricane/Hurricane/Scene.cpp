@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include "Debug.h"
 
 Scene::Scene()
 {
@@ -6,23 +7,23 @@ Scene::Scene()
 	_rootNode.reset(nullptr);
 	//_rootNode = new GameObject("RootNode");
 
-	_rootNode.reset(new GameObject("RootNode"));
+	_rootNode.reset(new GameObject(this, ROOT_NAME));
 
 	// Make sure the root node is at the origin
 	_rootNode->transform.position = ORIGIN;
 
 	// Create the default scene camera
 	mainCamera = currentCamera = nullptr;
-	mainCamera = new Camera();
+	mainCamera = new Camera(this);
 	mainCamera->SetName("MainCamera");
 	SetCamera(mainCamera);
-
-	AddSceneNode(mainCamera);
 }
 
 Scene::~Scene()
 {
 	ClearAllSceneNodes();
+
+	// NOTE: root node get destroyed HERE when it goes OUT OF SCOPE
 }
 
 
@@ -36,14 +37,43 @@ void Scene::SetCamera(Camera* _c)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// UPDATE
+
+void Scene::Update(const hFLOAT _timeStep)
+{
+	VECTOR(GameObject*)::iterator iter;
+	for (iter = _rootNode->childObjects.begin(); iter != _rootNode->childObjects.end(); iter++)
+	{
+		GameObject* temp = (*iter);
+		temp->Update(_timeStep);
+		Debug::ConsoleLog("Scene update time: " + TO_STRING(_timeStep));
+	}
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// RENDER
+void Scene::Render()
+{
+	VECTOR(GameObject*)::iterator iter;
+	for (iter = _rootNode->childObjects.begin(); iter != _rootNode->childObjects.end(); iter++) 
+	{
+		GameObject* temp = (*iter);
+		temp->Render();
+	}
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // SCENE GRAPH
 
 // Add node
 void Scene::AddSceneNode(GameObject * g)
 {
-	if (g != _rootNode.get()) 
+	STRING test = g->GetName();
+	if (test != ROOT_NAME) 
 	{
-		if (g->GetName() == "") 
+		if (test == "") 
 		{
 			STRING newName = "GameObject(" + TO_STRING(GetSceneSize()) + ")";
 			g->SetName(newName);
@@ -64,12 +94,21 @@ void Scene::ClearAllSceneNodes()
 	_rootNode->ClearAllChildren();
 }
 
-GameObject* Scene::FindSceneNode(const STRING& name)
+// FIND
+// by name
+GameObject* Scene::FindGameObject(const STRING& name)
 {
 	return _rootNode->GetChild(name);
 }
 
-GameObject * Scene::FindSceneNode(GameObject * g)
+// by GameObject* (probably wouldn't get used very much)
+GameObject * Scene::FindGameObject(GameObject * g)
 {
 	return _rootNode->GetChild(g);
+}
+
+// how big is the scene graph?
+hINT Scene::GetSceneSize() const {
+	hINT total = _rootNode->childObjects.size();
+	return total;
 }

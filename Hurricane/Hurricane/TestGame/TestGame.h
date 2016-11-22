@@ -5,7 +5,6 @@
 #include <Game.h>
 #include <ShaderProgram.h>
 #include <Camera.h>
-#include "Box.h"
 
 class TestGame : public Game {
 public:

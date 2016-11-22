@@ -1,11 +1,78 @@
-﻿  GameObject.cpp
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(34): warning C4018: '<': signed/unsigned mismatch
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(168): warning C4018: '<': signed/unsigned mismatch
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(284): warning C4018: '<': signed/unsigned mismatch
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(184): warning C4018: '<': signed/unsigned mismatch
-  d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(303): note: see reference to function template instantiation 'TYPE *GameObject::GetComponent<RigidbodyComponent>(void)' being compiled
+﻿  Window.cpp
+  tinyxml2.cpp
+  Timer.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\timer.cpp(14): warning C4244: '=': conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\timer.cpp(19): warning C4244: '=': conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\timer.cpp(29): warning C4244: '=': conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\timer.cpp(37): warning C4244: '=': conversion from 'hFLOAT' to 'LONGLONG', possible loss of data
+  Texture.cpp
+  ShaderProgramManager.cpp
+  ShaderProgram.cpp
+  Random.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\random.cpp(113): warning C4244: 'return': conversion from 'hDOUBLE' to 'hFLOAT', possible loss of data
+  Plane.cpp
+  PhysicsEngine.cpp
+  OpenGLRenderer.cpp
+  ModelManager.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(91): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(103): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(107): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(132): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(139): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(141): warning C4018: '<': signed/unsigned mismatch
+  MatrixStack.cpp
+  MaterialManager.cpp
+  MaterialEffect.cpp
+  Material.cpp
+  LightComponent.cpp
+  InputHandler.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\inputhandler.cpp(153): warning C4244: 'argument': conversion from 'hINT' to 'const hFLOAT', possible loss of data
+  TextureManager.cpp
+  SimpleModel.cpp
+  Scene.cpp
+  Generating Code...
+  Compiling...
+  RigidbodyComponent.cpp
+  MeshComponent.cpp
+  HurricaneProperties.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\hurricaneproperties.cpp(69): warning C4244: '=': conversion from 'int' to 'hFLOAT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\hurricaneproperties.cpp(71): warning C4244: '=': conversion from 'int' to 'hFLOAT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\hurricaneproperties.cpp(73): warning C4244: '=': conversion from 'int' to 'hFLOAT', possible loss of data
+  GameObjectScript.cpp
+  GameObject.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(42): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(175): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(291): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(191): warning C4018: '<': signed/unsigned mismatch
+  d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(310): note: see reference to function template instantiation 'TYPE *GameObject::GetComponent<RigidbodyComponent>(void)' being compiled
           with
           [
               TYPE=RigidbodyComponent
           ]
+  Game.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(57): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(58): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(59): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(159): warning C4244: '=': conversion from 'Uint32' to 'hFLOAT', possible loss of data
+  Frustum.cpp
+  FPSCounter.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\fpscounter.cpp(37): warning C4244: 'initializing': conversion from 'Uint32' to 'hFLOAT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\fpscounter.cpp(41): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\fpscounter.cpp(54): warning C4244: 'initializing': conversion from 'Uint32' to 'hFLOAT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\fpscounter.cpp(55): warning C4244: 'initializing': conversion from 'Uint32' to 'hFLOAT', possible loss of data
+  FlyCamera.cpp
+  EffectModel.cpp
+  Debug.cpp
+  ControllerManager.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\controllermanager.cpp(24): warning C4018: '<': signed/unsigned mismatch
+  Controller.cpp
+  Component.cpp
+  Colour.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\colour.cpp(77): warning C4838: conversion from 'hFLOAT' to 'Uint8' requires a narrowing conversion
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\colour.cpp(77): warning C4244: 'initializing': conversion from 'hFLOAT' to 'Uint8', possible loss of data
+  ColliderComponent.cpp
+  Clock.cpp
+  Camera.cpp
+  AudioEngine.cpp
+  Generating Code...
   Hurricane.vcxproj -> D:\Users\edwin\GitHub\HurricaneGameEngine\Hurricane\Hurricane\Debug\Hurricane.lib

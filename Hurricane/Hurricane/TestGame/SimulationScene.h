@@ -13,6 +13,5 @@ public:
 	~SimulationScene();
 
 	void InitScene();
-	void Update(const hFLOAT _timeStep);
-	void Render() {}
+	void Update(const hFLOAT _timeStep) override;
 };
