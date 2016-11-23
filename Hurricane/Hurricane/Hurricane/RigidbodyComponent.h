@@ -16,14 +16,22 @@
 #include "Macro.h"
 #include "HMath.h"
 #include "Component.h"
+#include "ColliderComponent.h"
 
 class RigidbodyComponent : public Component {
+protected:
+	void InitBody();
 public:
-
 	RigidbodyComponent(GameObject* _g);
 	~RigidbodyComponent();
 
+	void AddForce(VEC3 _force);
+
 public:
+	hFLOAT mass;
+	VEC3 centerOfMass;
+	VEC3 velocity;
+	VEC3 accel;
 };
 
 

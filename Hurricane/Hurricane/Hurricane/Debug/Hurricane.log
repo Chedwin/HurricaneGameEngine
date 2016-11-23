@@ -20,6 +20,7 @@ d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelman
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(132): warning C4018: '<': signed/unsigned mismatch
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(139): warning C4018: '<': signed/unsigned mismatch
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(141): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(220): warning C4018: '<': signed/unsigned mismatch
   MatrixStack.cpp
   MaterialManager.cpp
   MaterialEffect.cpp
@@ -57,7 +58,6 @@ d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp
   Frustum.cpp
   FPSCounter.cpp
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\fpscounter.cpp(37): warning C4244: 'initializing': conversion from 'Uint32' to 'hFLOAT', possible loss of data
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\fpscounter.cpp(41): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\fpscounter.cpp(54): warning C4244: 'initializing': conversion from 'Uint32' to 'hFLOAT', possible loss of data
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\fpscounter.cpp(55): warning C4244: 'initializing': conversion from 'Uint32' to 'hFLOAT', possible loss of data
   FlyCamera.cpp

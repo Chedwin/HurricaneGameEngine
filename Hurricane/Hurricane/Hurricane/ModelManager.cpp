@@ -25,22 +25,22 @@ ModelManager* ModelManager::GetModelManager()
 ModelManager::ModelManager()
 {
 	// Gen buffers here
-	glGenBuffers(NUMBER_OF_BUFFERS, Buffers);
+	//glGenBuffers(NUMBER_OF_BUFFERS, Buffers);
 
-	// Verties
-	glBindBuffer(GL_ARRAY_BUFFER, Buffers[Buffer_Type::VERTEX_BUFFER]);
-	glVertexAttribPointer(Attribute_Type::VERTEX_ATTRIBUTE, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
-	glEnableVertexAttribArray(Attribute_Type::VERTEX_ATTRIBUTE);
+	//// Verties
+	//glBindBuffer(GL_ARRAY_BUFFER, Buffers[Buffer_Type::VERTEX_BUFFER]);
+	//glVertexAttribPointer(Attribute_Type::VERTEX_ATTRIBUTE, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+	//glEnableVertexAttribArray(Attribute_Type::VERTEX_ATTRIBUTE);
 
-	// Textures
-	glBindBuffer(GL_ARRAY_BUFFER, Buffers[Buffer_Type::TEXTURE_BUFFER]);
-	glVertexAttribPointer(Attribute_Type::TEXTURE_ATTRIBUTE, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
-	glEnableVertexAttribArray(Attribute_Type::TEXTURE_ATTRIBUTE);
+	//// Textures
+	//glBindBuffer(GL_ARRAY_BUFFER, Buffers[Buffer_Type::TEXTURE_BUFFER]);
+	//glVertexAttribPointer(Attribute_Type::TEXTURE_ATTRIBUTE, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+	//glEnableVertexAttribArray(Attribute_Type::TEXTURE_ATTRIBUTE);
 
-	// Normals (i.e. Lights)
-	glBindBuffer(GL_ARRAY_BUFFER, Buffers[Buffer_Type::NORMAL_BUFFER]);
-	glVertexAttribPointer(Attribute_Type::NORMAL_ATTRIBUTE, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
-	glEnableVertexAttribArray(Attribute_Type::NORMAL_ATTRIBUTE);
+	//// Normals (i.e. Lights)
+	//glBindBuffer(GL_ARRAY_BUFFER, Buffers[Buffer_Type::NORMAL_BUFFER]);
+	//glVertexAttribPointer(Attribute_Type::NORMAL_ATTRIBUTE, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+	//glEnableVertexAttribArray(Attribute_Type::NORMAL_ATTRIBUTE);
 
 }
 
@@ -50,7 +50,7 @@ ModelManager::~ModelManager()
 	_modelResources.EmptyResourceMap();
 
 	// Delete the buffers
-	glDeleteBuffers(NUMBER_OF_BUFFERS, Buffers);
+	//glDeleteBuffers(NUMBER_OF_BUFFERS, Buffers);
 }
 
 
@@ -193,4 +193,48 @@ Model* ModelManager::GetModel(const STRING& _name)
 	}
 	result = ModelManager::GetModel(handle);
 	return result;
+}
+
+
+
+
+
+void ModelManager::PushModelsToGPU() 
+{
+	GLuint zero = 0;
+
+	glBindBuffer(GL_ARRAY_BUFFER, Buffers[VERTEX_BUFFER]); glClearBufferData(GL_ARRAY_BUFFER, GL_RGB32F, GL_RGB, GL_UNSIGNED_INT, &zero);
+	glBindBuffer(GL_ARRAY_BUFFER, Buffers[TEXTURE_BUFFER]); glClearBufferData(GL_ARRAY_BUFFER, GL_RG32F, GL_RG, GL_UNSIGNED_INT, &zero);
+	glBindBuffer(GL_ARRAY_BUFFER, Buffers[NORMAL_BUFFER]); glClearBufferData(GL_ARRAY_BUFFER, GL_RGB32F, GL_RGB, GL_UNSIGNED_INT, &zero);
+
+	if (masterVectorList.size() > 0)
+	{
+		hINT arraySize = masterVectorList.size() * 3 * 4; //Each vector contains 3 floats (which are 4 bytes)
+		hFLOAT* newMasterList = new hFLOAT[masterVectorList.size() * 3];
+
+		//populate vector list
+		{
+			hINT i = 0;
+			COUT << "Loading Vertices: " << (i / (hFLOAT)masterVectorList.size()) * 100 << "%";
+
+			for (i = 0; i < masterVectorList.size(); i++)
+			{
+				newMasterList[i * 3] = masterVectorList[i].x;
+				newMasterList[3 * i + 1] = masterVectorList[i].y;
+				newMasterList[3 * i + 2] = masterVectorList[i].z;
+			}
+
+
+			glBindBuffer(GL_ARRAY_BUFFER, Buffers[VERTEX_BUFFER]);
+			glBufferData(GL_ARRAY_BUFFER, arraySize, newMasterList, GL_STATIC_DRAW);
+
+			COUT << "Loaded " << i << " Vertices." << ENDL;
+		}
+		delete[] newMasterList;
+	}
+}
+
+
+void ModelManager::PullModelsFromGPU()
+{
 }

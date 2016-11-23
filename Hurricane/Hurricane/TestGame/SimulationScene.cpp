@@ -2,7 +2,9 @@
 #include <Debug.h>
 #include <ModelManager.h>
 #include <GameObject.h>
+#include <RigidbodyComponent.h>
 #include <MeshComponent.h>
+#include <TextureManager.h>
 
 SimulationScene::SimulationScene()
 {
@@ -11,6 +13,8 @@ SimulationScene::SimulationScene()
 	MODEL_MANAGER->LoadModel("HockeyStick", "models/HockeyStick.obj");
 	MODEL_MANAGER->LoadModel("Cube", "models/cube.obj");
 	MODEL_MANAGER->LoadModel("LeafsFanCivilian", "models/LeafsFanCivilian.fbx");
+
+	TEXTURE_MANAGER->UploadTextureFromFile("textures/HockeyStick.png", "HockeyStick");
 }
 
 SimulationScene::~SimulationScene()
@@ -19,7 +23,7 @@ SimulationScene::~SimulationScene()
 
 void SimulationScene::InitScene()
 {
-	Debug::ConsoleLog("Welcome to the Hurricane Solar System Simulatior!");
+	Debug::ConsoleLog("Welcome to the Hurricane Solar System Simulator!");
 
 
 	GameObject* sun = new GameObject(this, "sun");
@@ -36,19 +40,26 @@ void SimulationScene::InitScene()
 	Model* cb = mm->GetModel("Cube");
 
 	ShaderProgram* shader = new ShaderProgram("shader");
-	shader->CompileShaders("../shaders/colourShading.vert", "../shaders/colourShading.frag");
-	//shader->AddAttribute("vertexPosition");
-	//shader->AddAttribute("vertexUV");
-	//shader->AddAttribute("vertexNormal");
+	shader->CompileShaders("../shaders/modelStandard.vert", "../shaders/modelStandard.frag");
+	shader->AddAttribute("vertexPosition");
+	shader->AddAttribute("vertexUV");
+	shader->AddAttribute("vertexNormal");
+	shader->LinkShaders();
+
+	shader->UseShader();
 
 	SHADER_MANAGER->StoreShaderProg(shader->GetProgramName(), shader);
 
-	GameObject* puck = new GameObject(this, "MyPuck");
-	MeshComponent* puckMesh = new MeshComponent(puck, shader);
-	puckMesh->GetModel("Puck");
+	GameObject* stick = new GameObject(this, "MyHStick");
+	MeshComponent* stickMesh = new MeshComponent(stick, shader);
+	stickMesh->GetModel("HockeyStick");
+	stickMesh->GetTexture("HockeyStick");
+
 	GameObject* jimmy = new GameObject(this);
 
-	RemoveSceneNode("sun");
+	GameObject* physicsTest = new GameObject(this, "PhysicsTestObject");
+	RigidbodyComponent* rb = new RigidbodyComponent(physicsTest);
+	rb->SetEnabled(true);
 
 	GameObject* root = _rootNode.get();
 
@@ -61,7 +72,7 @@ void SimulationScene::Update(const hFLOAT _timeStep)
 	Scene::Update(_timeStep);
 
 	if (INPUT->IsKeyDown(SDLK_w)) {
-		
+
 	}
 	else if (INPUT->IsKeyDown(SDLK_s)) {
 		
