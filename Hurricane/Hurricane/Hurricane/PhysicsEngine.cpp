@@ -6,7 +6,7 @@ UNIQUE_PTR(PhysicsEngine) PhysicsEngine::_physicsEngine = nullptr;
 hBOOL PhysicsEngine::isPhysicsRunning = false;
 
 
-PhysicsEngine * PhysicsEngine::GetPhysicsEngine()
+PhysicsEngine* PhysicsEngine::GetPhysicsEngine()
 {
 	if (_physicsEngine.get() == nullptr) {
 		_physicsEngine.reset(new PhysicsEngine());
@@ -17,14 +17,13 @@ PhysicsEngine * PhysicsEngine::GetPhysicsEngine()
 /////////////////////////////////////////////////
 PhysicsEngine::PhysicsEngine()
 {
-	// Init the gravity 
-	gravity = GRAVITY;
+	lastTimeStep = 0.0f;
 	isPhysicsRunning = true;
 }
 
 PhysicsEngine::~PhysicsEngine()
 {
-	// EMPTY
+	physicsObjects.clear();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,8 +31,17 @@ void PhysicsEngine::FixedUpdate(const hFLOAT _timeStep)
 {
 	lastTimeStep = _timeStep;
 
-	if (isPhysicsRunning) 
+	if ((isPhysicsRunning == true) && (physicsObjects.size() > 0)) 
 	{
-		// TODO: Collision response for all collider components
+		// TODO: Collision detection
+		for (auto iter = physicsObjects.begin(); iter != physicsObjects.end(); iter++)
+		{
+			RigidbodyComponent* rb = (*iter);
+			if (rb && rb->checkEnabled()) {
+
+			}
+		}
+
+		// TODO: Forces & Impulses
 	}
 }

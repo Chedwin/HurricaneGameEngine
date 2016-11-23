@@ -45,8 +45,10 @@ void Scene::Update(const hFLOAT _timeStep)
 	for (iter = _rootNode->childObjects.begin(); iter != _rootNode->childObjects.end(); iter++)
 	{
 		GameObject* temp = (*iter);
-		temp->Update(_timeStep);
-		Debug::ConsoleLog("Scene update time: " + TO_STRING(_timeStep));
+
+		if (temp && temp->CheckEnabled()) {
+			temp->Update(_timeStep);		
+		}
 	}
 }
 
@@ -60,7 +62,9 @@ void Scene::Render()
 	for (iter = _rootNode->childObjects.begin(); iter != _rootNode->childObjects.end(); iter++) 
 	{
 		GameObject* temp = (*iter);
-		temp->Render();
+		if (temp && temp->CheckEnabled()) {
+			temp->Render();
+		}
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -17,6 +17,7 @@
 #include "Macro.h"
 #include "ResourceManager.h"
 #include "Model.h"
+#include "ShaderProgram.h"
 
 
 #define MODEL_MANAGER ModelManager::GetModelManager()
@@ -49,6 +50,9 @@ public:
 	Model* GetModel(ResourceHandle<Model>& _handle);
 	Model* GetModel(const STRING& _name);
 
+	void PushModelsToGPU();
+	void PullModelsFromGPU();
+
 private:
 	static UNIQUE_PTR(ModelManager) _modelManager;
 	friend DEFAULT_DELETE(ModelManager);
@@ -59,6 +63,9 @@ protected:
 public:
 	static const GLuint NUMBER_OF_BUFFERS = 3;
 	GLuint Buffers[NUMBER_OF_BUFFERS];
+
+	VECTOR(VEC3) masterVectorList, masterNormalList;
+	VECTOR(ShaderProgram*) shaderPrograms;
 };
 
 #endif

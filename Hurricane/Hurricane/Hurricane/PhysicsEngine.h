@@ -15,13 +15,20 @@
 
 #include "Macro.h"
 #include "HMath.h"
+#include "RigidbodyComponent.h"
 
 #define PHYSICS PhysicsEngine::GetPhysicsEngine()
 #define GRAVITY VEC3(0.0f, -9.8f, 0.0f)
 
 class PhysicsEngine {
+	friend class Game;
 protected:
 	PhysicsEngine();
+
+	inline void SetPhysicRunning(hBOOL b) {
+		isPhysicsRunning = b;
+	}
+
 public:
 	~PhysicsEngine();
 
@@ -32,16 +39,18 @@ public:
 	inline hFLOAT GetTimeStep() const {
 		return lastTimeStep;
 	}
+	
 
 protected:
 	static UNIQUE_PTR(PhysicsEngine) _physicsEngine;
 	friend DEFAULT_DELETE(PhysicsEngine);
 
-	VEC3 gravity;
-
 public:
+	const VEC3 gravity = GRAVITY;
 	hFLOAT lastTimeStep;
 	static hBOOL isPhysicsRunning;
+
+	VECTOR(RigidbodyComponent*) physicsObjects;
 };
 
 #endif
