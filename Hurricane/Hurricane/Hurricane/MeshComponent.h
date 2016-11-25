@@ -46,6 +46,8 @@ public:
 
 	static const GLuint NUMBER_OF_BUFFERS = 3;
 	GLuint Buffers[NUMBER_OF_BUFFERS];
+
+	hBOOL areBuffersInitialized;
 };
 
 #endif

@@ -105,11 +105,6 @@ GameObject* Scene::FindGameObject(const STRING& name)
 	return _rootNode->GetChild(name);
 }
 
-// by GameObject* (probably wouldn't get used very much)
-GameObject * Scene::FindGameObject(GameObject * g)
-{
-	return _rootNode->GetChild(g);
-}
 
 // how big is the scene graph?
 hINT Scene::GetSceneSize() const {

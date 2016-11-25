@@ -8,11 +8,12 @@ MeshComponent::MeshComponent(GameObject* g, ShaderProgram* _shader)
 {
 	shader = _shader;
 	SetEnabled(true);
+	areBuffersInitialized = true;
 
 	// Gen buffers here
 	glGenBuffers(NUMBER_OF_BUFFERS, Buffers);
 
-	// Verties
+	// Vertices
 	glBindBuffer(GL_ARRAY_BUFFER, Buffers[ModelManager::Buffer_Type::VERTEX_BUFFER]);
 	glVertexAttribPointer(Attribute_Type::VERTEX_ATTRIBUTE, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	glEnableVertexAttribArray(Attribute_Type::VERTEX_ATTRIBUTE);
@@ -64,11 +65,21 @@ Texture* MeshComponent::GetTexture(const STRING& _texture)
 
 void MeshComponent::PushModel() 
 {
-	GLuint zero = 0;
+	if (areBuffersInitialized) 
+	{
+		GLuint zero = 0;
 
-	glBindBuffer(GL_ARRAY_BUFFER, Buffers[ModelManager::Buffer_Type::VERTEX_BUFFER]); glClearBufferData(GL_ARRAY_BUFFER, GL_RGB32F, GL_RGB, GL_UNSIGNED_INT, &zero);
-	glBindBuffer(GL_ARRAY_BUFFER, Buffers[ModelManager::Buffer_Type::TEXTURE_BUFFER]); glClearBufferData(GL_ARRAY_BUFFER, GL_RG32F, GL_RG, GL_UNSIGNED_INT, &zero);
-	glBindBuffer(GL_ARRAY_BUFFER, Buffers[ModelManager::Buffer_Type::NORMAL_BUFFER]); glClearBufferData(GL_ARRAY_BUFFER, GL_RGB32F, GL_RGB, GL_UNSIGNED_INT, &zero);
+		glBindBuffer(GL_ARRAY_BUFFER, Buffers[ModelManager::Buffer_Type::VERTEX_BUFFER]);
+		glClearBufferData(GL_ARRAY_BUFFER, GL_RGB32F, GL_RGB, GL_UNSIGNED_INT, &zero);
+
+		glBindBuffer(GL_ARRAY_BUFFER, Buffers[ModelManager::Buffer_Type::TEXTURE_BUFFER]);
+		glClearBufferData(GL_ARRAY_BUFFER, GL_RG32F, GL_RG, GL_UNSIGNED_INT, &zero);
+
+		glBindBuffer(GL_ARRAY_BUFFER, Buffers[ModelManager::Buffer_Type::NORMAL_BUFFER]);
+		glClearBufferData(GL_ARRAY_BUFFER, GL_RGB32F, GL_RGB, GL_UNSIGNED_INT, &zero);
+	}
+	
+
 }
 
 void MeshComponent::RemoveModelFromGPU() {
@@ -94,4 +105,10 @@ void MeshComponent::Render()
 	}
 
 	shader->UseShader();
+
+	//glProgramUniform3fv(shader->GetProgramID(), shader_->material_Location, 1, mat_);
+
+
+	//glDrawArrays(GL_TRIANGLES, model->meshes[0].edge[0], model->meshes[0].vertex.size());
+	//glDrawArrays(GL_TRIANGLES, 0, model->meshes[0].vertex.size());
 }

@@ -5,13 +5,12 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 03, 2016
-// Last updated:	Nov 20, 2016
+// Last updated:	Nov 23, 2016
 //
 //*******************************//
 
 #ifndef MODEL_MANAGER_H
 #define MODEL_MANAGER_H
-
 
 
 #include "Macro.h"
@@ -50,8 +49,6 @@ public:
 	Model* GetModel(ResourceHandle<Model>& _handle);
 	Model* GetModel(const STRING& _name);
 
-	void PushModelsToGPU();
-	void PullModelsFromGPU();
 
 private:
 	static UNIQUE_PTR(ModelManager) _modelManager;
@@ -61,11 +58,11 @@ protected:
 	ResourceManager<Model> _modelResources;
 
 public:
-	static const GLuint NUMBER_OF_BUFFERS = 3;
-	GLuint Buffers[NUMBER_OF_BUFFERS];
+	//static const GLuint NUMBER_OF_BUFFERS = 3;
+	//GLuint Buffers[NUMBER_OF_BUFFERS];
 
-	VECTOR(VEC3) masterVectorList, masterNormalList;
-	VECTOR(ShaderProgram*) shaderPrograms;
+	//VECTOR(VEC3) masterVectorList, masterNormalList;
+	//VECTOR(ShaderProgram*) shaderPrograms;
 };
 
 #endif

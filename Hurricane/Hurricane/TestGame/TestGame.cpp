@@ -38,7 +38,7 @@ void TestGame::GameUpdate(const hFLOAT _deltaTime)
 	// window title bar update
 	STRINGSTREAM ss;
 	ss << scene << " | " << title << " | FPS: " << GetFPS();
-	//ss << "Test Game | FPS: " << GetFPS();
+	
 	STRING fpsTitle = ss.str();
 
 	SDL_SetWindowTitle(gameWindow->GetWindow(), fpsTitle.c_str());

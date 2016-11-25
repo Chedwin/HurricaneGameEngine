@@ -36,7 +36,7 @@
 // Matrices
 #define MATRIX3 glm::mat3
 #define MATRIX4 glm::mat4
-#define MAT_IDENTITY4 glm::mat4(1.0f)
+#define MAT4_ID glm::mat4(1.0f)
 
 // Quaternions
 #define QUATERNION glm::quat

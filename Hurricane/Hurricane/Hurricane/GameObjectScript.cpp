@@ -10,11 +10,11 @@ GameObjectScript::~GameObjectScript()
 	// EMPTY
 }
 
+
 hBOOL GameObjectScript::UpdateScript(GameObject * gameObject, const hFLOAT _timeStep)
 {
-	if (userFunction)
-	{
-		return userFunction(gameObject, _timeStep);
+	if (userUpdateFunction) {
+		return userUpdateFunction(gameObject, _timeStep);
 	}
 	return true;
 }

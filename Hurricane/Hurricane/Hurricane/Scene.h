@@ -46,7 +46,6 @@ public:
 
 	// Find objects in scene
 	GameObject* FindGameObject(const STRING& name);
-	GameObject* FindGameObject(GameObject* g);
 
 
 	inline STRING GetSceneName() const {
