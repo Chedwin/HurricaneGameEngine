@@ -45,7 +45,6 @@ public:
 	void ClearAllChildren();
 
 	GameObject* GetChild(const STRING& name);
-	GameObject* GetChild(GameObject* g);
 
 	void AddComponent(Component* c);
 	hBOOL HasComponent(Component* c);
@@ -66,6 +65,7 @@ public:
 
 	void AddTag(const STRING& _tag);
 	hBOOL HasTag(const STRING& _tag);
+	void RemoveTag(const STRING& _tag);
 	
 	// Scripting
 	void AttachScript(GameObjectScript* s);

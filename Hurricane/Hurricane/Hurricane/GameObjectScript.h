@@ -27,7 +27,8 @@ public:
 
 public:
 	typedef FUNCTION(hBOOL(GameObject*, hFLOAT)) ScriptLambda;
-	ScriptLambda		userFunction = nullptr;
+	ScriptLambda		userUpdateFunction = nullptr;
+
 	STRING scriptName;
 };
 

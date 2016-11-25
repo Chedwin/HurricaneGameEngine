@@ -160,12 +160,14 @@
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectModel.h" />
+    <ClInclude Include="Exception.h" />
     <ClInclude Include="FlyCamera.h" />
     <ClInclude Include="FPSCounter.h" />
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectScript.h" />
+    <ClInclude Include="GUIElement.h" />
     <ClInclude Include="HurricaneProperties.h" />
     <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="RigidbodyComponent.h" />

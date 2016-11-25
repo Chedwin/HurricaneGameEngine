@@ -34,6 +34,7 @@ GameObject::GameObject(Scene* sc, const STRING& name) : gameObject(this), attach
 	sc->AddSceneNode(this);
 }
 
+
 GameObject::~GameObject()
 {
 	// TODO: Destroy and clean up components and other game objects
@@ -73,7 +74,7 @@ GameObject::~GameObject()
 
 void GameObject::AddChild(GameObject * g)
 {
-	childObjects.push_back(g);
+	childObjects.push_back(g); 
 }
 
 void GameObject::RemoveChild(GameObject * g)
@@ -137,20 +138,6 @@ GameObject* GameObject::GetChild(const STRING& name)
 	return nullptr;
 }
 
-// by GameObject* pointer (I don't think this willbe used very much)
-GameObject* GameObject::GetChild(GameObject* g) 
-{
-	VECTOR(GameObject*)::iterator iter;
-	for (iter = childObjects.begin(); iter != childObjects.end(); iter++)
-	{
-		GameObject* temp = *iter;
-		if (temp == g)
-		{
-			return temp;
-		}
-	}
-	return nullptr;
-}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -193,7 +180,6 @@ template<typename TYPE> TYPE* GameObject::GetComponent()
 		if (typeid(*componentList[i]).name() == typeid(TYPE).name()) 
 		{
 			return dynamic_cast<TYPE*>(componentList[i]);
-			//return (TYPE*)componentList[i];	
 		}
 	}
 	return nullptr;
@@ -211,7 +197,7 @@ void GameObject::ResetTransform()
 	if (!PHYSICS->isPhysicsRunning) {
 		return;
 	}
-	gameObject->transform.position = VEC3(0.0f, 0.0f, 0.0f);
+	gameObject->transform.position = ORIGIN;
 	gameObject->transform.scale = VEC3(1.0f, 1.0f, 1.0f);
 	//gameObject->transform.rotation = QUATERNION();
 }
@@ -222,8 +208,10 @@ void GameObject::Translate(const VEC3 & v)
 	if (!PHYSICS->isPhysicsRunning) {
 		return;
 	}
+	// Tranlaste itself
 	gameObject->transform.position += v;
 
+	// Move all of its children
 	for (auto iter = childObjects.begin(); iter != childObjects.end(); iter++) {
 		(*iter)->Translate(v);
 	}
@@ -296,6 +284,21 @@ hBOOL GameObject::HasTag(const STRING& _tag)
 	return false;
 }
 
+void GameObject::RemoveTag(const STRING& _tag) 
+{
+	hBOOL checkTag = HasTag(_tag);
+
+	if (checkTag)
+		return;
+
+	for (int i = 0; i < tags.size(); i++)
+	{
+		if (tags[i] == _tag) {
+			tags[i].erase();
+		}
+	}
+	tags.shrink_to_fit();
+}
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -310,15 +313,21 @@ void GameObject::Update(const hFLOAT _deltaTime)
 	RigidbodyComponent* rbc = gameObject->GetComponent<RigidbodyComponent>();
 
 	if (rbc) {
-		//TODO: 
+		//TODO: Update rigidbody physics
 		//rbc-> 
 	}
 
 	ColliderComponent* cc = gameObject->GetComponent<ColliderComponent>();
 
 	if (cc) {
-		// TODO:
+		// TODO: Update rigidbody physics
 		//cc-> 
+	}
+
+	// GameObject Scripting
+	hBOOL result = true;
+	if (attachedScript) {
+		result = attachedScript->UpdateScript(gameObject, _deltaTime);
 	}
 }
 

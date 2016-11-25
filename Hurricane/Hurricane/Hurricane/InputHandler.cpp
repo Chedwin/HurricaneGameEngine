@@ -157,8 +157,6 @@ void InputHandler::Update()
 
 void InputHandler::ProcessInput(SDL_Event& _evnt) 
 {
-
-
 	switch (_evnt.type) {
 	case SDL_KEYDOWN:
 		PressKey(_evnt.key.keysym.sym);

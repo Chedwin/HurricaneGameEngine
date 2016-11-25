@@ -20,7 +20,6 @@ d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelman
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(132): warning C4018: '<': signed/unsigned mismatch
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(139): warning C4018: '<': signed/unsigned mismatch
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(141): warning C4018: '<': signed/unsigned mismatch
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(220): warning C4018: '<': signed/unsigned mismatch
   MatrixStack.cpp
   MaterialManager.cpp
   MaterialEffect.cpp
@@ -41,11 +40,12 @@ d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\hurrican
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\hurricaneproperties.cpp(73): warning C4244: '=': conversion from 'int' to 'hFLOAT', possible loss of data
   GameObjectScript.cpp
   GameObject.cpp
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(42): warning C4018: '<': signed/unsigned mismatch
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(175): warning C4018: '<': signed/unsigned mismatch
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(291): warning C4018: '<': signed/unsigned mismatch
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(191): warning C4018: '<': signed/unsigned mismatch
-  d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(310): note: see reference to function template instantiation 'TYPE *GameObject::GetComponent<RigidbodyComponent>(void)' being compiled
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(43): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(162): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(279): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(294): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(178): warning C4018: '<': signed/unsigned mismatch
+  d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(313): note: see reference to function template instantiation 'TYPE *GameObject::GetComponent<RigidbodyComponent>(void)' being compiled
           with
           [
               TYPE=RigidbodyComponent

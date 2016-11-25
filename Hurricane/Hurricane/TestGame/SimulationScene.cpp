@@ -1,10 +1,13 @@
-#include "SimulationScene.h"
 #include <Debug.h>
 #include <ModelManager.h>
 #include <GameObject.h>
 #include <RigidbodyComponent.h>
 #include <MeshComponent.h>
 #include <TextureManager.h>
+#include <PhysicsEngine.h>
+
+#include "SimulationScene.h"
+#include "HelloWorldScript.h"
 
 SimulationScene::SimulationScene()
 {
@@ -32,7 +35,6 @@ void SimulationScene::InitScene()
 	earth->transform.position = VEC3(-10.f, -19.0f, -4.5f);
 	sun->AddChild(earth);
 
-	
 
 	ModelManager* mm = MODEL_MANAGER;
 	Model* p = mm->GetModel("Puck");
@@ -41,9 +43,9 @@ void SimulationScene::InitScene()
 
 	ShaderProgram* shader = new ShaderProgram("shader");
 	shader->CompileShaders("../shaders/modelStandard.vert", "../shaders/modelStandard.frag");
-	shader->AddAttribute("vertexPosition");
-	shader->AddAttribute("vertexUV");
-	shader->AddAttribute("vertexNormal");
+	shader->AddAttribute("vPosition");
+	shader->AddAttribute("vUV");
+	shader->AddAttribute("vNormal");
 	shader->LinkShaders();
 
 	shader->UseShader();
@@ -55,7 +57,6 @@ void SimulationScene::InitScene()
 	stickMesh->GetModel("HockeyStick");
 	stickMesh->GetTexture("HockeyStick");
 
-	GameObject* jimmy = new GameObject(this);
 
 	GameObject* physicsTest = new GameObject(this, "PhysicsTestObject");
 	RigidbodyComponent* rb = new RigidbodyComponent(physicsTest);
@@ -64,6 +65,11 @@ void SimulationScene::InitScene()
 	GameObject* root = _rootNode.get();
 
 	GameObject* puckClone = Scene::FindGameObject("MyPuck");
+
+	HelloWorldScript* helloworld = new HelloWorldScript("Hello World Script");
+
+	GameObject* jimmy = new GameObject(this, "Jimmy");
+	jimmy->AttachScript(helloworld);
 }
 
 void SimulationScene::Update(const hFLOAT _timeStep)
