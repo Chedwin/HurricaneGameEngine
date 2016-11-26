@@ -10,7 +10,7 @@
 // Special Thanks:  Mathieu Violette, James Sholdice, Nathan Senter, Unity, Aiden Dearing, House Yokeswaran, Mark Seaman
 //
 // Created:			Sep 30, 2016
-// Last updated:	Nov 21, 2016
+// Last updated:	Nov 25, 2016
 //
 //*******************************//
 
@@ -29,8 +29,7 @@ class Scene;
 
 class GameObject {
 public:
-	GameObject(Scene* sc);
-	explicit GameObject(Scene* sc, const STRING& name);
+	explicit GameObject(Scene* sc, const STRING& name="");
 	virtual ~GameObject();
 
 	// "CAN" BE OVERRIDEN BY DERIVED CLASSES
@@ -69,7 +68,7 @@ public:
 	
 	// Scripting
 	void AttachScript(GameObjectScript* s);
-	void DetachScript();
+	void DetachScript(const STRING& sc);
 
 
 	inline hBOOL CheckEnabled() const {
@@ -92,22 +91,21 @@ public:
 	VECTOR(STRING) tags;
 	VECTOR(Component*) componentList;
 
-	UNORDERED_MAP(STRING, Component*) compMap;
-
 	VECTOR(GameObject*) childObjects;
 
 	hBOOL isEnabled;
 
-	// pointer to itself (Unity-like)
+	// Pointer to itself (Unity-like)
 	GameObject* gameObject; 
 
 	// Transform fields
 	Transform transform;
 
-	// Scripting behaviour 
-	GameObjectScript* attachedScript;
+	// Scripting behaviour
+	// Allows for multiple scripts to be attached to this game object
+	GameObjectMultiScript* scripts;
 
-	// Which scene is it in?
+	// Which scene am I in?
 	Scene* scene;
 };
 

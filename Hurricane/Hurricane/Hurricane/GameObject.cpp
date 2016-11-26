@@ -14,21 +14,21 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 // CONSTRUCTOR(S) / DESTRUCTOR
-GameObject::GameObject(Scene* sc) : gameObject(this), attachedScript(nullptr)
+
+GameObject::GameObject(Scene* sc, const STRING& name) : gameObject(this)
 {
-	SetName("");
+	if (name == "") {
+		SetName("");
+	} else {
+		SetName(name);
+	}
+
 	SetEnabled(true);
 	componentList.reserve(sizeof(COMPONENT_TYPE));
 
-	scene = sc;
-	sc->AddSceneNode(this);
-}
+	scripts = nullptr;
+	scripts = new GameObjectMultiScript();
 
-GameObject::GameObject(Scene* sc, const STRING& name) : gameObject(this), attachedScript(nullptr)
-{
-	SetName(name);
-	SetEnabled(true);
-	componentList.reserve(sizeof(COMPONENT_TYPE));
 
 	scene = sc;
 	sc->AddSceneNode(this);
@@ -37,6 +37,10 @@ GameObject::GameObject(Scene* sc, const STRING& name) : gameObject(this), attach
 
 GameObject::~GameObject()
 {
+	// TODO: Delete all scripts attached to this game object
+	delete scripts;
+	scripts = nullptr;
+
 	// TODO: Destroy and clean up components and other game objects
 	if (componentList.size() > 0)
 	{
@@ -303,7 +307,7 @@ void GameObject::RemoveTag(const STRING& _tag)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-// UPDATE (PHYSICS STUFF)
+// UPDATE (PHYSICS & SCRIPTING STUFF)
 void GameObject::Update(const hFLOAT _deltaTime)
 {
 	if (!PHYSICS->isPhysicsRunning) {
@@ -325,9 +329,9 @@ void GameObject::Update(const hFLOAT _deltaTime)
 	}
 
 	// GameObject Scripting
-	hBOOL result = true;
-	if (attachedScript) {
-		result = attachedScript->UpdateScript(gameObject, _deltaTime);
+	if (scripts->scriptMap.size() > 0) 
+	{
+		scripts->UpdateAllScripts(gameObject, _deltaTime);
 	}
 }
 
@@ -335,7 +339,7 @@ void GameObject::Update(const hFLOAT _deltaTime)
 
 // RENDERING
 
-// PRE RENDER
+// PRE RENDER (i.e. lighting)
 void GameObject::PreRender() 
 {
 	LightComponent* lc = gameObject->GetComponent<LightComponent>();
@@ -359,17 +363,12 @@ void GameObject::Render()
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 // SCRIPTING
-void GameObject::AttachScript(GameObjectScript * s)
+void GameObject::AttachScript(GameObjectScript* s)
 {
-	if (!attachedScript) {
-		attachedScript = s;
-	}
+	scripts->AddScript(s->GetName(), s);
 }
 
-void GameObject::DetachScript()
+void GameObject::DetachScript(const STRING& sc)
 {
-	if (attachedScript) {
-		delete attachedScript;
-		attachedScript = nullptr;
-	}
+	scripts->DeleteScript(sc);
 }

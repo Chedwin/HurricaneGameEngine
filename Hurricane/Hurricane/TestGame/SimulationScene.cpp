@@ -8,6 +8,7 @@
 
 #include "SimulationScene.h"
 #include "HelloWorldScript.h"
+#include "PlayerMovementScript.h"
 
 SimulationScene::SimulationScene()
 {
@@ -41,19 +42,19 @@ void SimulationScene::InitScene()
 	Model* hs = mm->GetModel("HockeyStick");
 	Model* cb = mm->GetModel("Cube");
 
-	ShaderProgram* shader = new ShaderProgram("shader");
-	shader->CompileShaders("../shaders/modelStandard.vert", "../shaders/modelStandard.frag");
-	shader->AddAttribute("vPosition");
-	shader->AddAttribute("vUV");
-	shader->AddAttribute("vNormal");
-	shader->LinkShaders();
+	ShaderProgram* modelShader = new ShaderProgram("Model Shader");
+	modelShader->CompileShaders("../shaders/modelStandard.vert", "../shaders/modelStandard.frag");
+	modelShader->AddAttribute("vertexPosition");
+	modelShader->AddAttribute("vertexColor");
+	modelShader->AddAttribute("vertexUV");
+	modelShader->LinkShaders();
 
-	shader->UseShader();
+	modelShader->UseShader();
 
-	SHADER_MANAGER->StoreShaderProg(shader->GetProgramName(), shader);
+	SHADER_MANAGER->StoreShaderProg(modelShader->GetProgramName(), modelShader);
 
 	GameObject* stick = new GameObject(this, "MyHStick");
-	MeshComponent* stickMesh = new MeshComponent(stick, shader);
+	MeshComponent* stickMesh = new MeshComponent(stick, modelShader);
 	stickMesh->GetModel("HockeyStick");
 	stickMesh->GetTexture("HockeyStick");
 
@@ -66,21 +67,17 @@ void SimulationScene::InitScene()
 
 	GameObject* puckClone = Scene::FindGameObject("MyPuck");
 
-	HelloWorldScript* helloworld = new HelloWorldScript("Hello World Script");
+	HelloWorldScript* helloworld = new HelloWorldScript("Hello World");
+	PlayerMovementScript* playerMove = new PlayerMovementScript("Player Movement");
 
 	GameObject* jimmy = new GameObject(this, "Jimmy");
+
 	jimmy->AttachScript(helloworld);
+	jimmy->AttachScript(playerMove);
 }
 
 void SimulationScene::Update(const hFLOAT _timeStep)
 {
 	// Call the base class' update first
 	Scene::Update(_timeStep);
-
-	if (INPUT->IsKeyDown(SDLK_w)) {
-
-	}
-	else if (INPUT->IsKeyDown(SDLK_s)) {
-		
-	}
 }

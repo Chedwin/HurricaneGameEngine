@@ -41,6 +41,8 @@ void Scene::SetCamera(Camera* _c)
 
 void Scene::Update(const hFLOAT _timeStep)
 {
+	// NOTE: ANY game object instatiated MUST be attached to a scene
+	//		 
 	VECTOR(GameObject*)::iterator iter;
 	for (iter = _rootNode->childObjects.begin(); iter != _rootNode->childObjects.end(); iter++)
 	{
