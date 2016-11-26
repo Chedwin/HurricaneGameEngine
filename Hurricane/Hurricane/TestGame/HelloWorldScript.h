@@ -3,9 +3,10 @@
 #include <Macro.h>
 #include <GameObjectScript.h>
 
+// Kind of like MonoBehaviour
 class HelloWorldScript : public GameObjectScript {
 public:
-	HelloWorldScript(const STRING& name);
+	explicit HelloWorldScript(const STRING& name);
 	~HelloWorldScript() {}
 
 	hBOOL UpdateScript(GameObject* gameObject, const hFLOAT _timeStep) final;

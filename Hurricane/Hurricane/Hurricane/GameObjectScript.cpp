@@ -2,7 +2,7 @@
 
 GameObjectScript::GameObjectScript(const STRING& n)
 {
-	scriptName = n;
+	SetName(n);
 }
 
 GameObjectScript::~GameObjectScript()
@@ -37,14 +37,20 @@ void GameObjectMultiScript::AddScript(const STRING& n, GameObjectScript* script)
 {
 	auto f = scriptMap.find(n);
 
-	script->scriptName = n;
+	script->SetName(n);
 	if (f != scriptMap.end()) {
-		scriptMap.insert(PAIR(STRING, GameObjectScript*)(n, script));
+		return;
 	}
+
+	scriptMap.insert(PAIR(STRING, GameObjectScript*)(n, script));
 }
 
 void GameObjectMultiScript::DeleteScript(const STRING& n)
 {
+	if (scriptMap.size() == 0) {
+		return;
+	}
+
 	auto f = scriptMap.find(n);
 
 	if (f != scriptMap.end()) {
@@ -61,7 +67,8 @@ void GameObjectMultiScript::ClearAllScripts()
 
 		for (iter = scriptMap.begin(); iter != scriptMap.end(); iter++)
 		{
-			delete iter->second;
+			GameObjectScript* temp = iter->second;
+			delete temp;
 		}
 	}
 	scriptMap.clear();

@@ -6,7 +6,7 @@
 HelloWorldScript::HelloWorldScript(const STRING & name)
 	: GameObjectScript(name)
 {
-	Debug::ConsoleLog("I'm script and I'm ALIVE!");
+	Debug::ConsoleLog("Hello world!");
 }
 
 
@@ -14,15 +14,11 @@ hBOOL HelloWorldScript::UpdateScript(GameObject* gameObject, const hFLOAT _timeS
 {
 	//MyScriptFunction();
 
-	if (INPUT->IsKeyDown(SDLK_a)) {	
-		gameObject->Translate(VEC3(0.01f, 0.044f, 0.3f));
-		COUT << "Move with A: ";
-		Debug::ConsoleLog(gameObject->transform.position);
-	} 
-	else if (INPUT->IsKeyDown(SDLK_d)) {
-		gameObject->Translate(VEC3(-0.91f, -0.01f, 0.8892f));
-		COUT << "D movement: ";
-		Debug::ConsoleLog(gameObject->transform.position);
+	if (INPUT->IsMouseButtonDown(1)) {
+		Debug::ConsoleLog("Left Mouse!");
+	}
+	else if (INPUT->IsMouseButtonDown(2)) {
+		Debug::ConsoleLog("Right mouse!");
 	}
 
 	return true;
