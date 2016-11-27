@@ -79,6 +79,7 @@ ModelManager::ModelManager()
 
 	textureArray = nullptr;
 	numberOfTextures = 0;
+	areBuffersInitialized = false;
 }
 
 ModelManager::~ModelManager()
@@ -173,6 +174,7 @@ void ModelManager::LoadModel(const STRING& _name, const STRING& _filePath)
 
 	gotoxy(cursorPos.x, cursorPos.y);
 	COUT << "100%     \n";
+
 
 	for (int m = 0; m < model->meshes.size(); m++) {
 		for (unsigned int i = 0; i < model->meshes[m].vertex.size(); i++) {

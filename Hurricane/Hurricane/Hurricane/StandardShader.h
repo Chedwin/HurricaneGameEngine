@@ -30,6 +30,7 @@ protected:
 	static StandardShader*_stndShader;
 public:
 	GLuint view_Location, projection_Location, model_Location;
+	GLuint rotation_Location;
 };
 
 #endif

@@ -30,11 +30,6 @@ public:
 		VECTOR(VEC2) textureMap;
 
 		hUINT offsetVertex;
-
-		//VECTOR(VEC3) vertices;
-		//VECTOR(VEC2) uvs;
-		//VECTOR(VEC3) normals;
-		//VECTOR(hUINT) indices;
 	};
 
 	Model() {}

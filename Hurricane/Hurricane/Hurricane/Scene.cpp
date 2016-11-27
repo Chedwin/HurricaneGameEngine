@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "Debug.h"
+#include "MeshComponent.h"
 
 Scene::Scene()
 {
@@ -72,6 +73,8 @@ void Scene::Render()
 			temp->Render();
 		}
 	}
+
+	//MeshComponent::DrawRenderables();
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

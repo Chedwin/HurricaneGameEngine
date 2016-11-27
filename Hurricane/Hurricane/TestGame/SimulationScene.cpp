@@ -13,14 +13,15 @@
 SimulationScene::SimulationScene()
 {
 	SetSceneName("Solar System Simulation");
-	MODEL_MANAGER->LoadModel("PuckObj", "models/HockeyStick.obj");
+	MODEL_MANAGER->LoadModel("PuckObj", "models/planet.obj");
 	//MODEL_MANAGER->LoadModel("LeafsFanCivilian", "models/LeafsFanCivilian.fbx");
+	//MODEL_MANAGER->LoadModel("HockeyStick", "models/HockeyStick.obj");
 
-	TEXTURE_MANAGER->UploadTextureFromFile("textures/HockeyStick.png", "PuckTex");
+	TEXTURE_MANAGER->UploadTextureFromFile("textures/Puck.png", "PuckTex");
 
 	MODEL_MANAGER->PushModels();
 
-	mainCamera->transform.position = VEC3(0, 0, 0);
+	//mainCamera->transform.position = VEC3(0, 0, 0);
 }
 
 SimulationScene::~SimulationScene()
@@ -38,11 +39,17 @@ void SimulationScene::InitScene()
 
 	GameObject* puck = new GameObject(this, "MyPuck");
 	MeshComponent* puckMesh = new MeshComponent(puck, stdShader);
-
 	puckMesh->GetModel("PuckObj");
-	puckMesh->GetTexture("PuckTex");
 
-	puck->transform.position = VEC3(0, 0, 0);
+
+	//GameObject* stick = new GameObject(this, "Stick");
+	//MeshComponent* stickMesh = new MeshComponent(stick, stdShader);
+	//stickMesh->GetModel("HockeyStick");
+	//stick->transform.position = VEC3(0, 0, 0);
+
+
+	//puckMesh->GetTexture("PuckTex");
+
 
 
 	//HelloWorldScript* helloworld = new HelloWorldScript("Hello World");

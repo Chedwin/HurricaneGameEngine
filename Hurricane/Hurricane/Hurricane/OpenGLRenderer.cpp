@@ -31,8 +31,7 @@ void OpenGLRenderer::RenderPrimitive(PrimitiveType prim)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Accept fragment if it closer to the camera than the former one
-	glDepthFunc(GL_LESS);
-	glMatrixMode(GL_MODELVIEW | GL_PROJECTION);     // To operate on model-view matrix
+	glMatrixMode(GL_MODELVIEW);     // To operate on model-view matrix
 	glLoadIdentity();
 
 	/*switch (prim) {
