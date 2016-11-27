@@ -8,7 +8,7 @@ OpenGLRenderer::OpenGLRenderer() {
 	glFrontFace(GL_CCW);
 	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.4f, 1.0f);
 
 	/*glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_COLOR, GL_ONE);*/
