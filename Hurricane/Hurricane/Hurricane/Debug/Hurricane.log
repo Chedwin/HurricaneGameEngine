@@ -15,5 +15,6 @@ d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelman
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(379): warning C4018: '<': signed/unsigned mismatch
 d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(385): warning C4018: '<': signed/unsigned mismatch
   MeshComponent.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\meshcomponent.cpp(73): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
   Hurricane.vcxproj -> D:\Users\edwin\GitHub\HurricaneGameEngine\Hurricane\Hurricane\Debug\Hurricane.lib

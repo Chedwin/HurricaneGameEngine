@@ -87,7 +87,7 @@ ModelManager::~ModelManager()
 	_modelResources.EmptyResourceMap();
 
 	// Delete the buffers
-	//glDeleteBuffers(NUMBER_OF_BUFFERS, Buffers);
+	glDeleteBuffers(NUMBER_OF_BUFFERS, Buffers);
 }
 
 
@@ -164,7 +164,7 @@ void ModelManager::LoadModel(const STRING& _name, const STRING& _filePath)
 			if (currentVertex % 1000 == 0)
 			{
 				gotoxy(cursorPos.x, cursorPos.y);
-				COUT << (currentVertex / (float)totalVerts) * 100 << "%    ";
+				COUT << TO_STRING((currentVertex / (float)totalVerts) * 100) << "%    ";
 			}
 		}
 

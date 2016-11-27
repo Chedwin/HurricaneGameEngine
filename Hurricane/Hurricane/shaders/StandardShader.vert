@@ -11,13 +11,10 @@ uniform mat4 projection_matrix;  // PROJECTION MATRIX
 
 
 out vec2 fragmentUV;
-out vec4 worldPosition;
 
 void main(void)
 {
 	gl_Position = projection_matrix * view_matrix * model_matrix * vPosition;
-
-	worldPosition = model_matrix * vPosition;
 
 	fragmentUV = vTexCoord;
 }

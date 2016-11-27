@@ -21,7 +21,7 @@ StandardShader::StandardShader() : ShaderProgram()
 	glBindAttribLocation(_programID, Attribute_Type::TEXTURE_ATTRIBUTE, "vTexCoord");
 	glBindAttribLocation(_programID, Attribute_Type::NORMAL_ATTRIBUTE, "vNormal");
 
-	_numAttributes = 3;
+	_numAttributes = 2;
 
 	LinkShaders();
 

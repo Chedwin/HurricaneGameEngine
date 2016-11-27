@@ -1,6 +1,7 @@
 #include "MeshComponent.h"
 #include "ModelManager.h"
 #include "TextureManager.h"
+#include "StandardShader.h"
 #include "Debug.h"
 
 MeshComponent::MeshComponent(GameObject* g, ShaderProgram* _shader)
@@ -59,5 +60,28 @@ void MeshComponent::Render()
 		return;
 	}
 
-	shader->UseShader(); 
+	/*shader->UseShader(); */
+	StandardShader* stdShader = STANDARD_SHADER;
+	stdShader->UseShader();
+
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_DEPTH_TEST);
+	
+	MATRIX4 model_view = MATRIX4(1.0f);
+	glUniformMatrix4fv(stdShader->model_Location, 1, GL_FALSE, &model_view[0][0]);
+
+	for (int m = 0; m < model->meshes.size(); m++)
+	{
+		////Get Texture
+		//if (m < _textures.size() && _textures[m])
+		//{
+		//	glBindTexture(GL_TEXTURE_2D, _textures[m]->address);
+		//}
+		//else if (_textures[0])
+		glBindTexture(GL_TEXTURE_2D, texture->address);
+
+
+		glDrawArrays(GL_TRIANGLES, model->meshes[m].edge[0], model->meshes[m].vertex.size());
+		//glDrawArrays(GL_TRIANGLES, 0, model->meshes[m].vertex.size());
+	}
 }

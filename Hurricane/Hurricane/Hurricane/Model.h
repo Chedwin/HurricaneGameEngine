@@ -53,7 +53,6 @@ protected:
 	STRING _name;
 public:
 	VECTOR(Mesh) meshes;
-	Mesh mesh;
 };
 
 #endif
