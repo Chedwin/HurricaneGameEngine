@@ -19,6 +19,7 @@
 #define TEXTURE_MANAGER TextureManager::GetTextureManager()
 
 class TextureManager {
+	friend class ModelManager;
 protected:
 	TextureManager();
 	~TextureManager();
@@ -37,6 +38,10 @@ public:
 	ResourceHandle<Texture> GetTextureHandle(const STRING& _name);
 	Texture* GetTexture(ResourceHandle<Texture>& _handle);
 	Texture* GetTexture(const STRING& _name);
+
+	inline hINT GetNumTextures() const {
+		return _textureResources.GetSize();
+	}
 
 private:
 	static UNIQUE_PTR(TextureManager) _textureManager;

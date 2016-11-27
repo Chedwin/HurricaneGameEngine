@@ -19,6 +19,10 @@ SimulationScene::SimulationScene()
 	MODEL_MANAGER->LoadModel("LeafsFanCivilian", "models/LeafsFanCivilian.fbx");
 
 	TEXTURE_MANAGER->UploadTextureFromFile("textures/HockeyStick.png", "HockeyStick");
+
+	MODEL_MANAGER->PushModels();
+
+	mainCamera->Translate(VEC3(1, 1, 1));
 }
 
 SimulationScene::~SimulationScene()

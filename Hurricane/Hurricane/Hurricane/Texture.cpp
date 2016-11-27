@@ -1,12 +1,6 @@
 #include "Texture.h"
 #include "Debug.h"
 
-Texture::Texture(hINT _width, hINT _height, const STRING& _name)
-	: _surface(nullptr)
-{
-	Init(_width, _height, _name);
-}
-
 
 Texture::Texture(const STRING& _filePath, const STRING& _name)
 	: _surface(nullptr)
@@ -24,14 +18,6 @@ Texture::~Texture()
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-hBOOL Texture::Init(hINT width, hINT height, const STRING& name)
-{
-	_width = width;
-	_height = height;
-	SetResourceName(name);
-	return true;
-}
 
 hBOOL Texture::Init(const STRING & filePath, const STRING& name)
 {

@@ -22,7 +22,6 @@
 
 class Texture {
 protected:
-	hBOOL Init(hINT width, hINT height, const STRING& name);
 	hBOOL Init(const STRING& filePath, const STRING& name);
 public:
 
@@ -30,7 +29,6 @@ public:
 		Float, UnsignedByte, UnsignedByte_3D
 	};
 
-	Texture(hINT _width, hINT _height, const STRING& _name);
 	Texture(const STRING& _filePath, const STRING& _name);
 
 	~Texture();
@@ -89,6 +87,7 @@ protected:
 	hINT _width, _height, _bitsPerPixel;
 public:
 	TextureDataType dataType;
+	UINT32 address;
 };
 
 #endif

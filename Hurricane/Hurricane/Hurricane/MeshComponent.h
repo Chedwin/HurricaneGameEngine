@@ -30,9 +30,6 @@ public:
 	Model* GetModel(const STRING& _name);
 	Texture* GetTexture(const STRING& _texture);
 
-	void PushModel();
-	void RemoveModelFromGPU();
-
 	void Render();
 
 
@@ -43,11 +40,6 @@ public:
 
 	STRING meshName;
 	STRING textureName;
-
-	static const GLuint NUMBER_OF_BUFFERS = 3;
-	GLuint Buffers[NUMBER_OF_BUFFERS];
-
-	hBOOL areBuffersInitialized;
 };
 
 #endif

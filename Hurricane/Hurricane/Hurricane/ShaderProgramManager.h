@@ -1,13 +1,11 @@
-
-
 //*******************************//
 //Shader
 // Name:			ShaderProgramManager.h
-// Description:		A basic description of the header goes here.
+// Description:		Contains all the shaders necessary for a game.
 //
 // Author:			Edwin Chen
 // Created:			Oct 14, 2016
-// Last updated:	Oct 14, 2016
+// Last updated:	Nov 26, 2016
 //
 //*******************************//
 
