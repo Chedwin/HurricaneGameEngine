@@ -122,8 +122,8 @@ void Camera::Update(const hFLOAT _deltaTime)
 	mousePos.x = input->motionEvent.x;
 	mousePos.y = input->motionEvent.y;
 
-	horizontalAngle += mouseSpeed * hFLOAT(winWidth / 2.0f - mousePos.x);
-	verticalAngle += mouseSpeed * hFLOAT(winHeight / 2.0f - mousePos.y);
+	//horizontalAngle += mouseSpeed * hFLOAT(winWidth / 2.0f - mousePos.x);
+	//verticalAngle += mouseSpeed * hFLOAT(winHeight / 2.0f - mousePos.y);
 
 	 // Update direction
 	_dir = VEC3(
@@ -168,7 +168,7 @@ void Camera::Update(const hFLOAT _deltaTime)
 
 void Camera::Render() 
 {
-	_projectionMatrix = glm::perspective(60.0f, 1.0f, 0.1f, 100.0f);
+	_projectionMatrix = glm::perspective(45.0f, 1.0f, 0.1f, 100.0f);
 	_viewMatrix = glm::lookAt(gameObject->transform.position, gameObject->transform.position + _dir, _up);
 
 	StandardShader* ss = STANDARD_SHADER;

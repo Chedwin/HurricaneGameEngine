@@ -1,6 +1,6 @@
 #include "Debug.h"
 #include "Window.h"
-
+#include "HurricaneProperties.h"
 
 
 Window::Window() : _window(nullptr), _renderer(nullptr)
@@ -20,7 +20,7 @@ hBOOL Window::Init(const hINT _w, const hINT _h, const UINT32 flags)
 
 	// (1) Init SDL
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-		Debug::Log(EMessageType::FATAL_ERR, "Window", "OnCreate", __TIMESTAMP__, __FILE__, __LINE__, std::string(SDL_GetError()));
+		Debug::Log(EMessageType::FATAL_ERR, "Window", "OnCreate", __TIMESTAMP__, __FILE__, __LINE__, STRING(SDL_GetError()));
 		return _isInitialized;
 	}
 
@@ -64,12 +64,22 @@ hBOOL Window::Init(const hINT _w, const hINT _h, const UINT32 flags)
 	// Turn on VSYNC
 	SDL_GL_SetSwapInterval(1);
 
-	// (8) Display the current version of OpenGL in the console
+	// (8) Get Moniter Refresh Rate
+	SDL_DisplayMode target, moniter;
+	target.w = H_PROPERTIES->GetVideoProperties()->screenWidth;
+	target.h = H_PROPERTIES->GetVideoProperties()->screenHeight;
+	target.format = 0;  // don't care
+	target.refresh_rate = 0; // don't care
+	target.driverdata = 0; // initialize to 0
+	SDL_GetClosestDisplayMode(0, &target, &moniter);
+
+
+	// (9) Display the current version of OpenGL in the console
 #if defined(DEBUG) || defined(_DEBUG)
 	PRINTF("***     OpenGL Version: %s   ***\n", glGetString(GL_VERSION));
 #endif
 
-	// (9) Set the initialized to true and return it
+	// (10) Set the initialized to true and return it
 	_isInitialized = true;
 	return _isInitialized;
 }

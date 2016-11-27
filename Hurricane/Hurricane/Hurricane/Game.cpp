@@ -234,8 +234,8 @@ void Game::PreRender()
 }
 void Game::EngineRender()
 {
+	PreRender();
 	if (!_canLoadNewScene) {
-		PreRender();
 
 		if (currentScene) {
 			currentScene->Render();

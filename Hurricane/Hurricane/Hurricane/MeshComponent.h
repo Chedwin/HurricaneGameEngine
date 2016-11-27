@@ -32,6 +32,8 @@ public:
 
 	void Render();
 
+	//static VECTOR(MeshComponent*) renderableComponents;
+	//static void DrawRenderables();
 
 public:
 	ShaderProgram* shader;

@@ -59,7 +59,7 @@ public:
 	void Translate(const VEC3& v);
 	void Scale(const VEC3& s);
 
-	void Rotate(const VEC3& r);
+	void Rotate(const VEC3& r); // doesn't work...
 	void Rotate(const QUATERNION& q);
 
 	void AddTag(const STRING& _tag);
@@ -70,6 +70,7 @@ public:
 	void AttachScript(GameObjectScript* s);
 	void DetachScript(const STRING& sc);
 
+	MATRIX4 ToMat4();
 
 	inline hBOOL CheckEnabled() const {
 		return isEnabled;

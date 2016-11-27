@@ -22,7 +22,7 @@ GameObject::GameObject(Scene* sc, const STRING& name) : gameObject(this)
 	} else {
 		SetName(name);
 	}
-
+	ResetTransform();
 	SetEnabled(true);
 	componentList.reserve(sizeof(COMPONENT_TYPE));
 
@@ -203,7 +203,7 @@ void GameObject::ResetTransform()
 	}
 	gameObject->transform.position = ORIGIN;
 	gameObject->transform.scale = VEC3(1.0f, 1.0f, 1.0f);
-	//gameObject->transform.rotation = QUATERNION();
+	gameObject->transform.rotation = QUATERNION();
 }
 
 // Translate
@@ -262,7 +262,21 @@ void GameObject::Rotate(const QUATERNION& q)
 		return;
 	}
 
+	gameObject->transform.rotation *= q;
 
+	for (auto iter = childObjects.begin(); iter != childObjects.end(); iter++) {
+		(*iter)->Rotate(q);
+	}
+}
+
+MATRIX4 GameObject::ToMat4() 
+{
+	MATRIX4 translate = glm::translate(MATRIX4(1.0f), gameObject->transform.position);
+	MATRIX4 rotation = glm::mat4_cast(gameObject->transform.rotation);
+	MATRIX4 scale =	glm::scale(MATRIX4(1.0f), gameObject->transform.scale);
+
+
+	return translate * rotation * scale;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

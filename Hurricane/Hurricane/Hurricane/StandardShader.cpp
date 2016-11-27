@@ -21,13 +21,14 @@ StandardShader::StandardShader() : ShaderProgram()
 	glBindAttribLocation(_programID, Attribute_Type::TEXTURE_ATTRIBUTE, "vTexCoord");
 	glBindAttribLocation(_programID, Attribute_Type::NORMAL_ATTRIBUTE, "vNormal");
 
-	_numAttributes = 2;
+	_numAttributes = 3;
 
 	LinkShaders();
 
 	model_Location = GetUniformLocation("model_matrix");
 	projection_Location = GetUniformLocation("projection_matrix");
 	view_Location = GetUniformLocation("view_matrix");
+	rotation_Location = GetUniformLocation("rotation");
 
 	UseShader();
 }
