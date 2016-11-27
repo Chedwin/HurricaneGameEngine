@@ -66,6 +66,11 @@ public:
 		resourceMap = nullptr;
 	}
 
+	hINT GetSize() const 
+	{
+		return resourceMap->size();
+	}
+
 	// CLEAR EVERYTHING
 	void EmptyResourceMap() 
 	{

@@ -25,7 +25,6 @@ class Scene;
 class Camera : public GameObject
 {
 public:
-	//Camera(Level* _level);
 	Camera(Scene* sc);
 	~Camera();
 
