@@ -97,51 +97,32 @@ void ModelManager::LoadModel(const STRING& _name, const STRING& _filePath)
 	Model* newModel = new Model();
 	newModel->SetModelName(_name);
 
-	// Start with the first mesh in the model
-	// REMEMBER: a single model can have multiple "meshes" contained in it like pieces
-	// i.e. Humanoid - head, legs, arms, hands, etc.
-	for (int a = 0; a < scene->mNumMeshes; a++)
-	{
-		Model::Mesh newMesh;
+	const aiMesh* mesh = scene->mMeshes[0];
 
-		for (int b = 0; b < scene->mMeshes[a]->mNumVertices; b++)
-		{
-			VEC3 vertexCoords = VEC3(scene->mMeshes[a]->mVertices[b].x, scene->mMeshes[a]->mVertices[b].y, scene->mMeshes[a]->mVertices[b].z);
-			newMesh.vertex.push_back(vertexCoords);
-
-
-			if (scene->mMeshes[a]->HasNormals())
-			{
-				VEC3 normalCoords = VEC3(scene->mMeshes[a]->mNormals[b].x, scene->mMeshes[a]->mNormals[b].y, scene->mMeshes[a]->mNormals[b].z);
-				newMesh.normal.push_back(normalCoords);
-				hasNormals = true;
-			}
-
-			if (scene->mMeshes[a]->HasTextureCoords(0))
-			{
-				VEC2 textureCoords = VEC2(scene->mMeshes[a]->mTextureCoords[0][b].x, scene->mMeshes[a]->mTextureCoords[0][b].y);
-				newMesh.textureMap.push_back(textureCoords);
-			}
-
-			currentVertex++;
-		}
-
-		newModel->meshes.push_back(newMesh);
+	// Fill vertices positions
+	for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
+		aiVector3D pos = mesh->mVertices[i];
+		newModel->mesh.vertices.push_back(glm::vec3(pos.x, pos.y, pos.z));
 	}
 
-	for (int m = 0; m < newModel->meshes.size(); m++) {
-		for (unsigned int i = 0; i < newModel->meshes[m].vertex.size(); i++) {
-			newModel->meshes[m].edge.push_back(i);
-	
-		}	
+	// Fill vertices texture coordinates
+	for (unsigned int i = 0; i<mesh->mNumVertices; i++) {
+		aiVector3D UVW = mesh->mTextureCoords[0][i]; // Assume only 1 set of UV coords; AssImp supports 8 UV sets.
+		newModel->mesh.uvs.push_back(glm::vec2(UVW.x, UVW.y));
 	}
 
-	for (int i = 0; i < scene->mNumMeshes; i++)
-	{
-		for (int j = 0; j < scene->mMeshes[i]->mNumFaces; j++)
-		{
-			newModel->meshes[i].face.push_back(scene->mMeshes[i]->mFaces[j].mNumIndices);
-		}
+	// Fill vertices normals
+	for (unsigned int i = 0; i<mesh->mNumVertices; i++) {
+		aiVector3D n = mesh->mNormals[i];
+		newModel->mesh.normals.push_back(glm::vec3(n.x, n.y, n.z));
+	}
+
+	// Fill face indices
+	for (unsigned int i = 0; i<mesh->mNumFaces; i++) {
+		// Assume the model has only triangles.
+		newModel->mesh.indices.push_back(mesh->mFaces[i].mIndices[0]);
+		newModel->mesh.indices.push_back(mesh->mFaces[i].mIndices[1]);
+		newModel->mesh.indices.push_back(mesh->mFaces[i].mIndices[2]);
 	}
 
 	InsertModel(_name, newModel);

@@ -14,7 +14,7 @@ OpenGLRenderer::OpenGLRenderer() {
 	glBlendFunc(GL_SRC_COLOR, GL_ONE);*/
 	glEnable(GL_DEPTH_TEST);
 
-	GLuint vao;
+
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 }
@@ -22,7 +22,7 @@ OpenGLRenderer::OpenGLRenderer() {
 
 OpenGLRenderer::~OpenGLRenderer()
 {
-	// EMPTY
+	glDeleteVertexArrays(1, &vao);
 }
 
 void OpenGLRenderer::RenderPrimitive(PrimitiveType prim)

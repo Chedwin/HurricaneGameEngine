@@ -4,6 +4,8 @@
 #include <ShaderProgramManager.h>
 #include <HurricaneProperties.h>
 
+#include <StandardShader.h>
+
 #include "TestGame.h"
 #include "TitleScreenScene.h"
 
@@ -23,6 +25,10 @@ TestGame::~TestGame()
 
 hBOOL TestGame::InitGame()
 {
+	// Create, init, then store our shaders in the GLOBAL shader manager
+	StandardShader* stdShader = STANDARD_SHADER;
+	SHADER_MANAGER->StoreShaderProg("StandardShader", stdShader);
+
 	// Any pre-game init stuff?
 	LoadScene(new TitleScreenScene());
 	return true;

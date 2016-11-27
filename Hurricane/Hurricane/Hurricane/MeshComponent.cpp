@@ -122,5 +122,5 @@ void MeshComponent::Render()
 
 
 	//glDrawArrays(GL_TRIANGLES, model->meshes[0].edge[0], model->meshes[0].vertex.size());
-	//glDrawArrays(GL_TRIANGLES, 0, model->meshes[0].vertex.size());
+	//glDrawArrays(GL_TRIANGLES, 0, model->mesh.vertices.size());
 }

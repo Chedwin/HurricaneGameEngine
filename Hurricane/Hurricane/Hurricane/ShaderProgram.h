@@ -30,13 +30,12 @@ class ShaderProgram {
 private:
 	hBOOL CompileShader(const STRING& filePath, GLuint id);
 public:
-	ShaderProgram(const STRING& _progName="");
-	~ShaderProgram();
+	ShaderProgram();
+	virtual ~ShaderProgram();
 
 	hBOOL CompileShaders(const STRING& verPath, const STRING& fragPath);
 
 	void LinkShaders();
-	void AddAttribute(const STRING& attrName);
 	
 	GLint GetUniformLocation(const STRING& uniformName);
 
@@ -53,7 +52,7 @@ public:
 		return _programName;
 	}
 
-private:
+protected:
 	hINT _numAttributes;
 	GLuint _programID, _vertexShaderID, _fragmentShaderID;
 
