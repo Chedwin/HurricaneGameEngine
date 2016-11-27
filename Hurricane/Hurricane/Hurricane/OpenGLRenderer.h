@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Sep 20, 2016
-// Last updated:	Nov 15, 2016
+// Last updated:	Nov 26, 2016
 //
 //*******************************//
 
@@ -18,10 +18,6 @@
 #include "Macro.h"
 #include "AbstractRenderer.h"
 
-//#include "Window.h"
-//#include "ShaderProgramManager.h"
-//#include "ImageManager.h"
-//#include "HMath.h"
 
 class OpenGLRenderer : public AbstractRenderer {
 public:
@@ -29,6 +25,9 @@ public:
 	~OpenGLRenderer();
 
 	void RenderPrimitive(PrimitiveType prim);
+
+protected:
+	GLuint vao;
 };
 
 #endif

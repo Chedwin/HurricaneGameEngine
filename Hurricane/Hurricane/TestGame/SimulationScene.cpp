@@ -42,19 +42,12 @@ void SimulationScene::InitScene()
 	Model* hs = mm->GetModel("HockeyStick");
 	Model* cb = mm->GetModel("Cube");
 
-	ShaderProgram* modelShader = new ShaderProgram("Model Shader");
-	modelShader->CompileShaders("../shaders/modelStandard.vert", "../shaders/modelStandard.frag");
-	modelShader->AddAttribute("vertexPosition");
-	modelShader->AddAttribute("vertexColor");
-	modelShader->AddAttribute("vertexUV");
-	modelShader->LinkShaders();
 
-	modelShader->UseShader();
-
-	SHADER_MANAGER->StoreShaderProg(modelShader->GetProgramName(), modelShader);
+	ShaderProgram* stdShader = SHADER_MANAGER->GetShaderProgram("StandardShader");
 
 	GameObject* stick = new GameObject(this, "MyHStick");
-	MeshComponent* stickMesh = new MeshComponent(stick, modelShader);
+	MeshComponent* stickMesh = new MeshComponent(stick, stdShader);
+
 	stickMesh->GetModel("HockeyStick");
 	stickMesh->GetTexture("HockeyStick");
 

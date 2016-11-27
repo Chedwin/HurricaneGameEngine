@@ -171,6 +171,7 @@
     <ClInclude Include="HurricaneProperties.h" />
     <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="RigidbodyComponent.h" />
+    <ClInclude Include="StandardShader.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="LightComponent.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="RigidbodyComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SimpleModel.cpp" />
+    <ClCompile Include="StandardShader.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="LightComponent.cpp" />

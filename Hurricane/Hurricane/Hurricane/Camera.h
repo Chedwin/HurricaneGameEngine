@@ -58,8 +58,10 @@ protected:
 	MATRIX4 _projectionMatrix;
 	MATRIX4 _viewMatrix;
 
+
 public:
 	Frustum frustum;
+	GLuint mvpLocation;
 };
 
 #endif

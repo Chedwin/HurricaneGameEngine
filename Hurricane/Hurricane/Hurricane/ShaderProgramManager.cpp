@@ -22,7 +22,7 @@ ShaderProgramManager::~ShaderProgramManager()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-ResourceHandle<ShaderProgram> ShaderProgramManager::StoreShaderProg(STRING& _name, ShaderProgram* _sp)
+ResourceHandle<ShaderProgram> ShaderProgramManager::StoreShaderProg(const STRING& _name, ShaderProgram* _sp)
 {
 	ResourceHandle<ShaderProgram> result(-1);
 	result = _shaderResources.Get(_name);

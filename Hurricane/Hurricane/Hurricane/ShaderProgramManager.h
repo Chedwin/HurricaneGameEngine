@@ -31,7 +31,7 @@ protected:
 public:
 	static ShaderProgramManager* GetShaderManager();
 
-	ResourceHandle<ShaderProgram> StoreShaderProg(STRING& _name, ShaderProgram* _sp);
+	ResourceHandle<ShaderProgram> StoreShaderProg(const STRING& _name, ShaderProgram* _sp);
 
 	void DeleteShaderProgram(STRING& _name);
 

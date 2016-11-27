@@ -3,8 +3,8 @@
 
 
 
-ShaderProgram::ShaderProgram(const STRING& _progName) 
-	: _vertexShaderID(0), _fragmentShaderID(0), _numAttributes(0), _programID(0), _programName(_progName)
+ShaderProgram::ShaderProgram() 
+	: _vertexShaderID(0), _fragmentShaderID(0), _numAttributes(0), _programID(0)
 {
 	// EMPTY
 }
@@ -121,11 +121,6 @@ void ShaderProgram::LinkShaders()
 	glDetachShader(_programID, _fragmentShaderID);
 }
 
-void ShaderProgram::AddAttribute(const STRING & attrName)
-{
-	glBindAttribLocation(_programID, _numAttributes, attrName.c_str());
-	_numAttributes++;
-}
 
 GLint ShaderProgram::GetUniformLocation(const STRING& uniformName)
 {
