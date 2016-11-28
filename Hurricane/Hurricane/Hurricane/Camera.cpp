@@ -19,6 +19,8 @@ Camera::Camera(Scene* sc) : GameObject(sc)
 
 	mouseSpeed = 0.000001f;
 	speed = 4.0f;
+	
+	frustum.WindowResized(initialFOV, winWidth / winHeight, 0.1f, 50.0f);
 }
 
 
@@ -157,18 +159,14 @@ void Camera::Update(const hFLOAT _deltaTime)
 		gameObject->transform.position += right * _deltaTime * speed;
 	}
 
-	/// 
-	/*_projectionMatrix = glm::perspective(60.0f, 1.0f, 0.1f, 100.0f);
-	_viewMatrix = glm::lookAt(gameObject->transform.position, gameObject->transform.position + _dir, _up);
+	frustum.CameraChanged(gameObject->transform.position, gameObject->transform.position + _dir, _up);
 
-	StandardShader* ss = STANDARD_SHADER;
-	glProgramUniformMatrix4fv(ss->GetProgramID(), ss->projection_Location, 1, GL_FALSE, &_projectionMatrix[0][0]);
-	glProgramUniformMatrix4fv(ss->GetProgramID(), ss->view_Location, 1, GL_FALSE, &_viewMatrix[0][0]);*/
+	/// 
 }
 
 void Camera::Render() 
 {
-	_projectionMatrix = glm::perspective(45.0f, 1.0f, 0.1f, 100.0f);
+	_projectionMatrix = glm::perspective(initialFOV, (hFLOAT)winWidth / winHeight, 0.1f, 50.0f);
 	_viewMatrix = glm::lookAt(gameObject->transform.position, gameObject->transform.position + _dir, _up);
 
 	StandardShader* ss = STANDARD_SHADER;

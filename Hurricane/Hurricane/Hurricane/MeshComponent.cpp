@@ -90,8 +90,10 @@ void MeshComponent::Render()
 		//glActiveTexture(GL_TEXTURE0);
 		//glBindTexture(GL_TEXTURE_2D, texture->address);
 
-		glDrawArrays(GL_TRIANGLES, model->meshes[0].edge[0], model->meshes[0].vertex.size());
+		//glDrawArrays(GL_TRIANGLES, model->meshes[0].edge[0], model->meshes[0].vertex.size());
 	}
+
+	glDrawArrays(GL_LINE_STRIP, 0, MODEL_MANAGER->masterVectorList.size());
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

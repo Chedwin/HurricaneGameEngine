@@ -272,9 +272,9 @@ void GameObject::Rotate(const QUATERNION& q)
 MATRIX4 GameObject::ToMat4() 
 {
 	MATRIX4 translate = glm::translate(MATRIX4(1.0f), gameObject->transform.position);
-	MATRIX4 rotation = glm::mat4_cast(gameObject->transform.rotation);
 	MATRIX4 scale =	glm::scale(MATRIX4(1.0f), gameObject->transform.scale);
 
+	MATRIX4 rotation = glm::mat4_cast(gameObject->transform.rotation);
 
 	return translate * rotation * scale;
 }

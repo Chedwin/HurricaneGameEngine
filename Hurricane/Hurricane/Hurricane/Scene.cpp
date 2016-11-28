@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "Debug.h"
 #include "MeshComponent.h"
+#include "Frustum.h"
 
 Scene::Scene()
 {
@@ -17,6 +18,8 @@ Scene::Scene()
 	mainCamera = currentCamera = nullptr;
 	mainCamera = new Camera(this);
 	mainCamera->SetName("MainCamera");
+	mainCamera->AddTag("Camera");
+
 	SetCamera(mainCamera);
 }
 
@@ -69,8 +72,22 @@ void Scene::Render()
 	for (iter = _rootNode->childObjects.begin(); iter != _rootNode->childObjects.end(); iter++) 
 	{
 		GameObject* temp = (*iter);
-		if (temp && temp->CheckEnabled()) {
-			temp->Render();
+
+		if (temp && temp->CheckEnabled() && !temp->HasTag("Camera")) 
+		{
+			// FRUSTUM CULLING
+			switch (mainCamera->frustum.IsInside(temp->transform.position)) {
+			case Frustum::EnclosureType::INSIDE:
+			case Frustum::EnclosureType::OVERLAP:
+				Debug::ConsoleLog("Inside frustum");
+				temp->Render();
+				break;
+			case Frustum::EnclosureType::OUTSIDE:
+			default:
+				Debug::ConsoleLog("Outside frustum");
+				break;
+			}
+
 		}
 	}
 
