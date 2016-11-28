@@ -75,12 +75,10 @@ Frustum::EnclosureType Frustum::IsInside(VEC3 &pt)
 	for (hINT i = 0; i < 6; i++)
 	{
 		if (planes[i].SignedDistance(pt) < 0)
-		{
-			//Debug::ConsoleLog("Outside frustum");
+		{	
 			return OUTSIDE;
 		}
 	}
-	//Debug::ConsoleLog("Inside frustum");
 	return INSIDE;
 }
 
@@ -95,7 +93,6 @@ Frustum::EnclosureType Frustum::IsInside(VEC3 &cent, hFLOAT radius)
 
 		if (distance < -radius)
 		{
-			//Debug::ConsoleLog("Outside frustum");
 			return OUTSIDE;
 		}
 		else if (distance < radius) 
@@ -103,6 +100,5 @@ Frustum::EnclosureType Frustum::IsInside(VEC3 &cent, hFLOAT radius)
 			result = OVERLAP;
 		}
 	}
-	//Debug::ConsoleLog("Inside frustum");
 	return result;
 }

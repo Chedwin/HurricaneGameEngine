@@ -22,6 +22,7 @@ SimulationScene::SimulationScene()
 	MODEL_MANAGER->PushModels();
 
 	//mainCamera->transform.position = VEC3(0, 0, 0);
+	/*glClearColor(0.0f, 0.0f, 0.4f, 1.0f);*/
 }
 
 SimulationScene::~SimulationScene()
@@ -41,6 +42,7 @@ void SimulationScene::InitScene()
 	MeshComponent* puckMesh = new MeshComponent(puck, stdShader);
 	puckMesh->GetModel("PuckObj");
 
+	
 
 	//GameObject* stick = new GameObject(this, "Stick");
 	//MeshComponent* stickMesh = new MeshComponent(stick, stdShader);
@@ -64,4 +66,8 @@ void SimulationScene::Update(const hFLOAT _timeStep)
 {
 	// Call the base class' update first
 	Scene::Update(_timeStep);
+
+	GameObject* p = FindGameObject("MyPuck");
+	p->Translate(VEC3(0.01f, 0, 0.001f));
+	//p->Scale(VEC3(0.0001f, 0.0001f, 0.0001f));
 }	
