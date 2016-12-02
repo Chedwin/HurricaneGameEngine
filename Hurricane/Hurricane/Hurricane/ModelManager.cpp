@@ -99,15 +99,15 @@ void ModelManager::LoadModel(const STRING& _name, const STRING& _filePath)
 		model->normals.push_back(VEC3(n.x, n.y, n.z));
 	}
 
-	//// Fill vertices texture coordinates
-	////model->uvs.reserve(thisMesh->mNumVertices);
-	//for (unsigned int i = 0; i<thisMesh->mNumVertices; i++) {
-	//}
+	// Fill vertices texture coordinates
+	//model->uvs.reserve(thisMesh->mNumVertices);
+	for (unsigned int i = 0; i<thisMesh->mNumVertices; i++) {
+	}
 
-	//// Fill vertices normals
-	////model->normals.reserve(thisMesh->mNumVertices);
-	//for (unsigned int i = 0; i<thisMesh->mNumVertices; i++) {
-	//}
+	// Fill vertices normals
+	//model->normals.reserve(thisMesh->mNumVertices);
+	for (unsigned int i = 0; i<thisMesh->mNumVertices; i++) {
+	}
 
 
 	//// Fill face indices
@@ -119,7 +119,7 @@ void ModelManager::LoadModel(const STRING& _name, const STRING& _filePath)
 	//	indices.push_back(thisMesh->mFaces[i].mIndices[2]);
 	//}
 	
-	InsertModel(_name, model);
+	//InsertModel(_name, model);
 }
 
 // Strictly load OBJ files
@@ -136,8 +136,8 @@ hBOOL ModelManager::LoadOBJ(const STRING& _name, const STRING& _filePath)
 
 	FILE * file = fopen(_filePath.c_str(), "r");
 	if (file == NULL) {
-		printf("Impossible to open the file ! Are you in the right path ? See Tutorial 1 for details\n");
-		getchar();
+		Debug::ConsoleError("CANNONT OPEN FILE: " + _filePath, __FILE__, __LINE__);
+		GETCHAR();
 		return false;
 	}
 
