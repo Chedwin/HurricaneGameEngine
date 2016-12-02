@@ -4,21 +4,49 @@
 #include "StandardShader.h"
 #include "Debug.h"
 #include "GameObject.h"
+#include "Scene.h"
 
-//VECTOR(MeshComponent*) MeshComponent::renderableComponents;
+#define BUFFER_OFFSET(i) ((void*)(i))
 
-MeshComponent::MeshComponent(GameObject* g, ShaderProgram* _shader)
+MeshComponent::MeshComponent(GameObject* g, ShaderProgram* _shader, const STRING& _model)
 	: Component(g, COMPONENT_TYPE::Renderable)
 {
 	shader = _shader;
 	SetEnabled(true);
-	//renderableComponents.push_back(this);
+	
+	GetModel(_model);
+	program = _shader->GetProgramID();
+
+	shader->UseShader();
+
+	glGenBuffers(2, buffers);
+	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
+	glBufferData(GL_ARRAY_BUFFER, mesh->vertex.size() * sizeof(VEC3), &mesh->vertex[0], GL_STATIC_DRAW);
+	glBindAttribLocation(program, 0, "vPosition");
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+	glEnableVertexAttribArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, buffers[1]);
+	glBufferData(GL_ARRAY_BUFFER, mesh->uvs.size() * sizeof(VEC2), &mesh->uvs[0], GL_STATIC_DRAW);
+	glBindAttribLocation(program, 1, "vTexCoord");
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+	glEnableVertexAttribArray(1);
+
+	//glBindBuffer(GL_ARRAY_BUFFER, buffers[2]);
+	//glBufferData(GL_ARRAY_BUFFER, mesh->normals.size() * sizeof(VEC3), &mesh->normals[0], GL_STATIC_DRAW);
+	//glBindAttribLocation(program, 2, "vNormal");
+	//glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+	//glEnableVertexAttribArray(2);
+
+	textureSampler = glGetUniformLocation(program, "myTextureSampler");
+	glUniform1i(textureSampler, 0);
 }
 
 MeshComponent::~MeshComponent()
 {
 	// NOTE: Don't have to delete the model or texture here
 	// the managers will do that for us
+	glDeleteBuffers(2, buffers);
 }
 
 
@@ -50,61 +78,18 @@ Texture* MeshComponent::GetTexture(const STRING& _texture)
 
 void MeshComponent::Render()
 {
-	Model* model = GetModel(meshName);
-	if (!model) {
-		return;
-	}
-
-	//Texture* text = GetTexture(textureName);
-	//if (!texture) {
-	//	return;
-	//}
-
-	//if (!shader) {
-	//	return;
-	//}
-
-	/*shader->UseShader(); */
 	StandardShader* stdShader = STANDARD_SHADER;
-	//stdShader->UseShader();
-
-	//glEnable(GL_CULL_FACE);
-	glEnable(GL_DEPTH_TEST);
-	glFrontFace(GL_CW);
-
-	MATRIX4 transformMat = parentGmObj->ToMat4();
-	glProgramUniformMatrix4fv(stdShader->GetProgramID(), stdShader->model_Location, 1, GL_FALSE, &transformMat[0][0]);
+	
+	//MATRIX4 transformMat = parentGmObj->ToMat4();
+	//glProgramUniformMatrix4fv(stdShader->GetProgramID(), stdShader->model_Location, 1, GL_FALSE, &transformMat[0][0]);
 
 
-	MATRIX4 rotMat = glm::mat4_cast(parentGmObj->transform.rotation);
-	glProgramUniformMatrix4fv(stdShader->GetProgramID(), stdShader->rotation_Location, 1, GL_FALSE, &rotMat[0][0]);
+	//MATRIX4 rotMat = glm::mat4_cast(parentGmObj->transform.rotation);
+	//glProgramUniformMatrix4fv(stdShader->GetProgramID(), stdShader->rotation_Location, 1, GL_FALSE, &rotMat[0][0]);
+	//Model* myModel = MODEL_MANAGER->GetModel("Planet");
+	MATRIX4 modelView = MATRIX4(1.0f);
 
-	for (int m = 0; m < model->meshes.size(); m++)
-	{
-		////Get Texture
-		//if (m < _textures.size() && _textures[m])
-		//{
-		//	glBindTexture(GL_TEXTURE_2D, _textures[m]->address);
-		//}
-		//else if (_textures[0])
-		//glActiveTexture(GL_TEXTURE0);
-		//glBindTexture(GL_TEXTURE_2D, texture->address);
-
-		//glDrawArrays(GL_TRIANGLES, model->meshes[0].edge[0], model->meshes[0].vertex.size());
-	}
-
-	glDrawArrays(GL_LINE_STRIP, 0, MODEL_MANAGER->masterVectorList.size());
+	glProgramUniformMatrix4fv(program, stdShader->model_Location, 1, GL_FALSE, &modelView[0][0]);
+	//glUniformMatrix4fv(stdShader->model_Location, 1, GL_FALSE, &modelView[0][0]);
+	glDrawArrays(GL_TRIANGLES, 0, mesh->vertex.size());
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//void MeshComponent::DrawRenderables() 
-//{
-//	for (int i = 0; i < renderableComponents.size(); i++)
-//	{
-//		if (renderableComponents[i]->isEnabled)
-//		{
-//			renderableComponents[i]->Render();
-//		}
-//	}
-//}

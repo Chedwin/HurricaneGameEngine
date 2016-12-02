@@ -19,38 +19,24 @@
 #include "Model.h"
 #include "ShaderProgram.h"
 
-//////////////////////////////////////////////////////////////
-
-enum Shader_Program_Type
-{
-	STANDARD_SHADER = 0,
-};
-
-//////////////////////////////////////////////////////////////
-
 #define MODEL_MANAGER ModelManager::GetModelManager()
-#define BUFFER_OFFSET(i) ((void*)(i))
+
 
 class ModelManager {
 private:
 	ResourceHandle<Model> InsertModel(const STRING& _name, Model* _model); // Insert model into resource manager
 
 public:
-	enum Buffer_Type 
-	{
-		VERTEX_BUFFER = 0, 
-		TEXTURE_BUFFER = 1, 
-		NORMAL_BUFFER = 2
-	};
 
 	ModelManager();
 	~ModelManager();
 
 	static ModelManager* GetModelManager();
 
-	// Add or "import" a model into the manager using Assimp mapping the correct vertixes, texture coords, etc.
+	// Add or "import" a model into the manager using Assimp mapping the correct vertices, texture coords, etc.
 	void LoadModel(const STRING& _name, const STRING& _filePath); 
-	void PushModels();
+
+	hBOOL LoadOBJ(const STRING& _name, const STRING& _filePath);
 
 	void DeleteModel(const STRING& _model);
 	void ClearAllModels();
@@ -66,18 +52,6 @@ private:
 
 protected:
 	ResourceManager<Model> _modelResources;
-
-public:
-	static const GLuint NUMBER_OF_BUFFERS = 3;
-	GLuint Buffers[NUMBER_OF_BUFFERS];
-
-	VECTOR(VEC3) masterVectorList, masterNormalList;
-	VECTOR(VEC2) masterTextureCoords;
-
-
-	hBOOL areBuffersInitialized;
-	GLuint* textureArray;
-	GLuint numberOfTextures;
 };
 
 #endif

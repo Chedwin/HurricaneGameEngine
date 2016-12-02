@@ -24,24 +24,34 @@
 
 class MeshComponent : public Component {
 public:
-	MeshComponent(GameObject* g, ShaderProgram* _shader);
+	enum Buffer_Type
+	{
+		VERTEX_BUFFER = 0,
+		TEXTURE_BUFFER = 1,
+		NORMAL_BUFFER = 2
+	};
+
+	MeshComponent(GameObject* g, ShaderProgram* _shader, const STRING& _model);
 	~MeshComponent();
 
 	Model* GetModel(const STRING& _name);
 	Texture* GetTexture(const STRING& _texture);
 
-	void Render();
+	void BindBuffers();
 
-	//static VECTOR(MeshComponent*) renderableComponents;
-	//static void DrawRenderables();
+	void Render();
 
 public:
 	ShaderProgram* shader;
 	Model* mesh;
 	Texture* texture;
+	GLuint textureSampler;
 
 	STRING meshName;
 	STRING textureName;
+
+	GLuint buffers[2];
+	GLuint program;
 };
 
 #endif

@@ -47,7 +47,7 @@ void Scene::Update(const hFLOAT _timeStep)
 {
 	mainCamera->Update(_timeStep);
 
-	// NOTE: ANY game object instatiated MUST be attached to a scene
+	// NOTE: ANY game object to be instatiated MUST be attached to a scene
 	//		 
 	VECTOR(GameObject*)::iterator iter;
 	for (iter = _rootNode->childObjects.begin(); iter != _rootNode->childObjects.end(); iter++)
@@ -66,8 +66,10 @@ void Scene::Update(const hFLOAT _timeStep)
 // RENDER
 void Scene::Render()
 {
+	// camera render
 	mainCamera->Render();
 
+	// Draw every game object that has a renderable component
 	VECTOR(GameObject*)::iterator iter;
 	for (iter = _rootNode->childObjects.begin(); iter != _rootNode->childObjects.end(); iter++) 
 	{
@@ -75,23 +77,10 @@ void Scene::Render()
 
 		if (temp && temp->CheckEnabled() && !temp->HasTag("Camera")) 
 		{
-			// FRUSTUM CULLING
-			switch (mainCamera->frustum.IsInside(temp->transform.position)) {
-			case Frustum::EnclosureType::INSIDE:
-			case Frustum::EnclosureType::OVERLAP:
-				Debug::ConsoleLog("Inside frustum");
-				temp->Render();
-				break;
-			case Frustum::EnclosureType::OUTSIDE:
-			default:
-				Debug::ConsoleLog("Outside frustum");
-				break;
-			}
-
+			temp->Render();
 		}
 	}
-
-	//MeshComponent::DrawRenderables();
+	
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

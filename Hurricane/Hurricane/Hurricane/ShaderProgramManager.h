@@ -5,18 +5,19 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 14, 2016
-// Last updated:	Nov 26, 2016
+// Last updated:	Dec 01, 2016
 //
 //*******************************//
 
-#pragma once
+
+
+
+#ifndef SHADER_PROGRAM_MANAGER_H
+#define SHADER_PROGRAM_MANAGER_H
 
 #include "Macro.h"
 #include "ResourceManager.h"
 #include "ShaderProgram.h"
-
-#ifndef SHADER_PROGRAM_MANAGER_H
-#define SHADER_PROGRAM_MANAGER_H
 
 #define SHADER_MANAGER ShaderProgramManager::GetShaderManager()
 

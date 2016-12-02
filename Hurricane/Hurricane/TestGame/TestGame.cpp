@@ -25,6 +25,9 @@ TestGame::~TestGame()
 
 hBOOL TestGame::InitGame()
 {
+	ShaderProgram* stdShader = STANDARD_SHADER;
+	SHADER_MANAGER->StoreShaderProg("StandardShader", stdShader);
+
 	// Any pre-game init stuff?
 	LoadScene(new TitleScreenScene());
 	return true;

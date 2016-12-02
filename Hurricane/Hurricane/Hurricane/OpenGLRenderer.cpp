@@ -2,45 +2,32 @@
 #include "Game.h"
 
 OpenGLRenderer::OpenGLRenderer() {
+	glEnable(GL_DEPTH_TEST);
+	glClearColor(0.0f, 0.0f, 0.4f, 1.0f);
+
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_DEPTH_TEST);
 	glCullFace(GL_FRONT);
 	glDepthFunc(GL_LESS);
 	glDepthMask(GL_TRUE);
 	glFrontFace(GL_CCW);
+	glEnable(GL_BLEND);
 	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-
-	/*glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_COLOR, GL_ONE);*/
-	glEnable(GL_DEPTH_TEST);
-
-
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
 }
 
 
 OpenGLRenderer::~OpenGLRenderer()
 {
-	glDeleteVertexArrays(1, &vao);
+	// EMPTY
 }
 
+// NOTE: this function acts as a PRE-RENDER for the game
+// thus, setting up the OpenGL environment to accept vertices to be drawn
 void OpenGLRenderer::RenderPrimitive(PrimitiveType prim)
 {
-	glClearDepth(1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	// Accept fragment if it closer to the camera than the former one
-	glMatrixMode(GL_MODELVIEW);     // To operate on model-view matrix
-	glLoadIdentity();
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	/*switch (prim) {
-	case PrimitiveType::TRIANGLES:
-		break;
-	case PrimitiveType::QUADS:
-		break;
-	case PrimitiveType::NONE:
-	default:
-		break;
-	}*/
+	// To operate on model-view matrix
+	glMatrixMode(GL_MODELVIEW);     
 }

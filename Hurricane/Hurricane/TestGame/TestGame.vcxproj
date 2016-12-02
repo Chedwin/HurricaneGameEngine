@@ -170,6 +170,10 @@
     <ClInclude Include="SimulationScene.h" />
     <ClInclude Include="TestGame.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="StandardShader.frag" />
+    <None Include="StandardShader.vert" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
