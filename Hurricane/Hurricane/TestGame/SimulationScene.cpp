@@ -5,6 +5,7 @@
 #include <MeshComponent.h>
 #include <TextureManager.h>
 #include <PhysicsEngine.h>
+#include <StandardShader.h>
 
 #include "SimulationScene.h"
 #include "HelloWorldScript.h"
@@ -13,16 +14,8 @@
 SimulationScene::SimulationScene()
 {
 	SetSceneName("Solar System Simulation");
-	MODEL_MANAGER->LoadModel("PuckObj", "models/planet.obj");
-	//MODEL_MANAGER->LoadModel("LeafsFanCivilian", "models/LeafsFanCivilian.fbx");
-	//MODEL_MANAGER->LoadModel("HockeyStick", "models/HockeyStick.obj");
-
+	MODEL_MANAGER->LoadOBJ("Planet", "models/planet.obj");
 	TEXTURE_MANAGER->UploadTextureFromFile("textures/Puck.png", "PuckTex");
-
-	MODEL_MANAGER->PushModels();
-
-	//mainCamera->transform.position = VEC3(0, 0, 0);
-	/*glClearColor(0.0f, 0.0f, 0.4f, 1.0f);*/
 }
 
 SimulationScene::~SimulationScene()
@@ -34,32 +27,10 @@ void SimulationScene::InitScene()
 	Debug::ConsoleLog("Welcome to the Hurricane Solar System Simulator!");
 
 
+	ShaderProgram* stdShader = STANDARD_SHADER;
 
-
-	ShaderProgram* stdShader = SHADER_MANAGER->GetShaderProgram("StandardShader");
-
-	GameObject* puck = new GameObject(this, "MyPuck");
-	MeshComponent* puckMesh = new MeshComponent(puck, stdShader);
-	puckMesh->GetModel("PuckObj");
-
-	
-
-	//GameObject* stick = new GameObject(this, "Stick");
-	//MeshComponent* stickMesh = new MeshComponent(stick, stdShader);
-	//stickMesh->GetModel("HockeyStick");
-	//stick->transform.position = VEC3(0, 0, 0);
-
-
-	//puckMesh->GetTexture("PuckTex");
-
-
-
-	//HelloWorldScript* helloworld = new HelloWorldScript("Hello World");
-	//PlayerMovementScript* playerMove = new PlayerMovementScript("Player Movement");
-
-	//GameObject* jimmy = new GameObject(this, "Jimmy");
-
-	//jimmy->AttachScript(helloworld);
+	GameObject* planet = new GameObject(this, "Sun");
+	MeshComponent* planetMesh = new MeshComponent(planet, stdShader, "Planet");
 }
 
 void SimulationScene::Update(const hFLOAT _timeStep)
@@ -67,7 +38,6 @@ void SimulationScene::Update(const hFLOAT _timeStep)
 	// Call the base class' update first
 	Scene::Update(_timeStep);
 
-	GameObject* p = FindGameObject("MyPuck");
-	p->Translate(VEC3(0.01f, 0, 0.001f));
+	//GameObject* p = FindGameObject("MyPuck");
 	//p->Scale(VEC3(0.0001f, 0.0001f, 0.0001f));
 }	

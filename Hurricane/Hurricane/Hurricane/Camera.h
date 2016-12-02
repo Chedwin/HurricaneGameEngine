@@ -48,7 +48,7 @@ public:
 
 
 	inline MATRIX4 GetMatrix() const {
-		return _projectionMatrix * _viewMatrix;
+		return  _viewMatrix;
 	}
 
 protected:

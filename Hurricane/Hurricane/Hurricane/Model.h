@@ -20,18 +20,6 @@
 
 class Model {
 public:
-	struct Mesh
-	{
-		VECTOR(VEC3) vertex;
-		VECTOR(hUINT) edge;
-		VECTOR(hUINT) face;
-		VECTOR(VEC3) normal;
-		VECTOR(VEC3) faceNormal;
-		VECTOR(VEC2) textureMap;
-
-		hUINT offsetVertex;
-	};
-
 	Model() {}
 	virtual ~Model() {}
 
@@ -47,7 +35,9 @@ public:
 protected:
 	STRING _name;
 public:
-	VECTOR(Mesh) meshes;
+	VECTOR(VEC3) vertex;
+	VECTOR(VEC2) uvs;
+	VECTOR(VEC3) normals;
 };
 
 #endif

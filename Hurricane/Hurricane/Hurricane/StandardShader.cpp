@@ -15,22 +15,21 @@ StandardShader::StandardShader() : ShaderProgram()
 {
 	_programName = "StandardShader";
 
-	CompileShaders("../shaders/StandardShader.vert", "../shaders/StandardShader.frag");
+	CompileShaders("StandardShader.vert", "StandardShader.frag");
 
-	glBindAttribLocation(_programID, Attribute_Type::VERTEX_ATTRIBUTE, "vPosition");
-	glBindAttribLocation(_programID, Attribute_Type::TEXTURE_ATTRIBUTE, "vTexCoord");
-	glBindAttribLocation(_programID, Attribute_Type::NORMAL_ATTRIBUTE, "vNormal");
+	AddAttribute(Attribute_Type::VERTEX_ATTRIBUTE, "vPosition");
+	AddAttribute(Attribute_Type::TEXTURE_ATTRIBUTE, "vTexCoord");
+	AddAttribute(Attribute_Type::NORMAL_ATTRIBUTE, "vNormal");
 
-	_numAttributes = 3;
 
 	LinkShaders();
 
-	model_Location = GetUniformLocation("model_matrix");
-	projection_Location = GetUniformLocation("projection_matrix");
-	view_Location = GetUniformLocation("view_matrix");
-	rotation_Location = GetUniformLocation("rotation");
+	model_Location = GetUniformLocation("model");
+	projection_Location = GetUniformLocation("projection");
+	view_Location = GetUniformLocation("view");
+	//rotation_Location = GetUniformLocation("rotation");
 
-	UseShader();
+	/*UseShader();*/
 }
 
 StandardShader::~StandardShader()

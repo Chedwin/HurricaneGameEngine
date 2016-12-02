@@ -13,30 +13,6 @@
 #include "StandardShader.h"
 #include "TextureManager.h"
 
-void gotoxy(int column, int line)
-{
-	COORD coord;
-	coord.X = column;
-	coord.Y = line;
-	SetConsoleCursorPosition(
-		GetStdHandle(STD_OUTPUT_HANDLE),
-		coord
-	);
-}
-
-int wherex()
-{
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
-	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
-	return csbi.dwCursorPosition.X;
-}
-
-int wherey()
-{
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
-	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
-	return csbi.dwCursorPosition.Y;
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -53,49 +29,19 @@ ModelManager* ModelManager::GetModelManager()
 
 ModelManager::ModelManager()
 {
-	// Create, init, then store our shaders in the GLOBAL shader manager
-	StandardShader* stdShader = STANDARD_SHADER;
-	SHADER_MANAGER->StoreShaderProg("StandardShader", stdShader);
-
-
-
-	// Gen buffers here
-	glGenBuffers(NUMBER_OF_BUFFERS, Buffers);
-
-	// Verties
-	glBindBuffer(GL_ARRAY_BUFFER, Buffers[Buffer_Type::VERTEX_BUFFER]);
-	glVertexAttribPointer(Attribute_Type::VERTEX_ATTRIBUTE, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
-	glEnableVertexAttribArray(Attribute_Type::VERTEX_ATTRIBUTE);
-
-	// Textures
-	glBindBuffer(GL_ARRAY_BUFFER, Buffers[Buffer_Type::TEXTURE_BUFFER]);
-	glVertexAttribPointer(Attribute_Type::TEXTURE_ATTRIBUTE, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
-	glEnableVertexAttribArray(Attribute_Type::TEXTURE_ATTRIBUTE);
-
-	// Normals (i.e. Lights)
-	glBindBuffer(GL_ARRAY_BUFFER, Buffers[Buffer_Type::NORMAL_BUFFER]);
-	glVertexAttribPointer(Attribute_Type::NORMAL_ATTRIBUTE, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
-	glEnableVertexAttribArray(Attribute_Type::NORMAL_ATTRIBUTE);
-
-	textureArray = nullptr;
-	numberOfTextures = 0;
-	areBuffersInitialized = false;
+	// EMPTY
 }
 
 ModelManager::~ModelManager()
 {
 	// Delete all models
 	_modelResources.EmptyResourceMap();
-
-	// Delete the buffers
-	glDeleteBuffers(NUMBER_OF_BUFFERS, Buffers);
 }
-
-
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// ASSIMP MODEL LOADING (i.e. fbx, obj, 3ds, etc.)
 void ModelManager::LoadModel(const STRING& _name, const STRING& _filePath) 
 {
 	// Check if model (name) exists in the model manager already
@@ -130,233 +76,151 @@ void ModelManager::LoadModel(const STRING& _name, const STRING& _filePath)
 		totalVerts += scene->mMeshes[i]->mNumVertices;
 	}
 
-	VEC2 cursorPos = VEC2(wherex(), wherey());
-
-	//Debug::ConsoleLog("NumVertices: " + TO_STRING(totalVerts));
+	Debug::ConsoleLog("NumVertices: " + TO_STRING(totalVerts));
 
 	Model* model = new Model();
 	model->SetModelName(_name);
 
+	const aiMesh* thisMesh = scene->mMeshes[0]; // In this simple example code we always use the 1rst mesh (in OBJ files there is often only one anyway)
 
-	for (int i = 0; i < scene->mNumMeshes; i++)
-	{
-		Model::Mesh mesh;
+	// Fill vertices positions
+	//model->vertex.reserve(thisMesh->mNumVertices);
+	for (unsigned int i = 0; i<thisMesh->mNumVertices; i++) {
+		// Vertices
+		aiVector3D pos = thisMesh->mVertices[i];
+		model->vertex.push_back(VEC3(pos.x, pos.y, pos.z));
 
-		for (int j = 0; j < scene->mMeshes[i]->mNumVertices; j++)
-		{
-			VEC3 vertex = VEC3(scene->mMeshes[i]->mVertices[j].x, scene->mMeshes[i]->mVertices[j].y, scene->mMeshes[i]->mVertices[j].z);
-			mesh.vertex.push_back(vertex);
+		// Texture coordinates (UV map)
+		aiVector3D UVW = thisMesh->mTextureCoords[0][i]; // Assume only 1 set of UV coords; AssImp supports 8 UV sets.
+		model->uvs.push_back(VEC2(UVW.x, UVW.y));
 
-			if (scene->mMeshes[i]->HasNormals())
-			{
-				VEC3 normal = VEC3(scene->mMeshes[i]->mNormals[j].x, scene->mMeshes[i]->mNormals[j].y, scene->mMeshes[i]->mNormals[j].z);
-				mesh.normal.push_back(normal);
-				hasNormals = true;
-			}
-
-			if (scene->mMeshes[i]->HasTextureCoords(0))
-			{
-				VEC2 texture = VEC2(scene->mMeshes[i]->mTextureCoords[0][j].x, scene->mMeshes[i]->mTextureCoords[0][j].y);
-				mesh.textureMap.push_back(texture);
-			}
-
-			currentVertex++;
-
-			if (currentVertex % 1000 == 0)
-			{
-				gotoxy(cursorPos.x, cursorPos.y);
-				COUT << TO_STRING((currentVertex / (float)totalVerts) * 100) << "%    ";
-			}
-		}
-
-		model->meshes.push_back(mesh);
+		// Normals
+		aiVector3D n = thisMesh->mNormals[i];
+		model->normals.push_back(VEC3(n.x, n.y, n.z));
 	}
 
-	gotoxy(cursorPos.x, cursorPos.y);
-	COUT << "100%     \n";
+	//// Fill vertices texture coordinates
+	////model->uvs.reserve(thisMesh->mNumVertices);
+	//for (unsigned int i = 0; i<thisMesh->mNumVertices; i++) {
+	//}
+
+	//// Fill vertices normals
+	////model->normals.reserve(thisMesh->mNumVertices);
+	//for (unsigned int i = 0; i<thisMesh->mNumVertices; i++) {
+	//}
 
 
-	for (int m = 0; m < model->meshes.size(); m++) {
-		for (unsigned int i = 0; i < model->meshes[m].vertex.size(); i++) {
-			model->meshes[m].edge.push_back(i);
-		}
-	}
-
-
-	for (int i = 0; i < scene->mNumMeshes; i++)
-	{
-		for (int j = 0; j < scene->mMeshes[i]->mNumFaces; j++)
-		{
-			model->meshes[i].face.push_back(scene->mMeshes[i]->mFaces[j].mNumIndices);
-		}
-	}
-
-	for (int m = 0; m < model->meshes.size(); m++) {
-		for (auto it = model->meshes[m].textureMap.begin(); it != model->meshes[m].textureMap.end(); it++)
-		{
-			masterTextureCoords.push_back(*it);
-		}	
-	}
-
-
+	//// Fill face indices
+	//indices.reserve(3 * thisMesh->mNumFaces);
+	//for (unsigned int i = 0; i<thisMesh->mNumFaces; i++) {
+	//	// Assume the model has only triangles.
+	//	indices.push_back(thisMesh->mFaces[i].mIndices[0]);
+	//	indices.push_back(thisMesh->mFaces[i].mIndices[1]);
+	//	indices.push_back(thisMesh->mFaces[i].mIndices[2]);
+	//}
+	
 	InsertModel(_name, model);
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-void ModelManager::PushModels() 
+// Strictly load OBJ files
+// Written w/o 3rd party APIs
+hBOOL ModelManager::LoadOBJ(const STRING& _name, const STRING& _filePath) 
 {
-	//Clear Buffers
-	if (areBuffersInitialized)
-	{
-		GLuint zero = 0;
+	printf("Loading OBJ file %s...\n", _filePath.c_str());
 
-		glBindBuffer(GL_ARRAY_BUFFER, Buffers[VERTEX_BUFFER]); glClearBufferData(GL_ARRAY_BUFFER, GL_RGB32F, GL_RGB, GL_UNSIGNED_INT, &zero);
-		glBindBuffer(GL_ARRAY_BUFFER, Buffers[TEXTURE_BUFFER]); glClearBufferData(GL_ARRAY_BUFFER, GL_RG32F, GL_RG, GL_UNSIGNED_INT, &zero);
-		glBindBuffer(GL_ARRAY_BUFFER, Buffers[NORMAL_BUFFER]); glClearBufferData(GL_ARRAY_BUFFER, GL_RGB32F, GL_RGB, GL_UNSIGNED_INT, &zero);
+	std::vector<unsigned int> vertexIndices, uvIndices, normalIndices;
+	std::vector<VEC3> temp_vertices;
+	std::vector<VEC2> temp_uvs;
+	std::vector<VEC3> temp_normals;
 
-		glDeleteTextures(numberOfTextures, textureArray);
+
+	FILE * file = fopen(_filePath.c_str(), "r");
+	if (file == NULL) {
+		printf("Impossible to open the file ! Are you in the right path ? See Tutorial 1 for details\n");
+		getchar();
+		return false;
 	}
 
-	/*  VERTICES  */
-	if (masterVectorList.size() > 0)
-	{
-		int arraySize = masterVectorList.size() * 3 * 4; //Each vector contains 3 floats (which are 4 bytes)
-		float * newMasterList = new float[masterVectorList.size() * 3];
+	while (1) {
 
-		//populate vector list
-		{
-			int i = 0;
-			COUT << "Loading Vertices: " << (i / (float)masterVectorList.size()) * 100 << "%";
+		char lineHeader[128];
+		// read the first word of the line
+		int res = fscanf(file, "%s", lineHeader);
+		if (res == EOF)
+			break; // EOF = End Of File. Quit the loop.
 
-			for (i = 0; i < masterVectorList.size(); i++)
-			{
-				newMasterList[i * 3] = masterVectorList[i].x;
-				newMasterList[3 * i + 1] = masterVectorList[i].y;
-				newMasterList[3 * i + 2] = masterVectorList[i].z;
+				   // else : parse lineHeader
 
-				if (i % 1000 == 0)
-				{
-					gotoxy(18, wherey());
-					COUT << "                                                     ";
-					gotoxy(18, wherey());
-					COUT << (i / (float)masterVectorList.size()) * 100 << "%";
-				}
+		if (strcmp(lineHeader, "v") == 0) {
+			VEC3 vertex;
+			fscanf(file, "%f %f %f\n", &vertex.x, &vertex.y, &vertex.z);
+			temp_vertices.push_back(vertex);
+		}
+		else if (strcmp(lineHeader, "vt") == 0) {
+			VEC2 uv;
+			fscanf(file, "%f %f\n", &uv.x, &uv.y);
+			uv.y = -uv.y; // Invert V coordinate since we will only use DDS texture, which are inverted. Remove if you want to use TGA or BMP loaders.
+			temp_uvs.push_back(uv);
+		}
+		else if (strcmp(lineHeader, "vn") == 0) {
+			VEC3 normal;
+			fscanf(file, "%f %f %f\n", &normal.x, &normal.y, &normal.z);
+			temp_normals.push_back(normal);
+		}
+		else if (strcmp(lineHeader, "f") == 0) {
+			std::string vertex1, vertex2, vertex3;
+			unsigned int vertexIndex[3], uvIndex[3], normalIndex[3];
+			int matches = fscanf(file, "%d/%d/%d %d/%d/%d %d/%d/%d\n", &vertexIndex[0], &uvIndex[0], &normalIndex[0], &vertexIndex[1], &uvIndex[1], &normalIndex[1], &vertexIndex[2], &uvIndex[2], &normalIndex[2]);
+			if (matches != 9) {
+				printf("File can't be read by our simple parser :-( Try exporting with other options\n");
+				return false;
 			}
-
-			gotoxy(0, wherey());
-			COUT << "                                                                        ";
-			gotoxy(0, wherey());
-			COUT << "Loading Vertices: 100%\n";
-
-			glBindBuffer(GL_ARRAY_BUFFER, Buffers[VERTEX_BUFFER]);
-			glBufferData(GL_ARRAY_BUFFER, arraySize, newMasterList, GL_STATIC_DRAW);
-
-			COUT << "Loaded " << i << " Vertices.\n";
+			vertexIndices.push_back(vertexIndex[0]);
+			vertexIndices.push_back(vertexIndex[1]);
+			vertexIndices.push_back(vertexIndex[2]);
+			uvIndices.push_back(uvIndex[0]);
+			uvIndices.push_back(uvIndex[1]);
+			uvIndices.push_back(uvIndex[2]);
+			normalIndices.push_back(normalIndex[0]);
+			normalIndices.push_back(normalIndex[1]);
+			normalIndices.push_back(normalIndex[2]);
 		}
-		delete[] newMasterList;
-	}
-
-	/*  TEXTURES  */
-	if (textureArray)
-	{
-		delete[] textureArray;
-		textureArray = nullptr;
-	}
-
-	TextureManager* myTextures = TEXTURE_MANAGER;
-
-	numberOfTextures = myTextures->GetNumTextures();
-	textureArray = new GLuint[numberOfTextures];
-	glGenTextures(numberOfTextures, textureArray);
-
-	//Pass texture id to textures
-	hINT i = 0;
-
-	VECTOR(Texture*)::iterator iter = myTextures->_textureResources.resourceVector.begin();
-	auto textureVector = myTextures->_textureResources.resourceVector;
-
-	for (iter; iter != myTextures->_textureResources.resourceVector.end(); iter++)
-	{
-		COUT << "Loading Texture #:" << i << " \"" << textureVector[i]->GetResourceName() << "\"...";
-
-		textureVector[i]->address = textureArray[i];
-
-		//switch (textureVector[i]->dataType)
-		//{
-		//case Texture::TextureDataType::Float:
-		//	glBindTexture(GL_TEXTURE_2D, textureVector[i]->address);
-		//	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		//	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		//	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		//	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, textureVector[i]->GetWidth(), textureVector[i]->GetHeight(), 0, GL_RGBA, GL_FLOAT, textureVector[i]->GetPixels());
-		//	break;
-		//case Texture::TextureDataType::UnsignedByte:
-		//	glBindTexture(GL_TEXTURE_2D, textureVector[i]->address);
-		//	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		//	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		//	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		//	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, textureVector[i]->GetWidth, textureVector[i]->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, textureVector[i]->GetPixels());
-		//	break;
-		//case Texture::TextureDataType::UnsignedByte_3D:
-		//	glBindTexture(GL_TEXTURE_3D, textureVector[i]->address);
-		//	glTexParameterf(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		//	glTexParameterf(GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		//	glTexParameterf(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_REPEAT);
-		//	glTexParameterf(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		//	glTexParameterf(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		//	glTexImage3D(GL_TEXTURE_3D, 0, GL_RGBA, textureVector[i]->GetWidth(), textureVector[i]->GetHeight(), textureVector[i]->depth, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureVector[i]->pixelData);
-		//	break;
-		//}
-
-		glBindTexture(GL_TEXTURE_2D, textureVector[i]->address);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, textureVector[i]->GetWidth(), textureVector[i]->GetHeight(), 0, GL_RGBA, GL_FLOAT, textureVector[i]->GetPixels());
-
-		COUT << " done!\n";
-
-		i++;
-	}
-
-	if (masterTextureCoords.size() > 0)
-	{
-		float * newMasterTextureList = new float[masterTextureCoords.size() * 2];
-		for (int i = 0; i < masterTextureCoords.size(); i++)
-		{
-			newMasterTextureList[2 * i + 0] = masterTextureCoords[i].x;
-			newMasterTextureList[2 * i + 1] = masterTextureCoords[i].y * -1;
+		else {
+			// Probably a comment, eat up the rest of the line
+			char stupidBuffer[1000];
+			fgets(stupidBuffer, 1000, file);
 		}
 
-		glBindBuffer(GL_ARRAY_BUFFER, Buffers[TEXTURE_BUFFER]);
-		glBufferData(GL_ARRAY_BUFFER, masterTextureCoords.size() * 2 * 4, newMasterTextureList, GL_STATIC_DRAW);
-
-		delete[] newMasterTextureList;
 	}
 
-	/* NORMALS */
-	if (masterNormalList.size() > 0)
-	{
-		int arraySize = masterNormalList.size() * 3 * 4; //Each vector contains 3 floats (which are 4 bytes)
-		float * newMasterList = new float[masterNormalList.size() * 3];
+	// Create a new temp model object to be store in the model manager
+	Model* model = new Model();
+	model->SetModelName(_name);
 
-		//populate vector list
-		for (int i = 0; i < masterNormalList.size(); i++)
-		{
-			newMasterList[i * 3] = masterNormalList[i].x;
-			newMasterList[3 * i + 1] = masterNormalList[i].y;
-			newMasterList[3 * i + 2] = masterNormalList[i].z;
-		}
+	// For each vertex of each triangle
+	for (unsigned int i = 0; i < vertexIndices.size(); i++) {
 
-		glBindBuffer(GL_ARRAY_BUFFER, Buffers[NORMAL_BUFFER]);
-		glBufferData(GL_ARRAY_BUFFER, arraySize, newMasterList, GL_STATIC_DRAW);
+		// Get the indices of its attributes
+		unsigned int vertexIndex = vertexIndices[i];
+		unsigned int uvIndex = uvIndices[i];
+		unsigned int normalIndex = normalIndices[i];
 
-		delete[] newMasterList;
+		// Get the attributes thanks to the index
+		VEC3 vertex = temp_vertices[vertexIndex - 1];
+		VEC2 uv = temp_uvs[uvIndex - 1];
+		VEC3 normal = temp_normals[normalIndex - 1];
+
+
+
+		// Put the attributes in buffers
+		model->vertex.push_back(vertex);
+		model->uvs.push_back(uv);
+		model->normals.push_back(normal);
+
 	}
+
+	InsertModel(_name, model);
+	return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -373,21 +237,6 @@ ResourceHandle<Model> ModelManager::InsertModel(const STRING& _name, Model* _mod
 	
 	result = _modelResources.Add(_name, _model);
 
-	for (int m = 0; m < _model->meshes.size(); m++)
-	{
-		_model->meshes[m].offsetVertex = masterVectorList.size();
-
-		//for (auto it = _model->meshes[m].vertex.begin(); it != _model->meshes[m].vertex.end(); it++)
-		for (int i = 0; i < _model->meshes[m].vertex.size(); i++)
-		{
-			masterVectorList.push_back(_model->meshes[m].vertex[i]);
-			masterNormalList.push_back(_model->meshes[m].normal[i]);
-		}
-
-		for (int i = 0; i < _model->meshes[m].edge.size(); i++) {
-			_model->meshes[m].edge[i] += _model->meshes[m].offsetVertex;	
-		}
-	}
 	return result;
 }
 

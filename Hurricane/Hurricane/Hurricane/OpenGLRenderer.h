@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Sep 20, 2016
-// Last updated:	Nov 26, 2016
+// Last updated:	Dec 01, 2016
 //
 //*******************************//
 
@@ -25,9 +25,6 @@ public:
 	~OpenGLRenderer();
 
 	void RenderPrimitive(PrimitiveType prim);
-
-protected:
-	GLuint vao;
 };
 
 #endif

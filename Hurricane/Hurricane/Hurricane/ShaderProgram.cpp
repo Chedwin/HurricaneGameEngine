@@ -132,13 +132,19 @@ GLint ShaderProgram::GetUniformLocation(const STRING& uniformName)
 	return loc;
 }
 
+void ShaderProgram::AddAttribute(GLuint attrID, const STRING & attrName)
+{
+	glBindAttribLocation(_programID, attrID, attrName.c_str());
+	_numAttributes++;
+}
+
 void ShaderProgram::UseShader()
 {
 	glUseProgram(_programID);
 
-	for (int i = 0; i < _numAttributes; i++) {
-		glEnableVertexAttribArray(i);
-	}
+	//for (int i = 0; i < _numAttributes; i++) {
+	//	glEnableVertexAttribArray(i);
+	//}
 }
 
 void ShaderProgram::UnuseShader()

@@ -188,7 +188,6 @@
     <ClInclude Include="Plane.h" />
     <ClInclude Include="PrimitiveTypes.h" />
     <ClInclude Include="Random.h" />
-    <ClInclude Include="Renderable.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ShaderProgram.h" />
