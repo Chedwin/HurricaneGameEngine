@@ -1,15 +1,30 @@
-﻿  ModelManager.cpp
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(75): warning C4018: '<': signed/unsigned mismatch
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(137): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(148): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(156): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(161): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(167): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(173): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+﻿  GameObjectScript.cpp
+  GameObject.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(47): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(166): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(297): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(312): warning C4018: '<': signed/unsigned mismatch
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(182): warning C4018: '<': signed/unsigned mismatch
+  d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(331): note: see reference to function template instantiation 'TYPE *GameObject::GetComponent<RigidbodyComponent>(void)' being compiled
+          with
+          [
+              TYPE=RigidbodyComponent
+          ]
+  Generating Code...
+  Compiling...
+  Scene.cpp
+  OpenGLRenderer.cpp
+  MeshComponent.cpp
+  InputHandler.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\inputhandler.cpp(153): warning C4244: 'argument': conversion from 'hINT' to 'const hFLOAT', possible loss of data
+  Game.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(57): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(58): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(59): warning C4244: 'initializing': conversion from 'hFLOAT' to 'hINT', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\game.cpp(159): warning C4244: '=': conversion from 'Uint32' to 'hFLOAT', possible loss of data
+  Component.cpp
+  Camera.cpp
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\camera.cpp(48): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
+d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\camera.cpp(49): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
+  Generating Code...
   Hurricane.vcxproj -> D:\Users\edwin\GitHub\HurricaneGameEngine\Hurricane\Hurricane\Debug\Hurricane.lib

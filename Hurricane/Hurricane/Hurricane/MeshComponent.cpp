@@ -19,6 +19,7 @@ MeshComponent::MeshComponent(GameObject* g, ShaderProgram* _shader, const STRING
 
 	shader->UseShader();
 
+	GLuint buffers[2];
 	glGenBuffers(2, buffers);
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
 	glBufferData(GL_ARRAY_BUFFER, mesh->vertex.size() * sizeof(VEC3), &mesh->vertex[0], GL_STATIC_DRAW);
@@ -32,7 +33,7 @@ MeshComponent::MeshComponent(GameObject* g, ShaderProgram* _shader, const STRING
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	glEnableVertexAttribArray(1);
 
-	//glBindBuffer(GL_ARRAY_BUFFER, buffers[2]);
+	//glBindBuffer(GL_ARRAY_BUFFER, 0);
 	//glBufferData(GL_ARRAY_BUFFER, mesh->normals.size() * sizeof(VEC3), &mesh->normals[0], GL_STATIC_DRAW);
 	//glBindAttribLocation(program, 2, "vNormal");
 	//glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
@@ -46,7 +47,7 @@ MeshComponent::~MeshComponent()
 {
 	// NOTE: Don't have to delete the model or texture here
 	// the managers will do that for us
-	glDeleteBuffers(2, buffers);
+	//glDeleteBuffers(2, buffers);
 }
 
 
@@ -80,16 +81,8 @@ void MeshComponent::Render()
 {
 	StandardShader* stdShader = STANDARD_SHADER;
 	
-	//MATRIX4 transformMat = parentGmObj->ToMat4();
-	//glProgramUniformMatrix4fv(stdShader->GetProgramID(), stdShader->model_Location, 1, GL_FALSE, &transformMat[0][0]);
+	MATRIX4 transformMat = parentGmObj->ToMat4();
 
-
-	//MATRIX4 rotMat = glm::mat4_cast(parentGmObj->transform.rotation);
-	//glProgramUniformMatrix4fv(stdShader->GetProgramID(), stdShader->rotation_Location, 1, GL_FALSE, &rotMat[0][0]);
-	//Model* myModel = MODEL_MANAGER->GetModel("Planet");
-	MATRIX4 modelView = MATRIX4(1.0f);
-
-	glProgramUniformMatrix4fv(program, stdShader->model_Location, 1, GL_FALSE, &modelView[0][0]);
-	//glUniformMatrix4fv(stdShader->model_Location, 1, GL_FALSE, &modelView[0][0]);
+	glProgramUniformMatrix4fv(program, stdShader->model_Location, 1, GL_FALSE, &transformMat[0][0]);
 	glDrawArrays(GL_TRIANGLES, 0, mesh->vertex.size());
 }

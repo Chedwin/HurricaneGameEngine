@@ -1,22 +1,24 @@
 Welcome to Hurricane!
 
 Date Created: Jan 20, 2016
-Last Updated: Nov 18, 2016
+Last Updated: Dec 02, 2016
 
 Primary Author: Edwin Chen
 
 *Special Thanks: Scott Fielder
-				Mathieu Violette
-				James Sholdice
-				Nathan Senter
-				Nick Whalen
-				Raymond Micheau
-				Mark Seaman
-				Rob Spongale
-				Aiden Dearing
-				Domenic Caronzo
-				Kris Alexander
-				House Yokeswaran
+				 Mathieu Violette
+				 James Sholdice
+				 Nathan Senter
+				 Nick Whalen
+				 Raymond Micheau
+				 Mark Seaman
+				 Rob Spongale
+				 Aiden Dearing
+				 Domenic Caronzo
+				 Kris Alexander
+				 House Yokeswaran
+				 Nicco Jacinto
+				 Adam Hoang
 
 Introduction:
 This is my first ever game engine. It is mainly focused on building 3rd person platformer-like games.
@@ -34,11 +36,9 @@ SDL2					- Window creation, event handling
 SDL2 Image				- Texture loading, rendering
 OpenGL (GLEW)			- 3D Graphics
 OpenAL					- Audio
-Bullet					- Physics and collision detection (could possibly be removed)
-Lua Script				- Scripting (only to be used in game engine class at Humber College)
 Assimp					- Model loading (.fbx, .obj, etc.)
 						- Skeletal animation (very important for this engine!)
 
 
 Notes:
-*Special thanks to everybody mentioned in the list above! Without you guys, Hurricane would not be possible!
+*Thank you to everybody mentioned in the list above! Without you guys, Hurricane would not be possible!

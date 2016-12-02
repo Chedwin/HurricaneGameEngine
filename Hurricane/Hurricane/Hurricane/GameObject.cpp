@@ -306,7 +306,7 @@ void GameObject::RemoveTag(const STRING& _tag)
 {
 	hBOOL checkTag = HasTag(_tag);
 
-	if (checkTag)
+	if (!checkTag)
 		return;
 
 	for (int i = 0; i < tags.size(); i++)

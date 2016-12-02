@@ -7,8 +7,8 @@
 //							(i.e. class PlayerMovement : public GameObjectScript)
 //						2) Override the UpdateScript() function
 //						3) Add in any "initial" of starting behaviours in your child class constructor
-//						4) Add any new functions and called them appropriately in you UpdateScript function
-//						5) Instantiate a script inside of a game scene's constructor
+//						4) Add any new functions and called them appropriately in your UpdateScript function
+//						5) Instantiate a script inside of a game scene's constructor or init function
 //						6) Attach said script to a game object
 //
 //					This scripting behaviour was highly influenced by MonoBehavior from Unity
@@ -17,7 +17,7 @@
 // Special Thanks:	Unity
 //
 // Created:			Nov 21, 2016
-// Last updated:	Nov 25, 2016
+// Last updated:	Dec 02, 2016
 //
 //*******************************//
 
@@ -29,6 +29,7 @@
 
 class GameObject;
 
+// SINGLE game object script
 class GameObjectScript {
 public:
 	explicit GameObjectScript(const STRING& n);
@@ -54,7 +55,7 @@ public:
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+// MULTIPLE scripts to be put on a single game object
 class GameObjectMultiScript {
 public:
 	GameObjectMultiScript();
