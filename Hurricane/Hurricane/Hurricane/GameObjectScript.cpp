@@ -11,7 +11,7 @@ GameObjectScript::~GameObjectScript()
 }
 
 
-hBOOL GameObjectScript::UpdateScript(GameObject * gameObject, const hFLOAT _timeStep)
+hBOOL GameObjectScript::UpdateScript(GameObject* gameObject, const hFLOAT _timeStep)
 {
 	if (userUpdateFunction) {
 		return userUpdateFunction(gameObject, _timeStep);

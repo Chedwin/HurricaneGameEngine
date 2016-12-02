@@ -13,5 +13,5 @@ void main(){
 
 	// Output color = color of the texture at the specified UV
 	//color = texture( myTextureSampler, UV ).rgb;
-	color = vec4(1,0,1,1);
+	color = vec4(1,0,0,1);
 }

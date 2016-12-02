@@ -50,7 +50,7 @@ public:
 	STRING meshName;
 	STRING textureName;
 
-	GLuint buffers[2];
+	//GLuint buffers[2];
 	GLuint program;
 };
 
