@@ -1,7 +1,7 @@
 Welcome to Hurricane!
 
 Date Created: Jan 20, 2016
-Last Updated: Dec 02, 2016
+Last Updated: Dec 05, 2016
 
 Primary Author: Edwin Chen
 
@@ -13,6 +13,7 @@ Primary Author: Edwin Chen
 				 Raymond Micheau
 				 Mark Seaman
 				 Rob Spongale
+				 Adam Hermosa
 				 Aiden Dearing
 				 Domenic Caronzo
 				 Kris Alexander

@@ -6,7 +6,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Nov 01, 2016
-// Last updated:	Nov 26, 2016
+// Last updated:	Dec 07, 2016
 //
 //*******************************//
 
@@ -45,12 +45,15 @@ public:
 	ShaderProgram* shader;
 	Model* mesh;
 	Texture* texture;
+
+	GLuint textureHandle;
 	GLuint textureSampler;
 
 	STRING meshName;
 	STRING textureName;
 
-	//GLuint buffers[2];
+	GLuint vao;
+	GLuint buffers[2];
 	GLuint program;
 };
 
