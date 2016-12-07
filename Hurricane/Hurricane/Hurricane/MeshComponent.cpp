@@ -19,7 +19,9 @@ MeshComponent::MeshComponent(GameObject* g, ShaderProgram* _shader, const STRING
 
 	shader->UseShader();
 
-	GLuint buffers[2];
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+
 	glGenBuffers(2, buffers);
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
 	glBufferData(GL_ARRAY_BUFFER, mesh->vertex.size() * sizeof(VEC3), &mesh->vertex[0], GL_STATIC_DRAW);
@@ -39,15 +41,21 @@ MeshComponent::MeshComponent(GameObject* g, ShaderProgram* _shader, const STRING
 	//glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	//glEnableVertexAttribArray(2);
 
+
 	textureSampler = glGetUniformLocation(program, "myTextureSampler");
 	glUniform1i(textureSampler, 0);
+
+	glBindVertexArray(0);
 }
 
 MeshComponent::~MeshComponent()
 {
 	// NOTE: Don't have to delete the model or texture here
 	// the managers will do that for us
-	//glDeleteBuffers(2, buffers);
+	glBindVertexArray(vao);
+	glDeleteBuffers(2, buffers);
+	glBindVertexArray(0);
+	glDeleteVertexArrays(1, &vao);
 }
 
 
@@ -83,6 +91,8 @@ void MeshComponent::Render()
 	
 	MATRIX4 transformMat = parentGmObj->ToMat4();
 
+	glBindVertexArray(vao);
 	glProgramUniformMatrix4fv(program, stdShader->model_Location, 1, GL_FALSE, &transformMat[0][0]);
 	glDrawArrays(GL_TRIANGLES, 0, mesh->vertex.size());
+	glBindVertexArray(0);
 }

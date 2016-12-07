@@ -1,11 +1,12 @@
 //*******************************//
 //
 // Name:			ModelManager.h
-// Description:		
+// Description:		Loads and manages several types of models ranging in different formats (i.e. fbx, obj)
+//					Makes use of Assimp (Asset Importer) to retrieve vertices, faces, uvs, etc. from models
 //
 // Author:			Edwin Chen
 // Created:			Oct 03, 2016
-// Last updated:	Nov 26, 2016
+// Last updated:	Dec 07, 2016
 //
 //*******************************//
 
@@ -33,10 +34,12 @@ public:
 
 	static ModelManager* GetModelManager();
 
-	// Add or "import" a model into the manager using Assimp mapping the correct vertices, texture coords, etc.
-	void LoadModel(const STRING& _name, const STRING& _filePath); 
+	// Using Assimp
+	void LoadAssimpModel(const STRING& _name, const STRING& _filePath); 
 
+	// Homemade OBJ reader
 	hBOOL LoadOBJ(const STRING& _name, const STRING& _filePath);
+
 
 	void DeleteModel(const STRING& _model);
 	void ClearAllModels();

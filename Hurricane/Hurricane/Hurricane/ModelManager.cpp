@@ -35,14 +35,14 @@ ModelManager::ModelManager()
 ModelManager::~ModelManager()
 {
 	// Delete all models
-	_modelResources.EmptyResourceMap();
+	ClearAllModels();
 }
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // ASSIMP MODEL LOADING (i.e. fbx, obj, 3ds, etc.)
-void ModelManager::LoadModel(const STRING& _name, const STRING& _filePath) 
+void ModelManager::LoadAssimpModel(const STRING& _name, const STRING& _filePath) 
 {
 	// Check if model (name) exists in the model manager already
 	ResourceHandle<Model> test = GetModelHandle(_name);
@@ -58,7 +58,8 @@ void ModelManager::LoadModel(const STRING& _name, const STRING& _filePath)
 		aiProcess_CalcTangentSpace |
 		aiProcess_Triangulate |
 		aiProcess_JoinIdenticalVertices |
-		aiProcess_SortByPType);
+		aiProcess_SortByPType 
+	);
 
 	if (!scene) {
 		Debug::ConsoleError("Model format not supported!", __FILE__, __LINE__);
@@ -85,7 +86,7 @@ void ModelManager::LoadModel(const STRING& _name, const STRING& _filePath)
 
 	// Fill vertices positions
 	//model->vertex.reserve(thisMesh->mNumVertices);
-	for (unsigned int i = 0; i<thisMesh->mNumVertices; i++) {
+	for (unsigned int i = 0; i < thisMesh->mNumVertices; i++) {
 		// Vertices
 		aiVector3D pos = thisMesh->mVertices[i];
 		model->vertex.push_back(VEC3(pos.x, pos.y, pos.z));
@@ -99,17 +100,6 @@ void ModelManager::LoadModel(const STRING& _name, const STRING& _filePath)
 		model->normals.push_back(VEC3(n.x, n.y, n.z));
 	}
 
-	// Fill vertices texture coordinates
-	//model->uvs.reserve(thisMesh->mNumVertices);
-	for (unsigned int i = 0; i<thisMesh->mNumVertices; i++) {
-	}
-
-	// Fill vertices normals
-	//model->normals.reserve(thisMesh->mNumVertices);
-	for (unsigned int i = 0; i<thisMesh->mNumVertices; i++) {
-	}
-
-
 	//// Fill face indices
 	//indices.reserve(3 * thisMesh->mNumFaces);
 	//for (unsigned int i = 0; i<thisMesh->mNumFaces; i++) {
@@ -119,8 +109,10 @@ void ModelManager::LoadModel(const STRING& _name, const STRING& _filePath)
 	//	indices.push_back(thisMesh->mFaces[i].mIndices[2]);
 	//}
 	
-	//InsertModel(_name, model);
+	InsertModel(_name, model);
 }
+
+/////////////////////////////////////////////////////
 
 // Strictly load OBJ files
 // Written w/o 3rd party APIs
@@ -224,6 +216,8 @@ hBOOL ModelManager::LoadOBJ(const STRING& _name, const STRING& _filePath)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// MODEL MANAGEMENT STUFF
 
 ResourceHandle<Model> ModelManager::InsertModel(const STRING& _name, Model* _model)
 {

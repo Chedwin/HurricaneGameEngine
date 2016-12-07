@@ -167,7 +167,6 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectScript.h" />
-    <ClInclude Include="GUIElement.h" />
     <ClInclude Include="HurricaneProperties.h" />
     <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="RigidbodyComponent.h" />

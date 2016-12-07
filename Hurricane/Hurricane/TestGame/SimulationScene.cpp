@@ -14,16 +14,21 @@
 SimulationScene::SimulationScene()
 {
 	SetSceneName("Solar System Simulation");
-	MODEL_MANAGER->LoadOBJ("Planet", "models/planet.obj");
+	MODEL_MANAGER->LoadOBJ("HockeyStick", "models/hockeystick.obj");
 
 	MODEL_MANAGER->LoadOBJ("Puck", "models/Puck.obj");
 
-	TEXTURE_MANAGER->UploadTextureFromFile("textures/Puck.png", "PuckTex");
+	TEXTURE_MANAGER->UploadTextureFromFile("textures/Puck.png", "PuckTexture");
 }
 
 SimulationScene::~SimulationScene()
 {
+	// EMPTY
 }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 void SimulationScene::InitScene()
 {
@@ -32,35 +37,24 @@ void SimulationScene::InitScene()
 
 	ShaderProgram* stdShader = STANDARD_SHADER;
 
-	GameObject* planet = new GameObject(this, "Sun");
-	MeshComponent* planetMesh = new MeshComponent(planet, stdShader, "Planet");
-	planet->transform.position = ORIGIN;
-	planet->Scale(VEC3(2, 2, 2));
+	//planet->transform.position = ORIGIN;
+	//planet->Scale(VEC3(0.5f, 0.5f, 0.5f));
 
-	GameObject* planet2 = new GameObject(this, "Puck");
-	MeshComponent* planetMesh2 = new MeshComponent(planet2, stdShader, "Planet");
-	planet2->Translate(VEC3(4, 4, 0));
+	GameObject* hockeyStick = new GameObject(this, "Puck");
+	MeshComponent* hsMesh = new MeshComponent(hockeyStick, stdShader, "HockeyStick");
+	hockeyStick->Scale(VEC3(0.3f, 0.3f, 0.3f));
 
-	planet->AddChild(planet2);
-	planet->Scale(VEC3(3, 3, 3));
 
-	//mainCamera->Translate(VEC3(3, 0, 15));
+	GameObject* puck = new GameObject(this, "Sun");
+	MeshComponent* puckMesh = new MeshComponent(puck, stdShader, "Puck");
+	puck->Scale(VEC3(0.3f, 0.3f, 0.3f));
+	puck->Translate(VEC3(2.0f, 2.0f, 2.0f));
 
-	//GameObject* j1 = new GameObject(this, "");
-	//GameObject* j2 = new GameObject(this, "");
-	//GameObject* j3 = new GameObject(this, "");
-	//GameObject* j4 = new GameObject(this, "");
-
-	//GameObject* root = _rootNode.get();
+	hockeyStick->AddChild(puck);
 }
 
 void SimulationScene::Update(const hFLOAT _timeStep)
 {
 	// Call the base class' update first
 	Scene::Update(_timeStep);
-
-	//GameObject* p = FindGameObject("Sun");
-	//p->ResetTransform();
-	//p->Translate(VEC3(0.01f, 0.0f, 0.01f));
-	//p->Rotate(QUATERNION(0.1f, 0.1f, 0.1f, 0.1f));
 }	
