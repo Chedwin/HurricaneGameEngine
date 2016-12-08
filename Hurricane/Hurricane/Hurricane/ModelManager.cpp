@@ -85,7 +85,7 @@ void ModelManager::LoadAssimpModel(const STRING& _name, const STRING& _filePath)
 	const aiMesh* thisMesh = scene->mMeshes[0]; // In this simple example code we always use the 1rst mesh (in OBJ files there is often only one anyway)
 
 	// Fill vertices positions
-	//model->vertex.reserve(thisMesh->mNumVertices);
+	model->vertex.reserve(thisMesh->mNumVertices);
 	for (unsigned int i = 0; i < thisMesh->mNumVertices; i++) {
 		// Vertices
 		aiVector3D pos = thisMesh->mVertices[i];
