@@ -41,11 +41,18 @@ MeshComponent::MeshComponent(GameObject* g, ShaderProgram* _shader, const STRING
 	//glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	//glEnableVertexAttribArray(2);
 
+	glGenBuffers(1, &ebo);
+	// Bind index buffer to corresponding target
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	// ititialize index buffer, allocate memory, fill it with data
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(hINT) * mesh->indices.size(), &mesh->indices[0], GL_STATIC_DRAW);
+
 
 	textureSampler = glGetUniformLocation(program, "myTextureSampler");
 	glUniform1i(textureSampler, 0);
 
 	glBindVertexArray(0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 MeshComponent::~MeshComponent()
@@ -54,6 +61,7 @@ MeshComponent::~MeshComponent()
 	// the managers will do that for us
 	glBindVertexArray(vao);
 	glDeleteBuffers(2, buffers);
+	glDeleteBuffers(1, &ebo);
 	glBindVertexArray(0);
 	glDeleteVertexArrays(1, &vao);
 }
@@ -93,6 +101,12 @@ void MeshComponent::Render()
 
 	glBindVertexArray(vao);
 	glProgramUniformMatrix4fv(program, stdShader->model_Location, 1, GL_FALSE, &transformMat[0][0]);
-	glDrawArrays(GL_TRIANGLES, 0, mesh->vertex.size());
+	//glDrawArrays(GL_TRIANGLES, 0, mesh->vertex.size());
+	
+	// bind index buffer if you want to render indexed data
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	// indexed draw call
+	glDrawElements(GL_TRIANGLES, mesh->indices.size(), GL_UNSIGNED_INT, NULL);
+
 	glBindVertexArray(0);
 }

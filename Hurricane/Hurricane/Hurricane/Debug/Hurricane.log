@@ -1,31 +1,6 @@
-﻿  ModelManager.cpp
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(76): warning C4018: '<': signed/unsigned mismatch
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(129): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(140): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(148): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(153): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(159): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\modelmanager.cpp(165): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+﻿  TextureManager.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  ModelManager.cpp
   MeshComponent.cpp
-  Generating Code...
-  Compiling...
-  Scene.cpp
-  GameObject.cpp
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(47): warning C4018: '<': signed/unsigned mismatch
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(166): warning C4018: '<': signed/unsigned mismatch
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(297): warning C4018: '<': signed/unsigned mismatch
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(312): warning C4018: '<': signed/unsigned mismatch
-d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(182): warning C4018: '<': signed/unsigned mismatch
-  d:\users\edwin\github\hurricanegameengine\hurricane\hurricane\hurricane\gameobject.cpp(331): note: see reference to function template instantiation 'TYPE *GameObject::GetComponent<RigidbodyComponent>(void)' being compiled
-          with
-          [
-              TYPE=RigidbodyComponent
-          ]
-  Generating Code...
   Hurricane.vcxproj -> D:\Users\edwin\GitHub\HurricaneGameEngine\Hurricane\Hurricane\Debug\Hurricane.lib

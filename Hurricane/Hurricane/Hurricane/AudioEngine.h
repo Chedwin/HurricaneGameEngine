@@ -5,20 +5,22 @@
 //
 // Author:			Edwin Chen
 // Created:			Jul 18, 2016
-// Last updated:	Sep 27, 2016
+// Last updated:	Dec 08, 2016
 //
 //*******************************//
 
-#pragma once
 
 #ifndef AUDIO_ENGINE_H
 #define AUDIO_ENGINE_H
+
+#include <SDL_mixer.h>
 
 #include "Macro.h"
 #include "ResourceManager.h"
 
 // ABSTRACT AUDIO CLASS
 class Audio {
+	friend class AudioEngine;
 public:
 	virtual ~Audio() {}
 
@@ -29,20 +31,21 @@ public:
 	virtual void Play() const = 0;
 	virtual void Stop() const = 0;
 
-	friend class AudioEngine;
+public:
+	_Mix_Music* MixMusic;
+
 };
 
 /////////////////////////////////////////////////////////////////////////////
 
 // CONCRETE MUSIC AND SOUNDFX CLASSES DERIVING FROM AUDIO
 class Music : public Audio {
-protected:
+	friend class AudioEngine;
 public:
 	Music() {}
 	~Music() {
 		Destroy();
 	}
-	friend class AudioEngine;
 
 	bool Init();
 	void Destroy();
@@ -55,7 +58,7 @@ public:
 ///////////////////////
 
 class SoundFX : public Audio {
-protected:
+	friend class AudioEngine;
 public:
 	SoundFX() {}
 	~SoundFX() {
@@ -85,8 +88,8 @@ public:
 	void Init();
 	void Destroy();
 
-	Music LoadMusic(const STRING& path);
-	SoundFX LoadSoundFX(const STRING& path);
+	void LoadMusic(const STRING& path);
+	void LoadSoundFX(const STRING& path);
 
 	void SetSFXVolume(const hFLOAT _vol);
 	void SetMusicVolume(const hFLOAT _vol);

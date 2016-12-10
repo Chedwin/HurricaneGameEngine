@@ -30,7 +30,7 @@ public:
 	ResourceHandle<Texture> UploadTexture(const STRING& _name, Texture* _Texture);
 
 	// Upload directly from file that creates and stores a texture for you
-	ResourceHandle<Texture> UploadTextureFromFile(const STRING& _filePath, const STRING& _name);
+	ResourceHandle<Texture> UploadTextureFromFile(const STRING& _name, const STRING& _filePath);
 
 	void DeleteTexture(const STRING& _name);
 	void ClearAllTextures();

@@ -53,6 +53,7 @@ public:
 	STRING textureName;
 
 	GLuint vao;
+	GLuint ebo;
 	GLuint buffers[2];
 	GLuint program;
 };

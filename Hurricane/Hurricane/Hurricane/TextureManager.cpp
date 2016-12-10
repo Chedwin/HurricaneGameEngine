@@ -41,7 +41,7 @@ ResourceHandle<Texture> TextureManager::UploadTexture(const STRING & _name, Text
 	return result;
 }
 
-ResourceHandle<Texture> TextureManager::UploadTextureFromFile(const STRING& _filePath, const STRING& _name)
+ResourceHandle<Texture> TextureManager::UploadTextureFromFile(const STRING& _name, const STRING& _filePath)
 {
 	ResourceHandle<Texture> result(-1);
 

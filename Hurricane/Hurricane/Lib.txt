@@ -7,6 +7,7 @@ SDL2.lib
 SDL2main.lib
 SDL2_image.lib
 assimp.lib
+SDL2_mixer.lib
 
 // Hurricane
 $(SolutionDir)$(Configuration)
@@ -25,3 +26,6 @@ $(SolutionDir)dependencies\SDL2_image\lib\x86
 
 // Assimp
 $(SolutionDir)\dependencies\assimp\lib\Debug
+
+// SDL2 mixer
+$(SolutionDir)\dependencies\SDL_Mixer\lib\x86

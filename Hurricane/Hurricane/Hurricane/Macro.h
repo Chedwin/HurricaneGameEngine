@@ -54,6 +54,7 @@
 
 #include <functional>
 
+// Typedefine primitve types
 #include "PrimitiveTypes.h"
 
 //////// Macros /////////
