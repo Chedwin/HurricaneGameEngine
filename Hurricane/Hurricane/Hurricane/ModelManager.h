@@ -38,7 +38,7 @@ public:
 	void LoadAssimpModel(const STRING& _name, const STRING& _filePath); 
 
 	// Homemade OBJ reader
-	hBOOL LoadOBJ(const STRING& _name, const STRING& _filePath);
+	//hBOOL LoadOBJ(const STRING& _name, const STRING& _filePath);
 
 
 	void DeleteModel(const STRING& _model);

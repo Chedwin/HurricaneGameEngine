@@ -16,8 +16,8 @@
   <VideoProperty>
     <width>1024</width>
     <height>768</height>
-    <drawdistance>50.0</drawdistance>
-    <fullscreen>1</fullscreen>
+    <drawdistance>100.0</drawdistance>
+    <fullscreen>0</fullscreen>
   </VideoProperty>
   
 </Root>

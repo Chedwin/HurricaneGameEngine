@@ -1,15 +1,13 @@
 //*******************************//
 //
 // Name:			ResourceManager.h
-// Description:		A basic description of the header goes here.
+// Description:		
 //
 // Author:			Edwin Chen
 // Created:			Oct 01, 2016
-// Last updated:	Oct 24, 2016
+// Last updated:	Dec 08, 2016
 //
 //*******************************//
-
-#pragma once
 
 
 #ifndef RESOURCE_MANAGER_H

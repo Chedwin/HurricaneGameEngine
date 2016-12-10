@@ -14,14 +14,10 @@
 SimulationScene::SimulationScene()
 {
 	SetSceneName("Solar System Simulation");
-	MODEL_MANAGER->LoadOBJ("HockeyStick", "models/hockeystick.obj");
 
-	MODEL_MANAGER->LoadOBJ("Puck", "models/Puck.obj");
-	MODEL_MANAGER->LoadAssimpModel("Planet", "models/planet.obj");
-	MODEL_MANAGER->LoadOBJ("Planet2", "models/planet.obj");
-	MODEL_MANAGER->LoadOBJ("Player", "models/player.obj");
-
-	TEXTURE_MANAGER->UploadTextureFromFile("textures/Puck.png", "PuckTexture");
+	MODEL_MANAGER->LoadAssimpModel("Player", "models/LeafsFan.fbx");
+	MODEL_MANAGER->LoadAssimpModel("Puck", "models/Puck.obj");
+	TEXTURE_MANAGER->UploadTextureFromFile("PuckTexture", "textures/Puck.png");
 }
 
 SimulationScene::~SimulationScene()
@@ -40,31 +36,17 @@ void SimulationScene::InitScene()
 
 	ShaderProgram* stdShader = STANDARD_SHADER;
 
-	//planet->transform.position = ORIGIN;
-	//planet->Scale(VEC3(0.5f, 0.5f, 0.5f));
+	GameObject* sun = new GameObject(this, "Sun");
+	MeshComponent* planet = new MeshComponent(sun, stdShader, "Player");
 
-	//GameObject* hockeyStick = new GameObject(this, "Puck");
-	//MeshComponent* hsMesh = new MeshComponent(hockeyStick, stdShader, "HockeyStick");
-	//hockeyStick->Scale(VEC3(0.3f, 0.3f, 0.3f));
-
-
-	//GameObject* puck = new GameObject(this, "Sun");
-	//MeshComponent* puckMesh = new MeshComponent(puck, stdShader, "Puck");
-	//puck->Scale(VEC3(0.3f, 0.3f, 0.3f));
-	//puck->Translate(VEC3(2.0f, 2.0f, 2.0f));
-
-	//hockeyStick->AddChild(puck);
-
-	GameObject* player = new GameObject(this, "Player");
-	MeshComponent* playerMesh = new MeshComponent(player, stdShader, "Player");
-
-	player->Scale(VEC3(0.02, 0.02, 0.02));
-	player->Translate(VEC3(0, -1, 0));
-	mainCamera->AddChild(player);
+	sun->Translate(VEC3(0.0, -0.8, 0.0));
+	sun->Scale(VEC3(0.02, 0.02, 0.02));
 }
 
 void SimulationScene::Update(const hFLOAT _timeStep)
 {
 	// Call the base class' update first
 	Scene::Update(_timeStep);
+
+
 }	

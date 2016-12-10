@@ -1,5 +1,7 @@
+#include <SDL_mixer.h>
 #include "AudioEngine.h"
 #include "Debug.h"
+#include "HurricaneProperties.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -62,28 +64,31 @@ AudioEngine* AudioEngine::GetAudioEngine() {
 
 AudioEngine::AudioEngine() 
 {
-	
+	Init();
 }
 
 
 AudioEngine::~AudioEngine() {
+	
 }
 
 void AudioEngine::Init() {
+	Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
 }
 
 void AudioEngine::Destroy()
 {
 }
 
-Music AudioEngine::LoadMusic(const STRING & path)
+void AudioEngine::LoadMusic(const STRING & path)
 {
-	return Music();
+	//Music* mus = new Music();
+
 }
 
-SoundFX AudioEngine::LoadSoundFX(const STRING & path)
+void AudioEngine::LoadSoundFX(const STRING & path)
 {
-	return SoundFX();
+
 }
 
 void AudioEngine::SetSFXVolume(const hFLOAT _vol)
@@ -97,3 +102,4 @@ void AudioEngine::SetMusicVolume(const hFLOAT _vol)
 void AudioEngine::SetMaterVolume(const hFLOAT _vol)
 {
 }
+

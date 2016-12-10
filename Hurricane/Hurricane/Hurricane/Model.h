@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Oct 03, 2016
-// Last updated:	Nov 17, 2016
+// Last updated:	Dec 09, 2016
 //
 //*******************************//
 
@@ -38,6 +38,8 @@ public:
 	VECTOR(VEC3) vertex;
 	VECTOR(VEC2) uvs;
 	VECTOR(VEC3) normals;
+
+	VECTOR(hUINT) indices;
 };
 
 #endif

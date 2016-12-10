@@ -18,3 +18,6 @@ $(SolutionDir)\dependencies\SDL2_image\include
 
 // Assimp
 $(SolutionDir)\dependencies\assimp\include
+
+// SDL2 mixer
+$(SolutionDir)\dependencies\SDL_Mixer\include
