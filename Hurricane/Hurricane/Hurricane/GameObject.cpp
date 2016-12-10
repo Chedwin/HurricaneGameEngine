@@ -262,13 +262,22 @@ void GameObject::Rotate(const QUATERNION& q)
 		return;
 	}
 
-	gameObject->transform.rotation *= q;
+	hFLOAT angle = glm::angle(q);
+	VEC3 vect = glm::axis(q);
+
+	MATRIX4 mat =  glm::rotate(MATRIX4(1.0f), angle, vect);
+
+	QUATERNION newQuat = glm::toQuat(mat);
+
+	gameObject->transform.rotation *= newQuat;
 
 	for (auto iter = childObjects.begin(); iter != childObjects.end(); iter++) {
-		(*iter)->Rotate(q);
+		(*iter)->Rotate(newQuat);
 	}
 }
 
+// Matrix Multiplication for transform rendering
+// See MESHCOMPONENT for specific usage
 MATRIX4 GameObject::ToMat4() 
 {
 	MATRIX4 translate = glm::translate(MATRIX4(1.0f), gameObject->transform.position);

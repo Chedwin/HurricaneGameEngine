@@ -38,7 +38,7 @@ hFLOAT FPSCounter::End()
 
 	if (1000.0f / _maxFPS > frameTicks)
 	{
-		//SDL_Delay(1000.0f / _maxFPS - frameTicks);
+		SDL_Delay(1000.0f / _maxFPS - frameTicks);
 	}
 
 	return _fps;

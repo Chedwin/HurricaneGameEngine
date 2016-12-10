@@ -1,3 +1,6 @@
+#include <glew.h>
+#include <SDL_image.h>
+
 #include "Game.h"
 #include "OpenGLRenderer.h"
 
@@ -40,12 +43,16 @@ hBOOL Game::InitEngine()
 	//// INIT SDL
 	SDL_Init(SDL_INIT_EVERYTHING);
 
+	// Texture (image) init
+	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
+
 	// GAME TIME
 	Clock::init(); // Start the global game clock
 	gameTimer = new Timer();
 	gameTimer->Start();
 
-	_fpsCounter.Init(MAX_FPS);
+	fpsCounter = FPS_COUNTER;
+	fpsCounter->Init(MAX_FPS);
 
 	// PROPERTIES
 	hProperties = H_PROPERTIES;
@@ -60,10 +67,10 @@ hBOOL Game::InitEngine()
 
 	// WINDOW
 	gameWindow = new Window();
-	gameWindow->Init(width, height, fullscreen);
+	gameWindow->Init(width, height);
 
 	if (fullscreen) {
-		SDL_SetWindowFullscreen(gameWindow->GetWindow(), SDL_WINDOW_FULLSCREEN);
+		gameWindow->SetFullScreen(true);
 	}
 
 	// AUDIO
@@ -107,6 +114,7 @@ void Game::DestroySystems()
 	delete gameWindow;
 	gameWindow = nullptr;
 
+	IMG_Quit();
 	SDL_Quit();
 }
 
@@ -147,7 +155,7 @@ void Game::GameLoop()
 	while (_isRunning)
 	{
 		// BEGIN FPS COUNT FOR THIS FRAME
-		_fpsCounter.BeginFrame();
+		fpsCounter->BeginFrame();
 
 		// CALCULATE DELTA-TIME
 		_timeSinceLastUpdate = SDL_GetTicks() - _lastUpdateTime;
@@ -161,7 +169,7 @@ void Game::GameLoop()
 		
 
 		// INPUT HANDLING LOOP w/ SDL EVENT
-		while (SDL_PollEvent(&evnt))
+		if (SDL_PollEvent(&evnt))
 		{
 			// Give the polled event to the input handler
 			input->ProcessInput(evnt);
@@ -175,7 +183,7 @@ void Game::GameLoop()
 			}
 			
 		}
-		SDL_PumpEvents();
+		//SDL_PumpEvents();
 
 		// Update our input handler
 		input->Update();
@@ -191,7 +199,7 @@ void Game::GameLoop()
 
 
 		// FRAME RATE UPDATE FOR THIS FRAME
-		_fps = _fpsCounter.End();
+		_fps = fpsCounter->End();
 
 		_totalTime += _deltaTime;
 

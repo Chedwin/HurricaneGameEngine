@@ -10,7 +10,7 @@
 // Special Thanks:  Mathieu Violette, James Sholdice, Nathan Senter, Unity, Aiden Dearing, House Yokeswaran, Mark Seaman
 //
 // Created:			Sep 30, 2016
-// Last updated:	Nov 25, 2016
+// Last updated:	Dec 10, 2016
 //
 //*******************************//
 
@@ -109,6 +109,5 @@ public:
 	// Which scene am I in?
 	Scene* scene;
 };
-
 
 #endif

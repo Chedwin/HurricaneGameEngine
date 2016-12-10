@@ -48,5 +48,6 @@ void SimulationScene::Update(const hFLOAT _timeStep)
 	// Call the base class' update first
 	Scene::Update(_timeStep);
 
+	FindGameObject("Sun")->Rotate(QUATERNION(1, 1, 0, 1));
 
 }	

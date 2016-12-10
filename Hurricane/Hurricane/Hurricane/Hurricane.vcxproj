@@ -158,8 +158,6 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="ControllerManager.h" />
     <ClInclude Include="Debug.h" />
-    <ClInclude Include="Effect.h" />
-    <ClInclude Include="EffectModel.h" />
     <ClInclude Include="Exception.h" />
     <ClInclude Include="FlyCamera.h" />
     <ClInclude Include="FPSCounter.h" />
@@ -191,7 +189,6 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="ShaderProgramManager.h" />
-    <ClInclude Include="SimpleModel.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="tinyxml2.h" />
@@ -208,7 +205,6 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="ControllerManager.cpp" />
     <ClCompile Include="Debug.cpp" />
-    <ClCompile Include="EffectModel.cpp" />
     <ClCompile Include="FlyCamera.cpp" />
     <ClCompile Include="FPSCounter.cpp" />
     <ClCompile Include="Frustum.cpp" />
@@ -219,7 +215,6 @@
     <ClCompile Include="MeshComponent.cpp" />
     <ClCompile Include="RigidbodyComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SimpleModel.cpp" />
     <ClCompile Include="StandardShader.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="InputHandler.cpp" />

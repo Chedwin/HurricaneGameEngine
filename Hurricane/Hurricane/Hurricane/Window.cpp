@@ -14,7 +14,7 @@ Window::~Window() {
 }
 
 
-hBOOL Window::Init(const hINT _w, const hINT _h, const UINT32 flags)
+hBOOL Window::Init(const hINT _w, const hINT _h)
 {
 	_isInitialized = false;
 
@@ -33,7 +33,7 @@ hBOOL Window::Init(const hINT _w, const hINT _h, const UINT32 flags)
 
 
 	// (4) Create the window and renderer 
-	SDL_CreateWindowAndRenderer(_width, _height, flags | SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN, &_window, &_renderer);
+	SDL_CreateWindowAndRenderer(_width, _height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN, &_window, &_renderer);
 
 	if (_window == nullptr) {
 		Debug::ConsoleError("SDL WINDOW CANNOT BE INITIALIZED", __FILE__, __LINE__);
@@ -96,4 +96,18 @@ void Window::Destroy()
 void Window::SetWindowSize(const hINT wid, const hINT hgt) {
 	_width = wid;
 	_height = hgt;
+}
+
+void Window::SetFullScreen(hBOOL b)
+{
+	if (b) 
+	{
+		SDL_SetWindowFullscreen(_window, SDL_WINDOW_FULLSCREEN);
+		_isFullScreen = true;
+	}
+	else 
+	{
+		SDL_SetWindowFullscreen(_window, 0);
+		_isFullScreen = false;
+	}
 }
