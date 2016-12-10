@@ -5,7 +5,7 @@
 //
 // Author:			Edwin Chen
 // Created:			May 02, 2016
-// Last updated:	Nov 18, 2016
+// Last updated:	Dec 10, 2016
 //
 //*******************************//
 
@@ -101,9 +101,9 @@ protected:
 	hBOOL _canLoadNewScene;
 	hFLOAT _deltaTime;
 
-	FPSCounter _fpsCounter;
 public:
 
+	FPSCounter* fpsCounter;
 	Timer* gameTimer;
 	Window* gameWindow;
 	AbstractRenderer* renderer;

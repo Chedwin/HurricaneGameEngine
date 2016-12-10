@@ -7,7 +7,7 @@
 //
 // Author:			Edwin Chen
 // Created:			Feb 04, 2016
-// Last updated:	Nov 12, 2016
+// Last updated:	Dec 09, 2016
 //
 //*******************************//
 
@@ -32,11 +32,12 @@ public:
 	Window& operator = (const Window&) = delete;
 	Window& operator = (Window&&) = delete;
 
-	hBOOL Init(const hINT _w, const hINT _h, const UINT32 flags);
+	hBOOL Init(const hINT _w, const hINT _h);
 
 	void Destroy();
 
 	void SetWindowSize(const hINT wid, const hINT hgt);
+	void SetFullScreen(hBOOL b);
 
 	inline hINT GetWidth() const {
 		return _width;
@@ -52,9 +53,13 @@ public:
 		return _renderer;
 	}
 
+	inline hBOOL IsFullScreen() const {
+		return _isFullScreen;
+	}
+
 private:
 	hBOOL _isInitialized;
-	hBOOL isFullScreen;
+	hBOOL _isFullScreen;
 
 private:
 	SDL_GLContext _glContext;

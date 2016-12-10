@@ -2,10 +2,11 @@
 //
 // Name:			FPSCounter.h
 // Description:		Calculate the current frames per second of the game.
+//					Only the class Game can access these functions.
 //
 // Author:			Edwin Chen
 // Created:			Nov 11, 2016
-// Last updated:	Nov 14, 2016
+// Last updated:	Dec 10, 2016
 //
 //*******************************//
 
@@ -15,11 +16,13 @@
 
 #include "Macro.h"
 
-class FPSCounter {
-protected:
+#define FPS_COUNTER FPSCounter::GetFPSCounter()
 
+class FPSCounter {
+	friend class Game;
+protected:
 	void CalculateFPS();
-public:
+
 	FPSCounter() {}
 	~FPSCounter() {}
 

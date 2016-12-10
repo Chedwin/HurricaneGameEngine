@@ -15,9 +15,9 @@
 
 #include "Macro.h"
 #include "Model.h"
-#include "Effect.h"
 
-class MaterialEffect : public Effect {
+
+class MaterialEffect {
 public:
 	MaterialEffect(Model* _model, const STRING& _matName);
 	~MaterialEffect();

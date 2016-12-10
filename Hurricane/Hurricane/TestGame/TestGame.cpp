@@ -51,5 +51,6 @@ void TestGame::GameUpdate(const hFLOAT _deltaTime)
 
 void TestGame::GameRender()
 {
-	// Probably should be empty...
+	if (INPUT->IsKeyDown(SDLK_k))
+		Debug::ConsoleLog("K key pressed");
 }

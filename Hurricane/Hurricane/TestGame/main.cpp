@@ -6,6 +6,7 @@ int main(int argc, char** argv) {
 	UNREFERENCED_PARAMETER(argc);
 	UNREFERENCED_PARAMETER(argv);
 
+	// Init Debugging
 #if defined(DEBUG) || defined(_DEBUG)
 	Debug::Init();
 
@@ -16,12 +17,21 @@ int main(int argc, char** argv) {
 	_CrtSetDbgFlag(_CRTDBG_CHECK_ALWAYS_DF);
 #endif
 
+
+	// HURRICANE GAME 
+#pragma region
 	static_assert(sizeof(void*) == 4, "64-bit code generation not supported!\n");
 
-	TestGame TestGame;
-	TestGame.Run();
+	TestGame* testGame = new TestGame();
+	testGame->Run();
+
+	delete testGame;
+	testGame = nullptr;
+#pragma endregion
 
 
+
+	// Dump any memory leaks in DEBUG mode
 #if defined(DEBUG) || defined(_DEBUG)
 	_CrtDumpMemoryLeaks();
 #endif
