@@ -159,7 +159,6 @@
     <ClInclude Include="ControllerManager.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Exception.h" />
-    <ClInclude Include="FlyCamera.h" />
     <ClInclude Include="FPSCounter.h" />
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="Game.h" />
@@ -205,7 +204,6 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="ControllerManager.cpp" />
     <ClCompile Include="Debug.cpp" />
-    <ClCompile Include="FlyCamera.cpp" />
     <ClCompile Include="FPSCounter.cpp" />
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="Game.cpp" />

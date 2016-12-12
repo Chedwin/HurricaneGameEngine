@@ -11,6 +11,7 @@
 #include "HelloWorldScript.h"
 #include "PlayerMovementScript.h"
 
+
 SimulationScene::SimulationScene()
 {
 	SetSceneName("Solar System Simulation");
@@ -18,6 +19,9 @@ SimulationScene::SimulationScene()
 	MODEL_MANAGER->LoadAssimpModel("Player", "models/LeafsFan.fbx");
 	MODEL_MANAGER->LoadAssimpModel("Puck", "models/Puck.obj");
 	TEXTURE_MANAGER->UploadTextureFromFile("PuckTexture", "textures/Puck.png");
+
+	_flyCam = new FlyCamera(this);
+	SetCamera(_flyCam);
 }
 
 SimulationScene::~SimulationScene()

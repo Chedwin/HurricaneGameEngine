@@ -82,6 +82,9 @@ hBOOL Game::InitEngine()
 	// OPENGL RENDERER
 	renderer = new OpenGLRenderer();
 
+	// Make mouse invisible
+	SDL_ShowCursor(SDL_DISABLE);
+
 	return true;
 }
 
@@ -168,11 +171,15 @@ void Game::GameLoop()
 
 		
 
+		// Update our input handler
+		input->Update();
+
 		// INPUT HANDLING LOOP w/ SDL EVENT
 		if (SDL_PollEvent(&evnt))
 		{
 			// Give the polled event to the input handler
 			input->ProcessInput(evnt);
+			
 
 			// Quit the game
 			// by closing window or press "ESC"
@@ -183,10 +190,7 @@ void Game::GameLoop()
 			}
 			
 		}
-		//SDL_PumpEvents();
-
-		// Update our input handler
-		input->Update();
+		SDL_PumpEvents();
 
 		// PASS OUR DELTA TIME TO OUR PHYSICS ENGINE
 		PHYSICS->FixedUpdate(_deltaTime);

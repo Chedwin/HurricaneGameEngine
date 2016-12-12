@@ -1,4 +1,4 @@
-#include <FlyCamera.h>
+
 #include <TextureManager.h>
 #include <MaterialManager.h>
 #include <ShaderProgramManager.h>
@@ -51,6 +51,5 @@ void TestGame::GameUpdate(const hFLOAT _deltaTime)
 
 void TestGame::GameRender()
 {
-	if (INPUT->IsKeyDown(SDLK_k))
-		Debug::ConsoleLog("K key pressed");
+	// EMPTY
 }

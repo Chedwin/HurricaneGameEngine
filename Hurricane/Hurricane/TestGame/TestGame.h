@@ -15,6 +15,4 @@ public:
 
 	void GameUpdate(const hFLOAT _deltaTime) override;
 	void GameRender() override;
-
-public:
 };
