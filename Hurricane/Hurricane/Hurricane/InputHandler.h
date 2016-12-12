@@ -51,6 +51,10 @@ public:
 	hBOOL IsMouseButtonPressed(Uint8 button_);
 	hBOOL IsMouseButtonReleased(Uint8 button_);
 
+	inline VEC2 GetMousePos() const {
+		return _curMousePos;
+	}
+
 private:
 	static UNIQUE_PTR(InputHandler) _inputHandler;
 	friend DEFAULT_DELETE(InputHandler);

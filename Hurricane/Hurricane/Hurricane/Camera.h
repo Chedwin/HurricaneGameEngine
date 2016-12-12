@@ -60,14 +60,6 @@ protected:
 
 public:
 	Frustum frustum;
-
-	hFLOAT horizontalAngle, verticalAngle;
-	hFLOAT initialFOV;
-	
-	hFLOAT speed; // units per second
-	hFLOAT mouseSpeed;
-
-	hINT winWidth, winHeight;
 };
 
 #endif

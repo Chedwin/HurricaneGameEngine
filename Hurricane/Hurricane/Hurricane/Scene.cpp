@@ -45,7 +45,7 @@ void Scene::SetCamera(Camera* _c)
 
 void Scene::Update(const hFLOAT _timeStep)
 {
-	mainCamera->Update(_timeStep);
+	currentCamera->Update(_timeStep);
 
 	// NOTE: ANY game object to be instatiated MUST be attached to a scene
 	//		 
@@ -67,7 +67,7 @@ void Scene::Update(const hFLOAT _timeStep)
 void Scene::Render()
 {
 	// camera render
-	mainCamera->Render();
+	currentCamera->Render();
 
 	// Draw every game object that has a renderable component
 	VECTOR(GameObject*)::iterator iter;

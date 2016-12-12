@@ -154,6 +154,7 @@
     <Xml Include="properties.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FlyCamera.cpp" />
     <ClCompile Include="HelloWorldScript.cpp" />
     <ClCompile Include="PlayerMovementScript.cpp" />
     <ClCompile Include="SimulationScene.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="TestGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FlyCamera.h" />
     <ClInclude Include="HelloWorldScript.h" />
     <ClInclude Include="PlayerMovementScript.h" />
     <ClInclude Include="TitleScreenScene.h" />

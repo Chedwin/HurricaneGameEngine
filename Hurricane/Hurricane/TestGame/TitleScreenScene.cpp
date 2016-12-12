@@ -11,6 +11,7 @@ TitleScreenScene::TitleScreenScene() : countdownTime(0.0f)
 
 TitleScreenScene::~TitleScreenScene()
 {
+	// EMPTY
 }
 
 

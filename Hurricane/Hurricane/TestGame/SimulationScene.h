@@ -7,6 +7,8 @@
 #include <LightComponent.h>
 #include <InputHandler.h>
 
+#include "FlyCamera.h"
+
 class SimulationScene : public Scene {
 public:
 	SimulationScene();
@@ -14,4 +16,7 @@ public:
 
 	void InitScene();
 	void Update(const hFLOAT _timeStep) override;
+
+protected:
+	FlyCamera* _flyCam;
 };
