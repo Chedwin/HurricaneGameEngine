@@ -63,5 +63,6 @@
 #define DEFAULT_DELETE(C)	std::default_delete<C>
 #define WEAK_PTR(D)			std::weak_ptr<D>
 
+#define BIT(x) (1 << x)
 
 #endif MACRO_H
