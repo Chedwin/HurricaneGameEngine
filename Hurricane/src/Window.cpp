@@ -17,11 +17,7 @@ namespace Hurricane
 
 	bool Window::Init(const WindowProperties& windowProps)
 	{
-		m_Properties.Width = windowProps.Width;
-		m_Properties.Height = windowProps.Height;
-		m_Properties.IsFullscreen = windowProps.IsFullscreen;
-		m_Properties.IsVSync = windowProps.IsVSync;
-		m_Properties.Callback = windowProps.Callback;
+		SetProperties(windowProps);
 
 		// Initialize the library 
 		if (!glfwInit()) 
@@ -49,6 +45,16 @@ namespace Hurricane
 			winProps.Callback(evt);
 		});
 
+		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
+		{
+			WindowProperties& winProps = *(WindowProperties*)glfwGetWindowUserPointer(window);
+			winProps.Width = width;
+			winProps.Height = height;
+
+			WindowResizeEvent event(width, height);
+			winProps.Callback(event);
+		});
+
 		return true;
 	}
 
@@ -65,7 +71,7 @@ namespace Hurricane
 
 	void Window::SetVSync(bool enabled)
 	{
-		m_Properties.IsVSync = enabled;
+		m_Properties.VSyncEnabled = enabled;
 	}
 
 	void Window::SetEventCallback(const EventCallbackFunc & callback)
@@ -73,9 +79,18 @@ namespace Hurricane
 		m_Properties.Callback = callback;
 	}
 
+	void Window::SetProperties(const WindowProperties & windowProps)
+	{
+		m_Properties.Width = windowProps.Width;
+		m_Properties.Height = windowProps.Height;
+		m_Properties.Fullscreen = windowProps.Fullscreen;
+		m_Properties.VSyncEnabled = windowProps.VSyncEnabled;
+		m_Properties.Callback = windowProps.Callback;
+	}
+
 	bool Window::IsVSync() const
 	{
-		return m_Properties.IsVSync;
+		return m_Properties.VSyncEnabled;
 	}
 
 }

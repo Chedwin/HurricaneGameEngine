@@ -2,7 +2,9 @@
 #define APPLICATION_H
 
 #include "Event.h"
+#include "ApplicationEvent.h"
 #include "Window.h"
+#include "Macro.h"
 
 namespace Hurricane 
 {
@@ -12,7 +14,7 @@ namespace Hurricane
 		static Application* s_Instance;
 
 		bool m_IsRunning;
-		Window* m_Window;
+		std::unique_ptr<Window> m_Window;
 
 	public:
 		Application();
@@ -28,7 +30,8 @@ namespace Hurricane
 		}
 
 	private:
-		bool OnWindowClose();
+		bool OnWindowClose(WindowCloseEvent& event);
+		bool OnWindowResize(WindowResizeEvent& event);
 	};
 
 

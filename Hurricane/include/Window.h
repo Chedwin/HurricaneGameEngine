@@ -29,6 +29,7 @@ namespace Hurricane
 
 		void SetVSync(bool enabled);
 		void SetEventCallback(const EventCallbackFunc& callback);
+		void SetProperties(const WindowProperties& windowProps);
 
 		bool IsVSync() const;
 
@@ -37,8 +38,6 @@ namespace Hurricane
 			return m_Properties;
 		}
 	};
-	/*
-	*/
 }
 
 

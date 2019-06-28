@@ -14,8 +14,8 @@ namespace Hurricane
 		EventCallbackFunc Callback;
 		unsigned int Width;
 		unsigned int Height;
-		bool IsFullscreen;
-		bool IsVSync;
+		bool Fullscreen;
+		bool VSyncEnabled;
 		std::string Title;
 
 		explicit WindowProperties(
@@ -24,7 +24,7 @@ namespace Hurricane
 			unsigned int height = 720,
 			bool isFullscreen = false, 
 			bool isVSync = false)
-			: Title(title), Width(width), Height(height), IsFullscreen(isFullscreen), IsVSync(isVSync)
+			: Title(title), Width(width), Height(height), Fullscreen(isFullscreen), VSyncEnabled(isVSync)
 		{
 		}
 	};
