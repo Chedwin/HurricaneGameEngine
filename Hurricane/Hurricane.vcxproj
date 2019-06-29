@@ -127,6 +127,7 @@
     <ClInclude Include="include\Event.h" />
     <ClInclude Include="include\Macro.h" />
     <ClInclude Include="include\PCH.h" />
+    <ClInclude Include="include\Timer.h" />
     <ClInclude Include="include\Window.h" />
     <ClInclude Include="include\WindowProperties.h" />
   </ItemGroup>
@@ -136,6 +137,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PCH.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="src\Timer.cpp" />
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

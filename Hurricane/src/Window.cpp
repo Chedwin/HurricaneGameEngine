@@ -6,7 +6,7 @@ namespace Hurricane
 {
 
 	Window::Window() 
-		: m_Window(nullptr)
+		: m_GlfwWindow(nullptr)
 	{
 	}
 
@@ -26,33 +26,35 @@ namespace Hurricane
 		}
 
 		// Create a windowed mode window
-		m_Window = glfwCreateWindow(windowProps.Width, windowProps.Height, windowProps.Title.c_str(), NULL, NULL);
-		if (!m_Window)
+		m_GlfwWindow = glfwCreateWindow(windowProps.Width, windowProps.Height, windowProps.Title.c_str(), nullptr, nullptr);
+		if (!m_GlfwWindow)
 		{
 			glfwTerminate();
 			return false;
 		}
 
-		glfwSetWindowUserPointer(m_Window, &m_Properties);
+		glfwSetWindowUserPointer(m_GlfwWindow, &m_Properties);
 
 		// Make the window's context current
-		glfwMakeContextCurrent(m_Window);
+		glfwMakeContextCurrent(m_GlfwWindow);
 
-		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)
+		glfwSetWindowCloseCallback(m_GlfwWindow, [](GLFWwindow* window)
 		{
-			WindowProperties& winProps = *(WindowProperties*)glfwGetWindowUserPointer(window);
+			WindowProperties* winProps = static_cast<WindowProperties*>(glfwGetWindowUserPointer(window));
+
 			WindowCloseEvent evt;
-			winProps.Callback(evt);
+			winProps->Callback(evt);
 		});
 
-		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
+		glfwSetWindowSizeCallback(m_GlfwWindow, [](GLFWwindow* window, int width, int height)
 		{
-			WindowProperties& winProps = *(WindowProperties*)glfwGetWindowUserPointer(window);
-			winProps.Width = width;
-			winProps.Height = height;
+			WindowProperties* winProps = static_cast<WindowProperties*>(glfwGetWindowUserPointer(window));
 
-			WindowResizeEvent event(width, height);
-			winProps.Callback(event);
+			winProps->Width = width;
+			winProps->Height = height;
+
+			WindowResizeEvent evt(width, height);
+			winProps->Callback(evt);
 		});
 
 		return true;
@@ -60,7 +62,7 @@ namespace Hurricane
 
 	void Window::Shutdown() 
 	{
-		glfwDestroyWindow(m_Window);
+		glfwDestroyWindow(m_GlfwWindow);
 		glfwTerminate();
 	}
 
@@ -74,18 +76,29 @@ namespace Hurricane
 		m_Properties.VSyncEnabled = enabled;
 	}
 
-	void Window::SetEventCallback(const EventCallbackFunc & callback)
+	void Window::SetEventCallback(const EventCallbackFunc& callback)
 	{
 		m_Properties.Callback = callback;
 	}
 
-	void Window::SetProperties(const WindowProperties & windowProps)
+	void Window::SetProperties(const WindowProperties& windowProps)
 	{
+		m_Properties.Title = windowProps.Title;
 		m_Properties.Width = windowProps.Width;
 		m_Properties.Height = windowProps.Height;
 		m_Properties.Fullscreen = windowProps.Fullscreen;
 		m_Properties.VSyncEnabled = windowProps.VSyncEnabled;
 		m_Properties.Callback = windowProps.Callback;
+	}
+
+	void Window::SetTitle(const std::string & title)
+	{
+		glfwSetWindowTitle(m_GlfwWindow, title.c_str());
+	}
+
+	void Window::SetTitle(const char* title)
+	{
+		glfwSetWindowTitle(m_GlfwWindow, title);
 	}
 
 	bool Window::IsVSync() const

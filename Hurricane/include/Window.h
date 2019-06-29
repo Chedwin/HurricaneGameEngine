@@ -10,19 +10,22 @@
 
 namespace Hurricane 
 {
+	class Application;
 
 	class Window {
+		friend class Application;
 	private:
-		GLFWwindow* m_Window;
+		GLFWwindow* m_GlfwWindow;
 		WindowProperties m_Properties;
 
 		using EventCallbackFunc = std::function<void(Event&)>;
 
-	public:
+	private:
 		Window();
-		~Window();
 
 	public:
+		~Window();
+
 		bool Init(const WindowProperties& windowProps);
 		void Shutdown();
 		void Update();
@@ -31,9 +34,12 @@ namespace Hurricane
 		void SetEventCallback(const EventCallbackFunc& callback);
 		void SetProperties(const WindowProperties& windowProps);
 
+		void SetTitle(const std::string& title);
+		void SetTitle(const char* title);
+
 		bool IsVSync() const;
 
-		inline WindowProperties Properties() const 
+		inline WindowProperties Properties() const
 		{
 			return m_Properties;
 		}

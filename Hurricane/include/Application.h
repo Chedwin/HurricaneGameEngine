@@ -10,7 +10,7 @@ namespace Hurricane
 {
 
 	class Application {
-	private:
+	protected:
 		static Application* s_Instance;
 
 		bool m_IsRunning;
@@ -18,7 +18,7 @@ namespace Hurricane
 
 	public:
 		Application();
-		virtual ~Application();
+		virtual ~Application() = 0;
 
 		void Run();
 
@@ -34,8 +34,8 @@ namespace Hurricane
 		bool OnWindowResize(WindowResizeEvent& event);
 	};
 
-
-	Application* CreateApplication();
+	// To be implemented by the concrete game implementation
+	extern Application* CreateApplication();
 }
 
 #endif APPLICATION_H

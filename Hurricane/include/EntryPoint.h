@@ -2,13 +2,12 @@
 #define ENTRY_POINT_H
 
 #include "Application.h"
-#include <GLFW/glfw3.h>
 
 int main(int argc, char** argv)
 {
-	Hurricane::Application* appplication = Hurricane::CreateApplication();
-	appplication->Run();
-	delete appplication;
+	Hurricane::Application* app = Hurricane::CreateApplication();
+	app->Run();
+	delete app;
 
 	return 0;
 }
