@@ -1,9 +1,8 @@
 # Directories
 .vs/
-/bin/
-bin-int/
 
-# Files
+# Files (mostly annoying Visual Studio generated files)
+*.exe
 *.user
 *.filters
 *.obj
@@ -12,3 +11,8 @@ bin-int/
 *.idb
 *.log
 *.pdb
+*.ilk
+*.ipch
+*.db
+*.suo
+*.sqlite
