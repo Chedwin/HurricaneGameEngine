@@ -44,9 +44,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IntDir>D:/HurricaneScratch/int/$(Configuration)_$(Platform)/</IntDir>
+    <IntDir>C:/HurricaneScratch/int/$(Configuration)_$(Platform)/</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
-    <OutDir>D:/HurricaneScratch/bin/$(Configuration)_$(Platform)/</OutDir>
+    <OutDir>C:/HurricaneScratch/bin/$(Configuration)_$(Platform)/</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

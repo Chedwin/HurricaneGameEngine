@@ -44,8 +44,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>D:/HurricaneScratch/exe/</OutDir>
-    <IntDir>D:/HurricaneScratch/int/$(Configuration)_$(Platform)/</IntDir>
+    <OutDir>C:/HurricaneScratch/exe/</OutDir>
+    <IntDir>C:/HurricaneScratch/int/$(Configuration)_$(Platform)/</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -62,7 +62,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>D:/HurricaneScratch/bin/$(Configuration)_$(Platform)/Core_$(Configuration)_$(Platform).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:/HurricaneScratch/bin/$(Configuration)_$(Platform)/Core_$(Configuration)_$(Platform).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
