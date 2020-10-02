@@ -31,6 +31,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>D:/HurricaneScratch/bin/$(Configuration)_$(Platform)/</OutDir>
+    <IntDir>D:/HurricaneScratch/int/$(Configuration)_$(Platform)/</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
