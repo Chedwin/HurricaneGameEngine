@@ -5,10 +5,10 @@ class App
 {
 public:
 	App();
-	virtual ~App() {}
+	virtual ~App();
 
-	bool Init();
-	void Run();
+	virtual bool Init() = 0;
+	virtual void Run() = 0;
 };
 
 #endif APP_H
